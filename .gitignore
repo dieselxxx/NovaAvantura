@@ -1,0 +1,15 @@
+# sve
+/*
+
+#osnovno
+!README.md
+!.gitignore
+
+#aplikacija
+!aplikacija/
+
+#web
+!web/
+web/dokumentacija/
+web/resursi/
+web/index.php
