@@ -24,7 +24,7 @@ return [
      * @var array<string, array<string, string>>
      */
     'lista' => [
-        'kapriol'
+        'novaavantura'
     ],
 
     /**
@@ -36,6 +36,6 @@ return [
      *
      * @var array<string, string>
      */
-    'odabrano' => env('ZADANA_TEMA','kapriol')
+    'odabrano' => env('ZADANA_TEMA','novaavantura')
 
 ];
