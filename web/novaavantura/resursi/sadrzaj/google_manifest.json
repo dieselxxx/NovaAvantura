@@ -1,13 +1,13 @@
 {
-    "name":"Kapriol",
-    "short_name":"Kapriol WebShop",
+    "name":"Nova Avantura",
+    "short_name":"Nova Avantura WebShop",
     "version":"production",
-    "description":"Kapriol WebShop",
+    "description":"Nova Avantura WebShop",
     "start_url":"\\",
     "scope":"\\",
     "display":"fullscreen",
     "orientation":"any",
-    "background_color":"#ec6c00",
-    "theme_color":"#ec6c00",
+    "background_color":"#000",
+    "theme_color":"#fff",
     "prefer_related_applications":false
 }
