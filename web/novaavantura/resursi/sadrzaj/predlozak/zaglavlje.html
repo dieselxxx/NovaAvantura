@@ -1,4 +1,17 @@
-<header>
+<header xmlns="http://www.w3.org/1999/html">
+
+    <div id="trazi">
+        <section>
+            <h4>Upišite artikl koji tražite</h4>
+            <a class="trazi"><svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#zatvori"></use></svg></a>
+            <label data-boja="boja" class="unos">
+                <input type="text" name="trazi" value="" maxlength="50" autocomplete="off" placeholder="Pretražite proizvode po nazivu, brandu ili robnoj grupi..." required="required" pattern=".{3,50}">
+                <span class="granica"></span>
+                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
+            </label>
+        </section>
+    </div>
+    <div class="pozadina"></div>
 
     <div class="traka">
 
@@ -12,15 +25,20 @@
                             <ul>
                                 <li>
                                     <a>
-                                        <svg><use
-                                            xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#zatvori"></use></svg>
+                                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#zatvori"></use></svg>
                                     </a>
+                                </li>
+                                <li>
+                                    <label data-boja="boja" class="unos">
+                                        <input type="text" name="trazi" value="" maxlength="50" autocomplete="off" placeholder="Pretražite proizvode po nazivu, brandu ili robnoj grupi..." required="required" pattern=".{3,50}">
+                                        <span class="granica"></span>
+                                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
+                                    </label>
                                 </li>
                                 <li>
                                     <a>
                                         <span>Muška kolekcija</span>
-                                        <svg><use
-                                            xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno"></use></svg>
+                                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno"></use></svg>
                                     </a>
                                 </li>
                                 <li>
@@ -109,7 +127,14 @@
                         <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_dole"></use></svg>
                     </a>
                 </li>
+                <li>
+                    <a class="trazi">
+                        <span>Traži</span>
+                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
+                    </a>
+                </li>
             </ul>
+
         </nav>
 
     </div>
