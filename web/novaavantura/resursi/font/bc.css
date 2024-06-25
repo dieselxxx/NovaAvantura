@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'bc';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'bc';
+    font-style: italic;
+    font-weight: 100;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bc';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-Roman.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bc';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bc';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bc';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bc';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bc';
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+    src: url('/novaavantura/resursi/font/bc/BasicCommercialLT-BlackItalic.ttf') format('truetype');
+}

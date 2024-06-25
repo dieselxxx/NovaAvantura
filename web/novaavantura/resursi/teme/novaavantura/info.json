@@ -1,4 +1,9 @@
 {
-    "css": [],
+    "css": [
+        "css/root.css",
+        "css/normaliziranje.css",
+        "css/grid.css",
+        "css/novaavantura.css"
+    ],
     "javascript": []
 }
