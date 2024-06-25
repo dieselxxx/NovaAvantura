@@ -24,14 +24,19 @@ header .meni nav {text-transform: uppercase;}
 header .meni nav ul li:last-of-type {float: right;}
 header .meni nav ul li:last-of-type span {margin-right: 10px;}
 
-main {background-color: white; margin-bottom: 200px; padding: 5px; z-index: 1;}
+main {background-color: white; margin-bottom: 260px; padding: 5px 0 5px 0; z-index: 1;}
+main section.sadrzaj {padding: 0 5px 0 5px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
 
-footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px;}
+footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
+footer nav {padding: 0 5px 0 5px;}
 footer nav section h4 {font-weight: 100; text-transform: uppercase;}
-footer nav section li {height: 23px; width: 100%;}
-footer nav section li a {font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
+footer nav section li {display: flex; align-items: center; padding: 3px 0 3px 0; width: 100%;}
+footer nav section li span {font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 footer nav section li a:hover {text-decoration: none; color: var(--boja-tekst);}
+footer nav section li svg {margin-right: 10px; height: 20px; width: 20px;}
+footer nav section.pratite_nas li svg {height: 15px; width: 15px;}
+footer > section {border-top: 1px solid var(--boja-granica);}
 
 @media only screen and (min-width: 1000px) {
 
