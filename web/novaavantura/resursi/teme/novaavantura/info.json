@@ -5,5 +5,8 @@
         "css/grid.css",
         "css/novaavantura.css"
     ],
-    "javascript": []
+    "javascript": [
+        "js/biblioteke.js",
+        "js/novaavantura.js"
+    ]
 }

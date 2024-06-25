@@ -1,6 +1,7 @@
 body {font-family: 'bc', sans-serif; font-size: 1rem; color: var(--boja-tekst);}
 
-header {position: sticky; top:0; background-color: white; height: 80px;}
+header {background-color: white; height: 80px; transition: all 0.4s ease; z-index: 2;}
+header.skrolanje {position: sticky; top:0; background-color: rgba(255,255,255,0.9); transition: all 0.4s ease;}
 header nav ul li {float: left; height: 30px; font-size: 0.8rem;}
 header nav ul li a {display: inline-flex; align-items: center; padding-right: 10px; height: 30px;}
 header nav ul li a:hover {text-decoration: none; color: var(--boja-tekst-svjetlija);}
@@ -16,9 +17,20 @@ header .traka .osnovno .hamburger-meni ul li:first-of-type a {padding: 0;}
 header .meni {padding: 5px; border-bottom: 1px solid var(--boja-granica);}
 header .meni nav {text-transform: uppercase;}
 
-main {padding: 5px;}
+main {background-color: white; margin-bottom: 200px; padding: 5px; z-index: 1;}
+main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
 
-footer {padding: 5px;}
+footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px;}
+footer nav section h4 {font-weight: 100; text-transform: uppercase;}
+footer nav section li {height: 23px; width: 100%;}
+footer nav section li a {font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
+footer nav section li a:hover {text-decoration: none; color: var(--boja-tekst);}
+
+@media only screen and (min-width: 1000px) {
+
+    header.skrolanje .meni nav {margin-left: 30px;}
+
+}
 
 @media only screen and (max-width: 1000px) {
 
