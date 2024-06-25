@@ -18,7 +18,7 @@ footer nav.info {grid-column: 3 / 4; grid-row: 1 / 2; display: grid; grid-templa
 @media only screen and (min-width: 1000px) {
 
     header.skrolanje {grid-template-rows: 40px; height: 40px;}
-    header.skrolanje .traka {grid-column: initial;}
+    header.skrolanje .traka {grid-template-columns: 0 auto 0; grid-row: 1 / 2;}
     header.skrolanje .meni {grid-row: 1 / 2;}
 
 }
