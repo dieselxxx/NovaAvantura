@@ -1,9 +1,9 @@
 :root {
     --boja-placeholder: #9e9e9e;
-    --boja-na: #ec6c00;
-    --boja-na-rgba: rgba(236, 108, 0, 1);
-    --boja-na-svjetlije: #ff7501;
-    --boja-na-tamnije: #b95500;
+    --boja-na: #00688b  ;
+    --boja-na-rgba: rgba(0, 104, 139, 1);
+    --boja-na-svjetlije: #3286a2;
+    --boja-na-tamnije: #00536f;
     --boja-pozadina: #ffffff;
     --boja-pozadina_tamna: #162125;
     --boja-pozadina_svijetla: #f6f6f6;
