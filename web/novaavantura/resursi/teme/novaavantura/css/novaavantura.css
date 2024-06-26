@@ -24,19 +24,21 @@ header .meni nav {text-transform: uppercase;}
 header .meni nav ul li:last-of-type {float: right;}
 header .meni nav ul li:last-of-type span {margin-right: 10px;}
 
-main {background-color: white; margin-bottom: 260px; padding: 5px 0 5px 0; z-index: 1;}
+main {background-color: white; margin-bottom: 310px; padding: 5px 0 5px 0; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
-footer nav {padding: 0 5px 0 5px;}
+footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
 footer nav section h4 {font-weight: 100; text-transform: uppercase;}
 footer nav section li {display: flex; align-items: center; padding: 3px 0 3px 0; width: 100%;}
 footer nav section li span {font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 footer nav section li a:hover {text-decoration: none; color: var(--boja-tekst);}
 footer nav section li svg {margin-right: 10px; height: 20px; width: 20px;}
 footer nav section.pratite_nas li svg {height: 15px; width: 15px;}
-footer > section {border-top: 1px solid var(--boja-granica);}
+footer > section {display: flex; align-items: center; padding: 5px; font-size: 0.8rem; color: var(--boja-tekst-svjetlija); border-top: 1px solid var(--boja-granica);}
+footer > section a {flex-grow: 0.02;}
+footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (min-width: 1000px) {
 
@@ -62,6 +64,17 @@ footer > section {border-top: 1px solid var(--boja-granica);}
     header .traka .osnovno .hamburger-input:checked ~ .hamburger-meni ul {visibility: visible;}
     header .traka .osnovno .hamburger-input:checked ~ .pozadina {position: fixed; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0,0,0,0.41)}
 
+    main {margin-bottom: 0;}
+
+    footer {position: initial;}
+    footer > nav {flex-direction: column;}
+    footer nav section h4 {margin: 0; text-align: center;}
+    footer nav section li {justify-content: center; padding: 10px 0 10px 0;}
+    footer .accordion2 {padding: 18px; width: 100%; font-size: 15px; color: #444; outline: none; cursor: pointer; border: none; transition: 0.4s;}
+    footer .active, footer .accordion2:hover {background-color: var(--boja-granica);}
+    footer .accordion2:after {content: '\002B'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
+    footer .panel2 {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
+
 }
 
 label.unos {position: relative; display: grid; grid-template-columns: auto 56px; grid-gap: 0;}
@@ -70,3 +83,9 @@ label.unos input:focus {outline: none;}
 label.unos input::placeholder {color: var(--boja-tekst);}
 label.unos svg {grid-column: 2 / 3; grid-row: 1 / 2; margin: 13px; height: 30px; width: 30px;}
 label.unos span.granica {grid-column: 2 / 3; grid-row: 1 / 2; position: absolute; display: block; bottom: 0; width: 100%}
+
+.accordion {padding: 18px; width: 100%; font-size: 15px; text-align: left; color: #444; outline: none; cursor: pointer; border: none; transition: 0.4s;}
+.active, .accordion:hover {background-color: var(--boja-granica);}
+.accordion:after {content: '\002B'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
+.active:after {content: "\2212";}
+.panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
