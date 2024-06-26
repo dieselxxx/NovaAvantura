@@ -12,9 +12,10 @@
  * @package Aplikacija\Kontroler
  */
 
-namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
+namespace FireHub\Aplikacija\Administrator\Kontroler;
 
 use FireHub\Jezgra\Kontroler\Kontroler;
+use FireHub\Aplikacija\Administrator\Model\Sesija_Model;
 
 /**
  * ### Master
@@ -23,5 +24,15 @@ use FireHub\Jezgra\Kontroler\Kontroler;
  * @package Aplikacija\Kontroler
  */
 abstract class Master_Kontroler extends Kontroler {
+
+    /**
+     * ### Konstruktor
+     * @since 0.1.2.pre-alpha.M1
+     */
+    public function __construct () {
+
+        $this->model(Sesija_Model::class);
+
+    }
 
 }

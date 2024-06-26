@@ -12,9 +12,8 @@
  * @package Aplikacija\Kontroler
  */
 
-namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
+namespace FireHub\Aplikacija\Administrator\Kontroler;
 
-use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 
 /**
@@ -31,9 +30,10 @@ final class Naslovna_Kontroler extends Master_Kontroler {
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
+    public function index ():Sadrzaj {
 
-        return sadrzaj()->datoteka('naslovna.html')->podatci([]);
+        return sadrzaj()->datoteka('naslovna.html')->podatci([
+        ]);
 
     }
 
