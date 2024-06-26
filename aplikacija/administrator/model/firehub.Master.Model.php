@@ -36,7 +36,7 @@ abstract class Master_Model extends Model {
     ) {
 
         // napravi sesiju
-        $this->sesija = (new Sesija())->naziv('Kapriol')->napravi();
+        $this->sesija = (new Sesija())->naziv('NovaAvantua')->napravi();
 
     }
 
