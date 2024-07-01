@@ -105,7 +105,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .mobile-meni-gumb,
     header .meni .mobile-menu-header,
     header .meni .mobile-menu-back-item {display: block;}
-    header .meni .mobile-meni-gumb {}
+    header .meni .mobile-meni-gumb {height: 50px; width: 50px;}
     header .meni .mobile-meni-gumb svg {position: absolute; top: 5px; left: 5px; padding: 0.6rem; height: 40px; width: 40px; cursor: pointer;}
     header .meni .mobile-menu-header {order: -1;}
     header .meni .mobile-menu-header a {visibility: visible; padding: 20px 25px;}
