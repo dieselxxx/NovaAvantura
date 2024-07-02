@@ -57,6 +57,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni {background: white;}
     header .meni .menu [aria-haspopup="true"] ~ ul {display: none;}
     header .meni .menu-bar {position: relative;}
+    header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul {box-shadow: 0 4px 10px #0000001a;}
     header .meni .menu-bar > li > [aria-haspopup="true"]:after {background-image: url('/novaavantura/resursi/grafika/simboli/strelicaDole.svg');}
     header .meni .menu-bar > li > [aria-haspopup="true"]:hover:after {background-image: url('/novaavantura/resursi/grafika/simboli/strelicaDole.svg');}
     header .meni .menu-bar > li > [aria-haspopup="true"]:focus ~ ul {display: flex; transform-origin: top; animation: dropdown 0.2s ease-out;}
@@ -68,7 +69,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li > [aria-haspopup="true"]:focus:after,
     header .meni .menu-bar > li:focus-within > [aria-haspopup="true"]:after,
     header .meni .menu-bar > li:hover > a:after {background-image: url('/novaavantura/resursi/grafika/simboli/strelicaGore.svg');}
-    header .meni .mega-meni {position: absolute; top: 100%; left: 0; width: 100%;}
+    header .meni .mega-meni {position: absolute; top: 40px; left: 0; width: 100%;}
     header .meni .mega-meni:hover {display: flex;}
     header .meni .mega-meni a:hover {background: var(--boja-granica);}
     header .meni .mega-meni--multiLevel > li {width: 33.33333333%;}
@@ -80,8 +81,6 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .mega-meni--multiLevel li:focus-within > [aria-haspopup="true"],
     header .meni .mega-meni--multiLevel li:hover > a,
     header .meni .mega-meni--multiLevel li:focus-within > a {background: var(--boja-granica);}
-    header .meni .mega-meni--multiLevel [aria-haspopup="true"] ~ ul,
-    header .meni .mega-meni--multiLevel [aria-haspopup="true"] {border-left: 1px solid var(--boja-granica);}
     header .meni .mega-meni--multiLevel [aria-haspopup="true"] ~ ul:hover,
     header .meni .mega-meni--multiLevel [aria-haspopup="true"]:hover {display: block;}
     header .meni .mega-meni--multiLevel [aria-haspopup="true"] ~ ul {position: absolute; top: 0; height: 100%;}
