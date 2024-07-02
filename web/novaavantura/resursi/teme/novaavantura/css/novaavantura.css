@@ -37,7 +37,6 @@ header .meni .mega-meni--multiLevel {flex-direction: column;}
 main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
-main > .sadrzaj > .naslovna > .rotator {height: 550px;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -168,9 +167,10 @@ label.unos span.granica {grid-column: 2 / 3; grid-row: 1 / 2; position: absolute
 .active:after {content: "\2212";}
 .panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
 
+/** galerija **/
 .swiper {width: 100%; height: 100%;}
 .swiper-slide {text-align: center;font-size: 18px;background: #fff;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}
-.swiper-slide img {display: block; background-color: var(--boja-pozadina); width: 100%; height: 100%; object-fit: cover; box-shadow: inset 0 0 10rem 10px rgba(155,155,155,0.1);}
+.swiper-slide img {display: block; width: 100%; height: 100%; object-fit: cover;}
 
 @keyframes dropdown {
     0% {opacity: 0; transform: scaleY(0);}
