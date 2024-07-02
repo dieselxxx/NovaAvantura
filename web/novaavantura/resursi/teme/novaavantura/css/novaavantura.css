@@ -37,7 +37,7 @@ header .meni .mega-meni--multiLevel {flex-direction: column;}
 main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
-main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: auto;}
+main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
