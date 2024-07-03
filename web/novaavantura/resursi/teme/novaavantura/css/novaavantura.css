@@ -4,6 +4,8 @@ a:hover, nav a:visited {text-decoration: none;}
 header {background-color: white; height: 80px; transition: all 0.4s ease; z-index: 2;}
 header.skrolanje {position: sticky; top:0; background-color: rgba(255,255,255,0.9); transition: all 0.4s ease;}
 header.skrolanje .traka ul li.samo_desktop {display: none;}
+header.skrolanje .traka nav.osnovno ul li:first-of-type a {margin-left: 5px; padding-right: 0;}
+header.skrolanje .traka nav.osnovno ul li:first-of-type a svg {height: 30px; width: 30px;}
 header #trazi {display: none; position: absolute; top: 0; left: 0; right: 0; background-color: white; height: 140px; transition: all 0.4s ease; z-index: 2;}
 header #trazi section h4 {font-size: 0.8rem; font-weight: 100; text-transform: uppercase; color: var(--boja-tekst-svjetlija);}
 header #trazi section > a {height: 30px; width: 30px;}
@@ -104,6 +106,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .traka {padding: 10px 0;}
     header .traka ul li.samo_desktop {display: none;}
     header .traka nav.osnovno ul li:first-of-type {display: initial; margin-left: 40px; height: 40px; width: 40px;}
+    header .traka nav.osnovno ul li:first-of-type a {margin-left: 5px; padding-right: 0;}
     header .traka nav.osnovno ul li label input::placeholder {font-size: 0.6rem;}
 
     header .meni .menu-bar > li .trazi {display: none;}
