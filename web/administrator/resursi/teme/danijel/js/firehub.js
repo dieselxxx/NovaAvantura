@@ -255,6 +255,50 @@ $_Odjava = function () {
 };
 
 /**
+ * Dohvati kategorije.
+ *
+ * @param {object} element
+ * @param {int} $broj_stranice
+ * @param {string} $poredaj
+ * @param {string} $redoslijed
+ */
+$_Kategorije = function (element = '', $broj_stranice = 1, $poredaj = 'Kategorija', $redoslijed = 'asc') {
+
+    let podatci = $('form[data-oznaka="kategorije_lista"]').serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/kategorije/lista/' + $broj_stranice + '/' + $poredaj + '/' + $redoslijed,
+        dataType: 'json',
+        data: podatci,
+        success: function (odgovor) {
+            $('form[data-oznaka="kategorije_lista"] > section table tbody').empty();
+            let Kategorije = odgovor.Kategorije;
+            $.each(Kategorije, function (a, Kategorija) {
+                $('form[data-oznaka="kategorije_lista"] > section table tbody').append('\
+                    <tr onclick="$_Kategorija(\''+ Kategorija.ID +'\')">\
+                        <td class="uredi">'+ Kategorija.ID +'</td>\
+                        <td class="uredi">'+ Kategorija.Kategorija +'</td>\
+                        <td class="uredi">'+ Kategorija.Roditelj +'</td>\
+                    </tr>\
+                ');
+            });
+            // zaglavlje
+            let Zaglavlje = odgovor.Zaglavlje;
+            $('form[data-oznaka="kategorije_lista"] > section div.sadrzaj > table thead').empty().append(Zaglavlje);
+            // navigacija
+            let Navigacija = odgovor.Navigacija;
+            $('form[data-oznaka="kategorije_lista"] > section div.kontrole').empty().append('<ul class="navigacija">' + Navigacija.pocetak + '' + Navigacija.stranice + '' + Navigacija.kraj + '</ul>');
+        },
+        error: function () {
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Dohvati obavijesti.
  *
  * @param {object} element
