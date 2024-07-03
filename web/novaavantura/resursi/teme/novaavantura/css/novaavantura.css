@@ -3,6 +3,7 @@ a:hover, nav a:visited {text-decoration: none;}
 
 header {background-color: white; height: 80px; transition: all 0.4s ease; z-index: 2;}
 header.skrolanje {position: sticky; top:0; background-color: rgba(255,255,255,0.9); transition: all 0.4s ease;}
+header.skrolanje .traka ul li.samo_desktop {display: none;}
 header #trazi {display: none; position: absolute; top: 0; left: 0; right: 0; background-color: white; height: 140px; transition: all 0.4s ease; z-index: 2;}
 header #trazi section h4 {font-size: 0.8rem; font-weight: 100; text-transform: uppercase; color: var(--boja-tekst-svjetlija);}
 header #trazi section > a {height: 30px; width: 30px;}
@@ -12,8 +13,10 @@ header ul li a:hover {text-decoration: none; color: var(--boja-tekst-svjetlija);
 header ul li a svg {height: 20px; width: 20px;}
 header .traka {align-items: center; padding: 5px; border-bottom: 1px solid var(--boja-granica);}
 header .traka ul li {float: left; height: 30px; font-size: 0.8rem;}
+header .traka ul li.samo_desktop a {cursor: initial;}
 header .traka ul li a {display: inline-flex; align-items: center; padding-right: 10px; height: 30px; width: 100%;}
-header .traka nav.info svg {margin-right: 5px;}
+header .traka nav svg {margin-right: 5px;}
+header .traka .osnovno {z-index: 0;}
 header .traka .osnovno .hamburger-meni {text-transform: uppercase;}
 header .traka .osnovno .hamburger-meni ul li {height: auto; width: 100%; padding: 5px; font-size: 1rem; font-weight: 100;}
 header .traka .osnovno .hamburger-meni ul li a {align-items: stretch; justify-content: space-between; padding: 0 15px 0 15px; height: auto; width: 100%;}
@@ -22,7 +25,7 @@ header .traka .osnovno .hamburger-meni ul li:first-of-type a {padding: 0;}
 header .meni {border-bottom: 1px solid var(--boja-granica);}
 header .meni nav {grid-column: 2 / 3;}
 header .meni a {display: block; padding: 11px; font-size: 0.8rem; color: var(--boja-tekst);}
-header .meni .menu-bar {display: flex; background-color: white ; height: 39px;}
+header .meni .menu-bar {display: flex; background-color: white; height: 39px;}
 header .meni .menu-bar > li.trazi {margin-left: auto;}
 header .meni .menu-bar > li .trazi {display: inline-flex; margin-left: auto;}
 header .meni .menu-bar > li .trazi span {margin-right: 10px;}
@@ -37,7 +40,8 @@ header .meni .mega-meni--multiLevel {flex-direction: column;}
 main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
-main > .sadrzaj > .naslovna > div {position: absolute; left: 0; right: 0; height: 550px;}
+main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
+main > .sadrzaj > .naslovna > div.div {height: 550px;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -98,6 +102,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
     header nav ul li a svg {height: 30px; width: 30px;}
     header .traka {padding: 10px;}
+    header .traka ul li.samo_desktop {display: none;}
     header .traka nav.osnovno ul li:first-of-type {display: initial; margin-left: 40px; height: 40px; width: 40px;}
     header .traka nav.osnovno ul li label input::placeholder {font-size: 0.6rem;}
 
@@ -132,6 +137,8 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li:focus-within ~ .mobile-menu-header a {visibility: hidden;}
 
     main {margin-bottom: 0;}
+    main > .sadrzaj > .naslovna > .rotator {height: 450px;}
+    main > .sadrzaj > .naslovna > div.div {height: 450px;}
 
     footer {position: initial;}
     footer > nav {flex-direction: column;}
@@ -152,6 +159,27 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"]:hover ~ ul {max-height: 500px; animation: dropdown 0.3s forwards;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"] ~ ul:hover {max-height: 500px; transform: scaleY(1);}
     header .meni .menu-bar > li:hover ~ .mobile-menu-header a {visibility: hidden;}
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    main > .sadrzaj > .naslovna > .rotator {height: 350px;}
+    main > .sadrzaj > .naslovna > div.div {height: 350px;}
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    main > .sadrzaj > .naslovna > .rotator {height: 250px;}
+    main > .sadrzaj > .naslovna > div.div {height: 250px;}
+
+}
+
+@media only screen and (max-width: 480px) {
+
+    main > .sadrzaj > .naslovna > .rotator {height: 200px;}
+    main > .sadrzaj > .naslovna > div.div {height: 200px;}
 
 }
 
