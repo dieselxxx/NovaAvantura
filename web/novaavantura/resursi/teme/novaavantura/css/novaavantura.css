@@ -11,7 +11,7 @@ header #trazi section > a svg {height: 30px; width: 30px;}
 header > .pozadina {display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0,0,0,0.41)}
 header ul li a:hover {text-decoration: none; color: var(--boja-tekst-svjetlija);}
 header ul li a svg {height: 20px; width: 20px;}
-header .traka {align-items: center; padding: 5px; border-bottom: 1px solid var(--boja-granica);}
+header .traka {align-items: center; padding: 5px 0; border-bottom: 1px solid var(--boja-granica);}
 header .traka ul li {float: left; height: 30px; font-size: 0.8rem;}
 header .traka ul li.samo_desktop a {cursor: initial;}
 header .traka ul li a {display: inline-flex; align-items: center; padding-right: 10px; height: 30px; width: 100%;}
@@ -101,7 +101,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header {height: 50px;}
 
     header nav ul li a svg {height: 30px; width: 30px;}
-    header .traka {padding: 10px;}
+    header .traka {padding: 10px 0;}
     header .traka ul li.samo_desktop {display: none;}
     header .traka nav.osnovno ul li:first-of-type {display: initial; margin-left: 40px; height: 40px; width: 40px;}
     header .traka nav.osnovno ul li label input::placeholder {font-size: 0.6rem;}
