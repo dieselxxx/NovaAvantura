@@ -124,7 +124,7 @@ label.unos input:invalid:not(:placeholder-shown) ~ span.upozorenje:after {opacit
 label.unos span.pomoc {grid-column: 2 / 3; grid-row: 3 / 4; font-size: 0.7rem; font-style: italic;}
 
 label.select {position: relative; display: block;}
-label.select select {position: relative; background-color: transparent; padding: 8px 8px 8px 4px; width: 100%; border: none; border-bottom: 1px solid rgba(0, 0, 0, 0.12); appearance: none; -webkit-appearance:none}
+label.select select {position: relative; background-color: transparent; padding: 8px 8px 8px 4px; width: 100%; border: none; border-bottom: 1px solid rgba(0, 0, 0, 0.12); appearance: none; -webkit-appearance:none;}
 label.select select:focus {border-bottom: 1px solid rgba(0, 0, 0, 0); outline: none;}
 label.select:after {content: ''; position: absolute; top: 10px; right: 7px; padding: 0; height: 0; width: 0; border-top: 6px solid var(--boja-granica); border-left: 6px solid transparent; border-right: 6px solid transparent; pointer-events: none;}
 label.select .select-odaberite {position: absolute; top: -10px; left: 0; color: var(--boja-placeholder); pointer-events: none; transition: 350ms ease top, 350ms ease font-size;}

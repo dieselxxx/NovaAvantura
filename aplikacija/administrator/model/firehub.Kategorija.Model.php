@@ -54,7 +54,9 @@ final class Kategorija_Model extends Master_Model {
         $kategorija = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    kategorije.ID, kategorije.Kategorija, kategorije.Slika, ifnull(roditelj.Kategorija, '') AS Roditelj
+                    kategorije.ID, kategorije.Kategorija, kategorije.Slika,
+                    ifnull(roditelj.ID, '') AS RoditeljID,
+                    ifnull(roditelj.Kategorija, '') AS Roditelj
                 FROM kategorije
                 LEFT JOIN kategorije roditelj ON roditelj.ID = kategorije.Roditelj
                 WHERE kategorije.ID = $id
@@ -77,10 +79,16 @@ final class Kategorija_Model extends Master_Model {
         $naziv = $_REQUEST['naziv'];
         $naziv = Validacija::String(_('Naziv kategorije'), $naziv, 3, 250);
 
+        if (!empty($_REQUEST['roditelj'])) {
+            $roditelj = $_REQUEST['roditelj'];
+            $roditelj = Validacija::Broj(_('Roditelj'), $roditelj, 1, 11);
+        }
+
         if ($id !== 0) {
 
             $this->bazaPodataka->tabela('kategorije')->azuriraj([
-                'Kategorija' => $naziv
+                'Kategorija' => $naziv,
+                'Roditelj' => $roditelj ?? 0
             ])->gdje(
                 'ID', '=', $id
             )->napravi();
@@ -88,7 +96,8 @@ final class Kategorija_Model extends Master_Model {
         } else {
 
             $this->bazaPodataka->tabela('kategorije')->umetni([
-                'Kategorija' => $naziv
+                'Kategorija' => $naziv,
+                'Roditelj' => $roditelj ?? 0
             ])->napravi();
 
         }
@@ -117,13 +126,27 @@ final class Kategorija_Model extends Master_Model {
 
         }
 
+        $broj = $this->bazaPodataka
+            ->sirovi("
+                SELECT *
+                FROM kategorije
+                WHERE Roditelj = $id
+            ")
+            ->napravi();
+
+        if ($broj->broj_zapisa() > 0) {
+
+            throw new Greska('Ne možete izbrisati kategoriju jer kategorija ima podkategorije!');
+
+        }
+
         $putanja = FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi' .RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'kategorije'.RAZDJELNIK_MAPE;
         $rezultat = $this->bazaPodataka->tabela('kategorije')->odaberi([
             'Slika'
         ])->gdje(
             'ID', '=', $id
         )->napravi()->redak();
-        unlink($putanja.$rezultat['Slika']);
+        @unlink($putanja.$rezultat['Slika']);
 
         $this->bazaPodataka->tabela('kategorije')->izbrisi()->gdje(
             'ID', '=', $id
@@ -154,7 +177,7 @@ final class Kategorija_Model extends Master_Model {
             'ID', '=', $id
         )->napravi()->redak();
 
-        unlink($putanja.$rezultat['Slika']);
+        @unlink($putanja.$rezultat['Slika']);
 
         $this->bazaPodataka->tabela('kategorije')->azuriraj([
             'Slika' => $datoteka->ImeDatoteke()

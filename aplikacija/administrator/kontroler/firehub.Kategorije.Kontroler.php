@@ -21,6 +21,7 @@ use FireHub\Jezgra\HTTP\Atributi\Zaglavlja;
 use FireHub\Jezgra\HTTP\Enumeratori\Vrsta;
 use FireHub\Jezgra\Sadrzaj\Enumeratori\Vrsta as Sadrzaj_Vrsta;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
+use function Symfony\Component\String\s;
 
 /**
  * ### Kategorije
@@ -85,10 +86,25 @@ final class Kategorije_Kontroler extends Master_Kontroler {
         $kategorija_model = $this->model(Kategorija_Model::class);
         $kategorija = $kategorija_model->kategorija($id);
 
+        // kategorije
+        $kategorije_model = $this->model(Kategorije_Model::class);
+        $kategorije = $kategorije_model->lista(limit_zapisa_po_stranici: 1000);
+
+        $kategorije_html = '';
+        foreach ($kategorije as $kategorija_lista) {
+
+            if ($kategorija_lista['ID'] !== $kategorija['ID'])
+                $kategorije_html .= "<option value='{$kategorija_lista['ID']}'>{$kategorija_lista['Kategorija']}</option>";
+
+        }
+
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('kategorije/uredi.html')->podatci([
             'id' => $kategorija['ID'],
             'naziv' => $kategorija['Kategorija'],
-            'slika' => $kategorija['Slika'] ?? ''
+            'slika' => $kategorija['Slika'] ?? '',
+            'roditelj_id' => $kategorija['RoditeljID'],
+            'roditelj' => $kategorija['Roditelj'],
+            'kategorije' => $kategorije_html
         ]);
 
     }
@@ -104,8 +120,20 @@ final class Kategorije_Kontroler extends Master_Kontroler {
         // kategorije
         $kategorije_model = $this->model(Kategorije_Model::class);
 
+        // kategorije
+        $kategorije_model = $this->model(Kategorije_Model::class);
+        $kategorije = $kategorije_model->lista(limit_zapisa_po_stranici: 1000);
+
+        $kategorije_html = '';
+        foreach ($kategorije as $kategorija_lista) {
+
+            $kategorije_html .= "<option value='{$kategorija_lista['ID']}'>{$kategorija_lista['Kategorija']}</option>";
+
+        }
+
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('kategorije/nova.html')->podatci([
-            'id' => '0'
+            'id' => '0',
+            'kategorije' => $kategorije_html
         ]);
 
     }
