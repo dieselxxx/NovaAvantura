@@ -560,6 +560,226 @@ $_KategorijaSpremiSliku = function ($url) {
 };
 
 /**
+ * Dohvati brandve.
+ *
+ * @param {object} element
+ * @param {int} $broj_stranice
+ * @param {string} $poredaj
+ * @param {string} $redoslijed
+ */
+$_Brandovi = function (element = '', $broj_stranice = 1, $poredaj = 'Brand', $redoslijed = 'asc') {
+
+    let podatci = $('form[data-oznaka="brandovi_lista"]').serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/brandovi/lista/' + $broj_stranice + '/' + $poredaj + '/' + $redoslijed,
+        dataType: 'json',
+        data: podatci,
+        success: function (odgovor) {
+            $('form[data-oznaka="brandovi_lista"] > section table tbody').empty();
+            let Brandovi = odgovor.Brandovi;
+            $.each(Brandovi, function (a, Brandovi) {
+                $('form[data-oznaka="brandovi_lista"] > section table tbody').append('\
+                    <tr onclick="$_Brand(\''+ Brandovi.ID +'\')">\
+                        <td class="uredi">'+ Brandovi.ID +'</td>\
+                        <td class="uredi">'+ Brandovi.Brand +'</td>\
+                    </tr>\
+                ');
+            });
+            // zaglavlje
+            let Zaglavlje = odgovor.Zaglavlje;
+            $('form[data-oznaka="brandovi_lista"] > section div.sadrzaj > table thead').empty().append(Zaglavlje);
+            // navigacija
+            let Navigacija = odgovor.Navigacija;
+            $('form[data-oznaka="brandovi_lista"] > section div.kontrole').empty().append('<ul class="navigacija">' + Navigacija.pocetak + '' + Navigacija.stranice + '' + Navigacija.kraj + '</ul>');
+        },
+        error: function () {
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Uredi brand.
+ *
+ * @param {int} $id
+ */
+$_Brand = function ($id) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $.ajax({
+        type: 'GET',
+        url: '/administrator/brandovi/uredi/' + $id,
+        dataType: 'html',
+        context: this,
+        beforeSend: function () {
+            Dialog.dialogOtvori(true);
+            dialog.sadrzaj(Loader_Krug);
+        },
+        success: function (odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Brand: ' + $id);
+            dialog.sadrzaj(odgovor);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_BrandIzbrisi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span>Izbriši</span></button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_BrandSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {}
+    });
+
+    return false;
+
+};
+
+/**
+ * Novi brand.
+ */
+$_BrandNovi = function (element) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $.ajax({
+        type: 'GET',
+        url: '/administrator/brandovi/nova/',
+        dataType: 'html',
+        context: this,
+        beforeSend: function () {
+            Dialog.dialogOtvori(true);
+            dialog.sadrzaj(Loader_Krug);
+        },
+        success: function (odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Novi brand');
+            dialog.sadrzaj(odgovor);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_BrandSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+            $_Brandovi();
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Spremi brand.
+ */
+$_BrandSpremi = function (element) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    let brand_forma = $('form[data-oznaka="brand"]');
+
+    let $id = brand_forma.data("sifra");
+
+    let $podatci = brand_forma.serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/brandovi/spremi/' + $id,
+        dataType: 'json',
+        data: $podatci,
+        beforeSend: function () {
+            $(element).closest('form').find('table tr.poruka td').empty();
+        },
+        success: function (odgovor) {
+            if (odgovor.Validacija === "da") {
+
+                Dialog.dialogOcisti();
+                dialog.naslov('Uspješno spremljeno');
+                dialog.sadrzaj('Postavke branda su spremljene!');
+                dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+
+            } else {
+                $(element).closest('form').find('table tr.poruka td').append(odgovor.Poruka);
+            }
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+            $_Brandovi();
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Izbrisi brand.
+ */
+$_BrandIzbrisi = function (element) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    let brand_forma = $('form[data-oznaka="brand"]');
+
+    let $id = brand_forma.data("sifra");
+
+    let $podatci = brand_forma.serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/brandovi/izbrisi/' + $id,
+        dataType: 'json',
+        data: $podatci,
+        beforeSend: function () {
+            $(element).closest('form').find('table tr.poruka td').empty();
+        },
+        success: function (odgovor) {
+            if (odgovor.Validacija === "da") {
+
+                Dialog.dialogOcisti();
+                dialog.naslov('Uspješno izbrisano');
+                dialog.sadrzaj('Brand je izbrisan!');
+                dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+
+            } else {
+                $(element).closest('form').find('table tr.poruka td').append(odgovor.Poruka);
+            }
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.sadrzaj('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+            $_Brandovi();
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Dohvati obavijesti.
  *
  * @param {object} element

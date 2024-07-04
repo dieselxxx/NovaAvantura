@@ -41,7 +41,7 @@ final class Kategorija_Model extends Master_Model {
     }
 
     /**
-     * ### Kateogrija
+     * ### Kategorija
      * @since 0.1.0.pre-alpha.M1
      *
      * @param int $id

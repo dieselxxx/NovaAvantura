@@ -1,0 +1,35 @@
+<form data-oznaka="brand" data-sifra="{{id}}" method="post" enctype="multipart/form-data">
+
+    <fieldset class="detalji">
+        <legend>Brand</legend>
+        <table class="podatci">
+            <tbody>
+            <tr>
+                <td>
+                    <label>
+                        <span>ID branda:</span>
+                        <div data-boja="boja">
+                            <input type="text" name="id" maxlength="30" value="{{id}}" autocomplete="off" placeholder="ID branda" disabled>
+                        </div>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <span>Naziv branda:</span>
+                        <div data-boja="boja">
+                            <input type="text" name="naziv" maxlength="100" value="{{naziv}}" autocomplete="off" placeholder="{{Naziv branda}}" pattern=".{3,250}" required>
+                        </div>
+                    </label>
+                </td>
+            </tr>
+            <tr class="poruka">
+                <td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+</form>
