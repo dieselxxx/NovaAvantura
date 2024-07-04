@@ -475,6 +475,71 @@ $_KategorijaIzbrisi = function (element) {
 };
 
 /**
+ * Spremi sliku kateogrije.
+ */
+$(function() {
+
+    $("body").on('submit', 'form[data-oznaka="kategorija"]', function() {
+
+        let oznaka = $(this).data("oznaka");
+
+        $_KategorijaSpremiSliku('form[data-oznaka="' + oznaka + '"]');
+
+        return false;
+
+    }).on('change','form[data-oznaka="kategorija"] input[type="file"]', function() {
+
+        let oznaka = $(this).closest('form').data("oznaka");
+
+        $('form[data-oznaka="' + oznaka + '"]').submit();
+
+        return false;
+
+    });
+
+});
+$_KategorijaSpremiSliku = function ($url) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $($url).ajaxSubmit({
+        beforeSend: function() {
+            Dialog.dialogOtvori(false);
+            dialog.naslov('Dodajem sliku');
+            dialog.sadrzaj('' +
+                '<div class="progres" style="display: block;">\
+                    <div class="bar" style="width: 0%;"></div>\
+                    <div class="postotak">0%</div>\
+                </div>'
+            );
+        },
+        uploadProgress: function(event, position, total, postotakZavrseno) {
+            $('#dialog .sadrzaj .bar').width(postotakZavrseno + '%');
+            $('#dialog .sadrzaj .postotak').html(postotakZavrseno + '%');
+        },
+        success: function(odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Dodajem sliku');
+            dialog.sadrzaj(odgovor.Poruka);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">U redu</button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function(odgovor) {
+            $_Kategorija($id);
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Dohvati obavijesti.
  *
  * @param {object} element

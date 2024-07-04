@@ -117,6 +117,14 @@ final class Kategorija_Model extends Master_Model {
 
         }
 
+        $putanja = FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi' .RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'kategorije'.RAZDJELNIK_MAPE;
+        $rezultat = $this->bazaPodataka->tabela('kategorije')->odaberi([
+            'Slika'
+        ])->gdje(
+            'ID', '=', $id
+        )->napravi()->redak();
+        unlink($putanja.$rezultat['Slika']);
+
         $this->bazaPodataka->tabela('kategorije')->izbrisi()->gdje(
             'ID', '=', $id
         )->napravi();
@@ -129,21 +137,30 @@ final class Kategorija_Model extends Master_Model {
      */
     public function dodajSliku (int $id) {
 
+        $putanja = FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi' .RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'kategorije'.RAZDJELNIK_MAPE;
+
         // prenesi sliku
         $datoteka = new PrijenosDatoteka('slika');
-        $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'kapriol'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'kategorije'.RAZDJELNIK_MAPE);
-        $datoteka->DozvoljeneVrste(array('image/jpeg', 'image/png'));
+        $datoteka->Putanja($putanja);
+        $datoteka->DozvoljeneVrste(array('image/jpeg', 'image/png', 'image/webp'));
         $datoteka->DozvoljenaVelicina(1000);
+        $datoteka->NovoIme();
         $datoteka->PrijenosDatoteke();
         $datoteka->SlikaDimenzije(800, 600);
 
-        $this->bazaPodataka
-            ->sirovi("
-            UPDATE kategorije
-            SET Slika = '{$datoteka->ImeDatoteke()}'
-            WHERE kategorije.ID = $id
-        ")
-            ->napravi();
+        $rezultat = $this->bazaPodataka->tabela('kategorije')->odaberi([
+            'Slika'
+        ])->gdje(
+            'ID', '=', $id
+        )->napravi()->redak();
+
+        unlink($putanja.$rezultat['Slika']);
+
+        $this->bazaPodataka->tabela('kategorije')->azuriraj([
+            'Slika' => $datoteka->ImeDatoteke()
+        ])->gdje(
+            'ID', '=', $id
+        )->napravi();
 
     }
 
