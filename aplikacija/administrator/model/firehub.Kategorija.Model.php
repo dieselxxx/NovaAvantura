@@ -77,32 +77,19 @@ final class Kategorija_Model extends Master_Model {
         $naziv = $_REQUEST['naziv'];
         $naziv = Validacija::String(_('Naziv kategorije'), $naziv, 3, 250);
 
-        $redoslijed = $_REQUEST['redoslijed'];
-        $redoslijed = Validacija::Broj(_('Redoslijed kategorije'), $redoslijed, 1, 10);
-
-        $calc_velcina = $_REQUEST["calc_velicina"] ?? null;
-        $calc_velcina = Validacija::Potvrda(_('BA'), $calc_velcina);
-        if ($calc_velcina == "on") {$calc_velcina = 1;} else {$calc_velcina = 0;}
-
         if ($id !== 0) {
 
-            $kategorija = $this->bazaPodataka
-                ->sirovi("
-                UPDATE kategorije
-                    SET Kategorija = '$naziv', Prioritet = '$redoslijed', CalcVelicina = '$calc_velcina'
-                WHERE kategorije.ID = $id
-            ")
-                ->napravi();
+            $this->bazaPodataka->tabela('kategorije')->azuriraj([
+                'Kategorija' => $naziv
+            ])->gdje(
+                'ID', '=', $id
+            )->napravi();
 
         } else {
 
-            $kategorija = $this->bazaPodataka
-                ->sirovi("
-                UPDATE kategorije
-                SET Kategorija = '$naziv', Prioritet = '$redoslijed', CalcVelicina = '$calc_velcina'
-                WHERE kategorije.ID = $id
-            ")
-                ->napravi();
+            $this->bazaPodataka->tabela('kategorije')->umetni([
+                'Kategorija' => $naziv
+            ])->napravi();
 
         }
 
@@ -130,12 +117,9 @@ final class Kategorija_Model extends Master_Model {
 
         }
 
-        $kategorija = $this->bazaPodataka
-            ->sirovi("
-                DELETE FROM kategorije
-                WHERE kategorije.ID = $id
-            ")
-            ->napravi();
+        $this->bazaPodataka->tabela('kategorije')->izbrisi()->gdje(
+            'ID', '=', $id
+        )->napravi();
 
     }
 
