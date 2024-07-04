@@ -255,6 +255,62 @@ $_Odjava = function () {
 };
 
 /**
+ * Dohvati artikle.
+ *
+ * @param {object} element
+ * @param {int} $broj_stranice
+ * @param {string} $poredaj
+ * @param {string} $redoslijed
+ * @param {string} $kategorija
+ */
+$_Artikli = function (element = '', $broj_stranice = 1, $poredaj = 'Naziv', $redoslijed = 'asc', $kategorija = '') {
+
+    let podatci = $('form[data-oznaka="artikli_lista"]').serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/artikli/lista/' + $broj_stranice + '/' + $poredaj + '/' + $redoslijed + '/' + $kategorija,
+        dataType: 'json',
+        data: podatci,
+        success: function (odgovor) {
+            $('form[data-oznaka="artikli_lista"] > section table tbody').empty();
+            let Artikli = odgovor.Artikli;
+            $.each(Artikli, function (a, Artikal) {
+                if (Artikal.Aktivan === "1") {Artikal.Aktivan = '\
+                <label data-boja="boja" class="kontrolni_okvir">\
+                    <input type="checkbox" disabled checked><span class="kontrolni_okvir"><span class="ukljuceno"></span></span>\
+                </label>\
+            ';} else {Artikal.Aktivan = '\
+                <label data-boja="boja" class="kontrolni_okvir">\
+                    <input type="checkbox" disabled><span class="kontrolni_okvir"><span class="ukljuceno"></span></span>\
+                </label>\
+            ';}
+                $('form[data-oznaka="artikli_lista"] > section table tbody').append('\
+                <tr>\
+                    <td onclick="$_Artikl(\''+ Artikal.ID +'\')" class="uredi">'+ Artikal.ID +'</td>\
+                    <td onclick="$_Artikl(\''+ Artikal.ID +'\')" class="uredi">'+ Artikal.Naziv +'</td>\
+                    <td><a onclick="$_ArtiklSifre(\''+ Artikal.ID +'\')">Uredi šifre</a></td>\
+                    <td><a onclick="$_ArtiklZaliha(\''+ Artikal.ID +'\')">Uredi zalihu</a></td>\
+                    <td onclick="$_Artikl(\''+ Artikal.ID +'\')" class="uredi">'+ Artikal.Aktivan +'</td>\
+                </tr>\
+            ');
+            });
+            // zaglavlje
+            let Zaglavlje = odgovor.Zaglavlje;
+            $('form[data-oznaka="artikli_lista"] > section div.sadrzaj > table thead').empty().append(Zaglavlje);
+            // navigacija
+            let Navigacija = odgovor.Navigacija;
+            $('form[data-oznaka="artikli_lista"] > section div.kontrole').empty().append('<ul class="navigacija">' + Navigacija.pocetak + '' + Navigacija.stranice + '' + Navigacija.kraj + '</ul>');
+        },
+        error: function () {
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Dohvati kategorije.
  *
  * @param {object} element
