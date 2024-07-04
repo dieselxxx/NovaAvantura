@@ -149,18 +149,16 @@ final class Obavijest_Model extends Master_Model {
 
         // prenesi sliku
         $datoteka = new PrijenosDatoteka($naziv_datoteke);
-        $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'kapriol'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE);
-        $datoteka->NovoIme($naziv_datoteke, true);
-        $datoteka->DozvoljeneVrste(array('image/jpeg', 'image/webp'));
+        $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE);
+        $datoteka->NovoIme();
+        $datoteka->DozvoljeneVrste(array('image/jpeg', 'image/png', 'image/webp'));
         $datoteka->DozvoljenaVelicina(5000);
         $datoteka->PrijenosDatoteke();
-        $datoteka->SlikaDimenzije(2000, 1000);
+        $datoteka->SlikaDimenzije(1920, 550);
 
-        $obavijest = $this->bazaPodataka
-            ->sirovi("
-                INSERT INTO obavijesti (Obavijest) VALUES('{$datoteka->ImeDatoteke()}')
-            ")
-            ->napravi();
+        $this->bazaPodataka->tabela('obavijesti')->umetni([
+            'Obavijest' => $datoteka->ImeDatoteke()
+        ])->napravi();
 
     }
 
