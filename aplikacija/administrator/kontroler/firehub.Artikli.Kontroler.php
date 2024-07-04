@@ -192,4 +192,96 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
     }
 
+    /**
+     * ## Uredi zalihu artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj Sadržaj stranice.
+     */
+    public function uredizalihu (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        $artikl_model = $this->model(Artikl_Model::class);
+        $artiklKarakteristike = $artikl_model->artiklKarakteristike($id);
+
+        $artiklKarakteristikehtml = '';
+        foreach ($artiklKarakteristike as $karakteristika) {
+
+            $skladista = $artikl_model->skladista();
+
+            $skladistehtml = '';
+            foreach ($skladista as $skladiste) {
+
+                $artiklZaliha = $artikl_model->artiklzaliha($karakteristika['artiklikarakteristikeSifra'], $skladiste['ID']);
+
+                $zaliha = $artiklZaliha['StanjeSkladiste'] ?? 0;
+
+                $skladistehtml .= '
+                    <label data-boja="boja" class="unos">
+                        <input type="number" name="zaliha['.$karakteristika['artiklikarakteristikeSifra'].']['.$skladiste['ID'].']" value="'.$zaliha.'" maxlength="10" autocomplete="off" placeholder="0">
+                        <span class="naslov">
+                            <span>'.$skladiste['NazivSkladista'].'</span>
+                        </span>
+                        <span class="granica"></span>
+                        <svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#cijena"></use></svg>
+                        <span class="upozorenje"></span>
+                    </label>
+                ';
+
+            }
+
+            $artiklKarakteristikehtml .= '
+            <fieldset class="detalji">
+                <legend>'.$karakteristika['artiklikarakteristikeSifra'].'</legend>
+                <table class="podatci">
+                    <tbody>
+                    <tr>
+                        <td>
+                            '.$skladistehtml.'
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            ';
+
+        }
+
+        return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('artikli/uredizalihu.html')->podatci([
+            'id' => ''.$id.'',
+            'artiklKarakteristikehtml' => $artiklKarakteristikehtml
+        ]);
+
+    }
+
+    /**
+     * ### Spremi artikl
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function zalihaspremi (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Artikl_Model::class);
+            $artikl->zalihaspremi($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Postavke spremljene')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
 }

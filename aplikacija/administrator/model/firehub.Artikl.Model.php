@@ -127,4 +127,100 @@ final class Artikl_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Artikl zaliha
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id
+     *
+     * @throws Kontejner_Greska
+     * @return array|false|mixed[]
+     */
+    public function artiklzaliha (string|int $id, string|int $skladiste):array|false {
+
+        $artikl = $this->bazaPodataka
+            ->sirovi("
+                SELECT
+                    skladiste.NazivSkladista, stanjeskladista.StanjeSkladiste
+                FROM stanjeskladista
+                LEFT JOIN skladiste ON skladiste.ID = stanjeskladista.SkladisteID
+                LEFT JOIN artiklikarakteristike ON artiklikarakteristike.Sifra = stanjeskladista.Sifra
+                LEFT JOIN artikli ON artikli.ID = artiklikarakteristike.ArtikalID
+                WHERE stanjeskladista.Sifra = '$id' AND skladiste.ID = '$skladiste'
+                LIMIT 1
+            ")
+            ->napravi();
+
+        $artikl = $artikl->redak();
+
+        return $artikl;
+
+    }
+
+    /**
+     * ### Skladiste
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id
+     *
+     * @throws Kontejner_Greska
+     * @return array|false|mixed[]
+     */
+    public function skladista ():array {
+
+        $karakteristike = $this->bazaPodataka->tabela('skladiste')
+            ->sirovi("
+                SELECT
+                    ID, NazivSkladista
+                FROM skladiste
+                ORDER BY ID
+            ")
+            ->napravi();
+
+        return $karakteristike->niz();
+
+    }
+
+    /**
+     * ### Spremi zalihu artikla
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function zalihaspremi (int $id) {
+
+        $id = Validacija::Broj(_('ID artikla'), $id, 1, 10);
+
+        foreach ($_POST['zaliha'] as $karakteristika => $skladiste) {
+
+            foreach ($skladiste as $skladisteID => $vrijednost) {
+
+                $postoji = $this->bazaPodataka
+                    ->sirovi("
+                    SELECT count(*) AS broj FROM stanjeskladista WHERE SkladisteID = '$skladisteID' AND Sifra = '$karakteristika'
+                    ")
+                    ->napravi();
+
+                if ($postoji->redak()['broj'] == '0') {
+
+                    $sql = $this->bazaPodataka
+                        ->sirovi("
+                            INSERT INTO stanjeskladista (SkladisteID, Sifra, StanjeSkladiste) VALUES ('$skladisteID', '$karakteristika', '$vrijednost')
+                        ")
+                        ->napravi();
+
+                } else {
+
+                    $sql = $this->bazaPodataka
+                        ->sirovi("
+                        UPDATE stanjeskladista SET StanjeSkladiste = '$vrijednost' WHERE SkladisteID = '$skladisteID' AND Sifra = '$karakteristika'
+                        ")
+                        ->napravi();
+
+                }
+
+            }
+
+        }
+
+    }
+
 }
