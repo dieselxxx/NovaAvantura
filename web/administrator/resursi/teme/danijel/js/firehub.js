@@ -311,6 +311,47 @@ $_Artikli = function (element = '', $broj_stranice = 1, $poredaj = 'Naziv', $red
 };
 
 /**
+ * Uredi šifre artikla.
+ *
+ * @param {int} $id
+ */
+$_ArtiklSifre = function ($id) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $.ajax({
+        type: 'GET',
+        url: '/administrator/artikli/artiklsifre/' + $id,
+        dataType: 'html',
+        context: this,
+        beforeSend: function () {
+            Dialog.dialogOtvori(true);
+            dialog.sadrzaj(Loader_Krug);
+        },
+        success: function (odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Artikl: ' + $id);
+            dialog.sadrzaj(odgovor);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_ArtiklSifreNova(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#artikl"></use></svg><span>Nova šifra</span></button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_ArtiklSifreSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Dohvati kategorije.
  *
  * @param {object} element
