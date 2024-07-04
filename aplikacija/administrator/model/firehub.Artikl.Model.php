@@ -69,4 +69,62 @@ final class Artikl_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Spremi šifre artikla
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function artiklsifrespremi (int $id) {
+
+        $id = Validacija::Broj(_('ID artikla'), $id, 1, 10);
+
+        foreach ($_POST['zaliha'] as $karakeristikaID => $sifra) {
+
+            $karakeristikaID = Validacija::Broj(_('ID šifre'), $karakeristikaID, 1, 10);
+            $sifra = Validacija::String(_('Šifra artikla'), $sifra, 1, 50);
+            $velicina = Validacija::String(_('Veličina artikla'), $_POST['velicina'][$karakeristikaID], 1, 50);
+
+            $postoji = $this->bazaPodataka
+                ->sirovi("
+                    SELECT count(*) AS broj FROM artiklikarakteristike WHERE ID = '$karakeristikaID' AND ArtikalID = '$id'
+                    ")
+                ->napravi();
+
+            if ($postoji->redak()['broj'] == '0') {
+
+                $sql = $this->bazaPodataka
+                    ->sirovi("
+                        INSERT INTO artiklikarakteristike (ArtikalID, Sifra, Velicina) VALUES ('$id', '$sifra', '$velicina')
+                    ")
+                    ->napravi();
+
+            } else {
+
+                $sql = $this->bazaPodataka
+                    ->sirovi("
+                        UPDATE artiklikarakteristike SET Sifra = '$sifra', Velicina = '$velicina' WHERE ID = '$karakeristikaID' AND ArtikalID = '$id'
+                    ")
+                    ->napravi();
+
+            }
+
+        }
+
+    }
+
+    /**
+     * ### Izbriši šifru artikla
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function artiklsifreizbrisi (int $id) {
+
+        $id = Validacija::Broj(_('ID artikla'), $id, 1, 10);
+
+        $sql = $this->bazaPodataka
+            ->sirovi("
+                DELETE FROM artiklikarakteristike WHERE ID = '$id'
+            ")
+            ->napravi();
+
+    }
+
 }

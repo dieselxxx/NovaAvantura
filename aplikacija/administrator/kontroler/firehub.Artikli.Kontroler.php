@@ -100,7 +100,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
                                 <span>Šifra</span>
                             </span>
                             <span class="granica"></span>
-                            <svg><use xlink:href="/kapriol/resursi/grafika/simboli/simbol.ikone.svg#cijena"></use></svg>
+                            <svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#cijena"></use></svg>
                             <span class="upozorenje"></span>
                         </label>
                     </td>
@@ -111,12 +111,12 @@ final class Artikli_Kontroler extends Master_Kontroler {
                                 <span>Veličina</span>
                             </span>
                             <span class="granica"></span>
-                            <svg><use xlink:href="/kapriol/resursi/grafika/simboli/simbol.ikone.svg#cijena"></use></svg>
+                            <svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#cijena"></use></svg>
                             <span class="upozorenje"></span>
                         </label>
                     </td>
                     <td>
-                        <button type="button" class="ikona" onclick="$_ArtiklSifreIzbrisi(this, '.$karakteristika['ID'].', '.$id.')"><svg><use xlink:href="/kapriol/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span></span></button>
+                        <button type="button" class="ikona" onclick="$_ArtiklSifreIzbrisi(this, '.$karakteristika['ID'].', '.$id.')"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span></span></button>
                     </td>
                 </tr>
             ';
