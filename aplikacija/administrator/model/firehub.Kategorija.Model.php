@@ -2,7 +2,7 @@
 
 /**
  * Kategorija model
- * @since 0.1.2.pre-alpha.M1
+ * @since 0.1.0.pre-alpha.M1
  *
  * @author Danijel Galić
  * @copyright 2022 Kapriol Web Trgovina
@@ -15,14 +15,14 @@
 namespace FireHub\Aplikacija\Administrator\Model;
 
 use FireHub\Aplikacija\Administrator\Jezgra\PrijenosDatoteka;
-use FireHub\Aplikacija\Kapriol\Jezgra\Validacija;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
 use FireHub\Jezgra\Greske\Greska;
 use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Jezgra\Kontejner\Greske\Kontejner_Greska;
 
 /**
  * ### Kategorija
- * @since 0.1.2.pre-alpha.M1
+ * @since 0.1.0.pre-alpha.M1
  *
  * @package Aplikacija\Model
  */
@@ -42,7 +42,7 @@ final class Kategorija_Model extends Master_Model {
 
     /**
      * ### Kateogrija
-     * @since 0.1.2.pre-alpha.M1
+     * @since 0.1.0.pre-alpha.M1
      *
      * @param int $id
      *
@@ -54,24 +54,21 @@ final class Kategorija_Model extends Master_Model {
         $kategorija = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    kategorije.ID, kategorije.Kategorija, kategorije.Slika, kategorije.CalcVelicina, kategorije.Prioritet
+                    kategorije.ID, kategorije.Kategorija, kategorije.Slika, ifnull(roditelj.Kategorija, '') AS Roditelj
                 FROM kategorije
+                LEFT JOIN kategorije roditelj ON roditelj.ID = kategorije.Roditelj
                 WHERE kategorije.ID = $id
                 LIMIT 1
             ")
             ->napravi();
 
-        $kategorija = $kategorija->redak();
-
-        if ($kategorija['CalcVelicina']) {$kategorija['CalcVelicina'] = true;} else {$kategorija['CalcVelicina'] = false;}
-
-        return $kategorija;
+        return $kategorija->redak();
 
     }
 
     /**
      * ### Spremi kategoriju
-     * @since 0.1.2.pre-alpha.M1
+     * @since 0.1.0.pre-alpha.M1
      */
     public function spremi (int $id) {
 
@@ -113,7 +110,7 @@ final class Kategorija_Model extends Master_Model {
 
     /**
      * ### Izbrisi kategoriju
-     * @since 0.1.2.pre-alpha.M1
+     * @since 0.1.0.pre-alpha.M1
      */
     public function izbrisi (int $id) {
 
@@ -144,7 +141,7 @@ final class Kategorija_Model extends Master_Model {
 
     /**
      * ### Dodaj sliku kategorije
-     * @since 0.1.2.pre-alpha.M1
+     * @since 0.1.0.pre-alpha.M1
      */
     public function dodajSliku (int $id) {
 

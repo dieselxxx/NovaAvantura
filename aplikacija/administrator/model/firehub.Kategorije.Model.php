@@ -152,8 +152,8 @@ final class Kategorije_Model extends Master_Model {
                     <div>
                         <span>'._('ID').'</span>
                         <div class="poredaj">
-                            <svg class="gore '.$this->RedoslijedIkona('ID', 'desc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.php#strelica_gore"></use></svg>
-                            <svg class="dole '.$this->RedoslijedIkona('ID', 'asc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.php#strelica_dole"></use></svg>
+                            <svg class="gore '.$this->RedoslijedIkona('ID', 'desc').'"><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#strelica_gore"></use></svg>
+                            <svg class="dole '.$this->RedoslijedIkona('ID', 'asc').'"><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#strelica_dole"></use></svg>
                         </div>
                     </div>
                 </th>
@@ -161,8 +161,8 @@ final class Kategorije_Model extends Master_Model {
                     <div>
                         <span>'._('Kategorija').'</span>
                         <div class="poredaj">
-                            <svg class="gore '.$this->RedoslijedIkona('Kategorija', 'desc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.php#strelica_gore"></use></svg>
-                            <svg class="dole '.$this->RedoslijedIkona('Kategorija', 'asc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.php#strelica_dole"></use></svg>
+                            <svg class="gore '.$this->RedoslijedIkona('Kategorija', 'desc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.svg#strelica_gore"></use></svg>
+                            <svg class="dole '.$this->RedoslijedIkona('Kategorija', 'asc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.svg#strelica_dole"></use></svg>
                         </div>
                     </div>
                 </th>
@@ -170,8 +170,8 @@ final class Kategorije_Model extends Master_Model {
                     <div>
                         <span>'._('Roditelj').'</span>
                         <div class="poredaj">
-                            <svg class="gore '.$this->RedoslijedIkona('Roditelj', 'desc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.php#strelica_gore"></use></svg>
-                            <svg class="dole '.$this->RedoslijedIkona('Roditelj', 'asc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.php#strelica_dole"></use></svg>
+                            <svg class="gore '.$this->RedoslijedIkona('Roditelj', 'desc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.svg#strelica_gore"></use></svg>
+                            <svg class="dole '.$this->RedoslijedIkona('Roditelj', 'asc').'"><use xlink:href="/imovina/grafika/simboli/simbol.ikone.svg#strelica_dole"></use></svg>
                         </div>
                     </div>
                 </th>

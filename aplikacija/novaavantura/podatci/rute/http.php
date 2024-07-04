@@ -16,3 +16,4 @@ use FireHub\Jezgra\Komponente\Rute\Rute;
 
 Rute::sve('naslovna/index', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Naslovna_Kontroler::class, 'index']);
 Rute::sve('slika/baner', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_Kontroler::class, 'baner']);
+Rute::sve('slika/kategorija', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_Kontroler::class, 'kategorija']);

@@ -85,15 +85,10 @@ final class Kategorije_Kontroler extends Master_Kontroler {
         $kategorija_model = $this->model(Kategorija_Model::class);
         $kategorija = $kategorija_model->kategorija($id);
 
-        // formatiranje rezultata
-        if ($kategorija['CalcVelicina'] === true) {$kategorija['CalcVelicina'] = 'checked';} else {$kategorija['CalcVelicina'] = '';}
-
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('kategorije/uredi.html')->podatci([
             'id' => $kategorija['ID'],
             'naziv' => $kategorija['Kategorija'],
-            'slika' => $kategorija['Slika'] ?? '',
-            'redoslijed' => $kategorija['Prioritet'],
-            'calc_velicina' => $kategorija['CalcVelicina']
+            'slika' => $kategorija['Slika'] ?? ''
         ]);
 
     }

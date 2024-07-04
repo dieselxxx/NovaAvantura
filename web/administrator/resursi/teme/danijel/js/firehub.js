@@ -299,6 +299,45 @@ $_Kategorije = function (element = '', $broj_stranice = 1, $poredaj = 'Kategorij
 };
 
 /**
+ * Uredi kategoriju.
+ *
+ * @param {int} $id
+ */
+$_Kategorija = function ($id) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $.ajax({
+        type: 'GET',
+        url: '/administrator/kategorije/uredi/' + $id,
+        dataType: 'html',
+        context: this,
+        beforeSend: function () {
+            Dialog.dialogOtvori(true);
+            dialog.sadrzaj(Loader_Krug);
+        },
+        success: function (odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Kategorija: ' + $id);
+            dialog.sadrzaj(odgovor);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_KategorijaIzbrisi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span>Izbriši</span></button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_KategorijaSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Dohvati obavijesti.
  *
  * @param {object} element
@@ -376,8 +415,8 @@ $_Obavijest = function ($id) {
             dialog.naslov('Obavijest: ' + $id);
             dialog.sadrzaj(odgovor);
             dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
-            dialog.kontrole('<button type="button" class="ikona" onclick="$_ObavijestSpremi(this, \'forma\');"><svg><use xlink:href="/kapriol/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
-            dialog.kontrole('<button type="button" class="ikona" onclick="$_ObavijestIzbrisi(this,  \'forma\');"><svg><use xlink:href="/kapriol/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span>Izbrisi</span></button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_ObavijestSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_ObavijestIzbrisi(this,  \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span>Izbrisi</span></button>');
         },
         error: function () {
             Dialog.dialogOcisti();
