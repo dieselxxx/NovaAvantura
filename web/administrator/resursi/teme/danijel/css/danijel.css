@@ -609,6 +609,7 @@ main#verzija > form[data-oznaka="verzija"] section div.sadrzaj nav ul li.naslov 
 main#linkovi textarea {height: 200px;}
 main > form[data-oznaka="obavijesti_lista"] table tr td img {height: 100px; width: 200px;}
 main > form[data-oznaka="obavijestidno_lista"] table tr td img {height: 100px; width: 200px;}
+form[data-oznaka="artikl"] table.tabela tbody tr td img {height: 100px; width: 80px;}
 
 /** podnozje **/
 footer {line-height: 25px; text-align: right; border-top: 1px solid var(--boja-tekst-malo-tamnije);}

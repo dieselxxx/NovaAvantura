@@ -193,6 +193,155 @@ final class Artikli_Kontroler extends Master_Kontroler {
     }
 
     /**
+     * ## Novi artikl
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj Sadržaj stranice.
+     */
+    public function novi (string $kontroler = '', string $metoda = '', int $id = 0) {
+
+        // kategorije
+        $kategorije_model = $this->model(Kategorije_Model::class);
+        $kategorije = $kategorije_model->lista(limit_zapisa_po_stranici: 100);
+        $kategorije_html = '';
+        foreach ($kategorije as $kategorija) {
+
+            $kategorije_html .= "<option value='{$kategorija['ID']}'>{$kategorija['Kategorija']}</option>";
+
+        }
+
+        return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('artikli/novi.html')->podatci([
+            'id' => '0',
+            'kategorije' => $kategorije_html
+        ]);
+
+    }
+
+    /**
+     * ### Spremi artikl
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function spremi (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Artikl_Model::class);
+            $artikl->spremi($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Postavke spremljene')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
+    /**
+     * ### Spremi sliku artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function dodajSliku (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Artikl_Model::class);
+            $artikl->dodajSliku($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Uspješno spremljeno')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
+    /**
+     * ### Izbrisi sliku artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function izbrisiSliku (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Artikl_Model::class);
+            $artikl->izbrisiSliku($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Uspješno izbrisano')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
+    /**
+     * ### Izbrisi cijenu artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function izbrisiCijenu (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Artikl_Model::class);
+            $artikl->izbrisiCijenu($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Uspješno izbrisano')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
+    /**
      * ## Uredi šifre artikla
      * @since 0.1.0.pre-alpha.M1
      *

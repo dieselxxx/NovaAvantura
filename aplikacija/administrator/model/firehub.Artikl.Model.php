@@ -169,6 +169,211 @@ final class Artikl_Model extends Master_Model {
     }
 
     /**
+     * ### Spremi artikl
+     * @since 0.1.2.pre-alpha.M1
+     */
+    public function spremi (int $id) {
+
+        $id = Validacija::Broj(_('ID artikla'), $id, 1, 10);
+
+        $naziv = $_REQUEST['naziv'];
+        $naziv = Validacija::String(_('Naziv artikla'), $naziv, 3, 100);
+
+        $opis = $_REQUEST['opis'];
+        $opis = Validacija::StringHTML(_('Opis artikla'), $opis, 0, 1500);
+
+        $cijena = $_REQUEST['cijena'];
+        $cijena = str_replace('.', '', $cijena);
+        $cijena = str_replace(',', '.', $cijena);
+        $cijena = round((float)$cijena, 2);
+        $cijena = Validacija::DecimalniBroj(_('Cijena artikla'), $cijena);
+
+        $cijena_akcija = $_REQUEST['cijena_akcija'];
+        $cijena_akcija = str_replace('.', '', $cijena_akcija);
+        $cijena_akcija = str_replace(',', '.', $cijena_akcija);
+        $cijena_akcija = round((float)$cijena_akcija, 2);
+        $cijena_akcija = Validacija::DecimalniBroj(_('Cijena artikla'), $cijena_akcija);
+
+        $cijena_hr = $_REQUEST['cijena_hr'];
+        $cijena_hr = str_replace('.', '', $cijena_hr);
+        $cijena_hr = str_replace(',', '.', $cijena_hr);
+        $cijena_hr = round((float)$cijena_hr, 2);
+        $cijena_hr = Validacija::DecimalniBroj(_('Cijena artikla'), $cijena_hr);
+
+        $cijena_akcija_hr = $_REQUEST['cijena_akcija_hr'];
+        $cijena_akcija_hr = str_replace('.', '', $cijena_akcija_hr);
+        $cijena_akcija_hr = str_replace(',', '.', $cijena_akcija_hr);
+        $cijena_akcija_hr = round((float)$cijena_akcija_hr, 2);
+        $cijena_akcija_hr = Validacija::DecimalniBroj(_('Cijena artikla'), $cijena_akcija_hr);
+
+        $outlet = $_REQUEST["outlet"] ?? null;
+        $outlet = Validacija::Potvrda(_('Outlet'), $outlet);
+        if ($outlet == "on") {$outlet = 1;} else {$outlet = 0;}
+
+        $outlethr = $_REQUEST["outlethr"] ?? null;
+        $outlethr = Validacija::Potvrda(_('OutletHr'), $outlethr);
+        if ($outlethr == "on") {$outlethr = 1;} else {$outlethr = 0;}
+
+        $novo = $_REQUEST["novo"] ?? null;
+        $novo = Validacija::Potvrda(_('Novo'), $novo);
+        if ($novo == "on") {$novo = 1;} else {$novo = 0;}
+
+        $izdvojeno = $_REQUEST["izdvojeno"] ?? null;
+        $izdvojeno = Validacija::Potvrda(_('Izdvojeno'), $izdvojeno);
+        if ($izdvojeno == "on") {$izdvojeno = 1;} else {$izdvojeno = 0;}
+
+        $aktivno = $_REQUEST["aktivno"] ?? null;
+        $aktivno = Validacija::Potvrda(_('Aktivno'), $aktivno);
+        if ($aktivno == "on") {$aktivno = 1;} else {$aktivno = 0;}
+
+        $ba = $_REQUEST["ba"] ?? null;
+        $ba = Validacija::Potvrda(_('BA'), $ba);
+        if ($ba == "on") {$ba = 1;} else {$ba = 0;}
+
+        $hr = $_REQUEST["hr"] ?? null;
+        $hr = Validacija::Potvrda(_('HR'), $hr);
+        if ($hr == "on") {$hr = 1;} else {$hr = 0;}
+
+        $kategorija= $_REQUEST['kategorija'] ?? 0;
+        $kategorija = Validacija::Broj(_('Kategorija artikla'), $kategorija, 1, 7);
+
+        $gratis_ba = $_REQUEST['gratisBa'] ?? 0;
+        $gratis_ba = Validacija::Broj(_('Gratis BA'), $gratis_ba, 1, 7);
+        $gratis_hr = $_REQUEST['gratisHr'] ?? 0;
+        $gratis_hr = Validacija::Broj(_('Gratis HR'), $gratis_hr, 1, 7);
+
+        $zadanaSlika = $_REQUEST['zadanaSlika'] ?? 0;
+        $zadanaSlika = Validacija::Broj(_('Zadana slika'), $zadanaSlika, 1, 7);
+
+        if ($id !== 0) {
+
+            $this->bazaPodataka->tabela('artikli')->azuriraj([
+                'Naziv' => $naziv,
+                'Opis' => $opis,
+                'Cijena' => $cijena,
+                'CijenaAkcija' => $cijena_akcija,
+                'CijenaKn' => $cijena_hr,
+                'CijenaAkcijaKn' => $cijena_akcija_hr,
+                'Ba' => $ba,
+                'Hr' => $hr,
+                'Outlet' => $outlet,
+                'OutletHr' => $outlethr,
+                'Novo' => $novo,
+                'Izdvojeno' => $izdvojeno,
+                'Aktivan' => $aktivno,
+                'KategorijaID' => $kategorija,
+                'GratisBa' => $gratis_ba,
+                'GratisHr' => $gratis_hr
+            ])->gdje('ID', '=', $id)->napravi();
+
+            $this->bazaPodataka->tabela('slikeartikal')->azuriraj([
+                'Zadana' => 0
+            ])->napravi();
+
+            $this->bazaPodataka->tabela('slikeartikal')->azuriraj([
+                'Zadana' => 1
+            ])->gdje('ID', '=', $zadanaSlika)->napravi();
+
+            $this->bazaPodataka->tabela('artiklicijene')->umetni([
+                'ArtikalID' => $id,
+                'Cijena' => $cijena_hr,
+                'Vrsta' => 'HR',
+                'Datum' => (new \DateTime())->format('Y-m-d')
+            ])->napravi();
+
+        } else {
+
+            $this->bazaPodataka->tabela('artikli')->umetni([
+                'Naziv' => $naziv,
+                'Opis' => $opis,
+                'Cijena' => $cijena,
+                'CijenaAkcija' => $cijena_akcija,
+                'CijenaKn' => $cijena_hr,
+                'CijenaAkcijaKn' => $cijena_akcija_hr,
+                'Ba' => $ba,
+                'Hr' => $hr,
+                'Outlet' => $outlet,
+                'OutletHr' => $outlethr,
+                'Novo' => $novo,
+                'Izdvojeno' => $izdvojeno,
+                'Aktivan' => $aktivno,
+                'KategorijaID' => $kategorija
+            ])->napravi();
+
+        }
+
+    }
+
+    /**
+     * ### Dodaj sliku artikla
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function dodajSliku (int $id) {
+
+        // prenesi sliku
+        $datoteka = new PrijenosDatoteka('slika');
+        $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE);
+        $datoteka->NovoIme($id . '_');
+        $datoteka->DozvoljeneVrste(array('image/jpeg','image/wepb','image/png'));
+        $datoteka->DozvoljenaVelicina(1000);
+        $datoteka->PrijenosDatoteke();
+        $datoteka->SlikaDimenzije(550, 700);
+
+        $this->bazaPodataka
+            ->sirovi("
+            INSERT INTO slikeartikal
+            (ClanakID, Slika, Zadana)
+            VALUES
+            ('$id', '{$datoteka->ImeDatoteke()}', 0)
+        ")
+            ->napravi();
+
+    }
+
+    /**
+     * ### Izbriši sliku artikla
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function izbrisiSliku (int $id) {
+
+        $naziv_sql = $this->bazaPodataka
+            ->sirovi("
+            SELECT Slika
+            FROM slikeartikal
+            WHERE ID = '$id'
+        ")
+            ->napravi();
+
+        $naziv = $naziv_sql->redak()['Slika'];
+
+        $this->bazaPodataka
+            ->sirovi("
+            DELETE FROM slikeartikal
+            WHERE ID = '$id'
+        ")
+            ->napravi();
+
+        unlink(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE.$naziv);
+
+    }
+
+    /**
+     * ### Izbriši cijenu artikla
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function izbrisiCijenu (int $id) {
+
+        $naziv_sql = $this->bazaPodataka
+            ->sirovi("
+            DELETE
+            FROM artiklicijene
+            WHERE ID = '$id'
+        ")
+            ->napravi();
+
+    }
+
+    /**
      * ### Spremi šifre artikla
      * @since 0.1.0.pre-alpha.M1
      */

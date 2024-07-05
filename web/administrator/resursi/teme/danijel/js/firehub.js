@@ -360,6 +360,102 @@ $_Artikl = function ($id) {
 };
 
 /**
+ * Novi artikl.
+ */
+$_NoviArtikl = function (element) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $.ajax({
+        type: 'GET',
+        url: '/administrator/artikli/novi/',
+        dataType: 'html',
+        context: this,
+        beforeSend: function () {
+            Dialog.dialogOtvori(true);
+            dialog.sadrzaj(Loader_Krug);
+        },
+        success: function (odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Novi artikl');
+            dialog.sadrzaj(odgovor);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_ArtiklSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+            $(function () {
+                $('.tagovi').tagovi_input({
+                    width: 'auto'
+                });
+                $(".input-select").chosen({
+                    search_contains: true,
+                    width: '100%'
+                });
+            });
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Spremi artikl.
+ */
+$_ArtiklSpremi = function (element) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    let artikl_forma = $('form[data-oznaka="artikl"]');
+
+    let $id = artikl_forma.data("sifra");
+
+    let $podatci = artikl_forma.serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/artikli/spremi/' + $id,
+        dataType: 'json',
+        data: $podatci,
+        beforeSend: function () {
+            $(element).closest('form').find('table tr.poruka td').empty();
+        },
+        success: function (odgovor) {
+            if (odgovor.Validacija === "da") {
+
+                Dialog.dialogOcisti();
+                dialog.naslov('Uspješno spremljeno');
+                dialog.sadrzaj('Postavke artikla su spremljene!');
+                dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+
+            } else {
+                $(element).closest('form').find('table tr.poruka td').append(odgovor.Poruka);
+            }
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+            $_Artikli();
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Uredi šifre artikla.
  *
  * @param {int} $id
@@ -612,6 +708,145 @@ $_ArtiklZalihaSpremi = function (element) {
             dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
         },
         complete: function (odgovor) {
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Izbriši cijenu artikla.
+ */
+$_ArtiklIzbrisiCijenu = function ($slika) {
+
+    let artikl_forma = $('form[data-oznaka="artikl"]');
+
+    let $id = artikl_forma.data("sifra");
+
+    let $podatci = artikl_forma.serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/artikli/izbrisicijenu/' + $slika,
+        dataType: 'json',
+        data: $podatci,
+        beforeSend: function () {
+            //
+        },
+        success: function (odgovor) {
+            if (odgovor.Validacija === "da") {
+
+            } else {
+                //$(element).closest('form').find('table tr.poruka td').append(odgovor.Poruka);
+            }
+        },
+        error: function () {
+        },
+        complete: function (odgovor) {
+            $_Artikl($id);
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Spremi sliku artikla.
+ */
+$(function() {
+
+    $("body").on('submit', 'form[data-oznaka="artikl"]', function() {
+
+        let oznaka = $(this).data("oznaka");
+
+        $_ArtiklSpremiSliku('form[data-oznaka="' + oznaka + '"]');
+
+        return false;
+
+    }).on('change','form[data-oznaka="artikl"] input[type="file"]', function() {
+
+        let oznaka = $(this).closest('form').data("oznaka");
+
+        $('form[data-oznaka="' + oznaka + '"]').submit();
+
+        return false;
+
+    });
+
+});
+$_ArtiklSpremiSliku = function ($url) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $($url).ajaxSubmit({
+        beforeSend: function() {
+            Dialog.dialogOtvori(false);
+            dialog.naslov('Dodajem sliku');
+            dialog.sadrzaj('' +
+                '<div class="progres" style="display: block;">\
+                    <div class="bar" style="width: 0%;"></div>\
+                    <div class="postotak">0%</div>\
+                </div>'
+            );
+        },
+        uploadProgress: function(event, position, total, postotakZavrseno) {
+            $('#dialog .sadrzaj .bar').width(postotakZavrseno + '%');
+            $('#dialog .sadrzaj .postotak').html(postotakZavrseno + '%');
+        },
+        success: function(odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Dodajem sliku');
+            dialog.sadrzaj(odgovor.Poruka);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">U redu</button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function(odgovor) {
+            $_Artikl($id);
+        }
+    });
+
+    return false;
+
+};
+
+/**
+ * Izbriši sliku artikla.
+ */
+$_ArtiklIzbrisiSliku = function ($slika) {
+
+    let artikl_forma = $('form[data-oznaka="artikl"]');
+
+    let $id = artikl_forma.data("sifra");
+
+    let $podatci = artikl_forma.serializeArray();
+
+    $.ajax({
+        type: 'POST',
+        url: '/administrator/artikli/izbrisisliku/' + $slika,
+        dataType: 'json',
+        data: $podatci,
+        beforeSend: function () {
+            //
+        },
+        success: function (odgovor) {
+            if (odgovor.Validacija === "da") {
+
+            } else {
+                //$(element).closest('form').find('table tr.poruka td').append(odgovor.Poruka);
+            }
+        },
+        error: function () {
+        },
+        complete: function (odgovor) {
+            $_Artikl($id);
         }
     });
 
