@@ -135,7 +135,7 @@ final class Obavijest_Model extends Master_Model {
             ")
             ->napravi();
 
-        unlink(FIREHUB_ROOT.'web/kapriol/resursi/grafika/baneri/'.$obavijest->redak()['Obavijest']);
+        unlink(FIREHUB_ROOT.'web/novaavantura/resursi/grafika/baneri/'.$obavijest->redak()['Obavijest']);
 
         return 'ok';
 

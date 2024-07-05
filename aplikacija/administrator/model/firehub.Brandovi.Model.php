@@ -194,8 +194,8 @@ final class Brandovi_Model extends Master_Model {
 
             $prosla_stranica = $this->broj_stranice - 1;
 
-            $pocetak_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,1,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_lijevo_duplo\" /></svg></a></li>";
-            $pocetak_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,$prosla_stranica,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_lijevo\" /></svg></a></li>";
+            $pocetak_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,1,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/administrator/resursi/grafika/simboli/simbol.ikone.svg#strelica_lijevo_duplo\" /></svg></a></li>";
+            $pocetak_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,$prosla_stranica,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/administrator/resursi/grafika/simboli/simbol.ikone.svg#strelica_lijevo\" /></svg></a></li>";
 
         }
 
@@ -217,8 +217,8 @@ final class Brandovi_Model extends Master_Model {
 
             $sljedeca_stranica = $this->broj_stranice + 1;
 
-            $kraj_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,$sljedeca_stranica,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno\" /></svg></a></li>";
-            $kraj_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,$ukupno_stranica,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo\" /></svg></a></li>";
+            $kraj_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,$sljedeca_stranica,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/administrator/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno\" /></svg></a></li>";
+            $kraj_link_stranice .= "<li><a class='gumb mali ikona' onclick='{$obavijesti}(this,$ukupno_stranica,\"{$this->poredaj}\",\"{$this->redoslijed}\")'><svg data-boja='boja'><use xlink:href=\"/administrator/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo\" /></svg></a></li>";
 
         }
 
