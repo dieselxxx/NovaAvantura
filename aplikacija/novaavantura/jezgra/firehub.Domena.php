@@ -42,7 +42,7 @@ final class Domena {
      */
     public static function Hr ():bool {
 
-        if (Server::Domena() === 'www.nova-avantura.hr' || Server::Domena() === 'test.nova-avantura.hr' || Server::Domena() === 'localhost') {
+        if (Server::Domena() === 'www.nova-avantura.hr' || Server::Domena() === 'test.nova-avantura.hr' || Server::Domena() === 'localhost:210') {
 
 
             return true;
@@ -195,6 +195,24 @@ final class Domena {
         }
 
         return '+387 12 345 678';
+
+    }
+
+    /**
+     * ## Email
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return string
+     */
+    public static function email ():string {
+
+        if (self::Hr()) {
+
+            return 'info@nova-avanutura.hr';
+
+        }
+
+        return 'info@nova-avanutura.ba';
 
     }
 
@@ -377,24 +395,6 @@ final class Domena {
         }
 
         return 'https://www.instagram.com/novaavantura.sa/';
-
-    }
-
-    /**
-     * ## Broj mobitela
-     * @since 0.1.0.pre-alpha.M1
-     *
-     * @return string
-     */
-    public static function mobitel ():string {
-
-        if (self::Hr()) {
-
-            return '385996039376';
-
-        }
-
-        return '38763363270';
 
     }
 
