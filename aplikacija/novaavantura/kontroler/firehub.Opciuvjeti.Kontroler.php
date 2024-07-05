@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
 /**
- * Naslovna
+ * Opći uvjeti
  * @since 0.1.0.pre-alpha.M1
  *
  * @author Danijel Galić
- * @copyright 2024 Nova Avantura Web Trgovina
+ * @copyright 2022 Nova Avantura Web Trgovina
  * @license GNU General Public License version 3 - [https://opensource.org/licenses/GPL-3.0](https://opensource.org/licenses/GPL-3.0)
  *
  * @version 1.0
@@ -23,7 +23,7 @@ use FireHub\Jezgra\Sadrzaj\Sadrzaj;
  *
  * @package Aplikacija\Kontroler
  */
-final class Naslovna_Kontroler extends Master_Kontroler {
+final class OpciUvjeti_Kontroler extends Master_Kontroler {
 
     /**
      * ## index
@@ -33,8 +33,8 @@ final class Naslovna_Kontroler extends Master_Kontroler {
      */
     public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
-        return sadrzaj()->datoteka('naslovna.html')->podatci(array_merge($this->zadaniPodatci(), [
-            'predlozak_naslov' => 'Naslovna',
+        return sadrzaj()->datoteka('opci_uvjeti.html')->podatci(array_merge($this->zadaniPodatci(), [
+            'predlozak_naslov' => 'Opci uvjeti'
         ]));
 
     }

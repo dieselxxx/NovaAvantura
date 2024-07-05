@@ -67,8 +67,10 @@ final class Kolacic_Kontroler extends Master_Kontroler {
      */
     public function osobniPodatci ():Sadrzaj {
 
-        return sadrzaj()->datoteka('osobni_podatci.html')->podatci([
-        ]);
+        return sadrzaj()->datoteka('osobni_podatci.html')->podatci(array_merge($this->zadaniPodatci(), [
+            'gdpr' =>'',
+            'predlozak_naslov' => 'Osobni podatci',
+        ]));
 
     }
 

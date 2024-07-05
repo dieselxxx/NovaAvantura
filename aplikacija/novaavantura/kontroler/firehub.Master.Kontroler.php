@@ -17,6 +17,7 @@ namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 use FireHub\Jezgra\Kontroler\Kontroler;
 use FireHub\Aplikacija\NovaAvantura\Model\Gdpr_Model;
 use FireHub\Jezgra\Model\Model;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 
 /**
  * ### Master
@@ -47,7 +48,8 @@ abstract class Master_Kontroler extends Kontroler {
     protected function zadaniPodatci ():array {
 
         return [
-            'gdpr' => $this->gdpr->html()
+            'gdpr' => $this->gdpr->html(),
+            'predlozak_opis' => Domena::opis(),
         ];
 
     }

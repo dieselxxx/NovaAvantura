@@ -40,7 +40,7 @@ header .meni .mega-meni {z-index: 10;}
 header .meni .mega-meni--multiLevel {flex-direction: column;}
 
 main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
-main section.sadrzaj {padding: 0 5px 0 5px;}
+main section.sadrzaj {padding: 0 5px 0 5px; min-height: 500px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}

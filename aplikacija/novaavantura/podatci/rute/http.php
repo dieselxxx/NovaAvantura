@@ -19,3 +19,5 @@ Rute::sve('slika/baner', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_Kontr
 Rute::sve('slika/malaslika', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_Kontroler::class, 'malaslika']);
 Rute::sve('slika/velikaslika', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_Kontroler::class, 'velikaslika']);
 Rute::sve('slika/kategorija', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_Kontroler::class, 'kategorija']);
+Rute::sve('kolacic/index', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kolacic_Kontroler::class, 'index']);
+Rute::sve('kolacic/osobnipodatci', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kolacic_Kontroler::class, 'osobnipodatci']);
