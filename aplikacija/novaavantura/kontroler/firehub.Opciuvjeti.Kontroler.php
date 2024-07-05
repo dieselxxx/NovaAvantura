@@ -34,7 +34,8 @@ final class OpciUvjeti_Kontroler extends Master_Kontroler {
     public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
         return sadrzaj()->datoteka('opci_uvjeti.html')->podatci(array_merge($this->zadaniPodatci(), [
-            'predlozak_naslov' => 'Opci uvjeti'
+            'predlozak_naslov' => 'Opci uvjeti',
+            'vi_ste_ovdje' => '<a href="/">Naslovna</a> \\ Opći uvjeti'
         ]));
 
     }

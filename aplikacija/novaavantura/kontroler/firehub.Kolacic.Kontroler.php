@@ -70,6 +70,7 @@ final class Kolacic_Kontroler extends Master_Kontroler {
         return sadrzaj()->datoteka('osobni_podatci.html')->podatci(array_merge($this->zadaniPodatci(), [
             'gdpr' =>'',
             'predlozak_naslov' => 'Osobni podatci',
+            'vi_ste_ovdje' => '<a href="/">Naslovna</a> \\ Osobni podatci'
         ]));
 
     }

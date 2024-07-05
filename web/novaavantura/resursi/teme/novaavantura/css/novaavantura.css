@@ -1,4 +1,6 @@
 body {font-family: 'bc', sans-serif; font-size: 1rem; color: var(--boja-tekst);}
+a {color: var(--boja-tekst-svjetlija); transition: 0.3s;}
+a:hover {color: var(--boja-tekst);}
 a:hover, nav a:visited {text-decoration: none;}
 
 header {background-color: white; height: 80px; transition: all 0.4s ease; z-index: 2;}
@@ -42,8 +44,10 @@ header .meni .mega-meni--multiLevel {flex-direction: column;}
 main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px; min-height: 500px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
+main > .sadrzaj > #sadrzaj {padding: 15px 0;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
+main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {font-size: 0.8em;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
