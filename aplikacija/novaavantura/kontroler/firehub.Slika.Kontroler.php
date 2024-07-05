@@ -113,7 +113,7 @@ final class Slika_Kontroler extends Master_Kontroler {
     #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
     public function baner (string $kontroler = '', string $metoda = '', string $slika = '', int $visina = 550, int $sirina = 1920):Slika_Interface {
 
-        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE.$slika)->kvaliteta(80)->dimenzije($visina, $sirina)->napravi();
+        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE.$slika)->kvaliteta(100)->dimenzije($visina, $sirina)->napravi();
 
     }
 
