@@ -15,6 +15,8 @@
 namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
 use FireHub\Jezgra\Kontroler\Kontroler;
+use FireHub\Aplikacija\NovaAvantura\Model\Gdpr_Model;
+use FireHub\Jezgra\Model\Model;
 
 /**
  * ### Master
@@ -23,5 +25,31 @@ use FireHub\Jezgra\Kontroler\Kontroler;
  * @package Aplikacija\Kontroler
  */
 abstract class Master_Kontroler extends Kontroler {
+
+    protected Model $gdpr;
+
+    /**
+     * ### Konstruktor
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function __construct () {
+
+        $this->gdpr = $this->model(Gdpr_Model::class);
+
+    }
+
+    /**
+     * ### Zadani podatci za parametere
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return array
+     */
+    protected function zadaniPodatci ():array {
+
+        return [
+            'gdpr' => $this->gdpr->html()
+        ];
+
+    }
 
 }

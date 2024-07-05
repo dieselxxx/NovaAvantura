@@ -10,7 +10,7 @@ header #trazi {display: none; position: absolute; top: 0; left: 0; right: 0; bac
 header #trazi section h4 {font-size: 0.8rem; font-weight: 100; text-transform: uppercase; color: var(--boja-tekst-svjetlija);}
 header #trazi section > a {height: 30px; width: 30px;}
 header #trazi section > a svg {height: 30px; width: 30px;}
-header > .pozadina {display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0,0,0,0.41)}
+header > .pozadina {display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0,0,0,0.41);}
 header ul li a:hover {text-decoration: none; color: var(--boja-tekst-svjetlija);}
 header ul li a svg {height: 20px; width: 20px;}
 header .traka {align-items: center; padding: 5px 0; border-bottom: 1px solid var(--boja-granica);}
@@ -56,6 +56,9 @@ footer nav section.pratite_nas li svg {height: 15px; width: 15px;}
 footer > section {display: flex; align-items: center; justify-content: center; padding: 5px; font-size: 0.8rem; color: var(--boja-tekst-svjetlija); border-top: 1px solid var(--boja-granica);}
 footer > section a {flex-grow: 0.02;}
 footer > section a svg {height: 50px; width: 50px;}
+
+/** fiksno **/
+#gdpr div {position: fixed; display: block; background-color: black; left: 15px; bottom: 15px; padding: 20px; font-size: 0.85rem; color: var(--boja-granica); z-index: 9999; opacity: 0.9;}
 
 @media only screen and (min-width: 1000px) {
 

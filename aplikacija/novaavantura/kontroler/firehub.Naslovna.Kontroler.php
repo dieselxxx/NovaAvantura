@@ -33,7 +33,9 @@ final class Naslovna_Kontroler extends Master_Kontroler {
      */
     public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
-        return sadrzaj()->datoteka('naslovna.html')->podatci([]);
+        return sadrzaj()->datoteka('naslovna.html')->podatci(array_merge($this->zadaniPodatci(), [
+
+        ]));
 
     }
 
