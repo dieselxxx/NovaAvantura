@@ -78,6 +78,121 @@ final class Artikli_Kontroler extends Master_Kontroler {
     }
 
     /**
+     * ## Uredi artikl
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj Sadržaj stranice.
+     */
+    public function uredi (string $kontroler = '', string $metoda = '', int $id = 0) {
+
+        $artikl_model = $this->model(Artikl_Model::class);
+        $artikl = $artikl_model->artikl($id);
+
+        // formatiranje rezultata
+        if ($artikl['Izdvojeno'] === true) {$artikl['Izdvojeno'] = 'checked';} else {$artikl['Izdvojeno'] = '';}
+        if ($artikl['Aktivan'] === true) {$artikl['Aktivan'] = 'checked';} else {$artikl['Aktivan'] = '';}
+        if ($artikl['Ba'] === true) {$artikl['Ba'] = 'checked';} else {$artikl['Ba'] = '';}
+        if ($artikl['Hr'] === true) {$artikl['Hr'] = 'checked';} else {$artikl['Hr'] = '';}
+        if ($artikl['Outlet'] === true) {$artikl['Outlet'] = 'checked';} else {$artikl['Outlet'] = '';}
+        if ($artikl['OutletHr'] === true) {$artikl['OutletHr'] = 'checked';} else {$artikl['OutletHr'] = '';}
+        if ($artikl['Novo'] === true) {$artikl['Novo'] = 'checked';} else {$artikl['Novo'] = '';}
+
+        // kategorije
+        $kategorije_model = $this->model(Kategorije_Model::class);
+        $kategorije = $kategorije_model->lista(limit_zapisa_po_stranici: 100);
+        $kategorije_html = '';
+        foreach ($kategorije as $kategorija) {
+
+            $kategorije_html .= "<option value='{$kategorija['ID']}'>{$kategorija['Kategorija']}</option>";
+
+        }
+
+        // slike
+        $slike = $artikl_model->slike($id);
+        $slike_html = '';
+        $slikeOpcija = '';
+        foreach ($slike as $slika) {
+
+            $slike_html .= '
+                <tr>
+                    <td>
+                        <img src="/slika/malaslika/'.$slika['Slika'].'" alt="'.$slika['Slika'].'" />
+                    </td>
+                    <td>
+                        '.$slika['Slika'].'
+                    </td>
+                    <td>
+                        <a class="gumb" data-boja="boja" onclick="$_ArtiklIzbrisiSliku(\''.$slika['ID'].'\')">Izbriši sliku</a>
+                    </td>
+                </tr>
+            ';
+
+            $slikeOpcija .= "<option value='{$slika['ID']}'>{$slika['Slika']}</option>";
+
+        }
+
+        // cijene
+        $cijene = $artikl_model->cijene($id);
+        $cijene_html = '';
+        foreach ($cijene as $cijena) {
+
+            $cijene_html .= '
+                <tr>
+                    <td>'.$cijena['Cijena'].'</td>
+                    <td>'.$cijena['Vrsta'].'</td>
+                    <td>'.$cijena['Datum'].'</td>
+                    <td>
+                        <a class="gumb" data-boja="boja" onclick="$_ArtiklIzbrisiCijenu(\''.$cijena['ID'].'\')">Izbriši</a>
+                    </td>
+                </tr>
+            ';
+
+        }
+
+        // gratis
+        $gratis_model = $this->model(Artikli_Model::class);
+        $gratis_artikli = $gratis_model->listaGratis();
+        $gratis_artikli_html = '';
+        foreach ($gratis_artikli as $artikl_gratis) {
+
+            if ($artikl_gratis['ID'] != $artikl['ID'])
+                $gratis_artikli_html .= "<option value='{$artikl_gratis['ID']}'>{$artikl_gratis['Naziv']}</option>";
+
+        }
+
+        return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('artikli/uredi.html')->podatci([
+            'id' => $artikl['ID'],
+            'naziv' => $artikl['Naziv'],
+            'opis' => $artikl['Opis'],
+            'cijena' => $artikl['Cijena'],
+            'cijena_akcija' => $artikl['CijenaAkcija'],
+            'cijena_hr' => $artikl['CijenaKn'],
+            'cijena_akcija_hr' => $artikl['CijenaAkcijaKn'],
+            'aktivno' => $artikl['Aktivan'],
+            'izdvojeno' => $artikl['Izdvojeno'],
+            'ba' => $artikl['Ba'],
+            'hr' => $artikl['Hr'],
+            'outlet' => $artikl['Outlet'],
+            'outlethr' => $artikl['OutletHr'],
+            'novo' => $artikl['Novo'],
+            'kategorija' => ''.$artikl['KategorijaID'].'',
+            'kategorija_naziv' => $artikl['Kategorija'] ?? '',
+            'kategorije' => $kategorije_html,
+            'slike' => $slike_html,
+            'slikeOpcija' => $slikeOpcija,
+            'cijene' => $cijene_html,
+            'zadanaSlika' => ''.$artikl['Slika'].'' ?? 0,
+            'zadanaSlika_naziv' => $artikl['SlikaNaziv'] ?? '== bez gratis artikla ==',
+            'gratisBa' => ''.$artikl['GratisBa'].'' ?? 0,
+            'gratisBa_naziv' => $artikl['GratisBaNaziv'] ?? '== bez gratis artikla ==',
+            'gratisHr' => ''.$artikl['GratisHr'].'' ?? 0,
+            'gratisHr_naziv' => $artikl['GratisHrNaziv'] ?? '== bez gratis artikla ==',
+            'gratis_artikli' => $gratis_artikli_html
+        ]);
+
+    }
+
+    /**
      * ## Uredi šifre artikla
      * @since 0.1.0.pre-alpha.M1
      *

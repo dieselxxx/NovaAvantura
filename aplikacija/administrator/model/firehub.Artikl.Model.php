@@ -40,6 +40,105 @@ final class Artikl_Model extends Master_Model {
     }
 
     /**
+     * ### Artikl
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id
+     *
+     * @throws Kontejner_Greska
+     * @return array|false|mixed[]
+     */
+    public function artikl (int $id):array|false {
+
+        $artikl = $this->bazaPodataka
+            ->sirovi("
+                SELECT
+                    artikli.ID, artikli.Naziv, artikli.Opis,
+                    artikli.Cijena, artikli.CijenaAkcija, artikli.CijenaKn, artikli.CijenaAkcijaKn,
+                    artikli.Ba, artikli.Hr, artikli.Outlet, artikli.OutletHr, artikli.Novo,
+                    artikli.Aktivan, artikli.Izdvojeno,
+                    artikli.KategorijaID, kategorije.Kategorija,
+                    artikli.GratisBa, gratisBa.Naziv AS GratisBaNaziv, artikli.GratisHr, gratisHr.Naziv AS GratisHrNaziv,
+                    (SELECT ID FROM slikeartikal WHERE ClanakID = $id ORDER BY Zadana DESC, ID LIMIT 1) AS Slika,
+                    (SELECT Slika FROM slikeartikal WHERE ClanakID = $id ORDER BY Zadana DESC, ID LIMIT 1) AS SlikaNaziv
+                FROM artikli
+                LEFT JOIN kategorije ON kategorije.ID = artikli.KategorijaID
+                LEFT JOIN artikli gratisBa ON gratisBa.ID = artikli.GratisBa
+                LEFT JOIN artikli gratisHr ON gratisHr.ID = artikli.GratisHr
+                WHERE artikli.ID = $id
+                LIMIT 1
+            ")
+            ->napravi();
+
+        $artikl = $artikl->redak();
+
+        $artikl['Cijena'] = number_format((float)$artikl['Cijena'], 2, ',', '.');
+        $artikl['CijenaAkcija'] = number_format((float)$artikl['CijenaAkcija'], 2, ',', '.');
+        $artikl['CijenaKn'] = number_format((float)$artikl['CijenaKn'], 2, ',', '.');
+        $artikl['CijenaAkcijaKn'] = number_format((float)$artikl['CijenaAkcijaKn'], 2, ',', '.');
+        if ($artikl['Izdvojeno']) {$artikl['Izdvojeno'] = true;} else {$artikl['Izdvojeno'] = false;}
+        if ($artikl['Aktivan']) {$artikl['Aktivan'] = true;} else {$artikl['Aktivan'] = false;}
+        if ($artikl['Ba']) {$artikl['Ba'] = true;} else {$artikl['Ba'] = false;}
+        if ($artikl['Hr']) {$artikl['Hr'] = true;} else {$artikl['Hr'] = false;}
+        if ($artikl['Outlet']) {$artikl['Outlet'] = true;} else {$artikl['Outlet'] = false;}
+        if ($artikl['OutletHr']) {$artikl['OutletHr'] = true;} else {$artikl['OutletHr'] = false;}
+        if ($artikl['Novo']) {$artikl['Novo'] = true;} else {$artikl['Novo'] = false;}
+
+        return $artikl;
+
+    }
+
+    /**
+     * ### Slike artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id
+     *
+     * @throws Kontejner_Greska
+     * @return array
+     */
+    public function slike (int $id):array {
+
+        $slike = $this->bazaPodataka
+            ->sirovi("
+                SELECT
+                    slikeartikal.ID, slikeartikal.Slika, slikeartikal.Zadana
+                FROM slikeartikal
+                WHERE slikeartikal.ClanakID = $id
+            ")
+            ->napravi();
+
+        return $slike->niz() ?: [];
+
+    }
+
+    /**
+     * ### Cijena artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id
+     *
+     * @throws Kontejner_Greska
+     * @return array
+     */
+    public function cijene (int $id):array {
+
+        $slike = $this->bazaPodataka
+            ->sirovi("
+                SELECT
+                    artiklicijene.ID, artiklicijene.Cijena, artiklicijene.Vrsta, artiklicijene.Datum
+                FROM artiklicijene
+                WHERE artiklicijene.ArtikalID = $id
+                AND artiklicijene.Datum >= (CURDATE() - INTERVAL 10 DAY)
+                ORDER BY artiklicijene.ID DESC
+            ")
+            ->napravi();
+
+        return $slike->niz() ?: [];
+
+    }
+
+    /**
      * ### Dohvati karakteristike artikla
      * @since 0.1.0.pre-alpha.M1
      *

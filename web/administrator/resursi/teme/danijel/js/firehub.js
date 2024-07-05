@@ -311,6 +311,55 @@ $_Artikli = function (element = '', $broj_stranice = 1, $poredaj = 'Naziv', $red
 };
 
 /**
+ * Uredi artikl.
+ *
+ * @param {int} $id
+ */
+$_Artikl = function ($id) {
+
+    // dialog prozor
+    let dialog = new Dialog();
+
+    $.ajax({
+        type: 'GET',
+        url: '/administrator/artikli/uredi/' + $id,
+        dataType: 'html',
+        context: this,
+        beforeSend: function () {
+            Dialog.dialogOtvori(true);
+            dialog.sadrzaj(Loader_Krug);
+        },
+        success: function (odgovor) {
+            Dialog.dialogOcisti();
+            dialog.naslov('Artikl: ' + $id);
+            dialog.sadrzaj(odgovor);
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+            dialog.kontrole('<button type="button" class="ikona" onclick="$_ArtiklSpremi(this, \'forma\');"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#spremi"></use></svg><span>Spremi</span></button>');
+        },
+        error: function () {
+            Dialog.dialogOcisti();
+            dialog.naslov('Greška');
+            dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
+            dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
+        },
+        complete: function (odgovor) {
+            $(function () {
+                $('.tagovi').tagovi_input({
+                    width: 'auto'
+                });
+                $(".input-select").chosen({
+                    search_contains: true,
+                    width: '100%'
+                });
+            });
+        }
+    });
+
+    return false;
+
+};
+
+/**
  * Uredi šifre artikla.
  *
  * @param {int} $id
