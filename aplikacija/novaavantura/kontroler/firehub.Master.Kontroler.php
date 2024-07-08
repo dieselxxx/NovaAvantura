@@ -127,7 +127,7 @@ abstract class Master_Kontroler extends Kontroler {
 
             if (!isset($kategorija['Djeca'])) {
 
-                $rezultat .= '<a href="'.$kategorija['Link'].'" class="menu-link mega-meni-link">'.$kategorija['Kategorija'].'</a>';
+                $rezultat .= '<a href="artikli/'.$kategorija['Link'].'" class="menu-link mega-meni-link">'.$kategorija['Kategorija'].'</a>';
 
             } else if (count($kategorija['Djeca']))  {
 
@@ -162,7 +162,7 @@ abstract class Master_Kontroler extends Kontroler {
         foreach ($lista as $kategorija)  {
 
             if ($kategorija['Roditelj'] == 0)
-                $rezultat .= '<li><a href="'.$kategorija['Link'].'"><span>'.$kategorija['Kategorija'].'</span></a></li>';
+                $rezultat .= '<li><a href="artikli/'.$kategorija['Link'].'"><span>'.$kategorija['Kategorija'].'</span></a></li>';
 
         }
 

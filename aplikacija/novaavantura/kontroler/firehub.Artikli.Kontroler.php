@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
 /**
- * Kontakt
+ * Artikli
  * @since 0.1.0.pre-alpha.M1
  *
  * @author Danijel Galić
- * @copyright 2024 Nova Avantura Web Trgovina
+ * @copyright 2022 Nova Avantura Web Trgovina
  * @license GNU General Public License version 3 - [https://opensource.org/licenses/GPL-3.0](https://opensource.org/licenses/GPL-3.0)
  *
  * @version 1.0
@@ -14,27 +14,28 @@
 
 namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
+use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 
 /**
- * ### Kontakt
+ * ### Artikli
  * @since 0.1.0.pre-alpha.M1
  *
  * @package Aplikacija\Kontroler
  */
-final class Kontakt_Kontroler extends Master_Kontroler {
+final class Artikli_Kontroler extends Master_Kontroler {
 
     /**
-     * ### index
+     * ## index
      * @since 0.1.0.pre-alpha.M1
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index ():Sadrzaj {
+    public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
-        return sadrzaj()->datoteka('kontakt.html')->podatci(array_merge($this->zadaniPodatci(), [
-            'predlozak_naslov' => 'Kontakt',
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Kontakt'
+        return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
+            'predlozak_naslov' => 'Artikli',
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli'
         ]));
 
     }
