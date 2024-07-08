@@ -56,7 +56,8 @@ abstract class Master_Kontroler extends Kontroler {
             'adresa' => Domena::adresa(),
             'telefon' => Domena::telefon(),
             'email' => Domena::email(),
-            'kategorije_meni' => $this->kategorijeMeni()
+            'kategorije_meni' => $this->kategorijeMeni(),
+            'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije())
         ];
 
     }
@@ -141,6 +142,27 @@ abstract class Master_Kontroler extends Kontroler {
             }
 
             $rezultat .= '</li>';
+
+        }
+
+        return $rezultat;
+
+    }
+
+    /**
+     * ### HTML tree meni za kategorije
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return string
+     */
+    private function kategorijePodnozjeTreeHTML (array $lista):string {
+
+        $rezultat = '';
+
+        foreach ($lista as $kategorija)  {
+
+            if ($kategorija['Roditelj'] == 0)
+                $rezultat .= '<li><a href="'.$kategorija['Link'].'"><span>'.$kategorija['Kategorija'].'</span></a></li>';
 
         }
 
