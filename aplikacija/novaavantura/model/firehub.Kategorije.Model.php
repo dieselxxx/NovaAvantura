@@ -66,4 +66,23 @@ final class Kategorije_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Dohvati kategoriju po linku
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param string $link <p>
+     * Link kategorije.
+     * </p>
+     *
+     * @return array Kategorija.
+     */
+    public function kategorijaPoLinku (string $link):array {
+
+        return $this->bazaPodataka->tabela('kategorijeview')
+            ->odaberi(['ID', 'Kategorija', 'Slika'])
+            ->gdje('Link', '=', $link)
+            ->napravi()->redak();
+
+    }
+
 }
