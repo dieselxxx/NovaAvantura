@@ -71,11 +71,12 @@ final class Artikli_Model extends Master_Model {
             default => "KategorijaID = '$kategorija'"
         };
 
-        return $this->bazaPodataka->tabela('artikliview')
+        $rezultat = $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
                     SELECT
-                       artikliview.ID, Naziv, Link, Opis, ".Domena::sqlCijena()." AS Cijena, ".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
-                       IF(".Domena::sqlCijenaAkcija()." > 0, ".Domena::sqlCijenaAkcija().", ".Domena::sqlCijena().") AS Cijenafinal,
+                       artikliview.ID, Naziv, Link, Opis,
+                       ".Domena::sqlCijena()." AS Cijena,
+                       ".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
                        GROUP_CONCAT(DISTINCT artiklikarakteristike.Velicina) AS Velicine,
                        brandovi.Brand,
                        (SELECT Slika FROM slikeartikal WHERE slikeartikal.ClanakID = artikliview.ID ORDER BY slikeartikal.Zadana DESC LIMIT 1) AS Slika,
@@ -92,6 +93,21 @@ final class Artikli_Model extends Master_Model {
                     LIMIT $pomak, $limit
                 ")
             ->napravi()->niz() ?: [];
+
+        foreach ($rezultat as $kljuc => $redak) {
+
+            // najniža cijena 30 dana
+            $rezultat[$kljuc]['Cijena30DanaHTML'] = Domena::Hr()
+                ? 'najniža cijena u posljednih 30 dana: '.$redak['Cijena30Dana'] .' '.Domena::valuta()
+                : '';
+
+            // cijena
+            $rezultat[$kljuc]['CijenaHTML'] = $redak['Cijena'].' '.Domena::valuta();
+            $rezultat[$kljuc]['CijenaFinal'] = $redak['Cijena'];
+
+        }
+
+        return $rezultat;
 
     }
 

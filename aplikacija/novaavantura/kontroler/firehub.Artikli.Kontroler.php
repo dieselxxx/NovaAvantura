@@ -52,7 +52,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijenafinal', string $poredaj_redoslijed = 'asc', int $stranica = 1):Sadrzaj {
+    public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1):Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
         $limit = 15;
@@ -70,11 +70,13 @@ final class Artikli_Kontroler extends Master_Kontroler {
             
                 <form class="artikal" method="post" enctype="multipart/form-data" action="">
                     <input type="hidden" name="ID" value="{$artikal['ID']}" />
-                    <a href="/artikl/{$artikal['Link']}">
+                    <a class="slika" href="/artikl/{$artikal['Link']}">
                         <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
                     <span class="brand">{$artikal['Brand']}</span>
-                    <span class="naziv">{$artikal['Naziv']}</span>
+                    <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
+                    <span class="cijena">{$artikal['CijenaHTML']}</span>
+                    <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>
                 </form>
 
             Artikal;
