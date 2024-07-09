@@ -102,8 +102,16 @@ final class Artikli_Model extends Master_Model {
                 : '';
 
             // cijena
-            $rezultat[$kljuc]['CijenaHTML'] = $redak['Cijena'].' '.Domena::valuta();
-            $rezultat[$kljuc]['CijenaFinal'] = $redak['Cijena'];
+            if ($redak['CijenaAkcija'] > 0) {
+                $rezultat[$kljuc]['CijenaHTML'] =
+                    '<span class="prekrizi">'.$redak['Cijena'].' '.Domena::valuta().'</span>'
+                    .$redak['CijenaAkcija'].' '.Domena::valuta();
+                $rezultat[$kljuc]['CijenaFinal'] = $redak['CijenaAkcija'];
+
+            } else {
+                $rezultat[$kljuc]['CijenaHTML'] = $redak['Cijena'].' '.Domena::valuta();
+                $rezultat[$kljuc]['CijenaFinal'] = $redak['Cijena'];
+            }
 
         }
 
