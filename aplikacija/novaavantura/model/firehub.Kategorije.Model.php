@@ -52,18 +52,6 @@ final class Kategorije_Model extends Master_Model {
                 FROM kategorijeview
             ")->napravi()->niz();
 
-        return $this->bazaPodataka->tabela('kategorijeview')
-            ->sirovi("
-                SELECT 
-                    kategorijeview.Kategorija, kategorijeview.Link, kategorijeview.Slika
-                FROM kategorijeview
-                LEFT JOIN artikli ON artikli.KategorijaID = kategorijeview.ID AND artikli.".Domena::sqlTablica()." = 1
-                LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikli.ID
-                LEFT JOIN stanjeskladista ON stanjeskladista.Sifra = artiklikarakteristike.Sifra
-                GROUP BY kategorijeview.Kategorija, kategorijeview.Link, kategorijeview.Slika
-                HAVING SUM(StanjeSkladiste) > 0
-            ")->napravi()->niz();
-
     }
 
     /**
@@ -79,7 +67,7 @@ final class Kategorije_Model extends Master_Model {
     public function kategorijaPoLinku (string $link):array {
 
         return $this->bazaPodataka->tabela('kategorijeview')
-            ->odaberi(['ID', 'Kategorija', 'Slika'])
+            ->odaberi(['ID', 'Kategorija', 'Slika', 'Link'])
             ->gdje('Link', '=', $link)
             ->napravi()->redak();
 

@@ -15,6 +15,7 @@
 namespace FireHub\Aplikacija\NovaAvantura\Model;
 
 use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 
 /**
  * ### Artikli model
@@ -26,13 +27,227 @@ final class Artikli_Model extends Master_Model {
 
     /**
      * ### Konstruktor
-     * @since 0.1.2.pre-alpha.M1
+     * @since 0.1.0.pre-alpha.M1
      */
     public function __construct (
         private BazaPodataka $bazaPodataka
     ){
 
         parent::__construct();
+
+    }
+
+    /**
+     * ### Dohvati artikle
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int|string $kategorija <p>
+     * ID kategorije.
+     * </p>
+     * @param int $pomak <p>
+     * Pomak od kojeg se limitiraju zapisi.
+     * </p>
+     * @param int $limit <p>
+     * Broj redaka koje odabiremo.
+     * </p>
+     * @param int|string $trazi <p>
+     * Traži artikl.
+     * </p>
+     * @param string $poredaj <p>
+     * Poredaj rezultate artikala.
+     * </p>
+     * @param string $poredaj_redoslijed <p>
+     * ASC ili DESC.
+     * </p>
+     *
+     * @return array Niz artikala.
+     */
+    public function artikli (int|string $kategorija, int $pomak, int $limit, int|string $trazi, string $poredaj, string $poredaj_redoslijed):array {
+
+        $filtar = match ($kategorija) {
+            'izdvojeno' => "Izdvojeno = 1",
+            'akcija' => Domena::sqlCijenaAkcija() . " > 0",
+            'outlet' => Domena::sqlOutlet() . " = 1",
+            default => "KategorijaID = '$kategorija'"
+        };
+
+        return $this->bazaPodataka->tabela('artikliview')
+            ->sirovi("
+                    SELECT
+                       artikliview.ID, Naziv, Link, Opis, ".Domena::sqlCijena()." AS Cijena, ".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
+                       IF(".Domena::sqlCijenaAkcija()." > 0, ".Domena::sqlCijenaAkcija().", ".Domena::sqlCijena().") AS Cijenafinal,
+                       GROUP_CONCAT(DISTINCT artiklikarakteristike.Velicina) AS Velicine,
+                       (SELECT Slika FROM slikeartikal WHERE slikeartikal.ClanakID = artikliview.ID ORDER BY slikeartikal.Zadana DESC LIMIT 1) AS Slika,
+                       ".(Domena::Hr() ? 'artikliview.GratisHr' : 'artikliview.GratisBa')." AS GratisID,
+                       artikliview.Novo,
+                       artikliview.Cijena30Dana".Domena::sqlTablica()." AS Cijena30Dana
+                    FROM artikliview
+                    LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
+                    WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
+                    {$this->trazi($trazi)}
+                    GROUP BY artikliview.ID
+                    ORDER BY ".ucwords($poredaj)." $poredaj_redoslijed
+                    LIMIT $pomak, $limit
+                ")
+            ->napravi()->niz() ?: [];
+
+    }
+
+    /**
+     * ### Ukupnjo pronađenih redaka
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int|string $kategorija <p>
+     * ID kategorije.
+     * </p>
+     * @param int|string $podkategorija <p>
+     * Podkategorija artikla.
+     * </p>
+     * @param int|string $trazi <p>
+     * Traži artikl.
+     * </p>
+     *
+     * @return int Broj pronađenih redaka.
+     */
+    public function ukupnoRedaka (int|string $kategorija, int|string $trazi) {
+
+        $filtar = match ($kategorija) {
+            'izdvojeno' => "Izdvojeno = 1",
+            'akcija' => Domena::sqlCijenaAkcija() . " > 0",
+            'outlet' => Domena::sqlOutlet() . " = 1",
+            default => "KategorijaID = '$kategorija'"
+        };
+
+        return $this->bazaPodataka->tabela('artikliview')
+            ->sirovi("
+                SELECT
+                    Naziv
+                FROM artikliview
+                LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
+                WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
+                {$this->trazi($trazi)}
+                GROUP BY artikliview.ID
+            ")
+            ->napravi()->broj_zapisa();
+
+    }
+
+    /**
+     * ### Navigacija HTML
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int|string $kategorija <p>
+     * Kategorija artikla.
+     * </p>
+     * @param int|string $trazi <p>
+     * Traži artikl.
+     * </p>
+     * @param int $limit <p>
+     * Limit artikala.
+     * </p>
+     * @param string $url <p>
+     * Trenutni URL.
+     * </p>
+     * @param int $broj_stranice <p>
+     * Trenutnu broj stranice.
+     * </p>
+     * @param string $boja <p>
+     * Boja gumbova.
+     * </p>
+     *
+     * @return string[] Lista artikala.
+     */
+    public function ukupnoRedakaHTML (int|string $kategorija, int|string $trazi, int $limit, string $url = '/', int $broj_stranice = 1, string $boja = 'boja'):array {
+
+        $broj_zapisa = $this->ukupnoRedaka($kategorija, $trazi);
+
+        $pocetak_link_stranice = "";
+        $link_stranice = "";
+        $kraj_link_stranice = "";
+
+        $ukupno_stranica = ceil($broj_zapisa / $limit);
+        if (($broj_stranice - 2) < 1) {$x = 1;} else {$x = ($broj_stranice - 2);}
+        if (($broj_stranice + 2) >= $ukupno_stranica) {$y = $ukupno_stranica;} else {$y = ($broj_stranice + 2);}
+
+        if ($broj_stranice >= 2) {
+
+            $prosla_stranica = $broj_stranice - 1;
+
+            if ($url) {$url_prva_stranica = "href='{$url}/1'";} else {$url_prva_stranica = "";}
+            if ($url) {$url_prosla_stranica = "href='{$url}/{$prosla_stranica}'";} else {$url_prosla_stranica = "";}
+
+            $pocetak_link_stranice .= "<li><a class='gumb ikona' {$url_prva_stranica}><svg data-boja='{$boja}'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_lijevo_duplo\" /></svg></a></li>";
+            $pocetak_link_stranice .= "<li><a class='gumb ikona' {$url_prosla_stranica}><svg data-boja='{$boja}'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_lijevo\" /></svg></a></li>";
+
+        }
+
+        for ($i = $x; $i <= $y; $i++) {
+
+            if ($url) {$url_broj_stranice = "href='{$url}/{$i}'";} else {$url_broj_stranice = "";}
+
+            if ($i == $broj_stranice) {
+
+                $link_stranice .= "<li><a class='gumb' data-boja='{$boja}' {$url_broj_stranice}>{$i}</a></li>";
+
+            }  else {
+
+                $link_stranice .= "<li><a class='gumb' {$url_broj_stranice}>{$i}</a></li>";
+
+            }
+
+        }
+
+        if ($broj_stranice < $ukupno_stranica) {
+
+            $sljedeca_stranica = $broj_stranice + 1;
+
+            if ($url) {$url_sljedeca_stranica = "href='{$url}/{$sljedeca_stranica}'";} else {$url_sljedeca_stranica = "";}
+            if ($url) {$url_ukupno_stranica = "href='{$url}/{$ukupno_stranica}'";} else {$url_ukupno_stranica = "";}
+
+            $kraj_link_stranice .= "<li><a class='gumb ikona' {$url_sljedeca_stranica}><svg data-boja='{$boja}'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno\" /></svg></a></li>";
+            $kraj_link_stranice .= "<li><a class='gumb ikona' {$url_ukupno_stranica}><svg data-boja='{$boja}'><use xlink:href=\"/kapriol/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo\" /></svg></a></li>";
+
+        }
+
+        return [
+            'pocetak' => $pocetak_link_stranice, 'stranice' => $link_stranice, 'kraj' => $kraj_link_stranice
+        ];
+
+    }
+
+    /**
+     * ### Traži artikl
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int|string $trazi <p>
+     * Traži artikl.
+     * </p>
+     *
+     * @return string Upit za traženje.
+     */
+    private function trazi (int|string $trazi):string {
+
+        if ($trazi <> 'svi artikli') {
+
+            $trazi = explode(' ', (string)$trazi);
+
+            $trazi_array = '';
+            foreach ($trazi as $stavka) {
+
+                $trazi_array .= "
+                    AND (
+                        Naziv LIKE '%{$stavka}%'
+                        OR Opis LIKE '%{$stavka}%'
+                    )
+                ";
+
+            }
+
+            return $trazi_array;
+
+        }
+
+        return '';
 
     }
 

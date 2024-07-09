@@ -15,7 +15,9 @@
 namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
+use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Kategorije_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
 
 /**
  * ### Artikli
@@ -25,7 +27,8 @@ use FireHub\Aplikacija\NovaAvantura\Model\Kategorije_Model;
  */
 final class Artikli_Kontroler extends Master_Kontroler {
 
-    private Kategorije_Model $kategorija_Model;
+    protected Model $kategorije;
+    protected Model $artikli;
 
     /**
      * ## Konstruktor
@@ -37,6 +40,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         $this->kategorije = $this->model(Kategorije_Model::class);
 
+        $this->artikli = $this->model(Artikli_Model::class);
+
         parent::__construct();
 
     }
@@ -47,13 +52,27 @@ final class Artikli_Kontroler extends Master_Kontroler {
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index (string $kontroler = '', string $kategorija = 'sve'):Sadrzaj {
+    public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijenafinal', string $poredaj_redoslijed = 'asc', int $stranica = 1)
+    :Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
 
+        // navigacija
+        $limit = 18;
+        $artikli = $this->model(Artikli_Model::class)->artikli(
+            $trenutna_kategorija['ID'], ($stranica - 1) * $limit,
+            $limit, $trazi, $poredaj, $poredaj_redoslijed
+        );
+        $navigacija = $this->model(Artikli_Model::class)->ukupnoRedakaHTML(
+            $trenutna_kategorija['ID'], $trazi, $limit,
+            '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
+        );
+        $navigacija_html = implode('', $navigacija);
+
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija']
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
+            'navigacija' => $navigacija_html
         ]));
 
     }
