@@ -55,13 +55,31 @@ final class Artikli_Kontroler extends Master_Kontroler {
     public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijenafinal', string $poredaj_redoslijed = 'asc', int $stranica = 1):Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
+        $limit = 15;
 
-        // navigacija
-        $limit = 1;
+        // artikli
         $artikli = $this->model(Artikli_Model::class)->artikli(
             $trenutna_kategorija['ID'], ($stranica - 1) * $limit,
             $limit, $trazi, $poredaj, $poredaj_redoslijed
         );
+        $artikli_html = '';
+
+        foreach ($artikli as $artikal) {
+
+            $artikli_html .= <<<Artikal
+            
+                <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                    <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                    <a href="/artikl/{$artikal['Link']}">
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                    </a>
+                </form>
+
+            Artikal;
+
+        }
+
+        // navigacija
         $navigacija = $this->model(Artikli_Model::class)->ukupnoRedakaHTML(
             $trenutna_kategorija['ID'], $trazi, $limit,
             '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
@@ -71,6 +89,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
+            'artikli' => $artikli_html,
             'navigacija' => $navigacija_html
         ]));
 
