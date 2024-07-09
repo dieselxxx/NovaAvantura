@@ -19,7 +19,7 @@ footer {display: grid; grid-template-columns: auto minmax(200px, 1200px) auto; g
 footer > nav {grid-column: 2 / 3; grid-row: 1 / 2;}
 footer > section {grid-column: 1 / 5; grid-row: 2 / 3;}
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
 
     header.skrolanje {grid-template-rows: 40px; height: 40px;}
     header.skrolanje .traka {grid-template-columns: 0 auto 0; grid-row: 1 / 2;}
@@ -27,7 +27,7 @@ footer > section {grid-column: 1 / 5; grid-row: 2 / 3;}
 
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
 
     header {grid-template-rows: 1fr;}
     header .traka {grid-row: 1 / 3;}

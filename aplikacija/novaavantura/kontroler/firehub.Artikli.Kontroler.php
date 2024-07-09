@@ -73,6 +73,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
                     <a href="/artikl/{$artikal['Link']}">
                         <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
+                    <span class="brand">{$artikal['Brand']}</span>
+                    <span class="naziv">{$artikal['Naziv']}</span>
                 </form>
 
             Artikal;

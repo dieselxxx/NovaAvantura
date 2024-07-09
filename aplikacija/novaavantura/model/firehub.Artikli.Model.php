@@ -77,12 +77,14 @@ final class Artikli_Model extends Master_Model {
                        artikliview.ID, Naziv, Link, Opis, ".Domena::sqlCijena()." AS Cijena, ".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
                        IF(".Domena::sqlCijenaAkcija()." > 0, ".Domena::sqlCijenaAkcija().", ".Domena::sqlCijena().") AS Cijenafinal,
                        GROUP_CONCAT(DISTINCT artiklikarakteristike.Velicina) AS Velicine,
+                       brandovi.Brand,
                        (SELECT Slika FROM slikeartikal WHERE slikeartikal.ClanakID = artikliview.ID ORDER BY slikeartikal.Zadana DESC LIMIT 1) AS Slika,
                        ".(Domena::Hr() ? 'artikliview.GratisHr' : 'artikliview.GratisBa')." AS GratisID,
                        artikliview.Novo,
                        artikliview.Cijena30Dana".Domena::sqlTablica()." AS Cijena30Dana
                     FROM artikliview
                     LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
+                    LEFT JOIN brandovi ON brandovi.ID = artikliview.BrandID
                     WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
                     {$this->trazi($trazi)}
                     GROUP BY artikliview.ID

@@ -48,10 +48,13 @@ main > .sadrzaj > #sadrzaj {padding: 15px 0;}
 main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {font-size: 0.8em;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
-main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: 250px auto;}
+main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: 270px auto;}
 main > .sadrzaj > .artikli > section > div.meni {grid-column: 1 / 2;}
 main > .sadrzaj > .artikli > section > div.artikli {grid-column: 2 / 3; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 15px; justify-items: center;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal {display: grid; grid-template-columns: 275px; grid-template-rows: 350px;}
+main > .sadrzaj > .artikli > section > div.artikli > .artikal a {background-color: var(--boja-pozadina);}
+main > .sadrzaj > .artikli > section > div.artikli > .artikal span.brand {padding: 5px; font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
+main > .sadrzaj > .artikli > section > div.artikli > .artikal span.naziv {font-size: 0.9rem;}
 main > .sadrzaj > .artikli > section > nav.navigacija {grid-column: 2 / 3;}
 main > .sadrzaj > .artikli > section > nav.navigacija > ul {display: flex; flex-flow: wrap; justify-content: center; width: auto;}
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li {padding: 10px; line-height: 20px;}
@@ -72,7 +75,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 #gdpr div {position: fixed; display: block; background-color: black; left: 15px; bottom: 15px; padding: 20px; font-size: 0.85rem; color: var(--boja-granica); z-index: 9999; opacity: 0.9;}
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
 
     header.skrolanje .meni nav ul li:last-of-type {margin-right: 160px;}
 
@@ -113,7 +116,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
 
     header {height: 50px;}
 
@@ -147,7 +150,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar:focus-within {left: 0;}
     header .meni .menu-bar > li > [aria-haspopup="true"]:focus ~ ul {left: 0;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul {margin-top: calc(1.4em + 40px);}
-    header .meni  .menu-bar > li > [aria-haspopup="true"] ~ ul:hover,
+    header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul:hover,
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul:focus-within {left: 0;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"]:focus ~ ul {max-height: 500px; animation: dropdown 0.3s forwards;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul li:focus-within > [aria-haspopup="true"] ~ ul {max-height: 500px; transform: scaleY(1);}
@@ -157,7 +160,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > .rotator {height: 450px;}
     main > .sadrzaj > .naslovna > div.div {height: 450px;}
     main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: auto;}
-    main > .sadrzaj > .artikli > section > div.artikli {grid-column: 1 / 2;}
+    main > .sadrzaj > .artikli > section > div.artikli {grid-column: 1 / 2; grid-template-columns: repeat(2, 1fr);}
     main > .sadrzaj > .artikli > section > nav.navigacija {grid-column: 1 / 2;}
 
     footer {position: initial;}
@@ -171,7 +174,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 }
 
-@media all and (max-width: 1000px) and (hover: none) {
+@media all and (max-width: 1200px) and (hover: none) {
 
     header .meni .mobile-meni-gumb:hover ~ ul {left: 0;}
     header .meni .menu-bar > li > [aria-haspopup="true"]:hover ~ ul {left: 0;}
@@ -180,12 +183,13 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"] ~ ul:hover {max-height: 500px; transform: scaleY(1);}
     header .meni .menu-bar > li:hover ~ .mobile-menu-header a {visibility: hidden;}
 
-}
+    }
 
 @media only screen and (max-width: 768px) {
 
     main > .sadrzaj > .naslovna > .rotator {height: 350px;}
     main > .sadrzaj > .naslovna > div.div {height: 350px;}
+    main > .sadrzaj > .artikli > section > div.artikli {grid-template-columns: 1fr;}
 
 }
 
