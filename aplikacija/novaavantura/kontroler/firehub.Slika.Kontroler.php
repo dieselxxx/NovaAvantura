@@ -63,7 +63,10 @@ final class Slika_Kontroler extends Master_Kontroler {
     #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
     public function malaSlika (string $kontroler = '', string $metoda = '', string $slika = ''):Slika_Interface {
 
-        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE.$slika)->dimenzije(350, 275)->napravi();
+        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE.$slika)
+            ->kvaliteta(100)
+            ->dimenzije(350, 275)
+            ->napravi();
 
     }
 
@@ -88,7 +91,11 @@ final class Slika_Kontroler extends Master_Kontroler {
     #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
     public function velikaSlika (string $kontroler = '', string $metoda = '', string $slika = ''):Slika_Interface {
 
-        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE.$slika)->dimenzije(700, 550)->napravi();
+        return (new Slika())
+            ->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE.$slika)
+            ->kvaliteta(100)
+            ->dimenzije(700, 550)
+            ->napravi();
 
     }
 
@@ -113,7 +120,10 @@ final class Slika_Kontroler extends Master_Kontroler {
     #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
     public function baner (string $kontroler = '', string $metoda = '', string $slika = '', int $visina = 550, int $sirina = 1920):Slika_Interface {
 
-        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE.$slika)->kvaliteta(100)->dimenzije($visina, $sirina)->napravi();
+        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE.$slika)
+            ->kvaliteta(100)
+            ->dimenzije($visina, $sirina)
+            ->napravi();
 
     }
 
@@ -138,7 +148,11 @@ final class Slika_Kontroler extends Master_Kontroler {
     #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
     public function kategorija (string $kontroler = '', string $metoda = '', string $slika = '', int $visina = 300, int $sirina = 400):Slika_Interface {
 
-        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE .'grafika'.RAZDJELNIK_MAPE.'kategorije'.RAZDJELNIK_MAPE.$slika)->dimenzije($visina, $sirina)->kvaliteta(9)->vrsta(\FireHub\Jezgra\Komponente\Slika\Enumeratori\Vrsta::PNG)->napravi();
+        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE .'grafika'.RAZDJELNIK_MAPE.'kategorije'.RAZDJELNIK_MAPE.$slika)
+            ->dimenzije($visina, $sirina)
+            ->kvaliteta(9)
+            ->vrsta(\FireHub\Jezgra\Komponente\Slika\Enumeratori\Vrsta::PNG)
+            ->napravi();
 
     }
 
