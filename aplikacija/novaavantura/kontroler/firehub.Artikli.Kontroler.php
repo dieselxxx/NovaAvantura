@@ -52,13 +52,12 @@ final class Artikli_Kontroler extends Master_Kontroler {
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijenafinal', string $poredaj_redoslijed = 'asc', int $stranica = 1)
-    :Sadrzaj {
+    public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijenafinal', string $poredaj_redoslijed = 'asc', int $stranica = 1):Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
 
         // navigacija
-        $limit = 18;
+        $limit = 1;
         $artikli = $this->model(Artikli_Model::class)->artikli(
             $trenutna_kategorija['ID'], ($stranica - 1) * $limit,
             $limit, $trazi, $poredaj, $poredaj_redoslijed

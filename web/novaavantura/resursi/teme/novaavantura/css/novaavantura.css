@@ -45,9 +45,14 @@ main {position: relative; background-color: white; margin-bottom: 310px; z-index
 main section.sadrzaj {padding: 0 5px 0 5px; min-height: 500px;}
 main div.traka {background-color: var(--boja-tekst); height: 30px; width: 100%;}
 main > .sadrzaj > #sadrzaj {padding: 15px 0;}
+main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {font-size: 0.8em;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
-main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {font-size: 0.8em;}
+main > .sadrzaj > .artikli {}
+main > .sadrzaj > .artikli > nav.navigacija > ul {display: flex; flex-flow: wrap; justify-content: center; width: auto;}
+main > .sadrzaj > .artikli > nav.navigacija > ul li {padding: 10px;}
+main > .sadrzaj > .artikli > nav.navigacija > ul li svg {fill: var(--boja-tekst-svjetlija); height: 20px; width: 20px;}
+main > .sadrzaj > .artikli > nav.navigacija > ul li svg:hover {fill: var(--boja-tekst);}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -219,3 +224,7 @@ label.unos span.granica {grid-column: 2 / 3; grid-row: 1 / 2; position: absolute
     0% {opacity: 0; transform: scaleX(0);}
     100% {opacity: 1; transform: scaleX(1);}
 }
+
+/** boja **/
+svg[data-boja="boja"] {fill: var(--boja-tekst) !important;}
+button[data-boja="boja"], .gumb[data-boja="boja"] {color: var(--boja-tekst);}
