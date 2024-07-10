@@ -68,6 +68,7 @@ final class Artikli_Model extends Master_Model {
             'izdvojeno' => "Izdvojeno = 1",
             'akcija' => Domena::sqlCijenaAkcija() . " > 0",
             'outlet' => Domena::sqlOutlet() . " = 1",
+            'novo' => "Novo = 1",
             default => "KategorijaID = '$kategorija'"
         };
 
@@ -126,9 +127,6 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $kategorija <p>
      * ID kategorije.
      * </p>
-     * @param int|string $podkategorija <p>
-     * Podkategorija artikla.
-     * </p>
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
@@ -141,6 +139,7 @@ final class Artikli_Model extends Master_Model {
             'izdvojeno' => "Izdvojeno = 1",
             'akcija' => Domena::sqlCijenaAkcija() . " > 0",
             'outlet' => Domena::sqlOutlet() . " = 1",
+            'novo' => "Novo = 1",
             default => "KategorijaID = '$kategorija'"
         };
 

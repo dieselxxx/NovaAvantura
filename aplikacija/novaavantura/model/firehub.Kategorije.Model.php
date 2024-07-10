@@ -66,10 +66,15 @@ final class Kategorije_Model extends Master_Model {
      */
     public function kategorijaPoLinku (string $link):array {
 
-        return $this->bazaPodataka->tabela('kategorijeview')
-            ->odaberi(['ID', 'Kategorija', 'Slika', 'Link'])
-            ->gdje('Link', '=', $link)
-            ->napravi()->redak();
+        return match ($link) {
+            'izdvojeno', 'akcija', 'outlet', 'novo' => [
+                'ID' => 0, 'Kategorija' => ucfirst($link), 'Slika' => '', 'Link' => $link
+            ],
+            default => $this->bazaPodataka->tabela('kategorijeview')
+                ->odaberi(['ID', 'Kategorija', 'Slika', 'Link'])
+                ->gdje('Link', '=', $link)
+                ->napravi()->redak()
+        };
 
     }
 
