@@ -59,7 +59,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         // artikli
         $artikli = $this->model(Artikli_Model::class)->artikli(
-            $trenutna_kategorija['ID'], ($stranica - 1) * $limit,
+            $trenutna_kategorija['Link'], ($stranica - 1) * $limit,
             $limit, $trazi, $poredaj, $poredaj_redoslijed
         );
         $artikli_html = '';
@@ -85,7 +85,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         // navigacija
         $navigacija = $this->model(Artikli_Model::class)->ukupnoRedakaHTML(
-            $trenutna_kategorija['ID'], $trazi, $limit,
+            $trenutna_kategorija['Link'], $trazi, $limit,
             '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
         );
         $navigacija_html = implode('', $navigacija);

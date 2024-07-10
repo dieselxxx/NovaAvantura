@@ -69,7 +69,7 @@ final class Artikli_Model extends Master_Model {
             'akcija' => Domena::sqlCijenaAkcija() . " > 0",
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
-            default => "KategorijaID = '$kategorija'"
+            default => "kategorijeview.Link = '$kategorija'"
         };
 
         $poredaj = match ($poredaj) {
@@ -86,7 +86,7 @@ final class Artikli_Model extends Master_Model {
         $rezultat = $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
                     SELECT
-                       artikliview.ID, Naziv, Link, Opis,
+                       artikliview.ID, Naziv, artikliview.Link, artikliview.Opis,
                        ".Domena::sqlCijena()." AS Cijena,
                        ".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
                        IF(".Domena::sqlCijenaAkcija()." > 0, ".Domena::sqlCijenaAkcija().", ".Domena::sqlCijena().") AS CijenaIliAkcija,
@@ -99,6 +99,7 @@ final class Artikli_Model extends Master_Model {
                     FROM artikliview
                     LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
                     LEFT JOIN brandovi ON brandovi.ID = artikliview.BrandID
+                    LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
                     WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
                     {$this->trazi($trazi)}
                     GROUP BY artikliview.ID
@@ -152,7 +153,7 @@ final class Artikli_Model extends Master_Model {
             'akcija' => Domena::sqlCijenaAkcija() . " > 0",
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
-            default => "KategorijaID = '$kategorija'"
+            default => "kategorijeview.Link = '$kategorija'"
         };
 
         return $this->bazaPodataka->tabela('artikliview')
@@ -161,6 +162,7 @@ final class Artikli_Model extends Master_Model {
                     Naziv
                 FROM artikliview
                 LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
+                LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
                 WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
                 {$this->trazi($trazi)}
                 GROUP BY artikliview.ID
