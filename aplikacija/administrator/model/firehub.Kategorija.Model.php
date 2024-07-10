@@ -54,7 +54,7 @@ final class Kategorija_Model extends Master_Model {
         $kategorija = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    kategorije.ID, kategorije.Kategorija, kategorije.Slika,
+                    kategorije.ID, kategorije.Kategorija, kategorije.Opis, kategorije.Slika,
                     ifnull(roditelj.ID, '') AS RoditeljID,
                     ifnull(roditelj.Kategorija, '') AS Roditelj
                 FROM kategorije
@@ -79,6 +79,11 @@ final class Kategorija_Model extends Master_Model {
         $naziv = $_REQUEST['naziv'];
         $naziv = Validacija::String(_('Naziv kategorije'), $naziv, 3, 250);
 
+        if (!empty($_REQUEST['opis'])) {
+            $opis = $_REQUEST['opis'];
+            $opis = Validacija::String(_('Opis kategorije'), $opis, 1, 1000);
+        }
+
         if (!empty($_REQUEST['roditelj'])) {
             $roditelj = $_REQUEST['roditelj'];
             $roditelj = Validacija::Broj(_('Roditelj'), $roditelj, 1, 11);
@@ -88,6 +93,7 @@ final class Kategorija_Model extends Master_Model {
 
             $this->bazaPodataka->tabela('kategorije')->azuriraj([
                 'Kategorija' => $naziv,
+                'Opis' => $opis ?? '',
                 'Roditelj' => $roditelj ?? 0
             ])->gdje(
                 'ID', '=', $id

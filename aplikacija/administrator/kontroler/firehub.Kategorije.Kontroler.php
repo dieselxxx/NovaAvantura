@@ -100,6 +100,7 @@ final class Kategorije_Kontroler extends Master_Kontroler {
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('kategorije/uredi.html')->podatci([
             'id' => $kategorija['ID'],
             'naziv' => $kategorija['Kategorija'],
+            'opis' => $kategorija['Opis'] ?? '',
             'slika' => $kategorija['Slika'] ?? '',
             'roditelj_id' => $kategorija['RoditeljID'],
             'roditelj' => $kategorija['Roditelj'],
