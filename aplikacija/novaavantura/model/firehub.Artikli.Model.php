@@ -137,6 +137,7 @@ final class Artikli_Model extends Master_Model {
             $rezultat[$kljuc]['CijenaFinal'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
             $rezultat[$kljuc]['Cijena'] = number_format((float)$rezultat[$kljuc]['Cijena'], 2, ',', '.');
             $rezultat[$kljuc]['CijenaAkcija'] = number_format((float)$rezultat[$kljuc]['CijenaAkcija'], 2, ',', '.');
+            $rezultat[$kljuc]['Popust'] = number_format((float)$rezultat[$kljuc]['Popust'], 2, ',', '.');
 
             // cijena html
             if ($redak['CijenaAkcija'] > 0) {
@@ -156,6 +157,11 @@ final class Artikli_Model extends Master_Model {
                 $rezultat[$kljuc]['CijenaHTML'] = $redak['Cijena'].' '.Domena::valuta();
 
             }
+
+            // popust html
+            $rezultat[$kljuc]['PopustHTML'] = ($rezultat[$kljuc]['Popust'] !== '0,00')
+                ? '<span class="popust">-'.$rezultat[$kljuc]['Popust'] .'%</span>'
+                : '';
 
         }
 
