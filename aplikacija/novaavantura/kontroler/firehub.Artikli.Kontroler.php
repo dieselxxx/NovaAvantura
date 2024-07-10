@@ -70,8 +70,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
             
                 <form class="artikal" method="post" enctype="multipart/form-data" action="">
                     <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                    {$artikal['PopustHTML']}
                     <a class="slika" href="/artikl/{$artikal['Link']}">
-                        {$artikal['PopustHTML']}
+                       
                         <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
                     <span class="brand">{$artikal['Brand']}</span>
