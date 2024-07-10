@@ -72,7 +72,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
                     <input type="hidden" name="ID" value="{$artikal['ID']}" />
                     <a class="slika" href="/artikl/{$artikal['Link']}">
                         {$artikal['PopustHTML']}
-                        
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
                     <span class="brand">{$artikal['Brand']}</span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
