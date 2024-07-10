@@ -398,4 +398,34 @@ final class Domena {
 
     }
 
+    /**
+     * ## Black Friday
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return bool
+     */
+    public static function blackFriday ():bool {
+
+        if (date("m-d") >= '11-25' && date("m-d") <= '11-25') {
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+    /**
+     * ## Black Friday popust
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return float
+     */
+    public static function blackFridayPopust ():float {
+
+        return 0.15;
+
+    }
+
 }

@@ -117,14 +117,44 @@ final class Artikli_Model extends Master_Model {
 
             // cijena
             if ($redak['CijenaAkcija'] > 0) {
+
+                $rezultat[$kljuc]['CijenaFinal'] = $redak['CijenaAkcija'];
+                $rezultat[$kljuc]['Popust'] = ($redak['Cijena'] - $redak['CijenaAkcija']) / (max($redak['Cijena'], 1)) * 100;
+
+            } else if (Domena::blackFriday()) {
+
+                $rezultat[$kljuc]['CijenaFinal'] = $redak['Cijena'] - ($redak['Cijena'] * Domena::blackFridayPopust());
+                $rezultat[$kljuc]['Popust'] = Domena::blackFridayPopust() * 100;
+
+            } else {
+
+                $rezultat[$kljuc]['CijenaFinal'] = $redak['Cijena'];
+                $rezultat[$kljuc]['Popust'] = 0;
+
+            }
+
+            // format cijena
+            $rezultat[$kljuc]['CijenaFinal'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
+            $rezultat[$kljuc]['Cijena'] = number_format((float)$rezultat[$kljuc]['Cijena'], 2, ',', '.');
+            $rezultat[$kljuc]['CijenaAkcija'] = number_format((float)$rezultat[$kljuc]['CijenaAkcija'], 2, ',', '.');
+
+            // cijena html
+            if ($redak['CijenaAkcija'] > 0) {
+
                 $rezultat[$kljuc]['CijenaHTML'] =
                     '<span class="prekrizi">'.$redak['Cijena'].' '.Domena::valuta().'</span>'
                     .$redak['CijenaAkcija'].' '.Domena::valuta();
-                $rezultat[$kljuc]['CijenaFinal'] = $redak['CijenaAkcija'];
+
+            } else if (Domena::blackFriday()) {
+
+                $rezultat[$kljuc]['CijenaHTML'] =
+                    '<span class="prekrizi">'.$redak['Cijena'].' '.Domena::valuta().'</span>'
+                    .$rezultat[$kljuc]['CijenaFinal'].' '.Domena::valuta();
 
             } else {
+
                 $rezultat[$kljuc]['CijenaHTML'] = $redak['Cijena'].' '.Domena::valuta();
-                $rezultat[$kljuc]['CijenaFinal'] = $redak['Cijena'];
+
             }
 
         }
