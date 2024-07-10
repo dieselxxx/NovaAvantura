@@ -65,7 +65,7 @@ final class Slika_Kontroler extends Master_Kontroler {
 
         return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE.$slika)
             ->kvaliteta(100)
-            ->dimenzije(350, 275)
+            ->dimenzije(445, 350)
             ->napravi();
 
     }
