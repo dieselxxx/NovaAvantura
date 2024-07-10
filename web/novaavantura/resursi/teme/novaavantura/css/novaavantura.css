@@ -57,7 +57,7 @@ main > .sadrzaj > .artikli > section > div.artikli {grid-column: 2 / 3; display:
 main > .sadrzaj > .artikli > section > div.artikli > .artikal {display: grid; grid-template-columns: 275px; grid-template-rows: 350px;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a {color: var(--boja-tekst);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika {position: relative; background-color: var(--boja-pozadina);}
-main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
+main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; line-height: 15px; color: var(--boja-pozadina);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika img {height: 100%; width: 100%;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal span.brand {padding: 3px; font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.naziv {padding: 3px;  font-size: 0.9rem; font-weight: 100;}
