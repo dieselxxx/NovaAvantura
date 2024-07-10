@@ -73,7 +73,8 @@ final class Kategorije_Model extends Master_Model {
             default => $this->bazaPodataka->tabela('kategorijeview')
                 ->odaberi(['ID', 'Kategorija', 'Slika', 'Link'])
                 ->gdje('Link', '=', $link)
-                ->napravi()->redak()
+                ->napravi()->redak() ?: ['ID' => 0, 'Kategorija' => 'Kategorija ne postoji', 'Slika' => '', 'Link' =>
+                '']
         };
 
     }

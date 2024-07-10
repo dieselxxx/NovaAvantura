@@ -93,6 +93,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
+            'kategorija' => $trenutna_kategorija['Kategorija'],
             'artikli' => $artikli_html,
             'navigacija' => $navigacija_html
         ]));
