@@ -163,6 +163,11 @@ final class Artikli_Model extends Master_Model {
                 ? '<span class="popust">-'.$rezultat[$kljuc]['Popust'] .'%</span>'
                 : '';
 
+            // novo html
+            $rezultat[$kljuc]['NovoHTML'] = $rezultat[$kljuc]['Novo']
+                ? '<span class="novo">Novo</span>'
+                : '';
+
         }
 
         return $rezultat;
