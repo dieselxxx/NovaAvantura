@@ -11,6 +11,23 @@
             <span class="opis">{{kategorija_opis}}</span>
         </div>
 
+        <div class="opcije">
+
+            <form data-oznaka="rezultat_poredak" method="post" enctype="multipart/form-data" action="">
+
+                <label class="select">
+                    <span>Poredaj po:</span>
+                    <select data-oznaka="redoslijed" name="poredaj" required>
+                        {{poredaj_izbornik}}
+                    </select>
+                </label>
+
+            </form>
+
+            <div class="prikazujem">{{prikazujem}}</div>
+
+        </div>
+
         <div class="artikli">{{artikli}}</div>
 
         <nav class="navigacija">

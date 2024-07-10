@@ -92,13 +92,34 @@ final class Artikli_Kontroler extends Master_Kontroler {
         );
         $navigacija_html = implode('', $navigacija);
 
+        // poredaj izbornik
+        if ($poredaj === 'naziv' && $poredaj_redoslijed == 'asc') {$poredaj_izbornik_odabrano_1 = 'selected';} else {$poredaj_izbornik_odabrano_1 = '';}
+        if ($poredaj === 'naziv' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_2 = 'selected';} else {$poredaj_izbornik_odabrano_2 = '';}
+        if ($poredaj === 'cijena' && $poredaj_redoslijed == 'asc') {$poredaj_izbornik_odabrano_3 = 'selected';} else {$poredaj_izbornik_odabrano_3 = '';}
+        if ($poredaj === 'cijena' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_4 = 'selected';} else {$poredaj_izbornik_odabrano_4 = '';}
+        if ($poredaj === 'starost' && $poredaj_redoslijed == 'asc') {$poredaj_izbornik_odabrano_5 = 'selected';} else {$poredaj_izbornik_odabrano_5 = '';}
+        if ($poredaj === 'starost' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_6 = 'selected';} else {$poredaj_izbornik_odabrano_6 = '';}
+        $poredaj_izbornik = '
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/cijena/asc/" '.$poredaj_izbornik_odabrano_3.'>Cijena manja prema većoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/cijena/desc/" '.$poredaj_izbornik_odabrano_4.'>Cijena veća prema manjoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/naziv/asc/" '.$poredaj_izbornik_odabrano_1.'>Naziv A-Z</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/naziv/desc/" '.$poredaj_izbornik_odabrano_2.'>Naziv Z-A</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/starost/asc/" '.$poredaj_izbornik_odabrano_5.'>Starost manja prema većoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/starost/desc/" '.$poredaj_izbornik_odabrano_6.'>Starost veća prema manjoj</option>
+        ';
+
+        // prikazujem
+        $prikazujem = 'Prikazujem';
+
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
             'kategorija_naziv' => $trenutna_kategorija['Kategorija'],
             'kategorija_opis' => $trenutna_kategorija['Opis'],
             'artikli' => $artikli_html,
-            'navigacija' => $navigacija_html
+            'navigacija' => $navigacija_html,
+            "poredaj_izbornik" => $poredaj_izbornik,
+            "prikazujem" => $prikazujem
         ]));
 
     }

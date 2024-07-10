@@ -53,6 +53,7 @@ main > .sadrzaj > .artikli > section > div.meni {grid-column: 1 / 2;}
 main > .sadrzaj > .artikli > section > div.naslov {grid-column: 2 / 3; grid-row: 1 / 2;}
 main > .sadrzaj > .artikli > section > div.naslov h2 {font-weight: 100;}
 main > .sadrzaj > .artikli > section > div.naslov .opis {font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
+main > .sadrzaj > .artikli > section > div.opcije {grid-column: 2 / 3; grid-row: 2 / 3; display: flex;}
 main > .sadrzaj > .artikli > section > div.artikli {grid-column: 2 / 3; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 50px 15px; justify-items: center;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal {display: grid; grid-template-columns: 275px; grid-template-rows: 350px;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a {color: var(--boja-tekst);}
@@ -172,6 +173,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > div.div {height: 450px;}
     main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: auto;}
     main > .sadrzaj > .artikli > section > div.naslov {grid-column: 1 / 2;}
+    main > .sadrzaj > .artikli > section > div.opcije {grid-column: 1 / 2;}
     main > .sadrzaj > .artikli > section > div.artikli {grid-column: 1 / 2; grid-template-columns: repeat(2, 1fr);}
     main > .sadrzaj > .artikli > section > div.artikli > .artikal {grid-template-columns: 350px; grid-template-rows: 445px;}
     main > .sadrzaj > .artikli > section > nav.navigacija {grid-column: 1 / 2;}
@@ -196,7 +198,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"] ~ ul:hover {max-height: 500px; transform: scaleY(1);}
     header .meni .menu-bar > li:hover ~ .mobile-menu-header a {visibility: hidden;}
 
-    }
+}
 
 @media only screen and (max-width: 768px) {
 
@@ -228,6 +230,11 @@ label.unos input:focus {outline: none;}
 label.unos input::placeholder {color: var(--boja-tekst);}
 label.unos svg {grid-column: 2 / 3; grid-row: 1 / 2; margin: 13px; height: 30px; width: 30px;}
 label.unos span.granica {grid-column: 2 / 3; grid-row: 1 / 2; position: absolute; display: block; bottom: 0; width: 100%}
+label.select {position: relative;}
+label.select span {font-size: 0.8rem;}
+label.select select {background-color: white; background-image: url('/novaavantura/resursi/grafika/simboli/strelicaDole.svg'); background-position: right 10px center; background-repeat: no-repeat; background-size: auto 50%; width: 170px; font-size: 0.8rem; border: none; color: var(--boja-tekst-svjetlija); outline: none; -moz-appearance: none; -webkit-appearance: none; appearance: none;}
+label.select select::-ms-expand {display: none;}
+label.select select option {background-color: white; font-size: 0.8rem;}
 
 .accordion {padding: 18px; width: 100%; font-size: 15px; text-align: left; color: #444; outline: none; cursor: pointer; border: none; transition: 0.4s;}
 .active, .accordion:hover {background-color: var(--boja-granica);}
