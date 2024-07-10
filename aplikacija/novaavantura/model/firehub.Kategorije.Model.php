@@ -71,7 +71,7 @@ final class Kategorije_Model extends Master_Model {
                 'ID' => 0, 'Kategorija' => ucfirst($link), 'Slika' => '', 'Link' => $link
             ],
             default => $this->bazaPodataka->tabela('kategorijeview')
-                ->odaberi(['ID', 'Kategorija', 'Slika', 'Link'])
+                ->odaberi(['ID', 'Kategorija', 'Opis', 'Slika', 'Link'])
                 ->gdje('Link', '=', $link)
                 ->napravi()->redak() ?: ['ID' => 0, 'Kategorija' => 'Kategorija ne postoji', 'Slika' => '', 'Link' =>
                 '']
