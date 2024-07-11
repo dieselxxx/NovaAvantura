@@ -115,4 +115,9 @@ $(document).ready(function () {
 
     });
 
+    // artikli brand
+    $('main > .sadrzaj > .artikli > section > div.meni > section input[type="checkbox"]').on('change', function() {
+        $('input[type="checkbox"]').not(this).prop('checked', false);
+    });
+
 });

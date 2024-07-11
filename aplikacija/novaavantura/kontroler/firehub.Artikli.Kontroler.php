@@ -70,6 +70,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         );
         $artikli_html = '';
 
+        // artikli
         foreach ($artikli as $artikal) {
 
             $artikli_html .= <<<Artikal
@@ -118,15 +119,36 @@ final class Artikli_Kontroler extends Master_Kontroler {
         // prikazujem
         $prikazujem = 'Prikazujem '.$artikli_model->ukupnoRedaka($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina, $brand).' artikala';
 
+        // brandovi meni
+        $brandovi = $artikli_model->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
+        $brand_meni = '';
+        foreach ($brandovi as $brand) {
+            $brand_meni .= '
+                <li>
+                    <label class="kontrolni_okvir">
+                        <span>'.$brand['Brand'].'</span>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+            ';
+        }
+        $brandovi_meni = "
+        <ul>
+            $brand_meni
+        </ul>
+        ";
+
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
             'kategorija_naziv' => $trenutna_kategorija['Kategorija'],
-            'kategorija_opis' => $trenutna_kategorija['Opis'],
+            'kategorija_opis' => $trenutna_kategorija['Opis'] ?? '',
             'artikli' => $artikli_html,
             'navigacija' => $navigacija_html,
             "poredaj_izbornik" => $poredaj_izbornik,
-            "prikazujem" => $prikazujem
+            "prikazujem" => $prikazujem,
+            "brandovi_meni" => $brandovi_meni
         ]));
 
     }

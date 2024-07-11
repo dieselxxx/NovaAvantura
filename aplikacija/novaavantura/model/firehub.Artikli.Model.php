@@ -215,7 +215,74 @@ final class Artikli_Model extends Master_Model {
     }
 
     /**
-     * ### Ukupnjo pronađenih redaka
+     * ### Dohvati brandove
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int|string $kategorija <p>
+     * ID kategorije.
+     * </p>
+     * @param int|string $trazi <p>
+     * Traži artikl.
+     * </p>
+     * @param string $cijena_od <p>
+     * Cijena od.
+     * </p>
+     * @param string $cijena_do <p>
+     * Cijena do.
+     * </p>
+     * @param string $velicina <p>
+     * Veličina.
+     * </p>
+     *
+     * @return array Niz brandova.
+     */
+    public function brandovi (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $velicina) {
+
+        $filtar = match ($kategorija) {
+            'izdvojeno' => "Izdvojeno = 1",
+            'akcija' => Domena::sqlCijenaAkcija() . " > 0",
+            'outlet' => Domena::sqlOutlet() . " = 1",
+            'novo' => "Novo = 1",
+            'sve kategorije' => 'artikliview.ID <> 0',
+            default => "kategorijeview.Link = '$kategorija'"
+        };
+
+        $cijena_od = match ($cijena_od) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+        };
+        $cijena_do = match ($cijena_do) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+        };
+
+        $velicina = match ($velicina) {
+            'sve' => '',
+            default => "AND artiklikarakteristike.Velicina = '$velicina'"
+        };
+
+        return $this->bazaPodataka->tabela('artikliview')
+            ->sirovi("
+                SELECT
+                    brandovi.Brand
+                FROM artikliview
+                LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
+                LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
+                LEFT JOIN brandovi ON brandovi.ID = artikliview.BrandID
+                WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
+                AND brandovi.Brand IS NOT NULL
+                $velicina
+                $cijena_od
+                $cijena_do
+                {$this->trazi($trazi)}
+                GROUP BY brandovi.Brand
+            ")
+            ->napravi()->niz() ?: [];
+
+    }
+
+    /**
+     * ### Ukupno pronađenih redaka
      * @since 0.1.0.pre-alpha.M1
      *
      * @param int|string $kategorija <p>
@@ -239,7 +306,7 @@ final class Artikli_Model extends Master_Model {
      *
      * @return int Broj pronađenih redaka.
      */
-    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $velicina, string $brand,) {
+    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $velicina, string $brand) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
