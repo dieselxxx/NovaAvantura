@@ -53,8 +53,11 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena <p>
-     * Cijena od - do.
+     * @param string $cijena_od <p>
+     * Cijena od.
+     * </p>
+     * @param string $cijena_do <p>
+     * Cijena do.
      * </p>
      * @param string $velicina <p>
      * Veličina.
@@ -73,7 +76,7 @@ final class Artikli_Model extends Master_Model {
      */
     public function artikli (
         int|string $kategorija, int $pomak, int $limit, int|string $trazi,
-        string $cijena, string $velicina, string $brand,
+        string $cijena_od, string $cijena_do, string $velicina, string $brand,
         string $poredaj, string $poredaj_redoslijed
     ):array {
 
@@ -84,6 +87,25 @@ final class Artikli_Model extends Master_Model {
             'novo' => "Novo = 1",
             'sve kategorije' => 'artikliview.ID <> 0',
             default => "kategorijeview.Link = '$kategorija'"
+        };
+
+        $cijena_od = match ($cijena_od) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+        };
+        $cijena_do = match ($cijena_do) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+        };
+
+        $velicina = match ($velicina) {
+            'sve' => '',
+            default => "AND artiklikarakteristike.Velicina = '$velicina'"
+        };
+
+        $brand = match ($brand) {
+            'sve' => '',
+            default => "AND brandovi.Brand = '$brand'"
         };
 
         $poredaj = match ($poredaj) {
@@ -115,6 +137,10 @@ final class Artikli_Model extends Master_Model {
                     LEFT JOIN brandovi ON brandovi.ID = artikliview.BrandID
                     LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
                     WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
+                    $brand
+                    $velicina
+                    $cijena_od
+                    $cijena_do
                     {$this->trazi($trazi)}
                     GROUP BY artikliview.ID
                     ORDER BY ".ucwords($poredaj)." $poredaj_redoslijed
@@ -198,8 +224,11 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena <p>
-     * Cijena od - do.
+     * @param string $cijena_od <p>
+     * Cijena od.
+     * </p>
+     * @param string $cijena_do <p>
+     * Cijena do.
      * </p>
      * @param string $velicina <p>
      * Veličina.
@@ -210,7 +239,7 @@ final class Artikli_Model extends Master_Model {
      *
      * @return int Broj pronađenih redaka.
      */
-    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, string $cijena, string $velicina, string $brand,) {
+    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $velicina, string $brand,) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -221,6 +250,25 @@ final class Artikli_Model extends Master_Model {
             default => "kategorijeview.Link = '$kategorija'"
         };
 
+        $cijena_od = match ($cijena_od) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+        };
+        $cijena_do = match ($cijena_do) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+        };
+
+        $velicina = match ($velicina) {
+            'sve' => '',
+            default => "AND artiklikarakteristike.Velicina = '$velicina'"
+        };
+
+        $brand = match ($brand) {
+            'sve' => '',
+            default => "AND brandovi.Brand = '$brand'"
+        };
+
         return $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
                 SELECT
@@ -228,7 +276,12 @@ final class Artikli_Model extends Master_Model {
                 FROM artikliview
                 LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
                 LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
+                LEFT JOIN brandovi ON brandovi.ID = artikliview.BrandID
                 WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
+                $brand
+                $velicina
+                $cijena_od
+                $cijena_do
                 {$this->trazi($trazi)}
                 GROUP BY artikliview.ID
             ")
@@ -246,8 +299,11 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena <p>
-     * Cijena od - do.
+     * @param string $cijena_od <p>
+     * Cijena od.
+     * </p>
+     * @param string $cijena_do <p>
+     * Cijena do.
      * </p>
      * @param string $velicina <p>
      * Veličina.
@@ -272,11 +328,11 @@ final class Artikli_Model extends Master_Model {
      */
     public function ukupnoRedakaHTML (
         int|string $kategorija, int|string $trazi,
-        string $cijena, string $velicina, string $brand,
+        string $cijena_od, string $cijena_do, string $velicina, string $brand,
         int $limit, string $url = '/', int $broj_stranice = 1, string $boja = 'boja'
     ):array {
 
-        $broj_zapisa = $this->ukupnoRedaka($kategorija, $trazi, $cijena, $velicina, $brand);
+        $broj_zapisa = $this->ukupnoRedaka($kategorija, $trazi, $cijena_od, $cijena_do, $velicina, $brand);
 
         $pocetak_link_stranice = "";
         $link_stranice = "";
