@@ -34,6 +34,11 @@ $(document).ready(function () {
         });
         $("header > .pozadina").toggle();
     });
+    $('header form svg').click(function(event) {
+        var form = $(this).closest("form");
+        //console.log(form);
+        form.submit();
+    });
     $('form[data-oznaka="trazi_artikal"]').submit(function (odgovor) {
 
         let vrijednost = $('form[data-oznaka="trazi_artikal"] input[name="trazi"]').val();
