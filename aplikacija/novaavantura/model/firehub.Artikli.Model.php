@@ -282,6 +282,72 @@ final class Artikli_Model extends Master_Model {
     }
 
     /**
+     * ### Dohvati veličine
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int|string $kategorija <p>
+     * ID kategorije.
+     * </p>
+     * @param int|string $trazi <p>
+     * Traži artikl.
+     * </p>
+     * @param string $cijena_od <p>
+     * Cijena od.
+     * </p>
+     * @param string $cijena_do <p>
+     * Cijena do.
+     * </p>
+     * @param string $brand <p>
+     * Brand.
+     * </p>
+     *
+     * @return array Niz brandova.
+     */
+    public function velicine (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $brand) {
+
+        $filtar = match ($kategorija) {
+            'izdvojeno' => "Izdvojeno = 1",
+            'akcija' => Domena::sqlCijenaAkcija() . " > 0",
+            'outlet' => Domena::sqlOutlet() . " = 1",
+            'novo' => "Novo = 1",
+            'sve kategorije' => 'artikliview.ID <> 0',
+            default => "kategorijeview.Link = '$kategorija'"
+        };
+
+        $cijena_od = match ($cijena_od) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+        };
+        $cijena_do = match ($cijena_do) {
+            'sve' => '',
+            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+        };
+
+        $brand = match ($brand) {
+            'sve' => '',
+            default => "AND brandovi.Brand = '$brand'"
+        };
+
+        return $this->bazaPodataka->tabela('artikliview')
+            ->sirovi("
+                SELECT
+                    artiklikarakteristike.Velicina
+                FROM artiklikarakteristike
+                LEFT JOIN artikliview ON artikliview.ID = artiklikarakteristike.ArtikalID
+                LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
+                LEFT JOIN brandovi ON brandovi.ID = artikliview.BrandID
+                WHERE Aktivan = 1 AND ".Domena::sqlTablica()." = 1 AND ".Domena::sqlCijena()." > 0 AND ".$filtar."
+                $brand
+                $cijena_od
+                $cijena_do
+                {$this->trazi($trazi)}
+                GROUP BY artiklikarakteristike.Velicina
+            ")
+            ->napravi()->niz() ?: [];
+
+    }
+
+    /**
      * ### Ukupno pronađenih redaka
      * @since 0.1.0.pre-alpha.M1
      *

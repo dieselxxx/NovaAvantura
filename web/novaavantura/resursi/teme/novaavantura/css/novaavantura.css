@@ -49,8 +49,9 @@ main > .sadrzaj > #sadrzaj {padding: 15px 0;}
 main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {height: 30px; font-size: 0.8em;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
-main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: 270px auto; grid-gap: 15px;}
+main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: 270px auto; grid-gap: 25px;}
 main > .sadrzaj > .artikli > section > div.meni {grid-column: 1 / 2; display: grid; grid-template-columns: 1fr;}
+main > .sadrzaj > .artikli > section > div.meni > section {border-bottom: 1px solid var(--boja-granica);}
 main > .sadrzaj > .artikli > section > div.meni > section > span {display: block; margin: 20px 0; font-weight: 100; text-transform: uppercase;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li {margin: 20px 0;}
 main > .sadrzaj > .artikli > section > div.naslov {grid-column: 2 / 3; grid-row: 1 / 2;}
@@ -241,7 +242,7 @@ label.select select {background-color: white; background-image: url('/novaavantu
 label.select select::-ms-expand {display: none;}
 label.select select option {background-color: white; font-size: 0.8rem;}
 
-.kontrolni_okvir {display: block; position: relative; margin-bottom: 12px; padding-left: 28px; font-size: 0.8rem; line-height: 20px; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none; cursor: pointer;}
+.kontrolni_okvir {display: block; position: relative; margin-bottom: 12px; padding-left: 28px; width: max-content; font-size: 0.8rem; line-height: 20px; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none; cursor: pointer;}
 .kontrolni_okvir input {position: absolute; height: 0; width: 0; opacity: 0; cursor: pointer;}
 .kontrolni_okvir .checkmark {position: absolute; top: 0; left: 0; height: 20px; width: 20px; border: 1px solid var(--boja-granica);}
 .kontrolni_okvir input:checked ~ .checkmark {background-color: white; border-color: var(--boja-tekst);}

@@ -122,11 +122,11 @@ final class Artikli_Kontroler extends Master_Kontroler {
         // brandovi meni
         $brandovi = $artikli_model->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
         $brand_meni = '';
-        foreach ($brandovi as $brand) {
+        foreach ($brandovi as $brand1) {
             $brand_meni .= '
                 <li>
                     <label class="kontrolni_okvir">
-                        <span>'.$brand['Brand'].'</span>
+                        <span>'.$brand1['Brand'].'</span>
                         <input type="checkbox">
                         <span class="checkmark"></span>
                     </label>
@@ -139,6 +139,26 @@ final class Artikli_Kontroler extends Master_Kontroler {
         </ul>
         ";
 
+        // velicine meni
+        $velicine = $artikli_model->velicine($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $brand);
+        $velicina_meni = '';
+        foreach ($velicine as $velicina1) {
+            $velicina_meni .= '
+                <li>
+                    <label class="kontrolni_okvir">
+                        <span>'.$velicina1['Velicina'].'</span>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+            ';
+        }
+        $velicine_meni = "
+        <ul>
+            $velicina_meni
+        </ul>
+        ";
+
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
@@ -148,7 +168,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
             'navigacija' => $navigacija_html,
             "poredaj_izbornik" => $poredaj_izbornik,
             "prikazujem" => $prikazujem,
-            "brandovi_meni" => $brandovi_meni
+            "brandovi_meni" => $brandovi_meni,
+            "velicine_meni" => $velicine_meni
         ]));
 
     }

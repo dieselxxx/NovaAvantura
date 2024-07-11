@@ -115,9 +115,12 @@ $(document).ready(function () {
 
     });
 
-    // artikli brand
-    $('main > .sadrzaj > .artikli > section > div.meni > section input[type="checkbox"]').on('change', function() {
-        $('input[type="checkbox"]').not(this).prop('checked', false);
+    // meni checkboy
+    $('main > .sadrzaj > .artikli > section > div.meni > section.brand input[type="checkbox"]').on('change', function() {
+        $('main > .sadrzaj > .artikli > section > div.meni > section.brand input[type="checkbox"]').not(this).prop('checked', false);
+    });
+    $('main > .sadrzaj > .artikli > section > div.meni > section.velicina input[type="checkbox"]').on('change', function() {
+        $('main > .sadrzaj > .artikli > section > div.meni > section.velicina input[type="checkbox"]').not(this).prop('checked', false);
     });
 
 });
