@@ -55,10 +55,11 @@ final class Artikli_Kontroler extends Master_Kontroler {
     public function index (string $kontroler = '', string $kategorija = 'sve', int|string $trazi = 'svi artikli', string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1):Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
+        $artikli_model = $this->model(Artikli_Model::class);
         $limit = 15;
 
         // artikli
-        $artikli = $this->model(Artikli_Model::class)->artikli(
+        $artikli = $artikli_model->artikli(
             $trenutna_kategorija['Link'], ($stranica - 1) * $limit,
             $limit, $trazi, $poredaj, $poredaj_redoslijed
         );
@@ -86,7 +87,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         }
 
         // navigacija
-        $navigacija = $this->model(Artikli_Model::class)->ukupnoRedakaHTML(
+        $navigacija = $artikli_model->ukupnoRedakaHTML(
             $trenutna_kategorija['Link'], $trazi, $limit,
             '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
         );
@@ -109,7 +110,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         ';
 
         // prikazujem
-        $prikazujem = 'Prikazujem';
+        $prikazujem = 'Prikazujem '.$artikli_model->ukupnoRedaka($trenutna_kategorija['Link'], $trazi).' artikala';
 
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
