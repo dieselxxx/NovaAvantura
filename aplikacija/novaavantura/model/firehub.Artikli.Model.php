@@ -69,6 +69,7 @@ final class Artikli_Model extends Master_Model {
             'akcija' => Domena::sqlCijenaAkcija() . " > 0",
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
+            'sve kategorije' => 'artikliview.ID <> 0',
             default => "kategorijeview.Link = '$kategorija'"
         };
 
@@ -194,6 +195,7 @@ final class Artikli_Model extends Master_Model {
             'akcija' => Domena::sqlCijenaAkcija() . " > 0",
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
+            'sve kategorije' => 'artikliview.ID <> 0',
             default => "kategorijeview.Link = '$kategorija'"
         };
 
@@ -316,8 +318,8 @@ final class Artikli_Model extends Master_Model {
 
                 $trazi_array .= "
                     AND (
-                        Naziv LIKE '%{$stavka}%'
-                        OR Opis LIKE '%{$stavka}%'
+                        artikliview.Naziv LIKE '%{$stavka}%'
+                        OR artikliview.Opis LIKE '%{$stavka}%'
                     )
                 ";
 

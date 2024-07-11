@@ -1,16 +1,16 @@
 <header xmlns="http://www.w3.org/1999/html">
 
-    <div id="trazi">
+    <form data-oznaka="trazi_artikal" method="post" enctype="multipart/form-data" action="" id="trazi">
         <section>
-            <h4>Upišite artikl koji tražite</h4>
-            <a class="trazi"><svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#zatvori"></use></svg></a>
-            <label data-boja="boja" class="unos">
-                <input type="text" name="trazi" value="" maxlength="50" autocomplete="off" placeholder="Pretražite proizvode po nazivu, brandu ili robnoj grupi..." required="required" pattern=".{3,50}">
-                <span class="granica"></span>
-                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
-            </label>
+                <h4>Upišite artikl koji tražite</h4>
+                <a class="trazi"><svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#zatvori"></use></svg></a>
+                <label data-boja="boja" class="unos">
+                    <input type="text" name="trazi" value="" maxlength="50" autocomplete="off" placeholder="Pretražite proizvode po nazivu, brandu ili robnoj grupi..." required="required" pattern=".{3,50}">
+                    <span class="granica"></span>
+                    <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
+                </label>
         </section>
-    </div>
+    </form>
     <div class="pozadina"></div>
 
     <div class="traka">
@@ -165,11 +165,13 @@
                     </li>
 
                     <li class="mobile-menu-header">
-                        <label data-boja="boja" class="unos">
-                            <input type="text" name="trazi" value="" maxlength="50" autocomplete="off" placeholder="Pretražite proizvode po nazivu, brandu ili robnoj grupi..." required="required" pattern=".{3,50}">
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
-                        </label>
+                        <form data-oznaka="trazi_artikal2" method="post" enctype="multipart/form-data" action="" id="trazi2">
+                            <label data-boja="boja" class="unos">
+                                <input type="text" name="trazi" value="" maxlength="50" autocomplete="off" placeholder="Pretražite proizvode po nazivu, brandu ili robnoj grupi..." required="required" pattern=".{3,50}">
+                                <span class="granica"></span>
+                                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#trazi"></use></svg>
+                            </label>
+                        </form>
                     </li>
                 </ul>
             </nav>
