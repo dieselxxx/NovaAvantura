@@ -45,7 +45,7 @@ $(document).ready(function () {
 
         vrijednost = vrijednost.replace('/', ' ');
 
-        window.location.href = '/artikli/sve kategorije/' + vrijednost + '/naziv/asc';
+        window.location.href = '/artikli/sve kategorije/' + vrijednost;
 
         return false;
 
@@ -56,7 +56,7 @@ $(document).ready(function () {
 
         vrijednost = vrijednost.replace('/', ' ');
 
-        window.location.href = '/artikli/sve kategorije/' + vrijednost + '/naziv/asc';
+        window.location.href = '/artikli/sve kategorije/' + vrijednost;
 
         return false;
 

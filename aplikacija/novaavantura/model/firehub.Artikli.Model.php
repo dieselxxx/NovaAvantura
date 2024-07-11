@@ -53,6 +53,15 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
+     * @param string $cijena <p>
+     * Cijena od - do.
+     * </p>
+     * @param string $velicina <p>
+     * Veličina.
+     * </p>
+     * @param string $brand <p>
+     * Brand.
+     * </p>
      * @param string $poredaj <p>
      * Poredaj rezultate artikala.
      * </p>
@@ -62,7 +71,11 @@ final class Artikli_Model extends Master_Model {
      *
      * @return array Niz artikala.
      */
-    public function artikli (int|string $kategorija, int $pomak, int $limit, int|string $trazi, string $poredaj, string $poredaj_redoslijed):array {
+    public function artikli (
+        int|string $kategorija, int $pomak, int $limit, int|string $trazi,
+        string $cijena, string $velicina, string $brand,
+        string $poredaj, string $poredaj_redoslijed
+    ):array {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -185,10 +198,19 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
+     * @param string $cijena <p>
+     * Cijena od - do.
+     * </p>
+     * @param string $velicina <p>
+     * Veličina.
+     * </p>
+     * @param string $brand <p>
+     * Brand.
+     * </p>
      *
      * @return int Broj pronađenih redaka.
      */
-    public function ukupnoRedaka (int|string $kategorija, int|string $trazi) {
+    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, string $cijena, string $velicina, string $brand,) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -224,6 +246,15 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
+     * @param string $cijena <p>
+     * Cijena od - do.
+     * </p>
+     * @param string $velicina <p>
+     * Veličina.
+     * </p>
+     * @param string $brand <p>
+     * Brand.
+     * </p>
      * @param int $limit <p>
      * Limit artikala.
      * </p>
@@ -239,9 +270,13 @@ final class Artikli_Model extends Master_Model {
      *
      * @return string[] Lista artikala.
      */
-    public function ukupnoRedakaHTML (int|string $kategorija, int|string $trazi, int $limit, string $url = '/', int $broj_stranice = 1, string $boja = 'boja'):array {
+    public function ukupnoRedakaHTML (
+        int|string $kategorija, int|string $trazi,
+        string $cijena, string $velicina, string $brand,
+        int $limit, string $url = '/', int $broj_stranice = 1, string $boja = 'boja'
+    ):array {
 
-        $broj_zapisa = $this->ukupnoRedaka($kategorija, $trazi);
+        $broj_zapisa = $this->ukupnoRedaka($kategorija, $trazi, $cijena, $velicina, $brand);
 
         $pocetak_link_stranice = "";
         $link_stranice = "";

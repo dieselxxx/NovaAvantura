@@ -52,8 +52,11 @@ final class Artikli_Kontroler extends Master_Kontroler {
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index (string $kontroler = '', string $kategorija = 'sve kategorije', int|string $trazi = 'svi artikli',
-                           string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1):Sadrzaj {
+    public function index (
+        string $kontroler = '', string $kategorija = 'sve kategorije', int|string $trazi = 'svi artikli',
+        string $cijena = 'sve', string $velicina = 'sve', string $brand = 'sve',
+        string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1
+    ):Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
         $artikli_model = $this->model(Artikli_Model::class);
@@ -62,7 +65,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
         // artikli
         $artikli = $artikli_model->artikli(
             $trenutna_kategorija['Link'], ($stranica - 1) * $limit,
-            $limit, $trazi, $poredaj, $poredaj_redoslijed
+            $limit, $trazi,
+            $cijena, $velicina, $brand, $poredaj, $poredaj_redoslijed
         );
         $artikli_html = '';
 
@@ -89,8 +93,10 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         // navigacija
         $navigacija = $artikli_model->ukupnoRedakaHTML(
-            $trenutna_kategorija['Link'], $trazi, $limit,
-            '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
+            $trenutna_kategorija['Link'], $trazi,
+            $cijena, $velicina, $brand, $limit,
+            '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/'.$poredaj.'/'
+            .$poredaj_redoslijed, $stranica
         );
         $navigacija_html = implode('', $navigacija);
 
@@ -102,16 +108,16 @@ final class Artikli_Kontroler extends Master_Kontroler {
         if ($poredaj === 'starost' && $poredaj_redoslijed == 'asc') {$poredaj_izbornik_odabrano_5 = 'selected';} else {$poredaj_izbornik_odabrano_5 = '';}
         if ($poredaj === 'starost' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_6 = 'selected';} else {$poredaj_izbornik_odabrano_6 = '';}
         $poredaj_izbornik = '
-            <option value="/artikli/'.$kategorija.'/'.$trazi.'/cijena/asc/" '.$poredaj_izbornik_odabrano_3.'>Cijena manja prema većoj</option>
-            <option value="/artikli/'.$kategorija.'/'.$trazi.'/cijena/desc/" '.$poredaj_izbornik_odabrano_4.'>Cijena veća prema manjoj</option>
-            <option value="/artikli/'.$kategorija.'/'.$trazi.'/naziv/asc/" '.$poredaj_izbornik_odabrano_1.'>Naziv A-Z</option>
-            <option value="/artikli/'.$kategorija.'/'.$trazi.'/naziv/desc/" '.$poredaj_izbornik_odabrano_2.'>Naziv Z-A</option>
-            <option value="/artikli/'.$kategorija.'/'.$trazi.'/starost/asc/" '.$poredaj_izbornik_odabrano_5.'>Starost manja prema većoj</option>
-            <option value="/artikli/'.$kategorija.'/'.$trazi.'/starost/desc/" '.$poredaj_izbornik_odabrano_6.'>Starost veća prema manjoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/cijena/asc/" '.$poredaj_izbornik_odabrano_3.'>Cijena manja prema većoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/cijena/desc/" '.$poredaj_izbornik_odabrano_4.'>Cijena veća prema manjoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/naziv/asc/" '.$poredaj_izbornik_odabrano_1.'>Naziv A-Z</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/naziv/desc/" '.$poredaj_izbornik_odabrano_2.'>Naziv Z-A</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/starost/asc/" '.$poredaj_izbornik_odabrano_5.'>Starost manja prema većoj</option>
+            <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena.'/'.$velicina.'/'.$brand.'/starost/desc/" '.$poredaj_izbornik_odabrano_6.'>Starost veća prema manjoj</option>
         ';
 
         // prikazujem
-        $prikazujem = 'Prikazujem '.$artikli_model->ukupnoRedaka($trenutna_kategorija['Link'], $trazi).' artikala';
+        $prikazujem = 'Prikazujem '.$artikli_model->ukupnoRedaka($trenutna_kategorija['Link'], $trazi, $cijena, $velicina, $brand).' artikala';
 
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
