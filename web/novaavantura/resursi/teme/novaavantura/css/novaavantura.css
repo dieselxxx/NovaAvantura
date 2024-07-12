@@ -50,10 +50,11 @@ main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {height: 30px; font-size: 0.8em;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
 main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: 270px auto; grid-gap: 25px;}
-main > .sadrzaj > .artikli > section > div.meni {grid-column: 1 / 2; display: grid; grid-template-columns: 1fr;}
+main > .sadrzaj > .artikli > section > div.meni {grid-column: 1 / 2; grid-row: 1 / 5;}
 main > .sadrzaj > .artikli > section > div.meni > section {border-bottom: 1px solid var(--boja-granica);}
 main > .sadrzaj > .artikli > section > div.meni > section > span {display: block; margin: 20px 0; font-weight: 100; text-transform: uppercase;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li {margin: 20px 0;}
+main > .sadrzaj > .artikli > section > div.meni > section > ul li a {font-size: 0.8rem;}
 main > .sadrzaj > .artikli > section > div.naslov {grid-column: 2 / 3; grid-row: 1 / 2;}
 main > .sadrzaj > .artikli > section > div.naslov h2 {font-weight: 100;}
 main > .sadrzaj > .artikli > section > div.naslov .opis {font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
@@ -178,6 +179,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > .rotator {height: 450px;}
     main > .sadrzaj > .naslovna > div.div {height: 450px;}
     main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: auto;}
+    main > .sadrzaj > .artikli > section > div.meni {grid-row: initial;}
     main > .sadrzaj > .artikli > section > div.naslov {grid-column: 1 / 2;}
     main > .sadrzaj > .artikli > section > div.opcije {grid-column: 1 / 2;}
     main > .sadrzaj > .artikli > section > div.artikli {grid-column: 1 / 2; grid-template-columns: repeat(2, 1fr);}
@@ -192,6 +194,12 @@ footer > section a svg {height: 50px; width: 50px;}
     footer .active, footer .accordion2:hover {background-color: var(--boja-granica);}
     footer .accordion2:after {content: '\002B'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
     footer .panel2 {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
+
+    .accordion {padding: 18px; width: 100%; font-size: 15px; text-align: left; color: #444; outline: none; cursor: pointer; border: none; transition: 0.4s;}
+    .active, .accordion:hover {background-color: var(--boja-granica);}
+    .accordion:after {content: '\002B'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
+    .active:after {content: "\2212";}
+    .panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
 
 }
 
@@ -250,12 +258,6 @@ label.select select option {background-color: white; font-size: 0.8rem;}
 .kontrolni_okvir span {color: var(--boja-tekst-svjetlija);}
 .kontrolni_okvir input:checked ~ .checkmark:after {display: block;}
 .kontrolni_okvir .checkmark:after {top: 3px; left: 7px; height: 10px; width: 5px; border: solid black; border-width: 0 1px 1px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg);}
-
-.accordion {padding: 18px; width: 100%; font-size: 15px; text-align: left; color: #444; outline: none; cursor: pointer; border: none; transition: 0.4s;}
-.active, .accordion:hover {background-color: var(--boja-granica);}
-.accordion:after {content: '\002B'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
-.active:after {content: "\2212";}
-.panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
 
 .swiper {width: 100%; height: 100%;}
 .swiper-slide {text-align: center;font-size: 18px;background: #fff;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}

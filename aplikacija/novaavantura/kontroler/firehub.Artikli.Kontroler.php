@@ -123,11 +123,13 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $brandovi = $artikli_model->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
         $brand_meni = '';
         foreach ($brandovi as $brand1) {
+            $checked = mb_strtolower($brand1['Brand']) === $brand
+                ? 'checked': '';
             $brand_meni .= '
                 <li>
                     <label class="kontrolni_okvir">
                         <span>'.$brand1['Brand'].'</span>
-                        <input type="checkbox">
+                        <input type="checkbox" '.$checked.' data-url="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/'.mb_strtolower($brand1['Brand']).'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -135,6 +137,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         }
         $brandovi_meni = "
         <ul>
+            <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/$velicina/sve/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $brand_meni
         </ul>
         ";
@@ -143,11 +146,13 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $velicine = $artikli_model->velicine($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $brand);
         $velicina_meni = '';
         foreach ($velicine as $velicina1) {
+            $checked = mb_strtolower($velicina1['Velicina']) === $velicina
+                ? 'checked': '';
             $velicina_meni .= '
                 <li>
                     <label class="kontrolni_okvir">
                         <span>'.$velicina1['Velicina'].'</span>
-                        <input type="checkbox">
+                        <input type="checkbox" '.$checked.' data-url="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$brand.'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -155,6 +160,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         }
         $velicine_meni = "
         <ul>
+            <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/sve/$brand/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $velicina_meni
         </ul>
         ";

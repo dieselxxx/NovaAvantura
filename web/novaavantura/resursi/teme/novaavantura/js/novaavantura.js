@@ -115,12 +115,14 @@ $(document).ready(function () {
 
     });
 
-    // meni checkboy
+    // meni checkbox
     $('main > .sadrzaj > .artikli > section > div.meni > section.brand input[type="checkbox"]').on('change', function() {
         $('main > .sadrzaj > .artikli > section > div.meni > section.brand input[type="checkbox"]').not(this).prop('checked', false);
+        document.location.href = $(this).attr("data-url");
     });
     $('main > .sadrzaj > .artikli > section > div.meni > section.velicina input[type="checkbox"]').on('change', function() {
         $('main > .sadrzaj > .artikli > section > div.meni > section.velicina input[type="checkbox"]').not(this).prop('checked', false);
+        document.location.href = $(this).attr("data-url");
     });
 
 });
