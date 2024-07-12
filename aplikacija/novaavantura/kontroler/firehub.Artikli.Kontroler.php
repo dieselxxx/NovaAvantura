@@ -58,22 +58,23 @@ final class Artikli_Kontroler extends Master_Kontroler {
         string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1
     ):Sadrzaj {
 
-        $cijena_od = is_float($cijena_od) ? $cijena_od : 0;
-        $cijena_do = is_float($cijena_do) ? $cijena_do : PHP_INT_MAX;
-
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
         $artikli_model = $this->model(Artikli_Model::class);
         $limit = 15;
 
-        // artikli
+        // cijena
+        $cijena_od = is_float($cijena_od) ? $cijena_od : 0;
+        $cijena_do = is_float($cijena_do) ? $cijena_do : 100000;
+
+        // artikli model
         $artikli = $artikli_model->artikli(
             $trenutna_kategorija['Link'], ($stranica - 1) * $limit,
             $limit, $trazi,
-            $cijena_od, $cijena_do, $velicina, $brand, $poredaj, $poredaj_redoslijed
+            (int)$cijena_od, (int)$cijena_do, $velicina, $brand, $poredaj, $poredaj_redoslijed
         );
-        $artikli_html = '';
 
         // artikli
+        $artikli_html = '';
         foreach ($artikli as $artikal) {
 
             $artikli_html .= <<<Artikal
@@ -110,6 +111,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         if ($poredaj === 'cijena' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_4 = 'selected';} else {$poredaj_izbornik_odabrano_4 = '';}
         if ($poredaj === 'starost' && $poredaj_redoslijed == 'asc') {$poredaj_izbornik_odabrano_5 = 'selected';} else {$poredaj_izbornik_odabrano_5 = '';}
         if ($poredaj === 'starost' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_6 = 'selected';} else {$poredaj_izbornik_odabrano_6 = '';}
+
         $poredaj_izbornik = '
             <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/'.$brand.'/cijena/asc/" '.$poredaj_izbornik_odabrano_3.'>Cijena manja prema većoj</option>
             <option value="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/'.$brand.'/cijena/desc/" '.$poredaj_izbornik_odabrano_4.'>Cijena veća prema manjoj</option>
@@ -140,7 +142,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         }
         $brandovi_meni = "
         <ul class='panel'>
-            <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/$velicina/sve/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
+            <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/sve/sve/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $brand_meni
         </ul>
         ";
@@ -162,11 +164,13 @@ final class Artikli_Kontroler extends Master_Kontroler {
             ';
         }
         $velicine_meni = "
-        <ul class='panel''>
+        <ul class='panel'>
             <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/sve/$brand/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $velicina_meni
         </ul>
         ";
+
+        $cijena = empty($cijena = array_column($artikli, 'Cijena')) ? [0] : $cijena;
 
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
@@ -178,7 +182,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
             "poredaj_izbornik" => $poredaj_izbornik,
             "prikazujem" => $prikazujem,
             "brandovi_meni" => $brandovi_meni,
-            "velicine_meni" => $velicine_meni
+            "velicine_meni" => $velicine_meni,
+            "cijena_min" => number_format((int)min($cijena)),
+            "cijena_max" => number_format((int)max($cijena))
         ]));
 
     }

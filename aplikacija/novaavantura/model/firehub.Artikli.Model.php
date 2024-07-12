@@ -174,10 +174,10 @@ final class Artikli_Model extends Master_Model {
             }
 
             // format cijena
-            $rezultat[$kljuc]['CijenaFinal'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
+            /*$rezultat[$kljuc]['CijenaFinal'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
             $rezultat[$kljuc]['Cijena'] = number_format((float)$rezultat[$kljuc]['Cijena'], 2, ',', '.');
             $rezultat[$kljuc]['CijenaAkcija'] = number_format((float)$rezultat[$kljuc]['CijenaAkcija'], 2, ',', '.');
-            $rezultat[$kljuc]['Popust'] = number_format((float)$rezultat[$kljuc]['Popust'], 2, ',', '.');
+            $rezultat[$kljuc]['Popust'] = number_format((float)$rezultat[$kljuc]['Popust'], 2, ',', '.');*/
 
             // cijena html
             if ($redak['CijenaAkcija'] > 0) {

@@ -126,4 +126,14 @@ $(document).ready(function () {
         document.location.href = $(this).attr("data-url");
     });
 
+
+    // meni cijena cijena_min
+    $('main > .sadrzaj > .artikli > section > div.meni > section.cijena input').change(function() {
+        let url = window.location.pathname.split('/');
+        url[4] = $('main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel input[name="cijena_min"]').val();
+        url[5] = $('main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel input[name="cijena_max"]').val();
+        if ($.isEmptyObject(url[3])) {url[3] = 'svi artikli'}
+        document.location.href = url.join('/');
+    });
+
 });

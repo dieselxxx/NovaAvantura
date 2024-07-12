@@ -55,6 +55,8 @@ main > .sadrzaj > .artikli > section > div.meni > section {padding-bottom: 10px;
 main > .sadrzaj > .artikli > section > div.meni > section > h4 {font-weight: 100; text-transform: uppercase;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li {margin: 0 0 10px 0;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li a {font-size: 0.8rem;}
+main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel {display: flex; justify-content: space-evenly; align-items: center; font-size: 0.8rem;}
+main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel input {width: 100px;}
 main > .sadrzaj > .artikli > section > div.naslov {grid-column: 2 / 3; grid-row: 1 / 2;}
 main > .sadrzaj > .artikli > section > div.naslov h2 {font-weight: 100;}
 main > .sadrzaj > .artikli > section > div.naslov .opis {font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
@@ -248,6 +250,10 @@ main .accordion:after {content: '\2212'; float: right; margin-left: 5px; font-we
 main .active:after {content: "\002B";}
 main .panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
 
+input {-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}
+label.input input {background-color: var(--boja-pozadina); padding: 5px; width: auto; font-size: 0.8rem; border: 1px solid var(--boja-granica);}
+label.input input:focus {background-color: white;}
+label.input input:focus-visible {outline: none;}
 label.unos {position: relative; display: grid; grid-template-columns: auto 56px; grid-gap: 0;}
 label.unos input {grid-column: 1 / 2; grid-row: 1 / 2; padding: 8px; height: 56px; width: 100%; border-width: 0 0 1px 0 !important; border-style: solid !important; border-color: var(--boja-granica) !important;}
 label.unos input:focus {outline: none;}

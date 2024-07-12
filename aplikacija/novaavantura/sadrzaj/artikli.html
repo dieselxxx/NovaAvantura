@@ -18,7 +18,15 @@
 
             <section class="cijena">
                 <h4 class="accordion">Cijena</h4>
-                {{cijena_meni}}
+                <div class='panel'>
+                    <label class="input">
+                        <input name="cijena_min" type="number" value="{{cijena_min}}" step="10" min="0">
+                    </label>
+                    <span>do</span>
+                    <label class="input">
+                        <input name="cijena_max" type="number" value="{{cijena_max}}" step="10" min="0">
+                    </label>
+                </div>
             </section>
 
         </div>
