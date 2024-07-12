@@ -174,27 +174,32 @@ final class Artikli_Model extends Master_Model {
             }
 
             // format cijena
-            /*$rezultat[$kljuc]['CijenaFinal'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
+            /*
+            $rezultat[$kljuc]['CijenaFinal'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
             $rezultat[$kljuc]['Cijena'] = number_format((float)$rezultat[$kljuc]['Cijena'], 2, ',', '.');
             $rezultat[$kljuc]['CijenaAkcija'] = number_format((float)$rezultat[$kljuc]['CijenaAkcija'], 2, ',', '.');
-            $rezultat[$kljuc]['Popust'] = number_format((float)$rezultat[$kljuc]['Popust'], 2, ',', '.');*/
+            */
+            $rezultat[$kljuc]['CijenaFinalHTML'] = number_format((float)$rezultat[$kljuc]['CijenaFinal'], 2, ',', '.');
+            $rezultat[$kljuc]['CijenaNormalnaHTML'] = number_format((float)$rezultat[$kljuc]['Cijena'], 2, ',', '.');
+            $rezultat[$kljuc]['CijenaAkcijaHTML'] = number_format((float)$rezultat[$kljuc]['CijenaAkcija'], 2, ',', '.');
+            $rezultat[$kljuc]['Popust'] = number_format((float)$rezultat[$kljuc]['Popust'], 2, ',', '.');
 
             // cijena html
             if ($redak['CijenaAkcija'] > 0) {
 
                 $rezultat[$kljuc]['CijenaHTML'] =
-                    '<span class="prekrizi">'.$redak['Cijena'].' '.Domena::valuta().'</span>'
-                    .$redak['CijenaAkcija'].' '.Domena::valuta();
+                    '<span class="prekrizi">'.$rezultat[$kljuc]['CijenaNormalnaHTML'].' '.Domena::valuta().'</span>'
+                    .$rezultat[$kljuc]['CijenaAkcijaHTML'].' '.Domena::valuta();
 
             } else if (Domena::blackFriday()) {
 
                 $rezultat[$kljuc]['CijenaHTML'] =
-                    '<span class="prekrizi">'.$redak['Cijena'].' '.Domena::valuta().'</span>'
-                    .$rezultat[$kljuc]['CijenaFinal'].' '.Domena::valuta();
+                    '<span class="prekrizi">'.$rezultat[$kljuc]['CijenaNormalnaHTML'].' '.Domena::valuta().'</span>'
+                    .$rezultat[$kljuc]['CijenaFinalHTML'].' '.Domena::valuta();
 
             } else {
 
-                $rezultat[$kljuc]['CijenaHTML'] = $redak['Cijena'].' '.Domena::valuta();
+                $rezultat[$kljuc]['CijenaHTML'] = $rezultat[$kljuc]['CijenaNormalnaHTML'].' '.Domena::valuta();
 
             }
 
