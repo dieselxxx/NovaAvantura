@@ -63,6 +63,7 @@ $(document).ready(function () {
     });
 
     // tabovi
+    if (screen.width >= 1200) {$("main > .sadrzaj > .artikli > section > div.meni > section .panel").css("max-height","initial");}
     var acc = document.getElementsByClassName("accordion");
     var acc2 = document.getElementsByClassName("accordion2");
     var i;

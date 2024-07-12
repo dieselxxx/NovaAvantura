@@ -136,7 +136,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
             ';
         }
         $brandovi_meni = "
-        <ul>
+        <ul class='panel'>
             <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/$velicina/sve/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $brand_meni
         </ul>
@@ -159,7 +159,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
             ';
         }
         $velicine_meni = "
-        <ul>
+        <ul class='panel''>
             <li><a href=\"/artikli/$kategorija/$trazi/$cijena_od/$cijena_do/sve/$brand/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $velicina_meni
         </ul>

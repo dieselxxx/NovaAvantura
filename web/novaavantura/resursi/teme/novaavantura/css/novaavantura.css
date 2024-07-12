@@ -52,7 +52,7 @@ main > .sadrzaj > .naslovna > div.div {height: 550px;}
 main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: 270px auto; grid-gap: 25px;}
 main > .sadrzaj > .artikli > section > div.meni {grid-column: 1 / 2; grid-row: 1 / 5;}
 main > .sadrzaj > .artikli > section > div.meni > section {border-bottom: 1px solid var(--boja-granica);}
-main > .sadrzaj > .artikli > section > div.meni > section > span {display: block; margin: 20px 0; font-weight: 100; text-transform: uppercase;}
+main > .sadrzaj > .artikli > section > div.meni > section > h4 {font-weight: 100; text-transform: uppercase;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li {margin: 20px 0;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li a {font-size: 0.8rem;}
 main > .sadrzaj > .artikli > section > div.naslov {grid-column: 2 / 3; grid-row: 1 / 2;}
@@ -180,6 +180,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > div.div {height: 450px;}
     main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: auto;}
     main > .sadrzaj > .artikli > section > div.meni {grid-row: initial;}
+    main > .sadrzaj > .artikli > section > div.meni > section .accordion {margin: 0;}
     main > .sadrzaj > .artikli > section > div.naslov {grid-column: 1 / 2;}
     main > .sadrzaj > .artikli > section > div.opcije {grid-column: 1 / 2;}
     main > .sadrzaj > .artikli > section > div.artikli {grid-column: 1 / 2; grid-template-columns: repeat(2, 1fr);}
@@ -194,6 +195,9 @@ footer > section a svg {height: 50px; width: 50px;}
     footer .active, footer .accordion2:hover {background-color: var(--boja-granica);}
     footer .accordion2:after {content: '\002B'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
     footer .panel2 {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
+
+    main .accordion:after {content: '\002B' !important;}
+    main .active:after {content: "\2212" !important;}
 
     .accordion {padding: 18px; width: 100%; font-size: 15px; text-align: left; color: #444; outline: none; cursor: pointer; border: none; transition: 0.4s;}
     .active, .accordion:hover {background-color: var(--boja-granica);}
@@ -237,6 +241,12 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > div.div {height: 200px;}
 
 }
+
+main .accordion {width: 100%; font-size: 15px; text-align: left; outline: none; cursor: pointer; border: none; transition: 0.4s;}
+main .active, main  .accordion:hover {background-color: transparent;}
+main .accordion:after {content: '\2212'; float: right; margin-left: 5px; font-weight: bold; color: var(--boja-tekst);}
+main .active:after {content: "\002B";}
+main .panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
 
 label.unos {position: relative; display: grid; grid-template-columns: auto 56px; grid-gap: 0;}
 label.unos input {grid-column: 1 / 2; grid-row: 1 / 2; padding: 8px; height: 56px; width: 100%; border-width: 0 0 1px 0 !important; border-style: solid !important; border-color: var(--boja-granica) !important;}
