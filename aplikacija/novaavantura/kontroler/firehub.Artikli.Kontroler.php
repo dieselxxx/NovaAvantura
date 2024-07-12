@@ -54,9 +54,12 @@ final class Artikli_Kontroler extends Master_Kontroler {
      */
     public function index (
         string $kontroler = '', string $kategorija = 'sve kategorije', int|string $trazi = 'svi artikli',
-        string $cijena_od = 'sve', string $cijena_do = 'sve', string $velicina = 'sve', string $brand = 'sve',
+        float|string $cijena_od = 'sve', float|string $cijena_do = 'sve', string $velicina = 'sve', string $brand = 'sve',
         string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1
     ):Sadrzaj {
+
+        $cijena_od = is_float($cijena_od) ? $cijena_od : 0;
+        $cijena_do = is_float($cijena_do) ? $cijena_do : PHP_INT_MAX;
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
         $artikli_model = $this->model(Artikli_Model::class);

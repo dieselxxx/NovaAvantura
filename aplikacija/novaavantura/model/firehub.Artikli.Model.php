@@ -53,10 +53,10 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena_od <p>
+     * @param float $cijena_od <p>
      * Cijena od.
      * </p>
-     * @param string $cijena_do <p>
+     * @param float $cijena_do <p>
      * Cijena do.
      * </p>
      * @param string $velicina <p>
@@ -76,7 +76,7 @@ final class Artikli_Model extends Master_Model {
      */
     public function artikli (
         int|string $kategorija, int $pomak, int $limit, int|string $trazi,
-        string $cijena_od, string $cijena_do, string $velicina, string $brand,
+        float $cijena_od, float $cijena_do, string $velicina, string $brand,
         string $poredaj, string $poredaj_redoslijed
     ):array {
 
@@ -91,11 +91,11 @@ final class Artikli_Model extends Master_Model {
 
         $cijena_od = match ($cijena_od) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+            default => 'AND '.Domena::sqlCijena().' >= '.$cijena_od
         };
         $cijena_do = match ($cijena_do) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+            default => 'AND '.Domena::sqlCijena().' <= '.$cijena_do
         };
 
         $velicina = match ($velicina) {
@@ -224,10 +224,10 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena_od <p>
+     * @param float $cijena_od <p>
      * Cijena od.
      * </p>
-     * @param string $cijena_do <p>
+     * @param float $cijena_do <p>
      * Cijena do.
      * </p>
      * @param string $velicina <p>
@@ -236,7 +236,7 @@ final class Artikli_Model extends Master_Model {
      *
      * @return array Niz brandova.
      */
-    public function brandovi (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $velicina) {
+    public function brandovi (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, string $velicina) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -249,11 +249,11 @@ final class Artikli_Model extends Master_Model {
 
         $cijena_od = match ($cijena_od) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+            default => 'AND '.Domena::sqlCijena().' >= '.$cijena_od
         };
         $cijena_do = match ($cijena_do) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+            default => 'AND '.Domena::sqlCijena().' <= '.$cijena_do
         };
 
         $velicina = match ($velicina) {
@@ -291,10 +291,10 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena_od <p>
+     * @param float $cijena_od <p>
      * Cijena od.
      * </p>
-     * @param string $cijena_do <p>
+     * @param float $cijena_do <p>
      * Cijena do.
      * </p>
      * @param string $brand <p>
@@ -303,7 +303,7 @@ final class Artikli_Model extends Master_Model {
      *
      * @return array Niz brandova.
      */
-    public function velicine (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $brand) {
+    public function velicine (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, string $brand) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -316,11 +316,11 @@ final class Artikli_Model extends Master_Model {
 
         $cijena_od = match ($cijena_od) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+            default => 'AND '.Domena::sqlCijena().' >= '.$cijena_od
         };
         $cijena_do = match ($cijena_do) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+            default => 'AND '.Domena::sqlCijena().' <= '.$cijena_do
         };
 
         $brand = match ($brand) {
@@ -357,10 +357,10 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena_od <p>
+     * @param float $cijena_od <p>
      * Cijena od.
      * </p>
-     * @param string $cijena_do <p>
+     * @param float $cijena_do <p>
      * Cijena do.
      * </p>
      * @param string $velicina <p>
@@ -372,7 +372,7 @@ final class Artikli_Model extends Master_Model {
      *
      * @return int Broj pronađenih redaka.
      */
-    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, string $cijena_od, string $cijena_do, string $velicina, string $brand) {
+    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, string $velicina, string $brand) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -385,11 +385,11 @@ final class Artikli_Model extends Master_Model {
 
         $cijena_od = match ($cijena_od) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' >= '.(int)$cijena_od
+            default => 'AND '.Domena::sqlCijena().' >= '.$cijena_od
         };
         $cijena_do = match ($cijena_do) {
             'sve' => '',
-            default => 'AND '.Domena::sqlCijena().' <= '.(int)$cijena_do
+            default => 'AND '.Domena::sqlCijena().' <= '.$cijena_do
         };
 
         $velicina = match ($velicina) {
@@ -432,10 +432,10 @@ final class Artikli_Model extends Master_Model {
      * @param int|string $trazi <p>
      * Traži artikl.
      * </p>
-     * @param string $cijena_od <p>
+     * @param float $cijena_od <p>
      * Cijena od.
      * </p>
-     * @param string $cijena_do <p>
+     * @param float $cijena_do <p>
      * Cijena do.
      * </p>
      * @param string $velicina <p>
@@ -461,7 +461,7 @@ final class Artikli_Model extends Master_Model {
      */
     public function ukupnoRedakaHTML (
         int|string $kategorija, int|string $trazi,
-        string $cijena_od, string $cijena_do, string $velicina, string $brand,
+        float $cijena_od, float $cijena_do, string $velicina, string $brand,
         int $limit, string $url = '/', int $broj_stranice = 1, string $boja = 'boja'
     ):array {
 
