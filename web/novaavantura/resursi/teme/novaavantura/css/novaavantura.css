@@ -27,6 +27,7 @@ header .traka .osnovno .hamburger-meni ul li {height: auto; width: 100%; padding
 header .traka .osnovno .hamburger-meni ul li a {align-items: stretch; justify-content: space-between; padding: 0 15px 0 15px; height: auto; width: 100%;}
 header .traka .osnovno .hamburger-meni ul li a span {line-height: 30px;}
 header .traka .osnovno .hamburger-meni ul li:first-of-type a {padding: 0;}
+header .traka nav.info {z-index: 1;}
 header .meni {border-bottom: 1px solid var(--boja-granica);}
 header .meni nav {grid-column: 2 / 3;}
 header .meni a {display: block; padding: 11px; font-size: 0.8rem; color: var(--boja-tekst);}
@@ -187,7 +188,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .mobile-menu-header {order: -1;}
     header .meni .mobile-menu-header a {visibility: visible; padding: 20px 25px;}
     header .meni .mobile-menu-header svg {cursor: pointer;}
-    header .meni .menu-bar {position: fixed; flex-direction: column; top: 0; left: -100%; height: 100vh; width: 350px; max-width: 350px; max-width: 90%; overflow-x: hidden; transition: left 0.3s; box-shadow: 1px 0px 2px 0px rgba(0, 0, 0, 0.25);}
+    header .meni .menu-bar {position: fixed; flex-direction: column; top: 0; left: -100%; height: 100vh; width: 350px; max-width: 350px; max-width: 90%; overflow-x: hidden; transition: left 0.3s; box-shadow: 1px 0px 2px 0px rgba(0, 0, 0, 0.25); z-index: 2;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul {position: absolute;display: flex;  top: 0; left: 100%; flex-direction: column; background: white; max-height: 100vh; width: 100%; transition: left 0.3s;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul > li > [aria-haspopup="true"] ~ ul a {padding-left: 40px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul > li > [aria-haspopup="true"] ~ ul > li > [aria-haspopup="true"] ~ ul a {padding-left: 80px;}
