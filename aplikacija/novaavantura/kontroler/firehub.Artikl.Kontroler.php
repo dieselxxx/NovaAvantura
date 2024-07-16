@@ -64,7 +64,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         }
 
-        if ($trenutni_artikl['ID'] === 0 || empty($this->artikl->zaliha)) {
+        if ($trenutni_artikl['ID'] === 0) {
 
             return sadrzaj()->datoteka('artikl_ne_postoji.html')->podatci(array_merge($this->zadaniPodatci(), [
                 'predlozak_naslov' => 'Artikal ne postoji',
