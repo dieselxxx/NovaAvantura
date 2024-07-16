@@ -7,6 +7,7 @@
         <div class="slika">
             <img src="/slika/velikaslika/{{artikl_slika}}" alt="" loading="lazy"/>
         </div>
+        <div class="slike">{{artikl_slike}}</div>
         <div class="podatci">
             <h2 class="naziv">{{artikl_naziv}}</h2>
             <span class="brand">{{artikl_brand}}</span>
@@ -18,3 +19,19 @@
     </form>
 
 </div>
+<script async type="text/javascript" src="/novaavantura/resursi/teme/novaavantura/js/zumiranje.js"></script>
+<script async type="text/javascript">
+    window.onload = function () {
+        $(".slike a").on('click', function () {
+
+            let slika = $(this).attr("href");
+            let okvir = $(this).parent().parent().parent().find('div.slika > img');
+
+            $(okvir).attr("src", slika);
+
+            return false;
+
+        });
+        $('.slika > img').slika_zumiranje();
+    }
+</script>

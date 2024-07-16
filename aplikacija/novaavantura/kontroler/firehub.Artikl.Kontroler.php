@@ -52,13 +52,25 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         $trenutni_artikl = $this->artikl->artikl($artikl);
 
+        // slike
+        $artikl_slike = $this->artikl->slike($trenutni_artikl['ID']);
+        $artikl_slike_html = '';
+        foreach ($artikl_slike as $slike) {
+
+            $artikl_slike_html .= '
+                <div>
+                    <a data-vrsta="slika" href="/slika/velikaslika/'.$slike['Slika'].'"><img src="/slika/malaslika/'.$slike['Slika'].'" alt=""></a>
+                </div>';
+
+        }
+
         return sadrzaj()->datoteka('artikl.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutni_artikl['Naziv'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ '.$trenutni_artikl['Naziv'],
             'artikl_naziv' => $trenutni_artikl['Naziv'],
             'artikl_id' => $trenutni_artikl['ID'],
             'artikl_slika' => ''.$trenutni_artikl['Slika'],
-            //'artikl_slike' => $artikl_slike_html,
+            'artikl_slike' => $artikl_slike_html,
             'artikl_brand' => $trenutni_artikl['Brand'] ? '<span>Brand: </span>'.$trenutni_artikl['Brand'] : '',
             'artikl_cijena' => $trenutni_artikl['CijenaHTML'],
             'artikl_cijena_30_dana' => $trenutni_artikl['Cijena30DanaHTML']

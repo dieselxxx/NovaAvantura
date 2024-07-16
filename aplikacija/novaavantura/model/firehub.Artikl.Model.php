@@ -136,4 +136,25 @@ final class Artikl_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Dohvati slike artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param string|int $artiklID <p>
+     * ID artikla.
+     * </p>
+     *
+     * @return array Artikl.
+     */
+    public function slike (string|int $artiklID):array {
+
+        $slike = $this->bazaPodataka->tabela('slikeartikal')
+            ->odaberi(['Slika'])
+            ->gdje('ClanakID', '=', $artiklID)
+            ->poredaj('Zadana', 'DESC')->napravi();
+
+        return $slike->niz() ?: [];
+
+    }
+
 }

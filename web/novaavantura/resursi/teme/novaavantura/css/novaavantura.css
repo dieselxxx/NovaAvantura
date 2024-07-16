@@ -84,6 +84,11 @@ main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg {fill: var(--b
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg:hover {fill: var(--boja-tekst);}
 main > .sadrzaj > .artikl > form {display: grid; grid-template-columns: 550px auto; grid-gap: 20px 50px;}
 main > .sadrzaj > .artikl > form .slika {grid-column: 1 / 2; grid-row: 1 / 2;}
+main > .sadrzaj > .artikl > form .slika img {height: 100%; width: 100%;}
+main > .sadrzaj > .artikl > form > .slike {display: flex; flex-wrap: wrap; gap: 10px; grid-column: 1 / 2; align-self: start;}
+main > .sadrzaj > .artikl > form >.slike > div {height: 165px; width: 130px;}
+main > .sadrzaj > .artikl > form >.slike > div > a {display: block; height: 100%; width: 100%;}
+main > .sadrzaj > .artikl > form >.slike > div > a > img {height: 100%; width: 100%;}
 main > .sadrzaj > .artikl > form .podatci {display: inline-flex; flex-wrap: wrap; flex-direction: column; gap: 10px; grid-column: 2 / 3; grid-row: 1 / 2;}
 main > .sadrzaj > .artikl > form .podatci .naziv {margin: 10px 0 0 0; font-size: 1.6rem; font-weight: 100;}
 main > .sadrzaj > .artikl > form .podatci .brand {font-size: 0.8rem;}
