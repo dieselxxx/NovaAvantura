@@ -78,9 +78,8 @@ $(document).ready(function () {
         });
         $("header > .pozadina").toggle();
     });
-    $('header form svg').click(function(event) {
+    $('header form label svg').click(function(event) {
         var form = $(this).closest("form");
-        //console.log(form);
         form.submit();
     });
     $('form[data-oznaka="trazi_artikal"]').submit(function (odgovor) {

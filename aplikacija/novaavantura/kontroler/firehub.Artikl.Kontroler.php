@@ -111,7 +111,21 @@ final class Artikl_Kontroler extends Master_Kontroler {
         }
         $artikl_zaliha_html .= '</ul>';
 
+        // favoriti
+        if (isset($_POST['favorit'])) {
+
+            if (isset($_POST['ID'])) {
+
+                $id =  Validacija::Broj('ID', $_POST['ID'], 1, 10);
+
+                $this->model(Favorit_Model::class)->dodaj($id);
+
+            }
+
+        }
+
         return sadrzaj()->datoteka('artikl.html')->podatci(array_merge($this->zadaniPodatci(), [
+            'greska' => '',
             'predlozak_naslov' => $trenutni_artikl['Naziv'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ '.$trenutni_artikl['Naziv'],
             'artikl_naziv' => $trenutni_artikl['Naziv'],

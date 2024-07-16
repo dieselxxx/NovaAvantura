@@ -26,7 +26,7 @@ final class Gdpr_Model extends Master_Model {
 
     /**
      * ### Konstruktor
-     * @since 0.1.2.pre-alpha.M1
+     * @since 0.1.0.pre-alpha.M1
      */
     public function __construct (
         private Kolacic $kolacic
