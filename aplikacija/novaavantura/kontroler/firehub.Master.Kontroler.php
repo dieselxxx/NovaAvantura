@@ -19,6 +19,8 @@ use FireHub\Aplikacija\NovaAvantura\Model\Gdpr_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Kategorije_Model;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
+use FireHub\Aplikacija\NovaAvantura\Model\Favoriti_Model;
 
 /**
  * ### Master
@@ -39,6 +41,30 @@ abstract class Master_Kontroler extends Kontroler {
 
         $this->gdpr = $this->model(Gdpr_Model::class);
         $this->kategorije = $this->model(Kategorije_Model::class);
+
+        // favoriti
+        if (isset($_POST['favorit_dodaj'])) {
+
+            if (isset($_POST['ID'])) {
+
+                $id = Validacija::Broj('ID', $_POST['ID'], 1, 10);
+
+                $this->model(Favoriti_Model::class)->dodaj($id);
+
+            }
+
+        }
+        if (isset($_POST['favorit_izbrisi'])) {
+
+            if (isset($_POST['ID'])) {
+
+                $id =  Validacija::Broj('Veličina', $_POST['ID'], 1, 10);
+
+                $this->model(Favoriti_Model::class)->izbrisi($id);
+
+            }
+
+        }
 
     }
 

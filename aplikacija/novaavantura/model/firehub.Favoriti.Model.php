@@ -23,7 +23,7 @@ use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
  *
  * @package Aplikacija\Model
  */
-final class Favorit_Model extends Master_Model {
+final class Favoriti_Model extends Master_Model {
 
     /**
      * ### Konstruktor
@@ -80,12 +80,24 @@ final class Favorit_Model extends Master_Model {
     }
 
     /**
+     * ### Artikala favorita
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return array
+     */
+    public function artikli ():array {
+
+        return $this->sesija->procitaj('favorit');
+
+    }
+
+    /**
      * ### Broj artikala favorita
      * @since 0.1.0.pre-alpha.M1
      *
      * @return int
      */
-    public function artikli ():int {
+    public function brojArtikala ():int {
 
         if ($this->sesija->procitaj('favorit')) {
 
@@ -131,10 +143,11 @@ final class Favorit_Model extends Master_Model {
             $artikli = $this->bazaPodataka->tabela('artikliview')
                 ->sirovi("
                     SELECT
-                           artikliview.ID, artikliview.Naziv, artikliview.Link, artikliview.".Domena::sqlCijena()." AS Cijena, artikliview.".Domena::sqlCijenaAkcija()." AS CijenaAkcija, slikeartikal.Slika
+                           artikliview.ID, artikliview.Naziv, artikliview.Link,
+                           artikliview.".Domena::sqlCijena()." AS Cijena, artikliview.".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
+                           (SELECT Slika FROM slikeartikal WHERE slikeartikal.ClanakID = artikliview.ID ORDER BY slikeartikal.Zadana DESC LIMIT 1) AS Slika
                     FROM artikliview
-                    LEFT JOIN slikeartikal ON slikeartikal.ClanakID = artikliview.ID
-                    WHERE artikliview.Aktivan = 1 AND artikliview.".Domena::sqlTablica()." = 1 AND slikeartikal.Zadana = 1
+                    WHERE artikliview.Aktivan = 1 AND artikliview.".Domena::sqlTablica()." = 1
                     AND ($sifra_array)
                     ORDER BY Naziv ASC
                 ")
