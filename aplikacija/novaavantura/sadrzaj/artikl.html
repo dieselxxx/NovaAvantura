@@ -1,0 +1,20 @@
+<div id="sadrzaj" class="artikl">
+
+    <div class="vi_ste_ovdje">{{vi_ste_ovdje}}</div>
+
+    <form class="artikl" method="post" enctype="multipart/form-data" action="">
+        <input type="hidden" name="ID" value="{{artikl_id}}" />
+        <div class="slika">
+            <img src="/slika/velikaslika/{{artikl_slika}}" alt="" loading="lazy"/>
+        </div>
+        <div class="podatci">
+            <h2 class="naziv">{{artikl_naziv}}</h2>
+            <span class="brand">{{artikl_brand}}</span>
+            <span class="cijene">
+                <span class="cijena">{{artikl_cijena}}</span>
+                <span class="cijena_30_dana">{{artikl_cijena_30_dana}}</span>
+            </span>
+        </div>
+    </form>
+
+</div>
