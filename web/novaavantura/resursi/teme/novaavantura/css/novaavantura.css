@@ -85,7 +85,7 @@ main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg:hover {fill: v
 main > .sadrzaj > .artikl > form {display: grid; grid-template-columns: 550px auto; grid-gap: 20px 50px;}
 main > .sadrzaj > .artikl > form .slika {grid-column: 1 / 2; grid-row: 1 / 2;}
 main > .sadrzaj > .artikl > form .slika img {height: 100%; width: 100%;}
-main > .sadrzaj > .artikl > form > .slike {display: flex; flex-wrap: wrap; gap: 10px; grid-column: 1 / 2; align-self: start;}
+main > .sadrzaj > .artikl > form > .slike {display: flex; flex-wrap: wrap; gap: 10px; grid-column: 1 / 2; justify-content: space-between; align-self: start;}
 main > .sadrzaj > .artikl > form >.slike > div {height: 165px; width: 130px;}
 main > .sadrzaj > .artikl > form >.slike > div > a {display: block; height: 100%; width: 100%;}
 main > .sadrzaj > .artikl > form >.slike > div > a > img {height: 100%; width: 100%;}
@@ -314,3 +314,5 @@ label.select select option {background-color: white; font-size: 0.8rem;}
 /** boja **/
 svg[data-boja="boja"] {fill: var(--boja-tekst) !important;}
 button[data-boja="boja"], .gumb[data-boja="boja"] {color: var(--boja-tekst);}
+
+#slika_zoom {display: none;}
