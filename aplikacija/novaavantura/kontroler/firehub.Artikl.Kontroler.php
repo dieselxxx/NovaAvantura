@@ -64,16 +64,29 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         }
 
+        if ($trenutni_artikl['ID'] === 0 || empty($this->artikl->zaliha)) {
+
+            return sadrzaj()->datoteka('artikl_ne_postoji.html')->podatci(array_merge($this->zadaniPodatci(), [
+                'predlozak_naslov' => 'Artikal ne postoji',
+                'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ Artikal ne postoji'
+            ]));
+
+        }
+
         return sadrzaj()->datoteka('artikl.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutni_artikl['Naziv'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ '.$trenutni_artikl['Naziv'],
             'artikl_naziv' => $trenutni_artikl['Naziv'],
             'artikl_id' => $trenutni_artikl['ID'],
             'artikl_slika' => ''.$trenutni_artikl['Slika'],
+            'artikl_novo' => $trenutni_artikl['NovoHTML'],
+            'artikl_popust' => $trenutni_artikl['PopustHTML'],
             'artikl_slike' => $artikl_slike_html,
             'artikl_brand' => $trenutni_artikl['Brand'] ? '<span>Brand: </span>'.$trenutni_artikl['Brand'] : '',
             'artikl_cijena' => $trenutni_artikl['CijenaHTML'],
-            'artikl_cijena_30_dana' => $trenutni_artikl['Cijena30DanaHTML']
+            'artikl_cijena_30_dana' => $trenutni_artikl['Cijena30DanaHTML'],
+            'artikl_opis' => $trenutni_artikl['Opis'] ? '<h5>Dodatne informacije: </h5><span>'.$trenutni_artikl['Opis'] .'</span>' : '',
+            ///'artikl_zaliha' => $artikl_zaliha_html,
         ]));
 
     }

@@ -83,7 +83,9 @@ main > .sadrzaj > .artikli > section > nav.navigacija > ul li {padding: 10px; li
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg {fill: var(--boja-tekst-svjetlija); height: 20px; width: 20px;}
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg:hover {fill: var(--boja-tekst);}
 main > .sadrzaj > .artikl > form {display: grid; grid-template-columns: 550px auto; grid-gap: 20px 50px;}
-main > .sadrzaj > .artikl > form .slika {grid-column: 1 / 2; grid-row: 1 / 2;}
+main > .sadrzaj > .artikl > form .slika {grid-column: 1 / 2; grid-row: 1 / 2; position: relative; background-color: var(--boja-pozadina);}
+main > .sadrzaj > .artikl > form .slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
+main > .sadrzaj > .artikl > form .slika .novo {position: absolute; top:10px; right: 10px; background-color: var(--boja-zelena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main > .sadrzaj > .artikl > form .slika img {height: 100%; width: 100%;}
 main > .sadrzaj > .artikl > form > .slike {display: flex; flex-wrap: wrap; gap: 10px; grid-column: 1 / 2; justify-content: space-between; align-self: start;}
 main > .sadrzaj > .artikl > form >.slike > div {height: 165px; width: 130px;}
@@ -98,6 +100,9 @@ main > .sadrzaj > .artikl > form .podatci .cijena {padding: 3px; font-size: 1.5r
 main > .sadrzaj > .artikl > form .podatci .cijena .prekrizi {position: relative; margin-right: 10px; font-size: 1rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikl > form .podatci .cijena .prekrizi:before {content: ""; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid; border-color: var(--boja-tekst-svjetlija); transform:rotate(-5deg);}
 main > .sadrzaj > .artikl > form .podatci .cijena_30_dana {font-size: 0.7rem; font-weight: 100;}
+main > .sadrzaj > .artikl > form .podatci section {border-top: 1px solid var(--boja-granica);}
+main > .sadrzaj > .artikl > form .podatci section > h5 {font-weight: 300; text-transform: uppercase;}
+main > .sadrzaj > .artikl > form .podatci section > span {font-size: 0.9rem; line-height: 20px; color: var(--boja-tekst-svjetlija);}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -209,7 +214,8 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .artikli > section > nav.navigacija {grid-column: 1 / 2;}
     main > .sadrzaj > .artikl > form {grid-template-columns: 1fr; justify-items: center;}
     main > .sadrzaj > .artikl > form > .slike {justify-content: space-evenly;}
-    main > .sadrzaj > .artikl > form .podatci {grid-column: 1 / 2; grid-row: 2 / 3;}
+    main > .sadrzaj > .artikl > form > .slike > div {height: 115px; width: 90px;}
+    main > .sadrzaj > .artikl > form .podatci {grid-column: 1 / 2; grid-row: 3 / 4;}
 
     footer {position: initial;}
     footer > nav {flex-direction: column;}

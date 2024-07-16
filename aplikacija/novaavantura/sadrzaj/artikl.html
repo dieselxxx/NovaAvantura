@@ -5,6 +5,8 @@
     <form class="artikl" method="post" enctype="multipart/form-data" action="">
         <input type="hidden" name="ID" value="{{artikl_id}}" />
         <div class="slika">
+            {{artikl_popust}}
+            {{artikl_novo}}
             <img src="/slika/velikaslika/{{artikl_slika}}" alt="" loading="lazy"/>
         </div>
         <div class="slike">{{artikl_slike}}</div>
@@ -15,6 +17,10 @@
                 <span class="cijena">{{artikl_cijena}}</span>
                 <span class="cijena_30_dana">{{artikl_cijena_30_dana}}</span>
             </span>
+            <ul class="zaliha">
+                {{artikl_zaliha}}
+            </ul>
+            <section>{{artikl_opis}}</section>
         </div>
     </form>
 
