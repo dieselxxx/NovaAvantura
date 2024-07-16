@@ -86,7 +86,12 @@ final class Artikli_Kontroler extends Master_Kontroler {
                         {$artikal['NovoHTML']}
                         <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
-                    <span class="brand">{$artikal['Brand']}</span>
+                    <span class="brand">
+                        <button type="submit" class="gumb ikona" name="favorit_dodaj">
+                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                        </button>
+                        {$artikal['Brand']}
+                     </span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
                     <span class="cijena">{$artikal['CijenaHTML']}</span>
                     <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>

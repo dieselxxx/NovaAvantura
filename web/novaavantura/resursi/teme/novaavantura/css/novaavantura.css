@@ -72,7 +72,7 @@ main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika {position:
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika .novo {position: absolute; top:10px; right: 10px; background-color: var(--boja-zelena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika img {height: 100%; width: 100%;}
-main > .sadrzaj > .artikli > section > div.artikli > .artikal span.brand {padding: 3px; font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
+main > .sadrzaj > .artikli > section > div.artikli > .artikal span.brand {display: flex; align-items: center; gap: 5px; padding: 3px; font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.naziv {padding: 3px;  font-size: 0.9rem; font-weight: 100;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal span.cijena {padding: 3px; font-size: 1.2rem; font-weight: 300;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal span.cijena .prekrizi {position: relative; margin-right: 10px; font-size: 1rem; color: var(--boja-tekst-svjetlija);}
@@ -108,8 +108,9 @@ main > .sadrzaj > .artikl > form .podatci .kosarica {display: grid; grid-templat
 main > .sadrzaj > .artikl > form .podatci .kosarica label.input input {width: 100%;}
 main > .sadrzaj > .artikl > form .podatci .kosarica .minus {grid-column: 2 / 3;}
 main > .sadrzaj > .artikl > form .podatci .kosarica .plus {grid-column: 3 / 4;}
-main > .sadrzaj > .artikl > form .podatci > button {background-color: black; color: white;}
-main > .sadrzaj > .artikl > form .podatci > button svg {fill: white;}
+main > .sadrzaj > .artikl > form .podatci > button:first-of-type {background-color: black; color: white;}
+main > .sadrzaj > .artikl > form .podatci > button:first-of-type svg {fill: white;}
+main > .sadrzaj > .artikl > form .podatci > button:last-of-type {width: 30px;}
 main > .sadrzaj > .artikl > form .podatci section {border-top: 1px solid var(--boja-granica);}
 main > .sadrzaj > .artikl > form .podatci section > span {font-size: 0.9rem; line-height: 20px; color: var(--boja-tekst-svjetlija);}
 
