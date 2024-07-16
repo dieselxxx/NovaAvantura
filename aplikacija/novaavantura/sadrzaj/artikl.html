@@ -18,11 +18,19 @@
                 <span class="cijena_30_dana">{{artikl_cijena_30_dana}}</span>
             </span>
             <div class="zaliha">
-                <h5>Odaberite veličinu:</h5>
-                <ul>
                     {{artikl_zaliha}}
-                </ul>
             </div>
+            <span class="kosarica">
+                <label class="input">
+                    <input type="number" name="vrijednost" data-pakiranje="1" data-maxpakiranje="1000" value="1" min="1" max="100" step="1" autocomplete="off" pattern="0-9">
+                </label>
+                <button type="button" class="gumb minus" onclick="ArtikalPlusMinus(this, $vrsta = 'minus');">-</button>
+                <button type="button" class="gumb plus" onclick="ArtikalPlusMinus(this, $vrsta = 'plus');">+</button>
+            </span>
+            <button type="submit" class="gumb ikona" name="kosarica_dodaj">
+                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#kosarica"></use></svg>
+                <span>Dodaj u košaricu</span>
+            </button>
             <section>{{artikl_opis}}</section>
         </div>
     </form>

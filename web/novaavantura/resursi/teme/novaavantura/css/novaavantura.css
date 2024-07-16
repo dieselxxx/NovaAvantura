@@ -103,6 +103,10 @@ main > .sadrzaj > .artikl > form .podatci .cijena .prekrizi:before {content: "";
 main > .sadrzaj > .artikl > form .podatci .cijena_30_dana {font-size: 0.7rem; font-weight: 100;}
 main > .sadrzaj > .artikl > form .podatci .zaliha {border-top: 1px dashed var(--boja-granica);}
 main > .sadrzaj > .artikl > form .podatci .zaliha ul li {float: left;}
+main > .sadrzaj > .artikl > form .podatci .kosarica {display: grid; grid-template-columns: auto 30px 30px; grid-gap: 10px;}
+main > .sadrzaj > .artikl > form .podatci .kosarica label.input input {width: 100%;}
+main > .sadrzaj > .artikl > form .podatci .kosarica .minus {grid-column: 2 / 3;}
+main > .sadrzaj > .artikl > form .podatci .kosarica .plus {grid-column: 3 / 4;}
 main > .sadrzaj > .artikl > form .podatci section {border-top: 1px solid var(--boja-granica);}
 main > .sadrzaj > .artikl > form .podatci section > span {font-size: 0.9rem; line-height: 20px; color: var(--boja-tekst-svjetlija);}
 
@@ -284,17 +288,15 @@ input {-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-tra
 label.input input {background-color: var(--boja-pozadina); padding: 5px; width: auto; font-size: 0.8rem; border: 1px solid var(--boja-granica);}
 label.input input:focus {background-color: white;}
 label.input input:focus-visible {outline: none;}
-label.unos {position: relative; display: grid; grid-template-columns: auto 56px; grid-gap: 0;}
-label.unos input {grid-column: 1 / 2; grid-row: 1 / 2; padding: 8px; height: 56px; width: 100%; border-width: 0 0 1px 0 !important; border-style: solid !important; border-color: var(--boja-granica) !important;}
-label.unos input:focus {outline: none;}
-label.unos input::placeholder {color: var(--boja-tekst);}
-label.unos svg {grid-column: 2 / 3; grid-row: 1 / 2; margin: 13px; height: 30px; width: 30px;}
-label.unos span.granica {grid-column: 2 / 3; grid-row: 1 / 2; position: absolute; display: block; bottom: 0; width: 100%}
 label.select {position: relative;}
 label.select span {font-size: 0.8rem;}
 label.select select {background-color: white; background-image: url('/novaavantura/resursi/grafika/simboli/strelicaDole.svg'); background-position: right 10px center; background-repeat: no-repeat; background-size: auto 50%; width: 170px; font-size: 0.8rem; border: none; color: var(--boja-tekst-svjetlija); outline: none; -moz-appearance: none; -webkit-appearance: none; appearance: none;}
 label.select select::-ms-expand {display: none;}
 label.select select option {background-color: white; font-size: 0.8rem;}
+
+button {display: flex; justify-content: center; align-items: center; background-color: white; padding: 3px; font-size: 0.9rem; text-transform: uppercase; border: 1px solid var(--boja-granica); cursor: pointer;}
+button:hover {background-color: var(--boja-pozadina);}
+button svg {height: 20px; width: 30px;}
 
 div.artikl div.radio {padding: 3px;}
 div.artikl div.radio > input {display: none; height: 0; width: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none;}

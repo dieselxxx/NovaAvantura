@@ -75,7 +75,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         // zaliha
         $artikl_zaliha = $this->artikl->zaliha($trenutni_artikl['ID']);
-        $artikl_zaliha_html = '';
+        $artikl_zaliha_html = '<h5>Odaberite veličinu:</h5><ul>';
         $artikl_kosarica_velicine = '';
         foreach ($artikl_zaliha as $zaliha) {
 
@@ -109,6 +109,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
             }
 
         }
+        $artikl_zaliha_html .= '</ul>';
 
         return sadrzaj()->datoteka('artikl.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutni_artikl['Naziv'],

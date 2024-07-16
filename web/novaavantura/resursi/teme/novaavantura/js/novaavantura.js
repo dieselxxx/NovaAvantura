@@ -18,6 +18,50 @@ $_Cookie = function ($odgovor) {
 
 };
 
+ArtikalPlusMinus = function (element, $vrsta) {
+
+    let staraVrijednost = $(element).parent().find('input[name="vrijednost"]').val();
+
+    let pakiranje = $(element).parent().find('input[name="vrijednost"]').data("pakiranje");
+
+    let maxpakiranje = $(element).parent().find('input[name="vrijednost"]').data("maxpakiranje");
+
+    let novaVrijednost;
+
+    if ($vrsta === 'plus') {
+
+        if (staraVrijednost >= maxpakiranje) {
+
+            novaVrijednost = maxpakiranje;
+
+        } else if (staraVrijednost > 0) {
+
+            novaVrijednost = parseFloat(staraVrijednost) + pakiranje;
+
+        } else {
+
+            novaVrijednost = pakiranje;
+
+        }
+
+    } else if ($vrsta === 'minus') {
+
+        if (staraVrijednost > pakiranje) {
+
+            novaVrijednost = parseFloat(staraVrijednost) - pakiranje;
+
+        } else {
+
+            novaVrijednost = pakiranje;
+
+        }
+
+    }
+
+    $(element).parent().find('input[name="vrijednost"]').val(novaVrijednost);
+
+};
+
 $(document).ready(function () {
 
 
