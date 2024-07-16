@@ -92,6 +92,7 @@ main > .sadrzaj > .artikl > form >.slike > div {height: 165px; width: 130px;}
 main > .sadrzaj > .artikl > form >.slike > div > a {display: block; height: 100%; width: 100%;}
 main > .sadrzaj > .artikl > form >.slike > div > a > img {height: 100%; width: 100%;}
 main > .sadrzaj > .artikl > form .podatci {display: inline-flex; flex-wrap: wrap; flex-direction: column; gap: 10px; grid-column: 2 / 3; grid-row: 1 / 2;}
+main > .sadrzaj > .artikl > form .podatci * > h5 {font-weight: 300; text-transform: uppercase;}
 main > .sadrzaj > .artikl > form .podatci .naziv {margin: 10px 0 0 0; font-size: 1.6rem; font-weight: 100;}
 main > .sadrzaj > .artikl > form .podatci .brand {font-size: 0.8rem;}
 main > .sadrzaj > .artikl > form .podatci .brand span {text-transform: uppercase; color: var(--boja-tekst-svjetlija);}
@@ -100,8 +101,9 @@ main > .sadrzaj > .artikl > form .podatci .cijena {padding: 3px; font-size: 1.5r
 main > .sadrzaj > .artikl > form .podatci .cijena .prekrizi {position: relative; margin-right: 10px; font-size: 1rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikl > form .podatci .cijena .prekrizi:before {content: ""; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid; border-color: var(--boja-tekst-svjetlija); transform:rotate(-5deg);}
 main > .sadrzaj > .artikl > form .podatci .cijena_30_dana {font-size: 0.7rem; font-weight: 100;}
+main > .sadrzaj > .artikl > form .podatci .zaliha {border-top: 1px dashed var(--boja-granica);}
+main > .sadrzaj > .artikl > form .podatci .zaliha ul li {float: left;}
 main > .sadrzaj > .artikl > form .podatci section {border-top: 1px solid var(--boja-granica);}
-main > .sadrzaj > .artikl > form .podatci section > h5 {font-weight: 300; text-transform: uppercase;}
 main > .sadrzaj > .artikl > form .podatci section > span {font-size: 0.9rem; line-height: 20px; color: var(--boja-tekst-svjetlija);}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
@@ -294,6 +296,12 @@ label.select select {background-color: white; background-image: url('/novaavantu
 label.select select::-ms-expand {display: none;}
 label.select select option {background-color: white; font-size: 0.8rem;}
 
+div.artikl div.radio {padding: 3px;}
+div.artikl div.radio > input {display: none; height: 0; width: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
+div.artikl div.radio > input + label {display: inline-block; background-color: white; padding: 10px; font-weight: 100; text-align: center; color: var(--boja-tekst-svjetlija); border: 1px solid var(--boja-granica); cursor: pointer;}
+div.artikl div.radio > input:checked + label {color: var(--boja-tekst); border-color: var(--boja-tekst);}
+div.artikl div.radio > input[disabled] + label {cursor: not-allowed;}
+
 .kontrolni_okvir {display: block; position: relative; margin-bottom: 12px; padding-left: 28px; width: max-content; font-size: 0.8rem; line-height: 20px; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none; cursor: pointer;}
 .kontrolni_okvir input {position: absolute; height: 0; width: 0; opacity: 0; cursor: pointer;}
 .kontrolni_okvir .checkmark {position: absolute; top: 0; left: 0; height: 20px; width: 20px; border: 1px solid var(--boja-granica);}
@@ -316,6 +324,16 @@ label.select select option {background-color: white; font-size: 0.8rem;}
 @keyframes flyout {
     0% {opacity: 0; transform: scaleX(0);}
     100% {opacity: 1; transform: scaleX(1);}
+}
+@-webkit-keyframes radio_animacija {
+    0% {box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);}
+    50% {box-shadow: 0 0 0 15px rgba(0, 0, 0, 0.1);}
+    100% {box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);}
+}
+@keyframes radio_animacija {
+    0% {box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);}
+    50% {box-shadow: 0 0 0 15px rgba(0, 0, 0, 0.1);}
+    100% {box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);}
 }
 
 /** boja **/

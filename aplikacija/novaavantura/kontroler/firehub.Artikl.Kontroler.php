@@ -52,6 +52,15 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         $trenutni_artikl = $this->artikl->artikl($artikl);
 
+        if ($trenutni_artikl['ID'] === 0) {
+
+            return sadrzaj()->datoteka('artikl_ne_postoji.html')->podatci(array_merge($this->zadaniPodatci(), [
+                'predlozak_naslov' => 'Artikal ne postoji',
+                'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ Artikal ne postoji'
+            ]));
+
+        }
+
         // slike
         $artikl_slike = $this->artikl->slike($trenutni_artikl['ID']);
         $artikl_slike_html = '';
@@ -64,12 +73,40 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         }
 
-        if ($trenutni_artikl['ID'] === 0) {
+        // zaliha
+        $artikl_zaliha = $this->artikl->zaliha($trenutni_artikl['ID']);
+        $artikl_zaliha_html = '';
+        $artikl_kosarica_velicine = '';
+        foreach ($artikl_zaliha as $zaliha) {
 
-            return sadrzaj()->datoteka('artikl_ne_postoji.html')->podatci(array_merge($this->zadaniPodatci(), [
-                'predlozak_naslov' => 'Artikal ne postoji',
-                'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ Artikal ne postoji'
-            ]));
+            if ((int)$zaliha['StanjeSkladisteTF'] === 1 && count($artikl_zaliha) === 1 && $artikl_zaliha[0]['Velicina'] === 'uni') {
+
+                $artikl_zaliha_html = '';
+                $artikl_kosarica_velicine .= '';
+
+            } else if ((int)$zaliha['StanjeSkladisteTF'] === 1) {
+
+                $artikl_zaliha_html .= '
+                <li>
+                    <div class="sifraArtikla radio" data-tippy-content="'.$zaliha['artiklikarakteristikeSifra'].'">
+                        <input id="'.$zaliha['Velicina'].'" type="radio" name="velicina" value="'.$zaliha['artiklikarakteristikeSifra'].'">
+                        <label for="'.$zaliha['Velicina'].'">'.$zaliha['Velicina'].'</label>
+                    </div>
+                </li>';
+
+                $artikl_kosarica_velicine .= '<option value="'.$zaliha['artiklikarakteristikeSifra'].'">'.$zaliha['Velicina'].'</option>';
+
+            } else {
+
+                $artikl_zaliha_html .= '
+                <li>
+                    <div class="radio">
+                        <input id="'.$zaliha['Velicina'].'" type="radio" name="velicina" value="'.$zaliha['artiklikarakteristikeSifra'].'" disabled>
+                        <label for="'.$zaliha['Velicina'].'">'.$zaliha['Velicina'].'</label>
+                    </div>
+                </li>';
+
+            }
 
         }
 
@@ -86,7 +123,8 @@ final class Artikl_Kontroler extends Master_Kontroler {
             'artikl_cijena' => $trenutni_artikl['CijenaHTML'],
             'artikl_cijena_30_dana' => $trenutni_artikl['Cijena30DanaHTML'],
             'artikl_opis' => $trenutni_artikl['Opis'] ? '<h5>Dodatne informacije: </h5><span>'.$trenutni_artikl['Opis'] .'</span>' : '',
-            ///'artikl_zaliha' => $artikl_zaliha_html,
+            'artikl_zaliha' => $artikl_zaliha_html,
+            'artikl_kosarica_velicine' => $artikl_kosarica_velicine,
         ]));
 
     }
