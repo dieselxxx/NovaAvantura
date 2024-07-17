@@ -17,6 +17,7 @@ namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 use FireHub\Jezgra\Kontroler\Kontroler;
 use FireHub\Aplikacija\NovaAvantura\Model\Gdpr_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Kategorije_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Kosarica_Model;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
@@ -32,6 +33,8 @@ abstract class Master_Kontroler extends Kontroler {
 
     protected Model $gdpr;
     protected Model $kategorije;
+    protected Model $favoriti;
+    protected Model $kosarica;
     protected string $greska = '';
 
     /**
@@ -42,6 +45,8 @@ abstract class Master_Kontroler extends Kontroler {
 
         $this->gdpr = $this->model(Gdpr_Model::class);
         $this->kategorije = $this->model(Kategorije_Model::class);
+        $this->favoriti= $this->model(Favoriti_Model::class);
+        $this->kosarica = $this->model(Kosarica_Model::class);
 
         // favoriti
         if (isset($_POST['favorit_dodaj'])) {
@@ -50,7 +55,7 @@ abstract class Master_Kontroler extends Kontroler {
 
                 $id = Validacija::Broj('ID', $_POST['ID'], 1, 10);
 
-                $this->model(Favoriti_Model::class)->dodaj($id);
+                $this->favoriti->dodaj($id);
 
             }
 
@@ -61,7 +66,7 @@ abstract class Master_Kontroler extends Kontroler {
 
                 $id =  Validacija::Broj('Veličina', $_POST['ID'], 1, 10);
 
-                $this->model(Favoriti_Model::class)->izbrisi($id);
+                $this->favoriti->izbrisi($id);
 
             }
 
@@ -74,7 +79,7 @@ abstract class Master_Kontroler extends Kontroler {
 
                 $velicina = Validacija::String('Veličina', $_POST['velicina'], 1, 10);
 
-                $this->model(Kosarica_Model::class)->dodaj($velicina, (int)$_POST['vrijednost'] ?? 0);
+                $this->kosarica->dodaj($velicina, (int)$_POST['vrijednost'] ?? 0);
 
                 header("Location: ".$_SERVER['REQUEST_URI']);
 
@@ -104,6 +109,7 @@ abstract class Master_Kontroler extends Kontroler {
             'email' => Domena::email(),
             'kategorije_meni' => $this->kategorijeMeni(),
             'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije()),
+            'kosarica_broj_artikala' => (string)$this->kosarica->brojArtikala(),
             'greska' => $this->greska
         ];
 
