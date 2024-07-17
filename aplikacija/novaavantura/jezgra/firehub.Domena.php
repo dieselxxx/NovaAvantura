@@ -363,6 +363,24 @@ final class Domena {
     }
 
     /**
+     * ## Država
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return int|float
+     */
+    public static function drzavaID ():int|float {
+
+        if (self::Hr()) {
+
+            return 2;
+
+        }
+
+        return 1;
+
+    }
+
+    /**
      * ## Facebook link
      * @since 0.1.0.pre-alpha.M1
      *

@@ -169,41 +169,20 @@ final class Artikl_Model extends Master_Model {
      */
     public function zaliha (string|int $artiklID):array {
 
-        if (Domena::Hr()) {
-
-            $karakteristike = $this->bazaPodataka->tabela('artiklikarakteristike')
-                ->sirovi("
+        return $this->bazaPodataka->tabela('artiklikarakteristike')
+            ->sirovi("
                 SELECT
                     SUM(StanjeSkladiste) AS StanjeSkladiste, IF(SUM(StanjeSkladiste) > 0, TRUE, FALSE) AS StanjeSkladisteTF,
                     artiklikarakteristike.Sifra AS artiklikarakteristikeSifra, Velicina
                 FROM artiklikarakteristike
                 LEFT JOIN stanjeskladista ON stanjeskladista.Sifra = artiklikarakteristike.Sifra
+                LEFT JOIN skladiste ON skladiste.ID = stanjeskladista.SkladisteID
                 WHERE ArtikalID = $artiklID
-                AND (SkladisteID = 3)
+                AND skladiste.Drzava = ".Domena::drzavaID()."
                 GROUP BY Velicina
                 ORDER BY artiklikarakteristike.ID
             ")
-                ->napravi();
-
-        } else {
-
-            $karakteristike = $this->bazaPodataka->tabela('artiklikarakteristike')
-                ->sirovi("
-                SELECT
-                    SUM(StanjeSkladiste) AS StanjeSkladiste, IF(SUM(StanjeSkladiste) > 0, TRUE, FALSE) AS StanjeSkladisteTF,
-                    artiklikarakteristike.Sifra AS artiklikarakteristikeSifra, Velicina
-                FROM artiklikarakteristike
-                LEFT JOIN stanjeskladista ON stanjeskladista.Sifra = artiklikarakteristike.Sifra
-                WHERE ArtikalID = $artiklID
-                AND (SkladisteID = 1 OR SkladisteID = 2)
-                GROUP BY Velicina
-                ORDER BY artiklikarakteristike.ID
-            ")
-                ->napravi();
-
-        }
-
-        return $karakteristike->niz() ?: [];
+            ->napravi()->niz() ?: [];
 
     }
 
