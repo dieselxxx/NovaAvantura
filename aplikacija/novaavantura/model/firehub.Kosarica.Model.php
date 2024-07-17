@@ -78,6 +78,8 @@ final class Kosarica_Model extends Master_Model {
         else
             $this->sesija->dodaj('kosarica', $velicina, $vrijednost);
 
+        var_dump($velicina, $vrijednost);
+
         return true;
 
     }
@@ -115,6 +117,8 @@ final class Kosarica_Model extends Master_Model {
 
         $this->sesija->dodaj('kosarica', $velicina, $vrijednost);
 
+        var_dump($velicina, $vrijednost);
+
         return true;
 
     }
@@ -132,6 +136,40 @@ final class Kosarica_Model extends Master_Model {
         $this->sesija->izbrisiNiz('kosarica', $velicina);
 
         return true;
+
+    }
+
+    /**
+     * ### Artikala košarice
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return array
+     */
+    public function artikli ():array {
+
+        return $this->sesija->procitaj('kosarica') ?: [];
+
+    }
+
+    public function artikliID ():array {
+
+        $rezultat = [];
+
+        foreach ($this->artikli() as $velicina => $kolicina) {
+
+            $rezultat[ $this->bazaPodataka->tabela('artiklikarakteristike')
+                ->sirovi("
+                SELECT
+                    ArtikalID
+                FROM artiklikarakteristike
+                WHERE artiklikarakteristike.Sifra = '$velicina'
+            ")
+                ->napravi()->redak()['ArtikalID']] = ['kolicina' => $kolicina, 'velicina' => $velicina];
+
+        }
+
+
+        return $rezultat;
 
     }
 
