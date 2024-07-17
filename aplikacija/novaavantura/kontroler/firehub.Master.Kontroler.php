@@ -32,6 +32,7 @@ abstract class Master_Kontroler extends Kontroler {
 
     protected Model $gdpr;
     protected Model $kategorije;
+    protected string $greska = '';
 
     /**
      * ### Konstruktor
@@ -66,6 +67,25 @@ abstract class Master_Kontroler extends Kontroler {
 
         }
 
+        // kosarica
+        if (isset($_POST['kosarica_dodaj'])) {
+
+            if (isset($_POST['velicina'])) {
+
+                $velicina = Validacija::String('Veličina', $_POST['velicina'], 1, 10);
+
+                $this->model(Kosarica_Model::class)->dodaj($velicina, (int)$_POST['vrijednost'] ?? 0);
+
+                header("Location: ".$_SERVER['REQUEST_URI']);
+
+            } else {
+
+                $this->greska ='Molimo odaberite veličinu artikla!';
+
+            }
+
+        }
+
     }
 
     /**
@@ -83,7 +103,8 @@ abstract class Master_Kontroler extends Kontroler {
             'telefon' => Domena::telefon(),
             'email' => Domena::email(),
             'kategorije_meni' => $this->kategorijeMeni(),
-            'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije())
+            'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije()),
+            'greska' => $this->greska
         ];
 
     }

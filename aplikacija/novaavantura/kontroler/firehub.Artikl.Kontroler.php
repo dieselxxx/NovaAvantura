@@ -17,6 +17,7 @@ namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikl_Model;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
 
 /**
  * ### Artikl
@@ -81,7 +82,16 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
             if ((int)$zaliha['StanjeSkladisteTF'] === 1 && count($artikl_zaliha) === 1 && $artikl_zaliha[0]['Velicina'] === 'uni') {
 
-                $artikl_zaliha_html = '';
+                $artikl_zaliha_html = '
+                <ul style="display: none;">
+                    <li>
+                        <div class="sifraArtikla radio" data-tippy-content="'.$zaliha['artiklikarakteristikeSifra'].'">
+                            <input id="'.$zaliha['Velicina'].'" type="radio" name="velicina" value="'.$zaliha['artiklikarakteristikeSifra'].'" checked>
+                            <label for="'.$zaliha['Velicina'].'">'.$zaliha['Velicina'].'</label>
+                        </div>
+                    </li>
+                </ul>
+                ';
                 $artikl_kosarica_velicine .= '';
 
             } else if ((int)$zaliha['StanjeSkladisteTF'] === 1) {
@@ -125,7 +135,6 @@ final class Artikl_Kontroler extends Master_Kontroler {
         }
 
         return sadrzaj()->datoteka('artikl.html')->podatci(array_merge($this->zadaniPodatci(), [
-            'greska' => '',
             'predlozak_naslov' => $trenutni_artikl['Naziv'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ '.$trenutni_artikl['Naziv'],
             'artikl_naziv' => $trenutni_artikl['Naziv'],

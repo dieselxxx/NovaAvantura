@@ -93,7 +93,6 @@ final class Favoriti_Kontroler extends Master_Kontroler {
         }
 
         return sadrzaj()->datoteka('favoriti.html')->podatci(array_merge($this->zadaniPodatci(), [
-            'greska' => '',
             'predlozak_naslov' => 'Favoriti',
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Favoriti',
             'favorit_artikli' => empty($artikli_html) ? 'Nemate favorita!' : $artikli_html
