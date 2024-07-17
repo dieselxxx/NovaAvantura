@@ -87,7 +87,7 @@ final class Favoriti_Model extends Master_Model {
      */
     public function artikli ():array {
 
-        return $this->sesija->procitaj('favorit');
+        return $this->sesija->procitaj('favorit') ?: [];
 
     }
 

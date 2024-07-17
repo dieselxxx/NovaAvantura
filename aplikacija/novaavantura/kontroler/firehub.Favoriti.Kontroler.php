@@ -96,7 +96,7 @@ final class Favoriti_Kontroler extends Master_Kontroler {
             'greska' => '',
             'predlozak_naslov' => 'Favoriti',
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Favoriti',
-            'favorit_artikli' => $artikli_html
+            'favorit_artikli' => empty($artikli_html) ? 'Nemate favorita!' : $artikli_html
         ]));
 
     }
