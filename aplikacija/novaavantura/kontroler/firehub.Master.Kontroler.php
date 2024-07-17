@@ -90,6 +90,33 @@ abstract class Master_Kontroler extends Kontroler {
             }
 
         }
+        if (isset($_POST['kosarica_izmijeni'])) {
+
+            if (isset($_POST['velicina'])) {
+
+                $velicina =  Validacija::String('Veličina', $_POST['velicina'], 1, 10);
+
+                $this->kosarica->izmijeni($velicina, (int)$_POST['vrijednost'] ?? 0);
+
+                header("Location: ".$_SERVER['REQUEST_URI']);
+
+            }
+
+        }
+
+        if (isset($_POST['kosarica_izbrisi'])) {
+
+            if (isset($_POST['velicina'])) {
+
+                $velicina =  Validacija::String('Veličina', $_POST['velicina'], 1, 10);
+
+                $this->kosarica->izbrisi($velicina);
+
+                header("Location: ".$_SERVER['REQUEST_URI']);
+
+            }
+
+        }
 
     }
 
