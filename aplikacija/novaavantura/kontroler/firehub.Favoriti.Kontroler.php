@@ -60,7 +60,7 @@ final class Favoriti_Kontroler extends Master_Kontroler {
         if (!empty($favorit_artikli)) {
 
             $favorit_artikli = array_filter($artikli, function ($value) use ($favorit_artikli) {
-                return in_array($value['ID'], $favorit_artikli) ;
+                return in_array($value['ID'], $favorit_artikli);
             });
 
             foreach ($favorit_artikli as $artikal) {
@@ -95,7 +95,7 @@ final class Favoriti_Kontroler extends Master_Kontroler {
         return sadrzaj()->datoteka('favoriti.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Favoriti',
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Favoriti',
-            'favorit_artikli' => empty($artikli_html) ? 'Nemate favorita!' : $artikli_html
+            'favorit_artikli' => empty($artikli_html) ? '<h2>Nemate favorita!</h2>' : $artikli_html
         ]));
 
     }
