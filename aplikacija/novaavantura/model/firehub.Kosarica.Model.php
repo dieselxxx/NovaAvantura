@@ -78,8 +78,6 @@ final class Kosarica_Model extends Master_Model {
         else
             $this->sesija->dodaj('kosarica', $velicina, $vrijednost);
 
-        var_dump($velicina, $vrijednost);
-
         return true;
 
     }
