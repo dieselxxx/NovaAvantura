@@ -57,6 +57,8 @@ abstract class Master_Kontroler extends Kontroler {
 
                 $this->favoriti->dodaj($id);
 
+                header("Location: ".$_SERVER['REQUEST_URI']);
+
             }
 
         }
@@ -64,9 +66,11 @@ abstract class Master_Kontroler extends Kontroler {
 
             if (isset($_POST['ID'])) {
 
-                $id =  Validacija::Broj('Veličina', $_POST['ID'], 1, 10);
+                $id = Validacija::Broj('Veličina', $_POST['ID'], 1, 10);
 
                 $this->favoriti->izbrisi($id);
+
+                header("Location: ".$_SERVER['REQUEST_URI']);
 
             }
 
@@ -81,7 +85,7 @@ abstract class Master_Kontroler extends Kontroler {
 
                 $this->kosarica->dodaj($velicina, (int)$_POST['vrijednost'] ?? 0);
 
-                //header("Location: ".$_SERVER['REQUEST_URI']);
+                header("Location: ".$_SERVER['REQUEST_URI']);
 
             } else {
 
@@ -94,7 +98,7 @@ abstract class Master_Kontroler extends Kontroler {
 
             if (isset($_POST['velicina'])) {
 
-                $velicina =  Validacija::String('Veličina', $_POST['velicina'], 1, 10);
+                $velicina = Validacija::String('Veličina', $_POST['velicina'], 1, 10);
 
                 $this->kosarica->izmijeni($velicina, (int)$_POST['vrijednost'] ?? 0);
 
@@ -103,12 +107,11 @@ abstract class Master_Kontroler extends Kontroler {
             }
 
         }
-
         if (isset($_POST['kosarica_izbrisi'])) {
 
             if (isset($_POST['velicina'])) {
 
-                $velicina =  Validacija::String('Veličina', $_POST['velicina'], 1, 10);
+                $velicina = Validacija::String('Veličina', $_POST['velicina'], 1, 10);
 
                 $this->kosarica->izbrisi($velicina);
 
