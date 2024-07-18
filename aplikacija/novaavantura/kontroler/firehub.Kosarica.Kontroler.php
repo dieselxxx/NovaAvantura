@@ -14,11 +14,11 @@
 
 namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
-use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Aplikacija\NovaAvantura\Model\Kosarica_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 
 /**
  * ### Košarica
@@ -28,8 +28,8 @@ use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
  */
 final class Kosarica_Kontroler extends Master_Kontroler {
 
-    protected Model $kosarica;
-    protected Model $artikli;
+    protected array $artikli;
+    private array $kosarica_artikli = [];
 
 
     private float $total_cijena = 0;
@@ -43,17 +43,16 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     public function __construct () {
 
-        $this->kosarica = $this->model(Kosarica_Model::class);
-        $this->artikli = $this->model(Artikli_Model::class);
+        $kosarica = $this->model(Kosarica_Model::class);
+        $this->artikli = $this->model(Artikli_Model::class)->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
 
         // kosarica artikli
-        $artikli = $this->artikli->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
-        $kosarica_artikli = $this->kosarica->artikliID();
-        if (!empty($kosarica_artikli)) {
+        $this->kosarica_artikli = $kosarica->artikliID();
+        if (!empty($this->kosarica_artikli)) {
 
-            foreach ($kosarica_artikli as $kosarica_artikal) {
+            foreach ($this->kosarica_artikli as $kosarica_artikal) {
 
-                $artikal = array_filter($artikli, function ($value) use ($kosarica_artikal) {
+                $artikal = array_filter($this->artikli, function ($value) use ($kosarica_artikal) {
                     return $value['ID'] === $kosarica_artikal['id'];
                 });
                 $artikal = $artikal[array_key_first($artikal)];
@@ -61,6 +60,28 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                 $this->total_cijena += $artikal['CijenaFinal'] * $kosarica_artikal['kolicina'];
 
                 $this->total_kolicina += $kosarica_artikal['kolicina'];
+
+            }
+
+            // dostava
+            if ($this->total_cijena < Domena::dostavaLimit()) {
+
+                $this->kosarica_artikli[] = [
+                    'id' => 0,
+                    'velicina' => 0,
+                    'velicinaNaziv' => 'nema',
+                    'kolicina' => 1
+                ];
+
+                $this->artikli[] = [
+                    'ID' => 0,
+                    'Link' => '',
+                    'Slika' => '',
+                    'Naziv' => 'Dostava',
+                    'CijenaHTML' => number_format(Domena::dostavaIznos(), 2, ',', '.').' '.Domena::valuta()
+                ];
+
+                $this->total_cijena += Domena::dostavaIznos();
 
             }
 
@@ -79,14 +100,12 @@ final class Kosarica_Kontroler extends Master_Kontroler {
     public function index ():Sadrzaj {
 
         // kosarica artikli
-        $artikli = $this->artikli->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
-        $kosarica_artikli = $this->kosarica->artikliID();
         $artikli_html = '';
-        if (!empty($kosarica_artikli)) {
+        if (!empty($this->kosarica_artikli)) {
 
-            foreach ($kosarica_artikli as $kosarica_artikal) {
+            foreach ($this->kosarica_artikli as $kosarica_artikal) {
 
-                $artikal = array_filter($artikli, function ($value) use ($kosarica_artikal) {
+                $artikal = array_filter($this->artikli, function ($value) use ($kosarica_artikal) {
                     return $value['ID'] === $kosarica_artikal['id'];
                 });
                 $artikal = $artikal[array_key_first($artikal)];
@@ -121,7 +140,6 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                 </form>
 
             Artikal;
-
 
             }
 
