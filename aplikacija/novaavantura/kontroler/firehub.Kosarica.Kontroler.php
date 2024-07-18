@@ -58,19 +58,19 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $kosarica_artikli = $this->kosarica->artikliID();
         $artikli_html = '';
         if (!empty($kosarica_artikli)) {
-            $kosarica_artikli_filter = array_filter($artikli, function ($value) use ($kosarica_artikli) {
-                return array_key_exists($value['ID'], $kosarica_artikli);
-            });
 
-            foreach ($kosarica_artikli_filter as $artikal) {
+            foreach ($kosarica_artikli as $kosarica_artikal) {
 
-                $tre_artikal = $kosarica_artikli[$artikal['ID']];
+                $artikal = array_filter($artikli, function ($value) use ($kosarica_artikal) {
+                    return $value['ID'] === $kosarica_artikal['id'];
+                });
+                $artikal = $artikal[array_key_first($artikal)];
 
                 $artikli_html .= <<<Artikal
             
                 <form class="artikal" method="post" enctype="multipart/form-data" action="">
                     <input type="hidden" name="ID" value="{$artikal['ID']}" />
-                    <input type="hidden" name="velicina" value="{$tre_artikal['velicina']}">
+                    <input type="hidden" name="velicina" value="{$kosarica_artikal['velicina']}">
                     <a class="slika" href="/artikl/{$artikal['Link']}">
                         <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
@@ -78,7 +78,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                     <span class="cijena">{$artikal['CijenaHTML']}</span>
                     <span class="kosarica">
                         <label class="input">
-                            <input type="number" name="vrijednost" data-pakiranje="1" data-maxpakiranje="1000" value="{$tre_artikal['kolicina']}" min="1" max="100" step="1" autocomplete="off" pattern="0-9">
+                            <input type="number" name="vrijednost" data-pakiranje="1" data-maxpakiranje="1000" value="{$kosarica_artikal['kolicina']}" min="1" max="100" step="1" autocomplete="off" pattern="0-9">
                         </label>
                         <button type="button" class="gumb minus" onclick="ArtikalPlusMinus(this, 'minus');">-</button>
                         <button type="button" class="gumb plus" onclick="ArtikalPlusMinus(this, 'plus');">+</button>
@@ -91,11 +91,11 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                         <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg>
                         <span>Izbriši</span>
                     </button>
-                    <span>{$tre_artikal['kolicina']}</span>
-                    <span>{$tre_artikal['velicina']}</span>
+                    <span>{$kosarica_artikal['velicina']}</span>
                 </form>
 
             Artikal;
+
 
             }
 

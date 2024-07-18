@@ -153,14 +153,16 @@ final class Kosarica_Model extends Master_Model {
 
         foreach ($this->artikli() as $velicina => $kolicina) {
 
-            $rezultat[ $this->bazaPodataka->tabela('artiklikarakteristike')
+            $redak = $this->bazaPodataka->tabela('artiklikarakteristike')
                 ->sirovi("
                 SELECT
-                    ArtikalID
+                    ID, ArtikalID
                 FROM artiklikarakteristike
                 WHERE artiklikarakteristike.Sifra = '$velicina'
             ")
-                ->napravi()->redak()['ArtikalID']] = ['kolicina' => $kolicina, 'velicina' => $velicina];
+                ->napravi()->redak();
+
+            $rezultat[$redak['ID']] = ['id' => $redak['ArtikalID'], 'kolicina' => $kolicina, 'velicina' => $velicina];
 
         }
 
