@@ -14,6 +14,7 @@
 
 namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Aplikacija\NovaAvantura\Model\Kosarica_Model;
@@ -30,6 +31,10 @@ final class Kosarica_Kontroler extends Master_Kontroler {
     protected Model $kosarica;
     protected Model $artikli;
 
+
+    private float $total_cijena = 0;
+    private float $total_kolicina = 0;
+
     /**
      * ## Konstruktor
      * @since 0.1.0.pre-alpha.M1
@@ -40,6 +45,26 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
         $this->kosarica = $this->model(Kosarica_Model::class);
         $this->artikli = $this->model(Artikli_Model::class);
+
+        // kosarica artikli
+        $artikli = $this->artikli->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
+        $kosarica_artikli = $this->kosarica->artikliID();
+        if (!empty($kosarica_artikli)) {
+
+            foreach ($kosarica_artikli as $kosarica_artikal) {
+
+                $artikal = array_filter($artikli, function ($value) use ($kosarica_artikal) {
+                    return $value['ID'] === $kosarica_artikal['id'];
+                });
+                $artikal = $artikal[array_key_first($artikal)];
+
+                $this->total_cijena += $artikal['CijenaFinal'] * $kosarica_artikal['kolicina'];
+
+                $this->total_kolicina += $kosarica_artikal['kolicina'];
+
+            }
+
+        }
 
         parent::__construct();
 
@@ -74,8 +99,11 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                     <a class="slika" href="/artikl/{$artikal['Link']}">
                         <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
                     </a>
-                    <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
-                    <span class="cijena">{$artikal['CijenaHTML']}</span>
+                    <a class="naziv" href="/artikl/{$artikal['Link']}">
+                        {$artikal['Naziv']}<br>
+                        <span class="velicina">Veličina: {$kosarica_artikal['velicinaNaziv']}</span>
+                    </a>
+                    <span class="cijena"><span>{$kosarica_artikal['kolicina']} x</span> {$artikal['CijenaHTML']}</span>
                     <span class="kosarica">
                         <label class="input">
                             <input type="number" name="vrijednost" data-pakiranje="1" data-maxpakiranje="1000" value="{$kosarica_artikal['kolicina']}" min="1" max="100" step="1" autocomplete="off" pattern="0-9">
@@ -90,7 +118,6 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                     <button class="izbrisi" type="submit" class="gumb ikona" name="kosarica_izbrisi">
                         <span>Ukloni</span>
                     </button>
-                    <span>{$kosarica_artikal['velicina']}</span>
                 </form>
 
             Artikal;
@@ -103,7 +130,9 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         return sadrzaj()->datoteka('kosarica.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Košarica',
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Košarica',
-            'artikli' => empty($artikli_html) ? '<h2>Vaša košarica je prazna!</h2>' : $artikli_html
+            'artikli' => empty($artikli_html) ? '<h2>Vaša košarica je prazna!</h2>' : $artikli_html,
+            'total_cijena' => number_format($this->total_cijena, 2, ',', '.').' '.Domena::valuta(),
+            'total_kolicina' => (string)$this->total_kolicina
         ]));
 
     }

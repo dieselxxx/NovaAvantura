@@ -115,10 +115,12 @@ main > .sadrzaj > .artikl > form .podatci section {border-top: 1px solid var(--b
 main > .sadrzaj > .artikl > form .podatci section > span {font-size: 0.9rem; line-height: 20px; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section {grid-template-columns: 1fr;}
 main > .sadrzaj > .kosarica > section > div.artikli {display: grid; grid-template-columns: 1fr; grid-template-rows: auto; grid-gap: 0; grid-column: 1 / 2; justify-items: left;}
-main > .sadrzaj > .kosarica > section > div.artikli > .artikal {grid-template-columns: 110px auto 200px; grid-template-rows: 33px 49px 33px; grid-gap: 15px; align-items: center; padding: 20px; width: 100%; border-bottom: 1px dashed var(--boja-granica);}
+main > .sadrzaj > .kosarica > section > div.artikli > .artikal {grid-template-columns: 100px auto 200px; grid-template-rows: 42px 42px 42px; grid-column-gap: 15px; align-items: center; padding: 20px; width: 100%; border-bottom: 1px dashed var(--boja-granica);}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal a.slika {grid-row: 1 / 4;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal a.naziv {grid-column: 2 / 3; grid-row: 2 / 3; padding: 0;}
+main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.velicina {font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.cijena {grid-column: 3 / 4; grid-row: 1 / 2; justify-self: end; padding: 0;}
+main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.cijena span {font-size: 0.9rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica {display: flex; column-gap: 5px; grid-column: 3 / 4; grid-row: 2 / 3; justify-self: end;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.minus,
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.plus {width: 30px;}
@@ -127,6 +129,10 @@ main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica but
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal button.izbrisi:hover,
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.uredi:hover {background-color: transparent;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal button.izbrisi {grid-column: 3 / 4; grid-row: 3 / 4; justify-self: end;}
+main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button svg {fill: var(--boja-tekst-svjetlija);}
+main > .sadrzaj > .kosarica > section > span {justify-self: end; font-weight: 100;}
+main > .sadrzaj > .kosarica > section > span:first-of-type {color: var(--boja-tekst-svjetlija);}
+main > .sadrzaj > .kosarica > section > span:last-of-type {font-size: 1.5rem;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -242,7 +248,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .artikl > form .podatci {grid-column: 1 / 2; grid-row: 3 / 4;}
     main > .sadrzaj > .kosarica > section {grid-template-columns: 1fr;}
     main > .sadrzaj > .kosarica > section > div.artikli {display: grid; grid-template-columns: 1fr; grid-template-rows: auto; grid-gap: 0; grid-column: 1 / 2; justify-items: left;}
-    main > .sadrzaj > .kosarica > section > div.artikli > .artikal {grid-template-columns: 110px auto; grid-template-rows: 33px 49px 33px; grid-gap: 15px; align-items: center; padding: 20px; width: 100%; border-bottom: 1px dashed var(--boja-granica);}
+    main > .sadrzaj > .kosarica > section > div.artikli > .artikal {grid-template-columns: 100px auto; grid-template-rows: 42px 42px 42px; grid-column-gap: 15px; align-items: center; padding: 20px; width: 100%; border-bottom: 1px dashed var(--boja-granica);}
     main > .sadrzaj > .kosarica > section > div.artikli > .artikal a.slika {grid-row: 1 / 4;}
     main > .sadrzaj > .kosarica > section > div.artikli > .artikal a.naziv {grid-column: 2 / 3; grid-row: 1 / 2; padding: 0;}
     main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.cijena {grid-column: 2 / 3; grid-row: 2 / 3; justify-self: end; padding: 0;}
@@ -254,6 +260,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .kosarica > section > div.artikli > .artikal button.izbrisi:hover,
     main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.uredi:hover {background-color: transparent;}
     main > .sadrzaj > .kosarica > section > div.artikli > .artikal button.izbrisi {grid-column: 2 / 3; grid-row: 3 / 4; justify-self: end;}
+    main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button svg {fill: var(--boja-tekst-svjetlija);}
 
     footer {position: initial;}
     footer > nav {flex-direction: column;}

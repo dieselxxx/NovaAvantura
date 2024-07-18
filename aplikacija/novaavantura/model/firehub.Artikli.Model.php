@@ -177,6 +177,7 @@ final class Artikli_Model extends Master_Model {
             $rezultat[$kljuc]['CijenaNormalnaHTML'] = number_format((float)$rezultat[$kljuc]['Cijena'], 2, ',', '.');
             $rezultat[$kljuc]['CijenaAkcijaHTML'] = number_format((float)$rezultat[$kljuc]['CijenaAkcija'], 2, ',', '.');
             $rezultat[$kljuc]['Popust'] = number_format((float)$rezultat[$kljuc]['Popust'], 2, ',', '.');
+            $rezultat[$kljuc]['CijenaFinal'] = (float)$rezultat[$kljuc]['CijenaFinal'];
 
             // cijena html
             if ($redak['CijenaAkcija'] > 0) {
