@@ -134,6 +134,7 @@ main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica but
 main > .sadrzaj > .kosarica > section > span {justify-self: end; font-weight: 100;}
 main > .sadrzaj > .kosarica > section > span:first-of-type {color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section > span:last-of-type {font-size: 1.5rem;}
+main > .sadrzaj > .kosarica > section > a {justify-self: center;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -339,6 +340,9 @@ label.select span {font-size: 0.8rem;}
 label.select select {background-color: white; background-image: url('/novaavantura/resursi/grafika/simboli/strelicaDole.svg'); background-position: right 10px center; background-repeat: no-repeat; background-size: auto 50%; width: 170px; font-size: 0.8rem; border: none; color: var(--boja-tekst-svjetlija); outline: none; -moz-appearance: none; -webkit-appearance: none; appearance: none;}
 label.select select::-ms-expand {display: none;}
 label.select select option {background-color: white; font-size: 0.8rem;}
+a.gumb {width: max-content; padding: 12px; font-size: 0.9rem; color: var(--boja-tekst); border: 1px solid var(--boja-granica);}
+a.gumb:hover {background-color: var(--boja-pozadina);}
+a.gumb.crni {background-color: black; text-transform: uppercase; color: white;}
 
 button {display: flex; justify-content: center; align-items: center; background-color: white; padding: 3px; font-size: 0.9rem; text-transform: uppercase; border: 1px solid var(--boja-granica); cursor: pointer;}
 button:hover {background-color: var(--boja-pozadina);}
