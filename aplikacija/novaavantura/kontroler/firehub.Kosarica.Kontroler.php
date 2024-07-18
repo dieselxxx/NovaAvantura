@@ -82,14 +82,13 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                         </label>
                         <button type="button" class="gumb minus" onclick="ArtikalPlusMinus(this, 'minus');">-</button>
                         <button type="button" class="gumb plus" onclick="ArtikalPlusMinus(this, 'plus');">+</button>
+                        <button type="submit" class="gumb ikona uredi" name="kosarica_izmijeni">
+                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#uredi"></use></svg>
+                            <span>Izmijeni</span>
+                        </button>
                     </span>
-                    <button type="submit" class="gumb ikona" name="kosarica_izmijeni">
-                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#uredi"></use></svg>
-                        <span>Izmijeni</span>
-                    </button>
-                    <button type="submit" class="gumb ikona" name="kosarica_izbrisi">
-                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg>
-                        <span>Izbriši</span>
+                    <button class="izbrisi" type="submit" class="gumb ikona" name="kosarica_izbrisi">
+                        <span>Ukloni</span>
                     </button>
                     <span>{$kosarica_artikal['velicina']}</span>
                 </form>
