@@ -90,7 +90,7 @@ final class Kosarica_Model extends Master_Model {
      */
     public function izmijeni (string $velicina = '', int $vrijednost = 0):bool {
 
-        session_start();
+        //session_start();
 
         $velicina_baza = $this->bazaPodataka->tabela('artiklikarakteristike')
             ->sirovi("
@@ -129,7 +129,7 @@ final class Kosarica_Model extends Master_Model {
      */
     public function izbrisi (string $velicina = ''):bool {
 
-        session_start();
+        //session_start();
 
         if (!isset($this->sesija->procitaj('kosarica')[$velicina])) return false;
 

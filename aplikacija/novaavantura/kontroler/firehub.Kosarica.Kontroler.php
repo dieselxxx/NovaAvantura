@@ -110,36 +110,54 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                 });
                 $artikal = $artikal[array_key_first($artikal)];
 
-                $artikli_html .= <<<Artikal
-            
-                <form class="artikal" method="post" enctype="multipart/form-data" action="">
-                    <input type="hidden" name="ID" value="{$artikal['ID']}" />
-                    <input type="hidden" name="velicina" value="{$kosarica_artikal['velicina']}">
-                    <a class="slika" href="/artikl/{$artikal['Link']}">
-                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
-                    </a>
-                    <a class="naziv" href="/artikl/{$artikal['Link']}">
-                        {$artikal['Naziv']}<br>
-                        <span class="velicina">Veličina: {$kosarica_artikal['velicinaNaziv']}</span>
-                    </a>
-                    <span class="cijena"><span>{$kosarica_artikal['kolicina']} x</span> {$artikal['CijenaHTML']}</span>
-                    <span class="kosarica">
-                        <label class="input">
-                            <input type="number" name="vrijednost" data-pakiranje="1" data-maxpakiranje="1000" value="{$kosarica_artikal['kolicina']}" min="1" max="100" step="1" autocomplete="off" pattern="0-9">
-                        </label>
-                        <button type="button" class="gumb minus" onclick="ArtikalPlusMinus(this, 'minus');">-</button>
-                        <button type="button" class="gumb plus" onclick="ArtikalPlusMinus(this, 'plus');">+</button>
-                        <button type="submit" class="gumb ikona uredi" name="kosarica_izmijeni">
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#uredi"></use></svg>
-                            <span>Izmijeni</span>
-                        </button>
-                    </span>
-                    <button class="izbrisi" type="submit" class="gumb ikona" name="kosarica_izbrisi">
-                        <span>Ukloni</span>
-                    </button>
-                </form>
+                if ($kosarica_artikal['id'] !== 0) {
 
-            Artikal;
+                    $artikli_html .= <<<Artikal
+
+                        <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                            <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                            <input type="hidden" name="velicina" value="{$kosarica_artikal['velicina']}">
+                            <a class="slika" href="/artikl/{$artikal['Link']}">
+                                <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                            </a>
+                            <a class="naziv" href="/artikl/{$artikal['Link']}">
+                                {$artikal['Naziv']}<br>
+                                <span class="velicina">Veličina: {$kosarica_artikal['velicinaNaziv']}</span>
+                            </a>
+                            <span class="cijena"><span>{$kosarica_artikal['kolicina']} x</span> {$artikal['CijenaHTML']}</span>
+                            <span class="kosarica">
+                                <label class="input">
+                                    <input type="number" name="vrijednost" data-pakiranje="1" data-maxpakiranje="1000" value="{$kosarica_artikal['kolicina']}" min="1" max="100" step="1" autocomplete="off" pattern="0-9">
+                                </label>
+                                <button type="button" class="gumb minus" onclick="ArtikalPlusMinus(this, 'minus');">-</button>
+                                <button type="button" class="gumb plus" onclick="ArtikalPlusMinus(this, 'plus');">+</button>
+                                <button type="submit" class="gumb ikona uredi" name="kosarica_izmijeni">
+                                    <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#uredi"></use></svg>
+                                    <span>Izmijeni</span>
+                                </button>
+                            </span>
+                            <button class="izbrisi" type="submit" class="gumb ikona" name="kosarica_izbrisi">
+                                <span>Ukloni</span>
+                            </button>
+                        </form>
+
+                    Artikal;
+
+                } else {
+
+                    $artikli_html .= <<<Artikal
+
+                        <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                            <a class="slika">
+                                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#dostava"></use></svg>
+                            </a>
+                            <a class="naziv"> {$artikal['Naziv']}<br></a>
+                            <span class="cijena"><span>{$kosarica_artikal['kolicina']} x</span> {$artikal['CijenaHTML']}</span>
+                        </form>
+
+                    Artikal;
+
+                }
 
             }
 
