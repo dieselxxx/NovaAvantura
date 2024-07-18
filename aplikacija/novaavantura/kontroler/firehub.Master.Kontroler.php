@@ -93,7 +93,7 @@ abstract class Master_Kontroler extends Kontroler {
 
             }
 
-        }//
+        }
         if (isset($_POST['kosarica_izmijeni'])) {
 
             if (isset($_POST['velicina'])) {
