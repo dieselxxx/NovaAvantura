@@ -173,4 +173,19 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
     }
 
+    /**
+     * ### Narudžba
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj Sadržaj stranice.
+     */
+    public function narudzba ():Sadrzaj {
+
+        return sadrzaj()->datoteka('narudzba.html')->podatci(array_merge($this->zadaniPodatci(), [
+            'predlozak_naslov' => 'Narudžba',
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Narudžba'
+        ]));
+
+    }
+
 }
