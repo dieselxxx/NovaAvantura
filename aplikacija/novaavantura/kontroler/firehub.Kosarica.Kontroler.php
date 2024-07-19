@@ -83,7 +83,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                     'Link' => '',
                     'Slika' => '',
                     'Naziv' => 'Dostava',
-                    'CijenaHTML' => number_format(Domena::dostavaIznos(), 2, ',', '.').' '.Domena::valuta()
+                    'CijenaHTML' => number_format(Domena::dostavaIznos(), 2, ',', '.').' '.Domena::valuta(),
+                    'CijenaFinalHTML' => number_format(Domena::dostavaIznos(), 2, ',', '.')
                 ];
 
                 $this->total_cijena += Domena::dostavaIznos();
@@ -234,7 +235,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
         session_start();
 
-        $this->kosarica->unistiSesiju();
+        //$this->kosarica->unistiSesiju();
 
         return sadrzaj()->datoteka('narudzba_ispravno.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Narudžba',
@@ -285,6 +286,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
                 if ($kosarica_artikal['id'] !== 0) {
 
+                    $iznos = number_format($artikal['CijenaFinal'] * $kosarica_artikal['kolicina'], 2, ',', '.');
+
                     $artikli_html .= <<<Artikal
 
                         <tr>
@@ -292,7 +295,9 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                             <td align='center' style='text-align: center;'>{$kosarica_artikal['velicinaNaziv']}</td>
                             <td align='left'>{$artikal['Naziv']}</td>
                             <td align='center' style='text-align: center;'>{$kosarica_artikal['kolicina']} kom</td>
-                            <td align='right' style='text-align: right;'>{$artikal['CijenaHTML']}</td>
+                            <td align='right' style='text-align: right;'>{$artikal['CijenaFinalHTML']}</td>
+                            <td align='right' style='text-align: right;'>{$iznos}</td>
+
                         </tr>
 
                     Artikal;
@@ -306,7 +311,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                             <td align='center' style='text-align: center;'></td>
                             <td align='left'>{$artikal['Naziv']}</td>
                             <td align='center' style='text-align: center;'>{$kosarica_artikal['kolicina']} kom</td>
-                            <td align='right' style='text-align: right;'>{$artikal['CijenaHTML']}</td>
+                            <td align='right' style='text-align: right;'>{$artikal['CijenaFinalHTML']}</td>
                         </tr>
 
                     Artikal;
@@ -342,7 +347,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "total_cijena" => $this->total_cijena . ' '.Domena::valuta(),
             "tvrtka_adresa" => Domena::adresa(),
             "tvrtka_telefon" => Domena::telefon(),
-            "tvrtka_email" => Domena::email()
+            "tvrtka_email" => Domena::email(),
+            "valuta" => Domena::valuta()
         ));
         $email_slanje_tvrtka->Posalji();
 
