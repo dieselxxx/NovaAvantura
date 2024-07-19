@@ -22,3 +22,4 @@ Rute::sve('slika/kategorija', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Slika_
 Rute::sve('kolacic/index', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kolacic_Kontroler::class, 'index']);
 Rute::sve('kolacic/osobnipodatci', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kolacic_Kontroler::class, 'osobnipodatci']);
 Rute::sve('kosarica/narudzba', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kosarica_Kontroler::class, 'narudzba']);
+Rute::sve('kosarica/ispravno', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kosarica_Kontroler::class, 'ispravno']);

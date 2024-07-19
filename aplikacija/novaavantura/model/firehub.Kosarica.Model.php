@@ -198,4 +198,16 @@ final class Kosarica_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Unisti sesiju.
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return void
+     */
+    public function unistiSesiju ():void {
+
+        $this->sesija->unisti();
+
+    }
+
 }
