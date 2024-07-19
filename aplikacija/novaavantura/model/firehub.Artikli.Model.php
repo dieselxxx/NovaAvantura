@@ -122,7 +122,7 @@ final class Artikli_Model extends Master_Model {
         $rezultat = $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
                     SELECT
-                       artikliview.ID, Naziv, artikliview.Link, artikliview.Opis,
+                       artikliview.ID, artikliview.Naziv, artikliview.Link, artikliview.Opis,
                        ".Domena::sqlCijena()." AS Cijena,
                        ".Domena::sqlCijenaAkcija()." AS CijenaAkcija,
                        IF(".Domena::sqlCijenaAkcija()." > 0, ".Domena::sqlCijenaAkcija().", ".Domena::sqlCijena().") AS CijenaIliAkcija,

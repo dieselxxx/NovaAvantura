@@ -253,6 +253,51 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $placanje = Validacija::Broj(_('Plaćanje'), $placanje, 1, 1);
         $napomena = Validacija::String("Vaša napomena", $napomena, 0, 1000);
 
+        // kosarica artikli
+        $artikli_html = '';
+        if (!empty($this->kosarica_artikli)) {
+
+            foreach ($this->kosarica_artikli as $kosarica_artikal) {
+
+                $artikal = array_filter($this->artikli, function ($value) use ($kosarica_artikal) {
+                    return $value['ID'] === $kosarica_artikal['id'];
+                });
+                $artikal = $artikal[array_key_first($artikal)];
+
+                if ($kosarica_artikal['id'] !== 0) {
+
+                    $artikli_html .= <<<Artikal
+
+                        <tr>
+                            <td align='center'>{$kosarica_artikal['velicina']}</td>
+                            <td align='center' style='text-align: center;'>{$kosarica_artikal['velicinaNaziv']}</td>
+                            <td align='left'>{$artikal['Naziv']}</td>
+                            <td align='center' style='text-align: center;'>{$kosarica_artikal['kolicina']} kom</td>
+                            <td align='right' style='text-align: right;'>{$artikal['CijenaHTML']}</td>
+                        </tr>
+
+                    Artikal;
+
+                } else {
+
+                    $artikli_html .= <<<Artikal
+
+                        <tr>
+                            <td align='center'></td>
+                            <td align='center' style='text-align: center;'></td>
+                            <td align='left'>{$artikal['Naziv']}</td>
+                            <td align='center' style='text-align: center;'>{$kosarica_artikal['kolicina']} kom</td>
+                            <td align='right' style='text-align: right;'>{$artikal['CijenaHTML']}</td>
+                        </tr>
+
+                    Artikal;
+
+                }
+
+            }
+
+        }
+
         // pošalji email
         $email_slanje_tvrtka = new Email('narudzba.html');
         $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
@@ -273,16 +318,14 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "placanje" => $placanje == 1 ? 'Plaćanje pouzećem - gotovina' : 'Virman',
             "napomena" => $napomena,
             "datum" =>  date("d.m.Y"),
-            "artikli" => $email_artikli_korisnik,
-            "total_kolicina" => $total_kolicina . ' kom',
-            "total_cijena" => $total_cijena_format . ' '.Domena::valuta(),
+            "artikli" => $artikli_html,
+            "total_kolicina" => $this->total_kolicina . ' kom',
+            "total_cijena" => $this->total_cijena . ' '.Domena::valuta(),
             "tvrtka_adresa" => Domena::adresa(),
             "tvrtka_telefon" => Domena::telefon(),
-            "tvrtka_mobitel" => Domena::mobitel()
+            "tvrtka_email" => Domena::email()
         ));
         $email_slanje_tvrtka->Posalji();
-
-        throw new \Error(('xy'));
 
     }
 
