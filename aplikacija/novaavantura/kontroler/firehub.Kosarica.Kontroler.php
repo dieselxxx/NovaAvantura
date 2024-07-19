@@ -28,6 +28,8 @@ use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
  */
 final class Kosarica_Kontroler extends Master_Kontroler {
 
+    protected Model $kosarica;
+
     protected array $artikli;
     private array $kosarica_artikli = [];
 
@@ -43,11 +45,11 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     public function __construct () {
 
-        $kosarica = $this->model(Kosarica_Model::class);
+        $this->kosarica = $this->model(Kosarica_Model::class);
         $this->artikli = $this->model(Artikli_Model::class)->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
 
         // kosarica artikli
-        $this->kosarica_artikli = $kosarica->artikliID();
+        $this->kosarica_artikli = $this->kosarica->artikliID();
         if (!empty($this->kosarica_artikli)) {
 
             foreach ($this->kosarica_artikli as $kosarica_artikal) {
@@ -181,9 +183,24 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     public function narudzba ():Sadrzaj {
 
+        if ($this->kosarica->brojArtikala() === 0) header("Location: /");
+
         return sadrzaj()->datoteka('narudzba.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Narudžba',
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Narudžba'
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Narudžba',
+            'domena_oibpdv' => Domena::OIBPDV(),
+            'domena_valuta' => Domena::valuta(),
+            'forma_ime' => $_POST['ime'] ?? '',
+            'forma_email' => $_POST['email'] ?? '',
+            'forma_telefon' => $_POST['telefon'] ?? '',
+            'forma_grad' => $_POST['grad'] ?? '',
+            'forma_adresa' => $_POST['adresa'] ?? '',
+            'forma_zip' => $_POST['zip'] ?? '',
+            'forma_tvrtka' => $_POST['tvrtka'] ?? '',
+            'forma_oib' => $_POST['oib'] ?? '',
+            'forma_tvrtka_adresa' => $_POST['tvrtkaadresa'] ?? '',
+            'forma_placanje' => $_POST['placanje'] ?? '',
+            'forma_napomena' => $_POST['napomena'] ?? '',
         ]));
 
     }

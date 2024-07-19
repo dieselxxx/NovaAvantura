@@ -4,7 +4,7 @@
 
     <form class="podatci" method="post" enctype="multipart/form-data" action="">
 
-        <section class="greska">{{narudzba_greska}}</section>
+        <section class="greska">{{greska}}</section>
 
         <section class="podatci">
             <h3>Vaši podatci :</h3>
@@ -13,12 +13,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="ime" value="{{forma_ime}}" maxlength="100" autocomplete="off" placeholder="Upišite vaše ime i prezime" required="required">
-                            <span class="naslov">
-                                <span>Vaše ime i prezime</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#potpis"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -26,12 +20,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="email" value="{{forma_email}}" maxlength="100" autocomplete="off" placeholder="Upišite vaš email">
-                            <span class="naslov">
-                                <span>Email</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#email"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -39,12 +27,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="tel" name="telefon" value="{{forma_telefon}}" autocomplete="off" placeholder="Upišite vaš broj telefona" required="required">
-                            <span class="naslov">
-                                <span>Broj telefona</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#telefon"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -58,12 +40,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="adresa" value="{{forma_adresa}}" maxlength="300" autocomplete="off" placeholder="Upišite vašu adresu za isporuku">
-                            <span class="naslov">
-                                <span>Adresa</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#adresa"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -71,12 +47,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="number" name="zip" value="{{forma_zip}}" min="00001" step="1" autocomplete="off" placeholder="Upišite vaš poštanski broj">
-                            <span class="naslov">
-                                <span>Poštanski broj</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#zip"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -84,12 +54,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="grad" value="{{forma_grad}}" maxlength="300" autocomplete="off" placeholder="Upišite vaš grad za isporuku">
-                            <span class="naslov">
-                                <span>Grad</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#grad"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -103,17 +67,19 @@
                         <div class="radio">
                             <input id="1" type="radio" name="placanje" value="1" checked>
                             <label for="1">
-                                <!--<img src="/novaavantura/resursi/grafika/simboli/virman.jpg" />-->
                                 <span>Plaćanje pouzećem - gotovina</span>
                             </label>
                             <div id="popup2" class="popup">
                                 <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#info"></use></svg>
                             </div>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <div class="radio">
                             <input id="2" type="radio" name="placanje" value="2">
                             <label for="2">
-                                <!--<img src="/novaavantura/resursi/grafika/simboli/gotovina.jpg" />-->
                                 <span>Virman</span>
                             </label>
                             <div id="popup1" class="popup">
@@ -124,11 +90,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>
-                            <label data-boja="boja" class="kontrolni_okvir">
-                                <span>Potreban mi je R1 račun</span>
-                                <input name="r1" type="checkbox"><span class="kontrolni_okvir"><span class="ukljuceno"></span></span>
-                            </label>
+                        <label class="kontrolni_okvir">
+                            <span>Potreban mi je R1 račun</span>
+                            <input name="r1" type="checkbox">
+                            <span class="checkmark"></span>
                         </label>
                     </td>
                 </tr>
@@ -142,12 +107,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="tvrtka" value="{{forma_tvrtka}}" maxlength="100" autocomplete="off" placeholder="Upišite naziv vaše firme ili obrta">
-                            <span class="naslov">
-                                <span>Naziv firme ili obrta</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#tvrtka"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -155,12 +114,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="oib" value="{{forma_oib}}" autocomplete="off" placeholder="Upišite {{domena_oibpdv}} broj tvrtke">
-                            <span class="naslov">
-                                <span>{{domena_oibpdv}} broj tvrtke</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#oib"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -168,12 +121,6 @@
                     <td>
                         <label data-boja="boja" class="unos">
                             <input type="text" name="tvrtkaadresa" value="{{forma_tvrtka_adresa}}" maxlength="100" autocomplete="off" placeholder="Upišite adresu vaše firme ili obrta">
-                            <span class="naslov">
-                                <span>Adresa firme ili obrta</span>
-                            </span>
-                            <span class="granica"></span>
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#adresa"></use></svg>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -181,16 +128,12 @@
         </section>
 
         <section class="napomena">
+            <h3>Napomena :</h3>
             <table>
                 <tr>
                     <td>
                         <label data-boja="boja" class="tekst">
                             <textarea name="napomena" placeholder="">{{forma_napomena}}</textarea>
-                            <span class="naslov">
-                                <span>Napomena</span>
-                            </span>
-                            <span class="granica"></span>
-                            <span class="upozorenje"></span>
                         </label>
                     </td>
                 </tr>
@@ -198,8 +141,8 @@
         </section>
 
         <section class="posalji">
-            <button class="gumb ikona" data-boja="boja" type="submit" name="naruci">
-                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
+            <button class="gumb crni" data-boja="boja" type="submit" name="naruci">
+                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno"></use></svg>
                 <span>Pošalji narudžbu</span>
             </button>
         </section>

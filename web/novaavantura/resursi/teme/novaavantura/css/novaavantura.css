@@ -135,6 +135,7 @@ main > .sadrzaj > .kosarica > section > span {justify-self: end; font-weight: 10
 main > .sadrzaj > .kosarica > section > span:first-of-type {color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section > span:last-of-type {font-size: 1.5rem;}
 main > .sadrzaj > .kosarica > section > a {justify-self: center;}
+main > .sadrzaj > .narudzba > form > section table {width: 100%;}
 
 footer {position: fixed; left: 0; bottom: 0; right: 0; background-color: white; padding: 5px 0 5px 0;}
 footer > nav {display: flex; justify-content: space-evenly; padding: 0 5px 0 5px;}
@@ -340,19 +341,24 @@ label.select span {font-size: 0.8rem;}
 label.select select {background-color: white; background-image: url('/novaavantura/resursi/grafika/simboli/strelicaDole.svg'); background-position: right 10px center; background-repeat: no-repeat; background-size: auto 50%; width: 170px; font-size: 0.8rem; border: none; color: var(--boja-tekst-svjetlija); outline: none; -moz-appearance: none; -webkit-appearance: none; appearance: none;}
 label.select select::-ms-expand {display: none;}
 label.select select option {background-color: white; font-size: 0.8rem;}
-a.gumb {width: max-content; padding: 12px; font-size: 0.9rem; color: var(--boja-tekst); border: 1px solid var(--boja-granica);}
-a.gumb:hover {background-color: var(--boja-pozadina);}
-a.gumb.crni {background-color: black; text-transform: uppercase; color: white;}
+a.gumb, button.crni {width: max-content; padding: 12px; font-size: 0.9rem; color: var(--boja-tekst); border: 1px solid var(--boja-granica);}
+a.gumb:hover, button.crni:hover {background-color: var(--boja-pozadina);}
+a.gumb.crni, button.crni {background-color: black; text-transform: uppercase; color: white;}
+button.crni span {color: white;}
+button.crni svg {fill: white;}
 
 button {display: flex; justify-content: center; align-items: center; background-color: white; padding: 3px; font-size: 0.9rem; text-transform: uppercase; border: 1px solid var(--boja-granica); cursor: pointer;}
 button:hover {background-color: var(--boja-pozadina);}
 button svg {height: 20px; width: 30px;}
 
-div.artikl div.radio {padding: 3px;}
-div.artikl div.radio > input {display: none; height: 0; width: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
-div.artikl div.radio > input + label {display: inline-block; background-color: white; padding: 10px; font-weight: 100; text-align: center; color: var(--boja-tekst-svjetlija); border: 1px solid var(--boja-granica); cursor: pointer;}
-div.artikl div.radio > input:checked + label {color: var(--boja-tekst); border-color: var(--boja-tekst);}
-div.artikl div.radio > input[disabled] + label {cursor: not-allowed;}
+div.radio {padding: 3px;}
+div.radio > input {display: none; height: 0; width: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
+div.radio > input + label {display: inline-block; background-color: white; padding: 10px; font-weight: 100; text-align: center; color: var(--boja-tekst-svjetlija); border: 1px solid var(--boja-granica); cursor: pointer;}
+div.radio > input:checked + label {color: var(--boja-tekst); border-color: var(--boja-tekst);}
+div.radio > input[disabled] + label {cursor: not-allowed;}
+
+textarea {padding: 5px; height: 200px; width: 100%; border: 1px solid var(--boja-granica); resize: none;}
+textarea:focus-visible {outline: none !important;}
 
 .kontrolni_okvir {display: block; position: relative; margin-bottom: 12px; padding-left: 28px; width: max-content; font-size: 0.8rem; line-height: 20px; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none; user-select: none; cursor: pointer;}
 .kontrolni_okvir input {position: absolute; height: 0; width: 0; opacity: 0; cursor: pointer;}
@@ -393,3 +399,7 @@ svg[data-boja="boja"] {fill: var(--boja-tekst) !important;}
 button[data-boja="boja"], .gumb[data-boja="boja"] {color: var(--boja-tekst);}
 
 #slika_zoom {display: none;}
+
+/** popup **/
+.popup {position: relative; display: inline-block; top: 5px; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+.popup svg {fill: var(--boja-tekst); height: 20px; width: 20px;}
