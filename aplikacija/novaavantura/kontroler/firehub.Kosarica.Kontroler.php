@@ -235,7 +235,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
         session_start();
 
-        //$this->kosarica->unistiSesiju();
+        $this->kosarica->unistiSesiju();
 
         return sadrzaj()->datoteka('narudzba_ispravno.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Narudžba',
