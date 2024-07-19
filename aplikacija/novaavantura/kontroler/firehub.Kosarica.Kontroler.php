@@ -19,6 +19,9 @@ use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Aplikacija\NovaAvantura\Model\Kosarica_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Email;
+use Throwable;
 
 /**
  * ### Košarica
@@ -84,6 +87,22 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                 ];
 
                 $this->total_cijena += Domena::dostavaIznos();
+
+            }
+
+        }
+
+        if (isset($_POST['naruci'])) {
+
+            try {
+
+                $this->naruci();
+
+                header("Location: /kosarica/ispravno");
+
+            } catch (Throwable $greska) {
+
+                $this->greska = $greska->getMessage();
 
             }
 
@@ -202,6 +221,68 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             'forma_placanje' => $_POST['placanje'] ?? '',
             'forma_napomena' => $_POST['napomena'] ?? '',
         ]));
+
+    }
+
+    /**
+     * ### Naruči košarice
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return void
+     */
+    private function naruci ():void {
+
+        $ime = $_POST['ime'];
+        $email = $_POST['email'];
+        $telefon = $_POST['telefon'];
+        $r1 = $_POST['r1'] ?? false;
+        $grad = $_POST['grad'];
+        $adresa = $_POST['adresa'];
+        $zip = $_POST['zip'];
+        $tvrtka = $_POST['tvrtka'];
+        $oib = $_POST['oib'];
+        $tvrtkaadresa = $_POST['tvrtkaadresa'];
+        $placanje = $_POST['placanje'];
+        $napomena = $_POST['napomena'];
+
+        $ime = Validacija::String(_('Vaše ime'), $ime, 2, 100);
+        $telefon = Validacija::String(_('Vaš broj telefona'), $telefon, 5, 20);
+        if($tvrtka <> '') {$tvrtka = Validacija::String(_('Vaša tvrtka'), $tvrtka, 4, 100);}
+        if($oib <> '') {$oib = Validacija::String(_('Vaš OIB \ PDV \ ID tvrtke'), $oib, 1, 20);}
+        if($tvrtkaadresa <> '') {$tvrtkaadresa = Validacija::String(_('Vaša adresa tvrtka'), $tvrtkaadresa, 4, 100);}
+        $placanje = Validacija::Broj(_('Plaćanje'), $placanje, 1, 1);
+        $napomena = Validacija::String("Vaša napomena", $napomena, 0, 1000);
+
+        // pošalji email
+        $email_slanje_tvrtka = new Email('narudzba.html');
+        $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
+        $email_slanje_tvrtka->Adresa(array(
+            array("adresa" => 'danijel.galic@outlook.com', "ime" => 'Danijel Galic')
+        ));
+        $email_slanje_tvrtka->PredlozakKomponente(array(
+            "ime" => $ime,
+            "email" => $email,
+            "telefon" => $telefon,
+            "r1" => $r1 ? 'Potreban R1 račun: <b>da</b>' : '',
+            "grad" => $grad,
+            "adresa" => $adresa,
+            "zip" => $zip,
+            "tvrtka" => $tvrtka ? 'Tvrtka: <b>'.$tvrtka.'</b>': '',
+            "oib" => $oib ? Domena::OIBPDV().': <b>'.$oib.'</b>' : '',
+            "tvrtkaadresa" => $tvrtkaadresa ? 'Adresa tvrtke: <b>'.$tvrtkaadresa.'</b>' : '',
+            "placanje" => $placanje == 1 ? 'Plaćanje pouzećem - gotovina' : 'Virman',
+            "napomena" => $napomena,
+            "datum" =>  date("d.m.Y"),
+            "artikli" => $email_artikli_korisnik,
+            "total_kolicina" => $total_kolicina . ' kom',
+            "total_cijena" => $total_cijena_format . ' '.Domena::valuta(),
+            "tvrtka_adresa" => Domena::adresa(),
+            "tvrtka_telefon" => Domena::telefon(),
+            "tvrtka_mobitel" => Domena::mobitel()
+        ));
+        $email_slanje_tvrtka->Posalji();
+
+        throw new \Error(('xy'));
 
     }
 

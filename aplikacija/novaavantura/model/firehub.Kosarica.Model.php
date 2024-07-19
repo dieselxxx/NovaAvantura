@@ -147,6 +147,12 @@ final class Kosarica_Model extends Master_Model {
 
     }
 
+    /**
+     * ### ID artikla
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return array
+     */
     public function artikliID ():array {
 
         $rezultat = [];
