@@ -344,7 +344,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "datum" =>  date("d.m.Y"),
             "artikli" => $artikli_html,
             "total_kolicina" => $this->total_kolicina . ' kom',
-            "total_cijena" => $this->total_cijena . ' '.Domena::valuta(),
+            "total_cijena" => number_format($this->total_cijena, 2, ',', '.').' '.Domena::valuta(),
             "tvrtka_adresa" => Domena::adresa(),
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
