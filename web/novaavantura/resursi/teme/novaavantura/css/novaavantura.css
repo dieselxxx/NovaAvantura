@@ -60,7 +60,7 @@ main > .sadrzaj > #sadrzaj {padding: 15px 0;}
 main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {height: 30px; font-size: 0.8em;}
 main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
-main > .sadrzaj > .naslovna > .artikli_linkovi {display: flex; justify-content: space-around; margin: auto; padding: 50px 0; width: max-content; font-size: 1.2rem; font-weight: 100;}
+main > .sadrzaj > .naslovna > .artikli_linkovi {display: flex; flex-wrap: wrap; justify-content: center; row-gap: 15px; margin: auto; padding: 50px 0; font-size: 1.2rem; font-weight: 100;}
 main > .sadrzaj > .naslovna > .artikli_linkovi a {padding: 0 30px;}
 main > .sadrzaj > .naslovna > .artikli {display: flex; flex-direction: column; gap: 5rem; margin-bottom: 20px;}
 main > .sadrzaj > .naslovna > .artikli > section > .artikli {display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 50px 15px; justify-items: center;}
