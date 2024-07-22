@@ -17,6 +17,7 @@ namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Aplikacija\NovaAvantura\Model\Rotator_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
 
 /**
  * ### Naslovna
@@ -35,6 +36,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
     public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
         $rotator = $this->model(Rotator_Model::class);
+        $artikli_model = $this->model(Artikli_Model::class);
 
         // rotator
         $obavijest_html = '';
@@ -61,9 +63,41 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
         }
 
+        // novi artikli
+        $artikli_novo_html = '';
+        $artikli = $artikli_model->artikli(
+            'novo', 0, 6, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+        );
+        foreach ($artikli as $artikal) {
+
+            $artikli_novo_html .= <<<Artikal
+            
+                <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                    <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                    <a class="slika" href="/artikl/{$artikal['Link']}">
+                        {$artikal['PopustHTML']}
+                        {$artikal['NovoHTML']}
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                    </a>
+                    <span class="brand">
+                        <button type="submit" class="gumb ikona" name="favorit_dodaj">
+                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                        </button>
+                        {$artikal['Brand']}
+                     </span>
+                    <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
+                    <span class="cijena">{$artikal['CijenaHTML']}</span>
+                    <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>
+                </form>
+
+            Artikal;
+
+        }
+
         return sadrzaj()->datoteka('naslovna.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Naslovna',
-            'obavijesti' => $obavijest_html
+            'obavijesti' => $obavijest_html,
+            'artikli_novo' => $artikli_novo_html,
         ]));
 
     }
