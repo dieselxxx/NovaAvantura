@@ -63,10 +63,41 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
         }
 
+        // izdvojeni artikli
+        $artikli_izdvojeno_html = '';
+        $artikli = $artikli_model->artikli(
+            'izdvojeno', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+        );
+        foreach ($artikli as $artikal) {
+
+            $artikli_izdvojeno_html .= <<<Artikal
+            
+                <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                    <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                    <a class="slika" href="/artikl/{$artikal['Link']}">
+                        {$artikal['PopustHTML']}
+                        {$artikal['NovoHTML']}
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                    </a>
+                    <span class="brand">
+                        <button type="submit" class="gumb ikona" name="favorit_dodaj">
+                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                        </button>
+                        {$artikal['Brand']}
+                     </span>
+                    <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
+                    <span class="cijena">{$artikal['CijenaHTML']}</span>
+                    <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>
+                </form>
+
+            Artikal;
+
+        }
+
         // novi artikli
         $artikli_novo_html = '';
         $artikli = $artikli_model->artikli(
-            'novo', 0, 6, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+            'novo', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
         );
         foreach ($artikli as $artikal) {
 
@@ -94,10 +125,75 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
         }
 
+        // outlet artikli
+        $artikli_outlet_html = '';
+        $artikli = $artikli_model->artikli(
+            'outlet', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+        );
+        foreach ($artikli as $artikal) {
+
+            $artikli_outlet_html .= <<<Artikal
+            
+                <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                    <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                    <a class="slika" href="/artikl/{$artikal['Link']}">
+                        {$artikal['PopustHTML']}
+                        {$artikal['NovoHTML']}
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                    </a>
+                    <span class="brand">
+                        <button type="submit" class="gumb ikona" name="favorit_dodaj">
+                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                        </button>
+                        {$artikal['Brand']}
+                     </span>
+                    <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
+                    <span class="cijena">{$artikal['CijenaHTML']}</span>
+                    <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>
+                </form>
+
+            Artikal;
+
+        }
+
+        // akcija artikli
+        $artikli_akcija_html = '';
+        $artikli = $artikli_model->artikli(
+            'akcija', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+        );
+        foreach ($artikli as $artikal) {
+
+            $artikli_akcija_html .= <<<Artikal
+            
+                <form class="artikal" method="post" enctype="multipart/form-data" action="">
+                    <input type="hidden" name="ID" value="{$artikal['ID']}" />
+                    <a class="slika" href="/artikl/{$artikal['Link']}">
+                        {$artikal['PopustHTML']}
+                        {$artikal['NovoHTML']}
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                    </a>
+                    <span class="brand">
+                        <button type="submit" class="gumb ikona" name="favorit_dodaj">
+                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                        </button>
+                        {$artikal['Brand']}
+                     </span>
+                    <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
+                    <span class="cijena">{$artikal['CijenaHTML']}</span>
+                    <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>
+                </form>
+
+            Artikal;
+
+        }
+
         return sadrzaj()->datoteka('naslovna.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Naslovna',
             'obavijesti' => $obavijest_html,
+            'artikli_izdvojeno' => $artikli_izdvojeno_html,
             'artikli_novo' => $artikli_novo_html,
+            'artikli_outlet' => $artikli_outlet_html,
+            'artikli_akcija' => $artikli_akcija_html
         ]));
 
     }
