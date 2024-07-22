@@ -1,3 +1,4 @@
+html {scroll-behavior: smooth;}
 body {font-family: 'bc', sans-serif; font-size: 1rem; color: var(--boja-tekst);}
 a {color: var(--boja-tekst-svjetlija); transition: 0.3s;}
 a:hover {color: var(--boja-tekst);}

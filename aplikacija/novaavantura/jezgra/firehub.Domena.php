@@ -260,40 +260,15 @@ final class Domena {
      */
     public static function podnozjeDostava ():string {
 
-        if (self::Hr()) {
-
-            return '
-                <ul>
-                    <li>
-                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
-                        <span>Besplatna dostava za narudzbe preko 149 €.</span>
-                    </li>
-                    <li>
-                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
-                        <span>Dostava za narudzbe manje od 149 € iznosi 6 €.</span>
-                    </li>
-                    <li>
-                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
-                        <span>Dostava brzom poštom u roku 24-48 h.</span>
-                    </li>
-                    <li>
-                        <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
-                        <span>Mogućnost plaćanja pouzećem, općom uplatnicom, internet bankarstvom.</span>
-                    </li>
-                </ul>
-            ';
-
-        }
-
         return '
                 <ul>
                     <li>
                         <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
-                        <span>Besplatna dostava za narudzbe preko 149 KM.</span>
+                        <span>Besplatna dostava za narudzbe preko '.Domena::dostavaLimit().' €.</span>
                     </li>
                     <li>
                         <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
-                        <span>Dostava za narudzbe manje od 149 KM iznosi 9 KM.</span>
+                        <span>Dostava za narudzbe manje od '.Domena::dostavaLimit().' € iznosi '.Domena::dostavaIznos().' €.</span>
                     </li>
                     <li>
                         <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#strelica_desno_duplo2"></use></svg>
