@@ -55,7 +55,7 @@ final class Rotator_Model extends Master_Model {
                 ORDER BY obavijesti.Redoslijed
             ")
             ->napravi()
-            ->niz();
+            ->niz() ?: [];
 
     }
 
