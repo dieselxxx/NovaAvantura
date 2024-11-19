@@ -104,7 +104,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $kategorije_html = '';
         foreach ($kategorije as $kategorija) {
 
-            $kategorije_html .= "<option value='{$kategorija['ID']}'>{$kategorija['Kategorija']}</option>";
+            $roditelj = $kategorija['Roditelj'] ? $kategorija['Roditelj'].' -> ' : '';
+
+            $kategorije_html .= "<option value='{$kategorija['ID']}'>{$roditelj}{$kategorija['Kategorija']}</option>";
 
         }
 
@@ -220,7 +222,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $kategorije_html = '';
         foreach ($kategorije as $kategorija) {
 
-            $kategorije_html .= "<option value='{$kategorija['ID']}'>{$kategorija['Kategorija']}</option>";
+            $roditelj = $kategorija['Roditelj'] ? $kategorija['Roditelj'].' -> ' : '';
+
+            $kategorije_html .= "<option value='{$kategorija['ID']}'>{$roditelj}{$kategorija['Kategorija']}</option>";
 
         }
 
