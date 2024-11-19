@@ -58,11 +58,13 @@ final class Artikl_Model extends Master_Model {
                     artikli.Ba, artikli.Hr, artikli.Outlet, artikli.OutletHr, artikli.Novo,
                     artikli.Aktivan, artikli.Izdvojeno,
                     artikli.KategorijaID, kategorije.Kategorija,
+                    artikli.BrandID, brandovi.Brand,
                     artikli.GratisBa, gratisBa.Naziv AS GratisBaNaziv, artikli.GratisHr, gratisHr.Naziv AS GratisHrNaziv,
                     (SELECT ID FROM slikeartikal WHERE ClanakID = $id ORDER BY Zadana DESC, ID LIMIT 1) AS Slika,
                     (SELECT Slika FROM slikeartikal WHERE ClanakID = $id ORDER BY Zadana DESC, ID LIMIT 1) AS SlikaNaziv
                 FROM artikli
                 LEFT JOIN kategorije ON kategorije.ID = artikli.KategorijaID
+                LEFT JOIN brandovi ON brandovi.ID = artikli.BrandID
                 LEFT JOIN artikli gratisBa ON gratisBa.ID = artikli.GratisBa
                 LEFT JOIN artikli gratisHr ON gratisHr.ID = artikli.GratisHr
                 WHERE artikli.ID = $id
@@ -234,8 +236,11 @@ final class Artikl_Model extends Master_Model {
         $hr = Validacija::Potvrda(_('HR'), $hr);
         if ($hr == "on") {$hr = 1;} else {$hr = 0;}
 
-        $kategorija= $_REQUEST['kategorija'] ?? 0;
+        $kategorija = $_REQUEST['kategorija'] ?? 0;
         $kategorija = Validacija::Broj(_('Kategorija artikla'), $kategorija, 1, 7);
+
+        $brand = $_REQUEST['brand'] ?? 0;
+        $brand = Validacija::Broj(_('Brand artikla'), $brand, 1, 7);
 
         $gratis_ba = $_REQUEST['gratisBa'] ?? 0;
         $gratis_ba = Validacija::Broj(_('Gratis BA'), $gratis_ba, 1, 7);
@@ -262,6 +267,7 @@ final class Artikl_Model extends Master_Model {
                 'Izdvojeno' => $izdvojeno,
                 'Aktivan' => $aktivno,
                 'KategorijaID' => $kategorija,
+                'BrandID' => $brand,
                 'GratisBa' => $gratis_ba,
                 'GratisHr' => $gratis_hr
             ])->gdje('ID', '=', $id)->napravi();
@@ -297,7 +303,8 @@ final class Artikl_Model extends Master_Model {
                 'Novo' => $novo,
                 'Izdvojeno' => $izdvojeno,
                 'Aktivan' => $aktivno,
-                'KategorijaID' => $kategorija
+                'KategorijaID' => $kategorija,
+                'BrandID' => $brand
             ])->napravi();
 
         }

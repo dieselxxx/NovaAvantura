@@ -16,6 +16,7 @@ namespace FireHub\Aplikacija\Administrator\Kontroler;
 
 use FireHub\Aplikacija\Administrator\Model\Artikl_Model;
 use FireHub\Aplikacija\Administrator\Model\Kategorije_Model;
+use FireHub\Aplikacija\Administrator\Model\Brandovi_Model;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Aplikacija\Administrator\Model\Artikli_Model;
 use FireHub\Jezgra\HTTP\Enumeratori\Vrsta;
@@ -107,6 +108,16 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         }
 
+        // brandovi
+        $brandovi_model = $this->model(Brandovi_Model::class);
+        $brandovi = $brandovi_model->lista(limit_zapisa_po_stranici: 100);
+        $brandovi_html = '';
+        foreach ($brandovi as $brand) {
+
+            $brandovi_html .= "<option value='{$brand['ID']}'>{$brand['Brand']}</option>";
+
+        }
+
         // slike
         $slike = $artikl_model->slike($id);
         $slike_html = '';
@@ -178,6 +189,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
             'kategorija' => ''.$artikl['KategorijaID'].'',
             'kategorija_naziv' => $artikl['Kategorija'] ?? '',
             'kategorije' => $kategorije_html,
+            'brand' => ''.$artikl['BrandID'].'',
+            'brand_naziv' => $artikl['Brand'] ?? '',
+            'brandovi' => $brandovi_html,
             'slike' => $slike_html,
             'slikeOpcija' => $slikeOpcija,
             'cijene' => $cijene_html,
@@ -210,9 +224,20 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         }
 
+        // $brandovi
+        $brandovi_html = $this->model(Brandovi_Model::class);
+        $brandovi = $brandovi_html->lista(limit_zapisa_po_stranici: 100);
+        $brandovi_html = '';
+        foreach ($brandovi as $brand) {
+
+            $brandovi_html .= "<option value='{$brand['ID']}'>{$brand['Brand']}</option>";
+
+        }
+
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('artikli/novi.html')->podatci([
             'id' => '0',
-            'kategorije' => $kategorije_html
+            'kategorije' => $kategorije_html,
+            'brandovi' => $brandovi_html
         ]);
 
     }

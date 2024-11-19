@@ -104,6 +104,19 @@
                 <tr>
                     <td>
                         <label data-boja="boja" class="select">
+                            <select class="input-select" name="brand" required>
+                                <option value="{{brand}}">{{brand_naziv}}</option>
+                                {{brandovi}}
+                            </select>
+                            <span class="select-odabrano"></span>
+                            <span class="select-granica"></span>
+                            <label class="select-odaberite">Brand</label>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label data-boja="boja" class="select">
                             <select class="input-select" name="gratisBa">
                                 <option value="{{gratisBa}}">{{gratisBa_naziv}}</option>
                                 <option value="0">== bez gratis artikla ==</option>
