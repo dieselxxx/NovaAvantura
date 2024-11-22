@@ -78,7 +78,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
         $artikl_zaliha = $this->artikl->zaliha($trenutni_artikl['ID']);
         $artikl_zaliha_html = '<h5>Odaberite veličinu:</h5><ul>';
         $artikl_kosarica_velicine = '';
-        foreach ($artikl_zaliha as $zaliha) {
+        foreach ($artikl_zaliha as $zaliha_kljuc => $zaliha) {
 
             if ((int)$zaliha['StanjeSkladisteTF'] === 1 && count($artikl_zaliha) === 1 && $artikl_zaliha[0]['Velicina'] === 'uni') {
 
@@ -99,7 +99,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
                 $artikl_zaliha_html .= '
                 <li>
                     <div class="sifraArtikla radio" data-tippy-content="'.$zaliha['artiklikarakteristikeSifra'].'">
-                        <input id="'.$zaliha['Velicina'].'" type="radio" name="velicina" value="'.$zaliha['artiklikarakteristikeSifra'].'">
+                        <input id="'.$zaliha['Velicina'].'" type="radio" name="velicina" value="'.$zaliha['artiklikarakteristikeSifra'].'" '.($zaliha_kljuc === 0 ? 'checked' : '').'>
                         <label for="'.$zaliha['Velicina'].'">'.$zaliha['Velicina'].'</label>
                     </div>
                 </li>';
