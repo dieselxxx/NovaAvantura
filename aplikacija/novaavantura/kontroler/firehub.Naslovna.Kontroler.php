@@ -52,10 +52,10 @@ final class Naslovna_Kontroler extends Master_Kontroler {
             <a class='swiper-slide' $link>
                 <img
                     srcset=\"
-                        /slika/baner/{$obavijest['Obavijest']}/550/1920 1000w,
-                        /slika/baner/{$obavijest['Obavijest']}/286/1000 768w,
-                        /slika/baner/{$obavijest['Obavijest']}/220/768 600w\"
-                    src=\"/slika/baner/{$obavijest['Obavijest']}/550/1920 1000w\"
+                        /slika/baner/{$obavijest['Obavijest']}/700/1920 1000w,
+                        /slika/baner/{$obavijest['Obavijest']}/363/1000 768w,
+                        /slika/baner/{$obavijest['Obavijest']}/279/768 600w\"
+                    src=\"/slika/baner/{$obavijest['Obavijest']}/700/1920 1000w\"
                     alt=\"\" loading=\"lazy\"
                 />
             </a>

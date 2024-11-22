@@ -58,7 +58,7 @@ main div.traka .drugi:hover {-webkit-animation-play-state: paused; -moz-animatio
 main div.traka .traka-scroll:hover>.prvi:not(:hover) {-webkit-animation-play-state: paused; -moz-animation-play-state: paused; -o-animation-play-state: paused; animation-play-state: paused;}
 main > .sadrzaj > #sadrzaj {padding: 15px 0;}
 main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {height: 30px; font-size: 0.8em;}
-main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 550px;}
+main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 700px;}
 main > .sadrzaj > .naslovna > div.div {height: 550px;}
 main > .sadrzaj > .naslovna > .artikli_linkovi {display: flex; flex-wrap: wrap; justify-content: center; row-gap: 15px; margin: auto; padding: 50px 0; font-size: 1.2rem; font-weight: 100;}
 main > .sadrzaj > .naslovna > .artikli_linkovi a {padding: 0 30px;}
