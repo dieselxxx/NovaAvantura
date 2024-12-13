@@ -861,7 +861,7 @@ $_ArtiklIzbrisiSliku = function ($slika) {
  */
 $(function() {
 
-    $("form[data-oznaka=\"obavijest\"]").on('submit', 'form[data-oznaka="obavijest"]', function() {
+    $("body").on('submit', 'form[data-oznaka="obavijest"]', function() {
 
         console.log(this);
 
