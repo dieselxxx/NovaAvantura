@@ -161,7 +161,7 @@ $(function() {
 
     $("body").on('submit', 'form.slika', function() {
 
-        let oznaka = $(this).closest('form').data("oznaka");
+        let oznaka = $(this).data("oznaka");
 
         console.log(oznaka);
 
