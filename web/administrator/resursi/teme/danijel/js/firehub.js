@@ -161,7 +161,7 @@ $(function() {
 
     $("body").on('submit', 'form.slika', function() {
 
-        let oznaka = $(this).closest('form').data("oznaka");
+        let oznaka = $(this).data("oznaka");
 
         $_SpremiSlike('form[data-oznaka="' + oznaka + '"]');
 
@@ -211,7 +211,7 @@ $_SpremiSlike = function ($url) {
             dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
         },
         complete: function(odgovor) {
-            location.reload();
+            //location.reload();
         }
     });
 
