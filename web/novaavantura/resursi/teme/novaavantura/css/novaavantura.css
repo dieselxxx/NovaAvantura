@@ -340,8 +340,8 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 600px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 250px;}
-    main > .sadrzaj > .naslovna > div.div {height: 250px;}
+    main > .sadrzaj > .naslovna > .rotator {height: 600px;}
+    main > .sadrzaj > .naslovna > div.div {height: 600px;}
 
     #gdpr div {right: 15px}
 
@@ -349,8 +349,8 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 480px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 200px;}
-    main > .sadrzaj > .naslovna > div.div {height: 200px;}
+    main > .sadrzaj > .naslovna > .rotator {height: 480px;}
+    main > .sadrzaj > .naslovna > div.div {height: 480px;}
 
 }
 
