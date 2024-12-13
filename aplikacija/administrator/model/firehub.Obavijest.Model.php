@@ -119,7 +119,7 @@ final class Obavijest_Model extends Master_Model {
         $obavijest = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    obavijesti.ID, obavijesti.Obavijest
+                    obavijesti.ID, obavijesti.Obavijest, obavijesti.Obavijest2
                 FROM obavijesti
                 WHERE obavijesti.ID = $id
                 LIMIT 1
@@ -136,6 +136,7 @@ final class Obavijest_Model extends Master_Model {
             ->napravi();
 
         unlink(FIREHUB_ROOT.'web/novaavantura/resursi/grafika/baneri/'.$obavijest->redak()['Obavijest']);
+        unlink(FIREHUB_ROOT.'web/novaavantura/resursi/grafika/baneri/'.$obavijest->redak()['Obavijest2']);
 
         return 'ok';
 
@@ -159,6 +160,31 @@ final class Obavijest_Model extends Master_Model {
         $this->bazaPodataka->tabela('obavijesti')->umetni([
             'Obavijest' => $datoteka->ImeDatoteke()
         ])->napravi();
+
+    }
+
+    /**
+     * ### Dodaj malu sliku obavijesti
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function dodajSliku (int $id) {
+
+        // prenesi sliku
+        $datoteka = new PrijenosDatoteka('slika');
+        $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'baneri'.RAZDJELNIK_MAPE);
+        $datoteka->NovoIme($id . '_');
+        $datoteka->DozvoljeneVrste(array('image/jpeg','image/wepb','image/png'));
+        $datoteka->DozvoljenaVelicina(5000);
+        $datoteka->PrijenosDatoteke();
+        $datoteka->SlikaDimenzije(768, 768);
+
+        $this->bazaPodataka
+            ->sirovi("
+            UPDATE obavijesti
+            SET Obavijest2 = '{$datoteka->ImeDatoteke()}'
+            WHERE ClanakID = '$id'
+        ")
+            ->napravi();
 
     }
 

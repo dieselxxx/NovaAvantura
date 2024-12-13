@@ -205,4 +205,35 @@ final class Obavijesti_Kontroler extends Master_Kontroler {
 
     }
 
+    /**
+     * ### Spremi malu sliku
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function dodajSliku (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Obavijest_Model::class);
+            $artikl->dodajSliku($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Uspješno spremljeno')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
 }
