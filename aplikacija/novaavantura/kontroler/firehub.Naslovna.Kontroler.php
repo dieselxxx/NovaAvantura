@@ -55,7 +55,8 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                         /slika/baner/{$obavijest['Obavijest']}/700/1920 1000w,
                         /slika/baner/{$obavijest['Obavijest2']}/768/768 768w,
                         /slika/baner/{$obavijest['Obavijest2']}/600/600 600w\"
-                    src=\"/slika/baner/{$obavijest['Obavijest2']}/700/1920 1000w\"
+                    sizes=\"(max-width: 600px) 600px, 1000px\"
+                    src=\"/slika/baner/{$obavijest['Obavijest']}/700/1920 1000w\"
                     alt=\"\" loading=\"lazy\"
                 />
             </a>
