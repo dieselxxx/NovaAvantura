@@ -239,7 +239,7 @@ $_SpremiSlike = function ($url) {
             dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
         },
         complete: function(odgovor) {
-            location.reload();
+            //location.reload();
         }
     });
 
