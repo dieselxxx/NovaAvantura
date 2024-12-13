@@ -50,7 +50,12 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
             $obavijest_html .= "
             <a class='swiper-slide' $link>
-                <img
+                <picture>
+                    <source srcset=\"/slika/baner/{$obavijest['Obavijest']}/700/1920\" media=\"(min-width: 768px)\" />
+                    <source srcset=\"/slika/baner/{$obavijest['Obavijest2']}/768/768\" media=\"(max-width: 768px)\" />
+                    <img src=\"/slika/baner/{$obavijest['Obavijest']}/700/1920\" alt=\"\" />
+                </picture>
+                <!--<img
                     srcset=\"
                         /slika/baner/{$obavijest['Obavijest']}/700/1920 1000w,
                         /slika/baner/{$obavijest['Obavijest2']}/768/768 768w,
@@ -58,7 +63,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     sizes=\"(max-width: 600px) 600px, 1000px\"
                     src=\"/slika/baner/{$obavijest['Obavijest']}/700/1920 1000w\"
                     alt=\"\" loading=\"lazy\"
-                />
+                />-->
             </a>
             ";
 
