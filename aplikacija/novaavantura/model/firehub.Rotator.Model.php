@@ -48,7 +48,7 @@ final class Rotator_Model extends Master_Model {
         return $this->bazaPodataka->tabela('obavijesti')
             ->sirovi("
                 SELECT 
-                    Obavijest, artikliview.Link, obavijesti.Link".Domena::sqlTablica()." AS URL
+                    Obavijest, Obavijest2, artikliview.Link, obavijesti.Link".Domena::sqlTablica()." AS URL
                 FROM obavijesti
                 LEFT JOIN artikliview ON artikliview.ID = obavijesti.ArtikalID
                 WHERE obavijesti.".Domena::sqlTablica()." = 1
