@@ -163,6 +163,8 @@ $(function() {
 
         let oznaka = $(this).data("oznaka");
 
+        console.log(oznaka);
+
         $_SpremiSlike('form[data-oznaka="' + oznaka + '"]');
 
         return false;
