@@ -863,6 +863,8 @@ $(function() {
 
     $("body").on('submit', 'form[data-oznaka="obavijest"]', function() {
 
+        console.log(this);
+
         let oznaka = $(this).data("oznaka");
 
         $_ObavijestSpremiSliku('form[data-oznaka="' + oznaka + '"]');
