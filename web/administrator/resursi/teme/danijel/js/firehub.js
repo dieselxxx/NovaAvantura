@@ -163,6 +163,34 @@ $(function() {
 
         let oznaka = $(this).data("oznaka");
 
+        console.log(this);
+
+        $_SpremiSlike('form[data-oznaka="' + oznaka + '"]');
+
+        return false;
+
+    }).on('change','form.slika input[type="file"]', function() {
+
+        let oznaka = $(this).closest('form').data("oznaka");
+
+        $('form[data-oznaka="' + oznaka + '"]').submit();
+
+        return false;
+
+    });
+
+});
+/**
+ * Spremi slike2.
+ */
+$(function() {
+
+    $("body").on('submit', 'form.slika2', function() {
+
+        let oznaka = $(this).data("oznaka");
+
+        console.log(this);
+
         $_SpremiSlike('form[data-oznaka="' + oznaka + '"]');
 
         return false;
