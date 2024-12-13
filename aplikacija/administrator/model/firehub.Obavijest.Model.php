@@ -182,7 +182,7 @@ final class Obavijest_Model extends Master_Model {
             ->sirovi("
             UPDATE obavijesti
             SET Obavijest2 = '{$datoteka->ImeDatoteke()}'
-            WHERE ClanakID = '$id'
+            WHERE ID = '$id'
         ")
             ->napravi();
 
