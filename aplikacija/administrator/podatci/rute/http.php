@@ -50,3 +50,4 @@ Rute::sve('obavijesti/uredi', [\FireHub\Aplikacija\Administrator\Kontroler\Obavi
 Rute::sve('obavijesti/spremi', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'spremi']);
 Rute::sve('obavijesti/izbrisi', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'izbrisi']);
 Rute::sve('obavijesti/dodaj', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'dodaj']);
+Rute::sve('obavijesti/dodajsliku', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'dodajSliku']);
