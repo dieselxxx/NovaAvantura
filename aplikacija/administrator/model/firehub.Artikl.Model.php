@@ -274,7 +274,7 @@ final class Artikl_Model extends Master_Model {
 
             $this->bazaPodataka->tabela('slikeartikal')->azuriraj([
                 'Zadana' => 0
-            ])->napravi();
+            ])->gdje('ID', '=', $zadanaSlika)->napravi();
 
             $this->bazaPodataka->tabela('slikeartikal')->azuriraj([
                 'Zadana' => 1
