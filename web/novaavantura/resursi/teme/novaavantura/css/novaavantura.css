@@ -345,17 +345,12 @@ footer > section a svg {height: 50px; width: 50px;}
 
 }
 
-@media only screen and (max-width: 500px) {
-
-    main > .sadrzaj > .naslovna > .artikli > section > .artikli {grid-template-columns: 1fr;}
-    main > .sadrzaj > .artikli > section > div.artikli {grid-template-columns: 1fr;}
-
-}
-
 @media only screen and (max-width: 480px) {
 
     main > .sadrzaj > .naslovna > .rotator {height: 480px;}
     main > .sadrzaj > .naslovna > div.div {height: 480px;}
+    main > .sadrzaj > .naslovna > .artikli > section > .artikli {grid-template-columns: 1fr;}
+    main > .sadrzaj > .artikli > section > div.artikli {grid-template-columns: 1fr;}
 
 }
 
