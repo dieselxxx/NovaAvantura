@@ -320,28 +320,27 @@ final class Artikl_Model extends Master_Model {
 
         $slike = $this->_slikaArrayFormat($_FILES['slika']);
 
-        var_dump($slike);
+        foreach ($slike as $slika) {
 
-        exit();
+            // prenesi sliku
+            $datoteka = new PrijenosDatoteka2($slika);
+            $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE);
+            $datoteka->NovoIme($id . '_');
+            $datoteka->DozvoljeneVrste(array('image/jpeg','image/wepb','image/png'));
+            $datoteka->DozvoljenaVelicina(1000);
+            $datoteka->PrijenosDatoteke();
+            $datoteka->SlikaDimenzije(550, 700);
 
-        // prenesi sliku
-        //$datoteka = new PrijenosDatoteka('slika');
-        $datoteka = new PrijenosDatoteka2($_FILES['slika']);
-        $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE);
-        $datoteka->NovoIme($id . '_');
-        $datoteka->DozvoljeneVrste(array('image/jpeg','image/wepb','image/png'));
-        $datoteka->DozvoljenaVelicina(1000);
-        $datoteka->PrijenosDatoteke();
-        $datoteka->SlikaDimenzije(550, 700);
-
-        $this->bazaPodataka
-            ->sirovi("
+            $this->bazaPodataka
+                ->sirovi("
             INSERT INTO slikeartikal
             (ClanakID, Slika, Zadana)
             VALUES
             ('$id', '{$datoteka->ImeDatoteke()}', 0)
         ")
-            ->napravi();
+                ->napravi();
+
+        }
 
     }
 
