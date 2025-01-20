@@ -113,7 +113,7 @@ final class Kosarica_Model extends Master_Model {
         if (!isset($this->sesija->procitaj('kosarica')[$velicina]))
             return false;
 
-        var_dump($this->sesija->procitaj('kosarica'));
+        var_dump($this->sesija->procitaj('kosarica')[$velicina]);
 
         $this->sesija->dodaj('kosarica', $velicina, $vrijednost);
 
