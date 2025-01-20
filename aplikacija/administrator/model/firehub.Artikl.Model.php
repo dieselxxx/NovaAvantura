@@ -17,6 +17,7 @@ namespace FireHub\Aplikacija\Administrator\Model;
 use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
 use FireHub\Aplikacija\Administrator\Jezgra\PrijenosDatoteka;
+use FireHub\Aplikacija\Administrator\Jezgra\PrijenosDatoteka2;
 use FireHub\Jezgra\Kontejner\Greske\Kontejner_Greska;
 
 /**
