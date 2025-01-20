@@ -131,6 +131,8 @@ final class Kosarica_Model extends Master_Model {
 
         $this->sesija->izbrisiNiz('kosarica', $velicina);
 
+        unset($_SESSION['kosarica'][$velicina]);
+
         var_dump($_SESSION['kosarica']);
 
         return true;
