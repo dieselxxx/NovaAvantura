@@ -90,6 +90,8 @@ final class Kosarica_Model extends Master_Model {
      */
     public function izmijeni (string $velicina = '', int $vrijednost = 0):bool {
 
+        session_start();
+
         $velicina_baza = $this->bazaPodataka->tabela('artiklikarakteristike')
             ->sirovi("
                 SELECT
