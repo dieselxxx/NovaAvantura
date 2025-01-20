@@ -82,7 +82,7 @@ main > .sadrzaj > .artikli > section > div.opcije {grid-column: 2 / 3; grid-row:
 main > .sadrzaj > .artikli > section > div.opcije > div {justify-self: end; align-self: center; font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikli > section > div.artikli {grid-column: 2 / 3; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 50px 15px; justify-items: center;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal,
-main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal {display: grid; grid-template-columns: 275px; grid-template-rows: 350px;}
+main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal {display: grid; grid-template-columns: 242px; grid-template-rows: 309px;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a,
 main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal a {color: var(--boja-tekst);}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal a.slika,
