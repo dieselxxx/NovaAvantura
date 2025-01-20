@@ -38,6 +38,8 @@ final class Kosarica_Model extends Master_Model {
         private BazaPodataka $bazaPodataka
     ) {
 
+        session_start();
+
         parent::__construct();
 
     }
@@ -132,8 +134,6 @@ final class Kosarica_Model extends Master_Model {
         $this->sesija->izbrisiNiz('kosarica', $velicina);
 
         unset($_SESSION['kosarica'][$velicina]);
-
-        var_dump($_SESSION['kosarica']);
 
         return true;
 
