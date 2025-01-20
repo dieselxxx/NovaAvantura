@@ -318,7 +318,9 @@ final class Artikl_Model extends Master_Model {
      */
     public function dodajSliku (int $id) {
 
-        var_dump($_FILES['slika']);
+        $slike = $this->_slikaArrayFormat($_FILES['slika']);
+
+        var_dump($slike);
 
         exit();
 
@@ -537,6 +539,26 @@ final class Artikl_Model extends Master_Model {
             }
 
         }
+
+    }
+
+    /**
+     * ### Format array slike
+     * @since 0.1.0.pre-alpha.M1
+     */
+    private function _slikaArrayFormat (array $slike) {
+
+        $file_ary = [];
+        $file_count = count($slike['name']);
+        $file_keys = array_keys($slike);
+
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $slike[$key][$i];
+            }
+        }
+
+        return $file_ary;
 
     }
 
