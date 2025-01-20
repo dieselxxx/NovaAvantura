@@ -129,9 +129,9 @@ final class Kosarica_Model extends Master_Model {
 
         if (!isset($this->sesija->procitaj('kosarica')[$velicina])) return false;
 
-        var_dump($this->sesija->izbrisiNiz('kosarica', $velicina));
-
         $this->sesija->izbrisiNiz('kosarica', $velicina);
+
+        var_dump($_SESSION['kosarica']);
 
         return true;
 
