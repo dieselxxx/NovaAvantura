@@ -319,6 +319,7 @@ final class Artikl_Model extends Master_Model {
 
         // prenesi sliku
         $datoteka = new PrijenosDatoteka('slika');
+        var_dump($datoteka);
         $datoteka->Putanja(FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'artikli'.RAZDJELNIK_MAPE);
         $datoteka->NovoIme($id . '_');
         $datoteka->DozvoljeneVrste(array('image/jpeg','image/wepb','image/png'));
