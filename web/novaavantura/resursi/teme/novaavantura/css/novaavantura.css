@@ -353,6 +353,16 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > div.div {height: 480px;}
     main > .sadrzaj > .naslovna > .artikli > section > .artikli {grid-template-columns: 1fr;}
     main > .sadrzaj > .artikli > section > div.artikli {grid-template-columns: 1fr;}
+    main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal {grid-template-columns: 227px; grid-template-rows: 289px;}
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    main > .sadrzaj > .naslovna > .rotator {height: 400px;}
+    main > .sadrzaj > .naslovna > div.div {height: 400px;}
+    main > .sadrzaj > .naslovna > .artikli > section > .artikli {grid-template-columns: 1fr;}
+    main > .sadrzaj > .artikli > section > div.artikli {grid-template-columns: 1fr;}
 
 }
 
