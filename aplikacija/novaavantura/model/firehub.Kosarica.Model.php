@@ -38,8 +38,6 @@ final class Kosarica_Model extends Master_Model {
         private BazaPodataka $bazaPodataka
     ) {
 
-        session_start();
-
         parent::__construct();
 
     }
@@ -128,6 +126,8 @@ final class Kosarica_Model extends Master_Model {
      * @return bool Da li je artikl izbrisan iz košarice.
      */
     public function izbrisi (string $velicina = ''):bool {
+
+        session_start();
 
         if (!isset($this->sesija->procitaj('kosarica')[$velicina])) return false;
 
