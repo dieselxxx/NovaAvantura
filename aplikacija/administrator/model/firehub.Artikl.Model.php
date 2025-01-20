@@ -318,6 +318,10 @@ final class Artikl_Model extends Master_Model {
      */
     public function dodajSliku (int $id) {
 
+        var_dump($_FILES['slika']);
+
+        exit();
+
         // prenesi sliku
         //$datoteka = new PrijenosDatoteka('slika');
         $datoteka = new PrijenosDatoteka2($_FILES['slika']);
