@@ -351,6 +351,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
     main > .sadrzaj > .naslovna > .rotator {height: 480px;}
     main > .sadrzaj > .naslovna > div.div {height: 480px;}
+    main > .sadrzaj > .artikli > section > div.artikli > .artikal,
     main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal {grid-template-columns: 188px; grid-template-rows: 239px;}
 
 }
@@ -359,7 +360,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
     main > .sadrzaj > .naslovna > .rotator {height: 400px;}
     main > .sadrzaj > .naslovna > div.div {height: 400px;}
-    main > .sadrzaj > .naslovna > .artikli > section > .artikli {grid-template-columns: 1fr;}
+    main > .sadrzaj > .artikli > section > div.artikli > .artikal,
     main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal {grid-template-columns: 150px; grid-template-rows: 191px;}
 
 }
