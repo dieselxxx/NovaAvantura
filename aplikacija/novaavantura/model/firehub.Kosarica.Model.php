@@ -168,14 +168,14 @@ final class Kosarica_Model extends Master_Model {
             $redak = $this->bazaPodataka->tabela('artiklikarakteristike')
                 ->sirovi("
                 SELECT
-                    ID, ArtikalID, Velicina
+                    ID, ArtikalID, Velicina, Barkod
                 FROM artiklikarakteristike
                 WHERE artiklikarakteristike.Sifra = '$velicina'
             ")
                 ->napravi()->redak();
 
             $rezultat[$redak['ID']] = [
-                'id' => $redak['ArtikalID'], 'kolicina' => $kolicina, 'velicina' => $velicina,
+                'id' => $redak['ArtikalID'], 'kolicina' => $kolicina, 'velicina' => $velicina, 'barkod' => $redak['Barkod'],
                 'velicinaNaziv' => $redak['Velicina']
             ];
 
