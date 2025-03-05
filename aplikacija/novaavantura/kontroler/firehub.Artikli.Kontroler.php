@@ -166,7 +166,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $velicine = $artikli_model->velicine($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $brand);
         $velicina_meni = '';
         foreach ($velicine as $velicina1) {
-            $checked = mb_strtolower($velicina1['Velicina']) === $velicina
+            $checked = mb_strtolower($velicina1['Velicina']) === (string)$velicina
                 ? 'checked': '';
             $velicina_meni .= '
                 <li>
