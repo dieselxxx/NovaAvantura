@@ -239,13 +239,13 @@ final class Artikli_Model extends Master_Model {
      * @param float $cijena_do <p>
      * Cijena do.
      * </p>
-     * @param string $velicina <p>
+     * @param int|string $velicina <p>
      * Veličina.
      * </p>
      *
      * @return array Niz brandova.
      */
-    public function brandovi (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, string $velicina) {
+    public function brandovi (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, int|string $velicina) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -372,7 +372,7 @@ final class Artikli_Model extends Master_Model {
      * @param float $cijena_do <p>
      * Cijena do.
      * </p>
-     * @param string $velicina <p>
+     * @param int|string $velicina <p>
      * Veličina.
      * </p>
      * @param string $brand <p>
@@ -381,7 +381,7 @@ final class Artikli_Model extends Master_Model {
      *
      * @return int Broj pronađenih redaka.
      */
-    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, string $velicina, string $brand) {
+    public function ukupnoRedaka (int|string $kategorija, int|string $trazi, float $cijena_od, float $cijena_do, int|string $velicina, string $brand) {
 
         $filtar = match ($kategorija) {
             'izdvojeno' => "Izdvojeno = 1",
@@ -447,7 +447,7 @@ final class Artikli_Model extends Master_Model {
      * @param float $cijena_do <p>
      * Cijena do.
      * </p>
-     * @param string $velicina <p>
+     * @param int|string $velicina <p>
      * Veličina.
      * </p>
      * @param string $brand <p>
@@ -470,7 +470,7 @@ final class Artikli_Model extends Master_Model {
      */
     public function ukupnoRedakaHTML (
         int|string $kategorija, int|string $trazi,
-        float $cijena_od, float $cijena_do, string $velicina, string $brand,
+        float $cijena_od, float $cijena_do, int|string $velicina, string $brand,
         int $limit, string $url = '/', int $broj_stranice = 1, string $boja = 'boja'
     ):array {
 
