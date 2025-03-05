@@ -15,7 +15,6 @@
 namespace FireHub\Aplikacija\NovaAvantura\Model;
 
 use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
-use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 
 /**
  * ### Kategorije model
@@ -77,6 +76,47 @@ final class Kategorije_Model extends Master_Model {
                         'ID' => 0, 'Kategorija' => 'Kategorija ne postoji', 'Opis' => '', 'Slika' => '', 'Link' => ''
                     ]
         };
+
+    }
+
+    /**
+     * ### Dohvati kategoriju po artiklu
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id <p>
+     * ID artikla.
+     * </p>
+     *
+     * @return array Kategorija.
+     */
+    public function kategorijaPoArtiklu (int $id):array {
+
+        $kategorija = $this->bazaPodataka->tabela('artikliview')
+            ->odaberi(['KategorijaID'])
+            ->gdje('ID', '=', $id)
+            ->napravi()->redak()['KategorijaID'];
+
+        return $this->bazaPodataka->tabela('kategorijeview')
+            ->odaberi(['ID', 'Kategorija', 'Opis', 'Slika', 'Link'])
+            ->gdje('ID', '=', $kategorija)
+            ->napravi()->redak();
+
+    }
+
+    public function kategorijeRoditelji (int $id, array $rezultat = []):array {
+
+        $roditelj = $this->bazaPodataka->tabela('kategorijeview')
+            ->odaberi(['Roditelj', 'Kategorija', 'Link'])
+            ->gdje('ID', '=', $id)
+            ->napravi()->redak();
+
+        $rezultat[] = $roditelj;
+
+        if (!$roditelj) return [];
+
+        if ($roditelj['Roditelj'] === '0') return array_reverse($rezultat);
+
+        return $this->kategorijeRoditelji((int)$roditelj['Roditelj'], $rezultat);
 
     }
 

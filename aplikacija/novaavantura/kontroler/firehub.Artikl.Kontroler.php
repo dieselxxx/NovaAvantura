@@ -62,6 +62,16 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         }
 
+        // roditelji
+        $trenutna_kategorija = $this->kategorije->kategorijaPoArtiklu((int)$trenutni_artikl['ID']);
+        $roditelji = $this->kategorije->kategorijeRoditelji((int)$trenutna_kategorija['ID']);
+        $roditelji_html = '';
+        foreach ($roditelji as $roditelj) {
+
+            $roditelji_html .= '<a href="/artikli/'.$roditelj['Link'].'">'.$roditelj['Kategorija'].'</a> \\ ';
+
+        }
+
         // slike
         $artikl_slike = $this->artikl->slike($trenutni_artikl['ID']);
         $artikl_slike_html = '';
@@ -136,7 +146,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         return sadrzaj()->datoteka('artikl.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutni_artikl['Naziv'],
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikl \\ '.$trenutni_artikl['Naziv'],
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ '.$roditelji_html.' '.$trenutni_artikl['Naziv'],
             'artikl_naziv' => $trenutni_artikl['Naziv'],
             'artikl_id' => $trenutni_artikl['ID'],
             'artikl_slika' => ''.$trenutni_artikl['Slika'],

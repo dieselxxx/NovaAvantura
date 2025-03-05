@@ -62,6 +62,16 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $artikli_model = $this->model(Artikli_Model::class);
         $limit = 15;
 
+        // roditelji
+        $roditelji = $this->kategorije->kategorijeRoditelji((int)$trenutna_kategorija['ID']);
+        array_pop($roditelji);
+        $roditelji_html = '';
+        foreach ($roditelji as $roditelj) {
+
+            $roditelji_html .= '<a href="/artikli/'.$roditelj['Link'].'">'.$roditelj['Kategorija'].'</a> \\ ';
+
+        }
+
         // cijena
         $cijena_od = is_float($cijena_od) ? $cijena_od : 0;
         $cijena_do = is_float($cijena_do) ? $cijena_do : 100000;
@@ -179,7 +189,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Artikli \\ '.$trenutna_kategorija['Kategorija'],
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ '.$roditelji_html.' '.$trenutna_kategorija['Kategorija'],
             'kategorija_naziv' => $trenutna_kategorija['Kategorija'],
             'kategorija_opis' => $trenutna_kategorija['Opis'] ?? '',
             'artikli' => $artikli_html,
