@@ -5,10 +5,10 @@ header #trazi section {display: grid; grid-template-columns: auto minmax(400px, 
 header #trazi section h4 {grid-column: 2 / 3; grid-row: 1 / 2;}
 header #trazi section > a {grid-column: 2 / 3; grid-row: 1 / 2; justify-self: end;}
 header #trazi section > label.unos {grid-column: 2 / 3; grid-row: 2 / 3;}
-header .traka {grid-column: 1 / 2; grid-row: 1 / 2; display: grid; grid-template-columns: auto minmax(400px, 1200px) auto;}
+header .traka {grid-column: 1 / 2; grid-row: 1 / 2; display: grid; grid-template-columns: auto minmax(200px, 1200px) auto;}
 header .traka nav.osnovno {grid-column: 2 / 3; grid-row: 1 / 2;}
 header .traka nav.info {grid-column: 2 / 3; grid-row: 1 / 2; justify-self: end;}
-header .meni {grid-column: 1 / 2; grid-row: 2 / 3; display: grid; grid-template-columns: auto minmax(400px, 1200px) auto;}
+header .meni {grid-column: 1 / 2; grid-row: 2 / 3; display: grid; grid-template-columns: auto minmax(200px, 1200px) auto;}
 header .meni > ul {grid-column: 2 / 3; grid-row: 1 / 2;}
 
 main {grid-column: 1 / 4; grid-row: 2 / 3; display: grid; grid-template-columns: auto minmax(320px, 1200px) auto;}
