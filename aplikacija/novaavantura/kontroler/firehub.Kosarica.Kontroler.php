@@ -291,6 +291,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                     $artikli_html .= <<<Artikal
 
                         <tr>
+                            <td align='center'>{$artikal['Barkod']}</td>
                             <td align='center'>{$kosarica_artikal['velicina']}</td>
                             <td align='center' style='text-align: center;'>{$kosarica_artikal['velicinaNaziv']}</td>
                             <td align='left'>{$artikal['Naziv']}</td>

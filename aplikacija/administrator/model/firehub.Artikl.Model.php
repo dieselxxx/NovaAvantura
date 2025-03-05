@@ -158,7 +158,8 @@ final class Artikl_Model extends Master_Model {
         $karakteristike = $this->bazaPodataka->tabela('artiklikarakteristike')
             ->sirovi("
                 SELECT
-                    artiklikarakteristike.ID, artiklikarakteristike.Sifra AS artiklikarakteristikeSifra, Velicina
+                    artiklikarakteristike.ID, artiklikarakteristike.Sifra AS artiklikarakteristikeSifra,
+                    artiklikarakteristike.Velicina, artiklikarakteristike.Barkod
                 FROM artiklikarakteristike
                 LEFT JOIN stanjeskladista ON stanjeskladista.Sifra = artiklikarakteristike.Sifra
                 WHERE ArtikalID = '$id'
@@ -400,6 +401,7 @@ final class Artikl_Model extends Master_Model {
             $karakeristikaID = Validacija::Broj(_('ID šifre'), $karakeristikaID, 1, 10);
             $sifra = Validacija::String(_('Šifra artikla'), $sifra, 1, 50);
             $velicina = Validacija::String(_('Veličina artikla'), $_POST['velicina'][$karakeristikaID], 1, 50);
+            $barkod = Validacija::String(_('Barkod artikla'), $_POST['barkod'][$karakeristikaID], 0, 13);
 
             $postoji = $this->bazaPodataka
                 ->sirovi("
@@ -409,17 +411,17 @@ final class Artikl_Model extends Master_Model {
 
             if ($postoji->redak()['broj'] == '0') {
 
-                $sql = $this->bazaPodataka
+                $this->bazaPodataka
                     ->sirovi("
-                        INSERT INTO artiklikarakteristike (ArtikalID, Sifra, Velicina) VALUES ('$id', '$sifra', '$velicina')
+                        INSERT INTO artiklikarakteristike (ArtikalID, Sifra, Velicina, Barkod) VALUES ('$id', '$sifra', '$velicina', '$barkod')
                     ")
                     ->napravi();
 
             } else {
 
-                $sql = $this->bazaPodataka
+                $this->bazaPodataka
                     ->sirovi("
-                        UPDATE artiklikarakteristike SET Sifra = '$sifra', Velicina = '$velicina' WHERE ID = '$karakeristikaID' AND ArtikalID = '$id'
+                        UPDATE artiklikarakteristike SET Sifra = '$sifra', Velicina = '$velicina', Barkod = '$barkod' WHERE ID = '$karakeristikaID' AND ArtikalID = '$id'
                     ")
                     ->napravi();
 

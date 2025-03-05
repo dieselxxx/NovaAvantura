@@ -409,6 +409,17 @@ final class Artikli_Kontroler extends Master_Kontroler {
                         </label>
                     </td>
                     <td>
+                        <label data-boja="boja" class="unos">
+                            <input type="text" name="barkod['.$karakteristika['ID'].']" value="'.$karakteristika['Barkod'].'" maxlength="13" autocomplete="off">
+                            <span class="naslov">
+                                <span>Barkod</span>
+                            </span>
+                            <span class="granica"></span>
+                            <svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#barkod"></use></svg>
+                            <span class="upozorenje"></span>
+                        </label>
+                    </td>
+                    <td>
                         <button type="button" class="ikona" onclick="$_ArtiklSifreIzbrisi(this, '.$karakteristika['ID'].', '.$id.')"><svg><use xlink:href="/administrator/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg><span></span></button>
                     </td>
                 </tr>
