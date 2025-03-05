@@ -114,7 +114,7 @@ final class Kategorije_Model extends Master_Model {
      * Rezultati.
      * </p>
      *
-     * @return array Kategorija.
+     * @return array Kategorije.
      */
     public function kategorijeRoditelji (int $id, array $rezultat = []):array {
 
@@ -130,6 +130,25 @@ final class Kategorije_Model extends Master_Model {
         if ($roditelj['Roditelj'] === '0') return array_reverse($rezultat);
 
         return $this->kategorijeRoditelji((int)$roditelj['Roditelj'], $rezultat);
+
+    }
+
+    /**
+     * ### Dohvati djecu kategorije
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id <p>
+     * ID kategorije.
+     * </p>
+     *
+     * @return array Kategorije.
+     */
+    public function kategorijeDjeca (int $id):array|false {
+
+        return $this->bazaPodataka->tabela('kategorijeview')
+            ->odaberi(['Kategorija', 'Link'])
+            ->gdje('Roditelj', '=', $id)
+            ->napravi()->niz();
 
     }
 

@@ -139,6 +139,27 @@ final class Artikli_Kontroler extends Master_Kontroler {
         // prikazujem
         $prikazujem = 'Prikazujem '.$artikli_model->ukupnoRedaka($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina, $brand).' artikala';
 
+        // podkategorije meni
+        $podkategorije = $this->kategorije->kategorijeDjeca((int)$trenutna_kategorija['ID']);
+        $podkategorije_meni = '';
+        if ($podkategorije) {
+
+            $podkategorije_meni .= '
+            <section class="podkategorije">
+                <h4 class="accordion">Podkategorije</h4>
+                <ul class="panel">';
+
+            foreach ($podkategorije as $podkategorija) {
+                $podkategorije_meni .= '<li><a href="'.$podkategorija['Link'].'">&gt '.$podkategorija['Kategorija'].'</a></li>';
+            }
+
+            $podkategorije_meni .= '
+                </ul>
+            </section>';
+
+
+        }
+
         // brandovi meni
         $brandovi = $artikli_model->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
         $brand_meni = '';
@@ -196,6 +217,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
             'navigacija' => $navigacija_html,
             "poredaj_izbornik" => $poredaj_izbornik,
             "prikazujem" => $prikazujem,
+            "podkategorije" => $podkategorije_meni,
             "brandovi_meni" => $brandovi_meni,
             "velicine_meni" => $velicine_meni,
             "cijena_min" => number_format((int)min($cijena)),
