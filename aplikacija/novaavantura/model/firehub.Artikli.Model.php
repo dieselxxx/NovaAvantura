@@ -76,7 +76,7 @@ final class Artikli_Model extends Master_Model {
      */
     public function artikli (
         int|string $kategorija, int $pomak, int $limit, int|string $trazi,
-        float $cijena_od, float $cijena_do, string $velicina, string $brand,
+        float $cijena_od, float $cijena_do, int|string $velicina, string $brand,
         string $poredaj, string $poredaj_redoslijed
     ):array {
 
