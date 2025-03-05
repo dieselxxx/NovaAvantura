@@ -398,7 +398,7 @@ label.select select option {background-color: white; font-size: 0.8rem;}
 a.gumb, button.crni {width: max-content; padding: 12px; font-size: 0.9rem; color: var(--boja-tekst); border: 1px solid var(--boja-granica);}
 a.gumb:hover, button.crni:hover {background-color: var(--boja-pozadina);}
 a.gumb.crni, button.crni {background-color: black; text-transform: uppercase; color: white;}
-a.gumb.ikona {display: flex; padding: 10px;}
+.gumb.ikona svg {display: flex; padding: 10px;}
 button.crni span {color: white;}
 button.crni svg {fill: white;}
 
