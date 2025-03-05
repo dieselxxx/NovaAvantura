@@ -106,7 +106,7 @@ main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal span.cije
 main > .sadrzaj > .artikli > section > div.artikli > .artikal span.cijena_30_dana,
 main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal span.cijena_30_dana {font-size: 0.7rem; font-weight: 100;}
 main > .sadrzaj > .artikli > section > nav.navigacija {grid-column: 2 / 3;}
-main > .sadrzaj > .artikli > section > nav.navigacija > ul {display: flex; flex-flow: wrap; justify-content: center; width: auto;}
+main > .sadrzaj > .artikli > section > nav.navigacija > ul {display: flex; flex-flow: wrap; justify-content: center; align-items: center; width: auto;}
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li {padding: 10px; line-height: 20px;}
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg {fill: var(--boja-tekst-svjetlija); height: 20px; width: 20px;}
 main > .sadrzaj > .artikli > section > nav.navigacija > ul li svg:hover {fill: var(--boja-tekst);}
