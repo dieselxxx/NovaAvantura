@@ -103,6 +103,19 @@ final class Kategorije_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Dohvati roditelje kategorije
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id <p>
+     * ID kategorije.
+     * </p>
+     * @param array $rezultat <p>
+     * Rezultati.
+     * </p>
+     *
+     * @return array Kategorija.
+     */
     public function kategorijeRoditelji (int $id, array $rezultat = []):array {
 
         $roditelj = $this->bazaPodataka->tabela('kategorijeview')

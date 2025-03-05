@@ -54,7 +54,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
      */
     public function index (
         string $kontroler = '', string $kategorija = 'sve kategorije', int|string $trazi = 'svi artikli',
-        float|string $cijena_od = 'sve', float|string $cijena_do = 'sve', string $velicina = 'sve', string $brand = 'sve',
+        float|string $cijena_od = 'sve', float|string $cijena_do = 'sve', int|string $velicina = 'sve', string $brand = 'sve',
         string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1
     ):Sadrzaj {
 
