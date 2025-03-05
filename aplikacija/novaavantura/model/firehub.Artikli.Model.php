@@ -123,13 +123,13 @@ final class Artikli_Model extends Master_Model {
             ->sirovi("
                     WITH RECURSIVE kategorije(ID, Link) AS
                     (
-                        select ID, Link
-                        from kategorijeview where Link = '".$kategorija."'
-                        union all 
-                        select i.ID, i.Link
-                        from kategorijeview i 
-                        join kategorije on i.Roditelj = kategorije.ID
-                    ) 
+                        SELECT ID, Link
+                        FROM kategorijeview where Link = '".$kategorija."'
+                        UNION ALL
+                        SELECT i.ID, i.Link
+                        FROM kategorijeview i
+                        JOIN kategorije ON i.Roditelj = kategorije.ID
+                    )
                     SELECT
                        artikliview.ID, artikliview.Naziv, artikliview.Link, artikliview.Opis,
                        ".Domena::sqlCijena()." AS Cijena,
@@ -253,7 +253,7 @@ final class Artikli_Model extends Master_Model {
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
             'sve kategorije' => 'artikliview.ID <> 0',
-            default => "kategorijeview.Link = '$kategorija'"
+            default => "kategorijeview.Link IN (SELECT Link FROM kategorije)"
         };
 
         $cijena_od = match ($cijena_od) {
@@ -272,6 +272,15 @@ final class Artikli_Model extends Master_Model {
 
         return $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
+                WITH RECURSIVE kategorije(ID, Link) AS
+                (
+                    SELECT ID, Link
+                    FROM kategorijeview where Link = '".$kategorija."'
+                    UNION ALL
+                    SELECT i.ID, i.Link
+                    FROM kategorijeview i
+                    JOIN kategorije ON i.Roditelj = kategorije.ID
+                )
                 SELECT
                     brandovi.Brand
                 FROM artikliview
@@ -320,7 +329,7 @@ final class Artikli_Model extends Master_Model {
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
             'sve kategorije' => 'artikliview.ID <> 0',
-            default => "kategorijeview.Link = '$kategorija'"
+            default => "kategorijeview.Link IN (SELECT Link FROM kategorije)"
         };
 
         $cijena_od = match ($cijena_od) {
@@ -339,6 +348,15 @@ final class Artikli_Model extends Master_Model {
 
         return $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
+                WITH RECURSIVE kategorije(ID, Link) AS
+                (
+                    SELECT ID, Link
+                    FROM kategorijeview where Link = '".$kategorija."'
+                    UNION ALL
+                    SELECT i.ID, i.Link
+                    FROM kategorijeview i
+                    JOIN kategorije ON i.Roditelj = kategorije.ID
+                )
                 SELECT
                     artiklikarakteristike.Velicina
                 FROM artiklikarakteristike
@@ -389,7 +407,7 @@ final class Artikli_Model extends Master_Model {
             'outlet' => Domena::sqlOutlet() . " = 1",
             'novo' => "Novo = 1",
             'sve kategorije' => 'artikliview.ID <> 0',
-            default => "kategorijeview.Link = '$kategorija'"
+            default => "kategorijeview.Link IN (SELECT Link FROM kategorije)"
         };
 
         $cijena_od = match ($cijena_od) {
@@ -413,6 +431,15 @@ final class Artikli_Model extends Master_Model {
 
         return $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
+                WITH RECURSIVE kategorije(ID, Link) AS
+                (
+                    SELECT ID, Link
+                    FROM kategorijeview where Link = '".$kategorija."'
+                    UNION ALL
+                    SELECT i.ID, i.Link
+                    FROM kategorijeview i
+                    JOIN kategorije ON i.Roditelj = kategorije.ID
+                )
                 SELECT
                     Naziv
                 FROM artikliview
