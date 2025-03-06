@@ -40,7 +40,15 @@
     </form>
 
 </div>
+<script type="text/javascript" src="/novaavantura/resursi/teme/novaavantura/js/popperjs.js"></script>
+<script type="text/javascript" src="/novaavantura/resursi/teme/novaavantura/js/tippy.js"></script>
 <script async type="text/javascript" src="/novaavantura/resursi/teme/novaavantura/js/zumiranje.js"></script>
+<script type="text/javascript">
+    tippy('.sifraArtikla', {
+        delay: [1000, 20],
+        touch: ["hold", 500]
+    });
+</script>
 <script async type="text/javascript">
     window.onload = function () {
         $(".slike a").on('click', function () {
