@@ -156,4 +156,33 @@ final class Slika_Kontroler extends Master_Kontroler {
 
     }
 
+    /**
+     * ### Brand
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param string $kontroler [optional] <p>
+     * Trenutni kontroler.
+     * </p>
+     * @param string $metoda [optional] <p>
+     * Trenutna metoda.
+     * </p>
+     * @param string $slika [optional] <p>
+     * Trenutna slika.
+     * </p>
+     *
+     * @throws Kontejner_Greska Ukoliko se ne može spremiti instanca Slike.
+     *
+     * @return Slika_Interface Objekt slike.
+     */
+    #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
+    public function brand (string $kontroler = '', string $metoda = '', string $slika = '', int $visina = 50, int $sirina = 50):Slika_Interface {
+
+        return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE .'grafika'.RAZDJELNIK_MAPE.'brandovi'.RAZDJELNIK_MAPE.$slika)
+            ->dimenzije($visina, $sirina)
+            ->kvaliteta(9)
+            ->vrsta(\FireHub\Jezgra\Komponente\Slika\Enumeratori\Vrsta::PNG)
+            ->napravi();
+
+    }
+
 }

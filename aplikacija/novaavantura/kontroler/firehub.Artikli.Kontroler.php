@@ -87,6 +87,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $artikli_html = '';
         foreach ($artikli as $artikal) {
 
+            $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
+
             $artikli_html .= <<<Artikal
             
                 <form class="artikal" method="post" enctype="multipart/form-data" action="">
@@ -100,6 +102,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
                             <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
+                        {$brand_slika}
                         {$artikal['Brand']}
                      </span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>

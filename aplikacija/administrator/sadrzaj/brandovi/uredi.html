@@ -1,4 +1,4 @@
-<form data-oznaka="brand" data-sifra="{{id}}" method="post" enctype="multipart/form-data">
+<form data-oznaka="brand" data-sifra="{{id}}" method="post" enctype="multipart/form-data" action="/administrator/brandovi/dodajsliku/{{id}}">
 
     <fieldset class="detalji">
         <legend>Brand</legend>
@@ -24,8 +24,33 @@
                     </label>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label>
+                        <div class="input_slika">
+                            <label for="slika">
+                                <a class="gumb" data-boja="boja">Zamijeni sliku</a>
+                            </label>
+                            <input type="file" name="slika" id="slika" accept="image/jpeg,image/png,image/webp">
+                        </div>
+                    </label>
+                </td>
+            </tr>
             <tr class="poruka">
                 <td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <fieldset class="detalji">
+        <legend>Slika kategorije (50px x 50px)</legend>
+        <table class="tabela">
+            <tbody>
+            <tr>
+                <td>
+                    <img src="/slika/brand/{{slika}}" alt="" width="50px" height="50px" />
                 </td>
             </tr>
             </tbody>

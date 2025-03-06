@@ -54,7 +54,7 @@ final class Brand_Model extends Master_Model {
         $brand = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    brandovi.ID, brandovi.Brand
+                    brandovi.ID, brandovi.Brand, brandovi.Slika
                 FROM brandovi
                 WHERE brandovi.ID = $id
                 LIMIT 1
@@ -116,7 +116,48 @@ final class Brand_Model extends Master_Model {
 
         }
 
+        $putanja = FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'brandovi'.RAZDJELNIK_MAPE;
+        $rezultat = $this->bazaPodataka->tabela('brandovi')->odaberi([
+            'Slika'
+        ])->gdje(
+            'ID', '=', $id
+        )->napravi()->redak();
+        @unlink($putanja.$rezultat['Slika']);
+
         $this->bazaPodataka->tabela('brandovi')->izbrisi()->gdje(
+            'ID', '=', $id
+        )->napravi();
+
+    }
+
+    /**
+     * ### Dodaj sliku branda
+     * @since 0.1.0.pre-alpha.M1
+     */
+    public function dodajSliku (int $id) {
+
+        $putanja = FIREHUB_ROOT.konfiguracija('sustav.putanje.web').'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE.'grafika'.RAZDJELNIK_MAPE.'brandovi'.RAZDJELNIK_MAPE;
+
+        // prenesi sliku
+        $datoteka = new PrijenosDatoteka('slika');
+        $datoteka->Putanja($putanja);
+        $datoteka->DozvoljeneVrste(array('image/jpeg', 'image/png', 'image/webp'));
+        $datoteka->DozvoljenaVelicina(1000);
+        $datoteka->NovoIme();
+        $datoteka->PrijenosDatoteke();
+        $datoteka->SlikaDimenzije(50, 50);
+
+        $rezultat = $this->bazaPodataka->tabela('brandovi')->odaberi([
+            'Slika'
+        ])->gdje(
+            'ID', '=', $id
+        )->napravi()->redak();
+
+        @unlink($putanja.$rezultat['Slika']);
+
+        $this->bazaPodataka->tabela('brandovi')->azuriraj([
+            'Slika' => $datoteka->ImeDatoteke()
+        ])->gdje(
             'ID', '=', $id
         )->napravi();
 

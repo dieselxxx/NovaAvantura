@@ -87,7 +87,8 @@ final class Brandovi_Kontroler extends Master_Kontroler {
 
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('brandovi/uredi.html')->podatci([
             'id' => $brand['ID'],
-            'naziv' => $brand['Brand']
+            'naziv' => $brand['Brand'],
+            'slika' => $brand['Slika'] ?? '',
         ]);
 
     }
@@ -153,6 +154,37 @@ final class Brandovi_Kontroler extends Master_Kontroler {
             return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
                 'Validacija' => 'da',
                 'Poruka' => _('Postavke spremljene')
+            ]);
+
+        } catch (Greska $greska) {
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'ne',
+                'Poruka' => $greska->getMessage()
+            ]);
+
+        }
+
+    }
+
+    /**
+     * ### Spremi sliku branda
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return Sadrzaj
+     */
+    #[Zaglavlja(vrsta: Vrsta::JSON)]
+    public function dodajSliku (string $kontroler = '', string $metoda = '', int $id = 0):Sadrzaj {
+
+        try {
+
+            // model
+            $artikl = $this->model(Brand_Model::class);
+            $artikl->dodajSliku($id);
+
+            return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
+                'Validacija' => 'da',
+                'Poruka' => _('Uspješno spremljeno')
             ]);
 
         } catch (Greska $greska) {

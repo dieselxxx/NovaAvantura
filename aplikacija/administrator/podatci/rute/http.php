@@ -44,6 +44,7 @@ Rute::sve('brandovi/uredi', [\FireHub\Aplikacija\Administrator\Kontroler\Brandov
 Rute::sve('brandovi/spremi', [\FireHub\Aplikacija\Administrator\Kontroler\Brandovi_Kontroler::class, 'spremi']);
 Rute::sve('brandovi/nova', [\FireHub\Aplikacija\Administrator\Kontroler\Brandovi_Kontroler::class, 'nova']);
 Rute::sve('brandovi/izbrisi', [\FireHub\Aplikacija\Administrator\Kontroler\Brandovi_Kontroler::class, 'izbrisi']);
+Rute::sve('brandovi/dodajsliku', [\FireHub\Aplikacija\Administrator\Kontroler\Brandovi_Kontroler::class, 'dodajsliku']);
 Rute::sve('obavijesti/index', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'index']);
 Rute::sve('obavijesti/lista', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'lista']);
 Rute::sve('obavijesti/uredi', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'uredi']);
