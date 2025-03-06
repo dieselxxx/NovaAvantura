@@ -179,4 +179,12 @@ $(document).ready(function () {
         document.location.href = url.join('/');
     });
 
+    // meni zatvori
+    $('header .meni .mobile-meni-gumb').focus(function(event) {
+        $("header .meni .mobile-meni-gumb_zatvori").toggle();
+    });
+    $('header .meni .mobile-meni-gumb_zatvori').click(function(event) {
+        $("header .meni .mobile-meni-gumb_zatvori").toggle();
+    });
+
 });
