@@ -241,7 +241,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .mobile-menu-header {order: -1;}
     header .meni .mobile-menu-header a {visibility: visible; padding: 20px 25px;}
     header .meni .mobile-menu-header svg {cursor: pointer;}
-    header .meni .menu-bar {position: fixed; flex-direction: column; top: 0; left: -100%; height: 100vh; width: 350px; max-width: 350px; max-width: 90%; overflow-x: hidden; transition: left 0.3s; box-shadow: 1px 0px 2px 0px rgba(0, 0, 0, 0.25); z-index: 2;}
+    header .meni .menu-bar {position: fixed; flex-direction: column; top: 0; left: -100%; height: 100vh; width: 100%; max-width: 100%; overflow-x: hidden; transition: left 0.3s; box-shadow: 1px 0px 2px 0px rgba(0, 0, 0, 0.25); z-index: 2;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul {position: absolute;display: flex;  top: 0; left: 100%; flex-direction: column; background: white; max-height: 100vh; width: 100%; transition: left 0.3s;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul > li > [aria-haspopup="true"] ~ ul a {padding-left: 40px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul > li > [aria-haspopup="true"] ~ ul > li > [aria-haspopup="true"] ~ ul a {padding-left: 80px;}
