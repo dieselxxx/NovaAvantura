@@ -269,7 +269,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main {margin-bottom: 0;}
     main > .sadrzaj > .naslovna > .rotator {height: 450px;}
     main > .sadrzaj > .naslovna > div.div {height: 450px;}
-    main > .sadrzaj > .naslovna .artikli {margin: auto; width: 80%;}
+    main > .sadrzaj > .naslovna .artikli {margin: auto; width: 95%;}
     main > .sadrzaj > .naslovna .artikli section .artikli {grid-template-columns: repeat(2, 1fr);}
     main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: auto;}
     main > .sadrzaj > .artikli > section > div.meni {grid-row: initial;}
