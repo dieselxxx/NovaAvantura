@@ -17,6 +17,7 @@ namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikl_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Favoriti_Model;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
 
 /**
@@ -29,6 +30,8 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
     protected Model $artikl;
 
+    protected Model $favoriti;
+
     /**
      * ## Konstruktor
      * @since 0.1.0.pre-alpha.M1
@@ -38,6 +41,8 @@ final class Artikl_Kontroler extends Master_Kontroler {
     public function __construct () {
 
         $this->artikl = $this->model(Artikl_Model::class);
+
+        $this->favoriti = $this->model(Favoriti_Model::class);
 
         parent::__construct();
 
@@ -52,6 +57,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
     public function index (string $kontroler = '', string $artikl = ''):Sadrzaj {
 
         $trenutni_artikl = $this->artikl->artikl($artikl);
+        $favoriti = $this->favoriti->artikli();
 
         if ($trenutni_artikl['ID'] === 0) {
 
@@ -136,7 +142,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
             if (isset($_POST['ID'])) {
 
-                $id =  Validacija::Broj('ID', $_POST['ID'], 1, 10);
+                $id = Validacija::Broj('ID', $_POST['ID'], 1, 10);
 
                 $this->model(Favorit_Model::class)->dodaj($id);
 
@@ -159,6 +165,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
             'artikl_opis' => $trenutni_artikl['Opis'] ? '<h5>Dodatne informacije: </h5><span>'.$trenutni_artikl['Opis'] .'</span>' : '',
             'artikl_zaliha' => $artikl_zaliha_html,
             'artikl_kosarica_velicine' => $artikl_kosarica_velicine,
+            'favorit_fill' => in_array((int)$trenutni_artikl['ID'], $favoriti) ? ' fill="red"' : ''
         ]));
 
     }

@@ -139,7 +139,7 @@ main > .sadrzaj > .artikl > form .podatci .kosarica .minus {grid-column: 2 / 3;}
 main > .sadrzaj > .artikl > form .podatci .kosarica .plus {grid-column: 3 / 4;}
 main > .sadrzaj > .artikl > form .podatci > button:first-of-type {background-color: black; width: 250px; color: white;}
 main > .sadrzaj > .artikl > form .podatci > button:first-of-type svg {fill: white;}
-main > .sadrzaj > .artikl > form .podatci > button:last-of-type {width: 30px;}
+main > .sadrzaj > .artikl > form .podatci > button:last-of-type {width: 52px;}
 main > .sadrzaj > .artikl > form .podatci section {border-top: 1px solid var(--boja-granica);}
 main > .sadrzaj > .artikl > form .podatci section > span {font-size: 0.9rem; line-height: 20px; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section {grid-template-columns: 1fr;}
