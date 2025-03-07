@@ -18,6 +18,7 @@ use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Kategorije_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Favoriti_Model;
 
 /**
  * ### Artikli
@@ -42,6 +43,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         $this->artikli = $this->model(Artikli_Model::class);
 
+        $this->favoriti = $this->model(Favoriti_Model::class);
+
         parent::__construct();
 
     }
@@ -61,6 +64,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
         $artikli_model = $this->model(Artikli_Model::class);
         $limit = 15;
+        $favoriti = $this->favoriti->artikli();
 
         // roditelji
         $roditelji = $this->kategorije->kategorijeRoditelji((int)$trenutna_kategorija['ID']);
@@ -87,6 +91,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $artikli_html = '';
         foreach ($artikli as $artikal) {
 
+            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
+
             $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
 
             $artikli_html .= <<<Artikal
@@ -100,7 +106,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
                         {$brand_slika}
                         {$artikal['Brand']}
