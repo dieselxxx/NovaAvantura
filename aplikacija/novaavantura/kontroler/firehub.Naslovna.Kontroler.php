@@ -16,8 +16,10 @@ namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
 use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
+use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Rotator_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Favoriti_Model;
 
 /**
  * ### Naslovna
@@ -26,6 +28,22 @@ use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
  * @package Aplikacija\Kontroler
  */
 final class Naslovna_Kontroler extends Master_Kontroler {
+
+    protected Model $favoriti;
+
+    /**
+     * ## Konstruktor
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return void
+     */
+    public function __construct () {
+
+        $this->favoriti = $this->model(Favoriti_Model::class);
+
+        parent::__construct();
+
+    }
 
     /**
      * ## index
@@ -37,6 +55,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
         $rotator = $this->model(Rotator_Model::class);
         $artikli_model = $this->model(Artikli_Model::class);
+        $favoriti = $this->favoriti->artikli();
 
         // rotator
         $obavijest_html = '';
@@ -77,6 +96,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         foreach ($artikli as $artikal) {
 
             $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
+            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_izdvojeno_html .= <<<Artikal
             
@@ -89,7 +109,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
                         {$brand_slika}
                         {$artikal['Brand']}
@@ -111,6 +131,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         foreach ($artikli as $artikal) {
 
             $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
+            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_novo_html .= <<<Artikal
             
@@ -123,7 +144,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
                         {$brand_slika}
                         {$artikal['Brand']}
@@ -145,6 +166,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         foreach ($artikli as $artikal) {
 
             $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
+            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_outlet_html .= <<<Artikal
             
@@ -157,7 +179,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
                         {$brand_slika}
                         {$artikal['Brand']}
@@ -179,6 +201,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         foreach ($artikli as $artikal) {
 
             $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
+            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_akcija_html .= <<<Artikal
             
@@ -191,7 +214,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
                         {$brand_slika}
                         {$artikal['Brand']}

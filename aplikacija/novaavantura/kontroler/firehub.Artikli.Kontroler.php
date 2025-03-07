@@ -30,6 +30,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
     protected Model $kategorije;
     protected Model $artikli;
+    protected Model $favoriti;
 
     /**
      * ## Konstruktor
