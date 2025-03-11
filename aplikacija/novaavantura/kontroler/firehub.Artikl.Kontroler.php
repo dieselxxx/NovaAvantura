@@ -80,13 +80,16 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
         // slike
         $artikl_slike = $this->artikl->slike($trenutni_artikl['ID']);
-        $artikl_slike_html = '';
+        $artikl_slika_html = ''; $artikl_slike_html = '';
         foreach ($artikl_slike as $slike) {
 
+            $artikl_slika_html .= '
+                <div><img src="/slika/velikaslika/'.$slike['Slika'].'" alt=""></div>
+            ';
+
             $artikl_slike_html .= '
-                <div>
-                    <a data-vrsta="slika" href="/slika/velikaslika/'.$slike['Slika'].'"><img src="/slika/malaslika/'.$slike['Slika'].'" alt=""></a>
-                </div>';
+                <div><img src="/slika/malaslika/'.$slike['Slika'].'" alt=""></div>
+            ';
 
         }
 
@@ -155,7 +158,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ '.$roditelji_html.' '.$trenutni_artikl['Naziv'],
             'artikl_naziv' => $trenutni_artikl['Naziv'],
             'artikl_id' => $trenutni_artikl['ID'],
-            'artikl_slika' => ''.$trenutni_artikl['Slika'],
+            'artikl_slika' => $artikl_slika_html,
             'artikl_novo' => $trenutni_artikl['NovoHTML'],
             'artikl_popust' => $trenutni_artikl['PopustHTML'],
             'artikl_slike' => $artikl_slike_html,

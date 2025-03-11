@@ -116,10 +116,10 @@ main .sadrzaj .artikl form .slika {grid-column: 1 / 2; grid-row: 1 / 2; position
 main .sadrzaj .artikl form .slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main .sadrzaj .artikl form .slika .novo {position: absolute; top:10px; right: 10px; background-color: var(--boja-zelena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main .sadrzaj .artikl form .slika img {height: 100%; width: 100%;}
-main .sadrzaj .artikl form .slike {display: flex; flex-wrap: wrap; gap: 10px; grid-column: 1 / 2; justify-content: space-between; align-self: start;}
-main .sadrzaj .artikl form >.slike div {height: 165px; width: 130px;}
-main .sadrzaj .artikl form >.slike div a {display: block; height: 100%; width: 100%;}
-main .sadrzaj .artikl form >.slike div a img {height: 100%; width: 100%;}
+main .sadrzaj .artikl form .slike {height: 100px;}
+main .sadrzaj .artikl form .slike > div > div {display: flex; gap: 10px;}
+main .sadrzaj .artikl form .slike > div > div > div {width: 80px !important;}
+main .sadrzaj .artikl form .slike img {max-height: 100px; width: 80px; cursor: pointer;}
 main .sadrzaj .artikl form .podatci {display: inline-flex; flex-wrap: wrap; flex-direction: column; gap: 10px; grid-column: 2 / 3; grid-row: 1 / 2;}
 main .sadrzaj .artikl form .podatci * h5 {font-weight: 300; text-transform: uppercase;}
 main .sadrzaj .artikl form .podatci .naziv {margin: 10px 0 0 0; font-size: 1.6rem; font-weight: 100;}
@@ -282,8 +282,9 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .artikli > section > div.artikli > .artikal {grid-template-columns: 350px; grid-template-rows: 445px;}
     main > .sadrzaj > .artikli > section > nav.navigacija {grid-column: 1 / 2;}
     main > .sadrzaj > .artikl > form {grid-template-columns: 1fr; justify-items: center;}
-    main > .sadrzaj > .artikl > form > .slike {justify-content: space-evenly;}
-    main > .sadrzaj > .artikl > form > .slike > div {height: 115px; width: 90px;}
+    main > .sadrzaj > .artikl > form > .slika {width: 500px;}
+    main > .sadrzaj > .artikl > form > .slike {margin-top: 30px; width: 500px;}
+    main > .sadrzaj > .artikl > form > .slike > div {height: 115px;}
     main > .sadrzaj > .artikl > form .podatci {grid-column: 1 / 2; grid-row: 3 / 4;}
     main > .sadrzaj > .kosarica > section {grid-template-columns: 1fr;}
     main > .sadrzaj > .kosarica > section > div.artikli {display: grid; grid-template-columns: 1fr; grid-template-rows: auto; grid-gap: 0; grid-column: 1 / 2; justify-items: left;}
@@ -347,6 +348,8 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > div.div {height: 600px;}
     main > .sadrzaj > .artikli > section > div.artikli > .artikal,
     main > .sadrzaj > .naslovna > .artikli > section > .artikli > .artikal {grid-template-columns: 227px; grid-template-rows: 289px;}
+    main > .sadrzaj > .artikl > form > .slika {width: 480px;}
+    main > .sadrzaj > .artikl > form > .slike {width: 480px;}
 
     #gdpr div {right: 15px}
 
@@ -358,6 +361,8 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > div.div {height: 480px;}
     main > .sadrzaj > .artikli > section > div.artikli > .artikal,
     main > .sadrzaj > .naslovna .artikli section .artikli .artikal {grid-template-columns: 188px; grid-template-rows: 239px;}
+    main > .sadrzaj > .artikl > form > .slika {width: 400px;}
+    main > .sadrzaj > .artikl > form > .slike {width: 400px;}
 
 }
 
