@@ -1,0 +1,61 @@
+<div id="sadrzaj" class="artikli">
+
+    <div class="vi_ste_ovdje">{{vi_ste_ovdje}}</div>
+
+    <section>
+
+        <div class="meni">
+
+            <section class="velicina">
+                <h4 class="accordion">Veličine</h4>
+                {{velicine_meni}}
+            </section>
+
+            <section class="cijena">
+                <h4 class="accordion">Cijena</h4>
+                <div class='panel'>
+                    <label class="input">
+                        <input name="cijena_min" type="number" value="{{cijena_min}}" step="10" min="0">
+                    </label>
+                    <span>do</span>
+                    <label class="input">
+                        <input name="cijena_max" type="number" value="{{cijena_max}}" step="10" min="0">
+                    </label>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="naslov">
+            <h2>{{brand_slika}} {{brand_naziv}}</h2>
+            <span class="opis">{{brand_opis}}</span>
+        </div>
+
+        <div class="opcije">
+
+            <form data-oznaka="rezultat_poredak" method="post" enctype="multipart/form-data" action="">
+
+                <label class="select">
+                    <span>Poredaj po:</span>
+                    <select data-oznaka="redoslijed" name="poredaj" required>
+                        {{poredaj_izbornik}}
+                    </select>
+                </label>
+
+            </form>
+
+            <div class="prikazujem">{{prikazujem}}</div>
+
+        </div>
+
+        <div class="artikli">{{artikli}}</div>
+
+        <nav class="navigacija">
+            <ul>
+                {{navigacija}}
+            </ul>
+        </nav>
+
+    </section>
+
+</div>

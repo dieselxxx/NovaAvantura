@@ -228,13 +228,36 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
         }
 
+        // brandovi
+        $brandovi = $artikli_model->brandovi(
+            'sve kategorije', 'svi artikli', 0, PHP_INT_MAX, 'sve'
+        );
+        $brandovi_html = '';
+        foreach ($brandovi as $brand) {
+
+            $brand_link = mb_strtolower($brand['Brand']);
+
+            $brandovi_html .= <<<Brand
+            
+                <div>
+                    <a class="slika" href="/brand/{$brand_link}/">
+                        <h4>{$brand['Brand']}</h4>
+                        <img src="/slika/brand/{$brand['Slika']}" alt="" loading="lazy"/>
+                    </a>
+                </div>
+
+            Brand;
+
+        }
+
         return sadrzaj()->datoteka('naslovna.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Naslovna',
             'obavijesti' => $obavijest_html,
             'artikli_izdvojeno' => $artikli_izdvojeno_html,
             'artikli_novo' => $artikli_novo_html,
             'artikli_outlet' => $artikli_outlet_html,
-            'artikli_akcija' => $artikli_akcija_html
+            'artikli_akcija' => $artikli_akcija_html,
+            'brandovi' => $brandovi_html
         ]));
 
     }

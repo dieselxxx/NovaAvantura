@@ -289,7 +289,7 @@ final class Artikli_Model extends Master_Model {
                     JOIN kategorije ON i.Roditelj = kategorije.ID
                 )
                 SELECT
-                    brandovi.Brand
+                    brandovi.Brand, brandovi.Slika
                 FROM artikliview
                 LEFT JOIN artiklikarakteristike ON artiklikarakteristike.ArtikalID = artikliview.ID
                 LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
@@ -300,7 +300,7 @@ final class Artikli_Model extends Master_Model {
                 $cijena_od
                 $cijena_do
                 {$this->trazi($trazi)}
-                GROUP BY brandovi.Brand
+                GROUP BY brandovi.Brand, brandovi.Slika
             ")
             ->napravi()->niz() ?: [];
 
