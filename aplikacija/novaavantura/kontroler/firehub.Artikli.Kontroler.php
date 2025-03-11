@@ -63,7 +63,6 @@ final class Artikli_Kontroler extends Master_Kontroler {
     ):Sadrzaj {
 
         $trenutna_kategorija = $this->kategorije->kategorijaPoLinku($kategorija);
-        $artikli_model = $this->model(Artikli_Model::class);
         $limit = 15;
         $favoriti = $this->favoriti->artikli();
 
@@ -82,7 +81,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         $cijena_do = is_float($cijena_do) ? $cijena_do : 100000;
 
         // artikli model
-        $artikli = $artikli_model->artikli(
+        $artikli = $this->artikli->artikli(
             $trenutna_kategorija['Link'], ($stranica - 1) * $limit,
             $limit, $trazi,
             (int)$cijena_od, (int)$cijena_do, $velicina, $brand, $poredaj, $poredaj_redoslijed
@@ -122,7 +121,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         }
 
         // navigacija
-        $navigacija = $artikli_model->ukupnoRedakaHTML(
+        $navigacija = $this->artikli->ukupnoRedakaHTML(
             $trenutna_kategorija['Link'], $trazi,
             $cijena_od, $cijena_do, $velicina, $brand, $limit,
             '/artikli/'.$trenutna_kategorija['Link'].'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/'.$brand .'/'.$poredaj.'/' .$poredaj_redoslijed, $stranica
@@ -147,7 +146,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
         ';
 
         // prikazujem
-        $prikazujem = 'Prikazujem '.$artikli_model->ukupnoRedaka($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina, $brand).' artikala';
+        $prikazujem = 'Prikazujem '.$this->artikli->ukupnoRedaka(
+            $trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina, $brand
+            ).' artikala';
 
         // podkategorije meni
         $podkategorije = $this->kategorije->kategorijeDjeca((int)$trenutna_kategorija['ID']);
@@ -171,7 +172,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         }
 
         // brandovi meni
-        $brandovi = $artikli_model->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
+        $brandovi = $this->artikli->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
         $brand_meni = '';
         foreach ($brandovi as $brand1) {
             $checked = mb_strtolower($brand1['Brand']) === $brand
@@ -194,7 +195,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
         ";
 
         // velicine meni
-        $velicine = $artikli_model->velicine($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $brand);
+        $velicine = $this->artikli->velicine($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $brand);
         $velicina_meni = '';
         foreach ($velicine as $velicina1) {
             $checked = mb_strtolower($velicina1['Velicina']) === (string)$velicina
