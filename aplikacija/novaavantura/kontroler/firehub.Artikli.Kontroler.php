@@ -168,20 +168,26 @@ final class Artikli_Kontroler extends Master_Kontroler {
                 </ul>
             </section>';
 
-
         }
 
         // brandovi meni
         $brandovi = $this->artikli->brandovi($trenutna_kategorija['Link'], $trazi, $cijena_od, $cijena_do, $velicina);
         $brand_meni = '';
         foreach ($brandovi as $brand1) {
-            $checked = mb_strtolower($brand1['Brand']) === $brand
+            $checked = in_array(mb_strtolower($brand1['Brand']), explode('+', $brand))
                 ? 'checked': '';
+
+            $rez = explode('+', $brand);
+            if (($key = array_search(mb_strtolower($brand1['Brand']), $rez)) !== false) {
+                unset($rez[$key]);
+            } else {$rez[] = mb_strtolower($brand1['Brand']);}
+            $rez = implode('+', $rez);
+
             $brand_meni .= '
                 <li>
                     <label class="kontrolni_okvir">
                         <span>'.$brand1['Brand'].'</span>
-                        <input type="checkbox" '.$checked.' data-url="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/'.mb_strtolower($brand1['Brand']).'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
+                        <input type="checkbox" '.$checked.' data-url="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/'.$rez.'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
                         <span class="checkmark"></span>
                     </label>
                 </li>

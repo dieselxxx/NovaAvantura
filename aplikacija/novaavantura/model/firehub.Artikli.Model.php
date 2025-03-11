@@ -103,10 +103,17 @@ final class Artikli_Model extends Master_Model {
             default => "AND artiklikarakteristike.Velicina = '$velicina'"
         };
 
-        $brand = match ($brand) {
-            'sve' => '',
-            default => "AND brandovi.Brand = '$brand'"
-        };
+        if ($brand === 'sve') {$brand = '';} else {
+
+            $brandovi = explode('+', $brand);
+
+            $brand = 'AND (';
+            foreach ($brandovi as $brnd) {
+                $brand .= ($brnd === $brandovi[array_key_first($brandovi)]) ? "brandovi.Brand = '$brnd'" : " OR brandovi.Brand = '$brnd'";
+            }
+            $brand .= ')';
+
+        }
 
         $poredaj = match ($poredaj) {
             'naziv' => 'Naziv',
@@ -341,10 +348,17 @@ final class Artikli_Model extends Master_Model {
             default => 'AND '.Domena::sqlCijena().' <= '.$cijena_do
         };
 
-        $brand = match ($brand) {
-            'sve' => '',
-            default => "AND brandovi.Brand = '$brand'"
-        };
+        if ($brand === 'sve') {$brand = '';} else {
+
+            $brandovi = explode('+', $brand);
+
+            $brand = 'AND (';
+            foreach ($brandovi as $brnd) {
+                $brand .= ($brnd === $brandovi[array_key_first($brandovi)]) ? "brandovi.Brand = '$brnd'" : " OR brandovi.Brand = '$brnd'";
+            }
+            $brand .= ')';
+
+        }
 
         return $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
@@ -424,10 +438,17 @@ final class Artikli_Model extends Master_Model {
             default => "AND artiklikarakteristike.Velicina = '$velicina'"
         };
 
-        $brand = match ($brand) {
-            'sve' => '',
-            default => "AND brandovi.Brand = '$brand'"
-        };
+        if ($brand === 'sve') {$brand = '';} else {
+
+            $brandovi = explode('+', $brand);
+
+            $brand = 'AND (';
+            foreach ($brandovi as $brnd) {
+                $brand .= ($brnd === $brandovi[array_key_first($brandovi)]) ? "brandovi.Brand = '$brnd'" : " OR brandovi.Brand = '$brnd'";
+            }
+            $brand .= ')';
+
+        }
 
         return $this->bazaPodataka->tabela('artikliview')
             ->sirovi("
