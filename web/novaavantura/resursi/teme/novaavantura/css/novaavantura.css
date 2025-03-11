@@ -134,8 +134,8 @@ main .sadrzaj .artikl form .podatci .zaliha {border-top: 1px dashed var(--boja-g
 main .sadrzaj .artikl form .podatci .zaliha ul li {float: left;}
 main .sadrzaj .artikl form .podatci .kosarica {display: grid; grid-template-columns: 100px 30px 30px; grid-gap: 10px;}
 main .sadrzaj .artikl form .podatci .kosarica label.input input {width: 100%;}
-main .sadrzaj .artikl form .podatci .kosarica .minus {grid-column: 2 / 3;}
-main .sadrzaj .artikl form .podatci .kosarica .plus {grid-column: 3 / 4;}
+main .sadrzaj .artikl form .podatci .kosarica .minus {grid-column: 2 / 3; background-color: white; width: 30px; color: black;}
+main .sadrzaj .artikl form .podatci .kosarica .plus {grid-column: 3 / 4; background-color: white; width: 30px; color: black;}
 main .sadrzaj .artikl form .podatci button:first-of-type {background-color: black; width: 250px; color: white;}
 main .sadrzaj .artikl form .podatci button:first-of-type svg {fill: white;}
 main .sadrzaj .artikl form .podatci button:last-of-type {width: 52px;}
