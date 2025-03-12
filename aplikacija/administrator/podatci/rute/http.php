@@ -52,3 +52,10 @@ Rute::sve('obavijesti/spremi', [\FireHub\Aplikacija\Administrator\Kontroler\Obav
 Rute::sve('obavijesti/izbrisi', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'izbrisi']);
 Rute::sve('obavijesti/dodaj', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'dodaj']);
 Rute::sve('obavijesti/dodajsliku', [\FireHub\Aplikacija\Administrator\Kontroler\Obavijesti_Kontroler::class, 'dodajSliku']);
+Rute::sve('blogovi/index', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'index']);
+Rute::sve('blogovi/lista', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'lista']);
+Rute::sve('blogovi/uredi', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'uredi']);
+Rute::sve('blogovi/spremi', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'spremi']);
+Rute::sve('blogovi/novi', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'novi']);
+Rute::sve('blogovi/izbrisi', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'izbrisi']);
+Rute::sve('blogovi/dodajsliku', [\FireHub\Aplikacija\Administrator\Kontroler\Blogovi_Kontroler::class, 'dodajsliku']);
