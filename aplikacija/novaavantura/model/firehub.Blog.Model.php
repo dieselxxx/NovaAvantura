@@ -61,4 +61,27 @@ final class Blog_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Dohvati blog
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @param int $id <p>
+     * ID bloga.
+     * </p>
+     *
+     * @return array Blog.
+     */
+    public function blog (int $id):array|false {
+
+        $blog = $this->bazaPodataka->tabela('blog')
+            ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika'])
+            ->gdje('ID', '=', $id)
+            ->napravi()->redak();
+
+        $blog['Datum'] = (new DateTime($blog['Datum']))->format('l jS \o\f F Y');
+
+        return $blog;
+
+    }
+
 }

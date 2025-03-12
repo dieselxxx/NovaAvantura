@@ -79,7 +79,7 @@ final class Blog_Model extends Master_Model {
 
         if (!empty($_REQUEST['opis'])) {
             $opis = $_REQUEST['opis'];
-            $opis = Validacija::String(_('Opis bloga'), $opis, 1, 5000);
+            $opis = Validacija::StringHTML(_('Opis bloga'), $opis, 0, 5000);
         }
 
         if ($id !== 0) {
