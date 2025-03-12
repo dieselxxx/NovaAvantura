@@ -20,6 +20,7 @@ use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Rotator_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Favoriti_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Blog_Model;
 
 /**
  * ### Naslovna
@@ -56,6 +57,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         $rotator = $this->model(Rotator_Model::class);
         $artikli_model = $this->model(Artikli_Model::class);
         $favoriti = $this->favoriti->artikli();
+        $blog = $this->model(Blog_Model::class);
 
         // rotator
         $obavijest_html = '';
@@ -250,6 +252,24 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
         }
 
+        // blogovi
+        $blogovi = $blog->blogovi();
+        $blogovi_html = '';
+
+        foreach ($blogovi as $blog) {
+
+            $blogovi_html .= <<<Blogovi
+            
+                <a class="a" href="/blog/{$blog['ID']}/">
+                    <img src="/slika/blog/{$blog['Slika']}" alt="" loading="lazy"/>
+                    <h4>{$blog['Naslov']}</h4>
+                    <span>{$blog['Datum']}</span>
+                </a>
+
+            Blogovi;
+
+        }
+
         return sadrzaj()->datoteka('naslovna.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Naslovna',
             'obavijesti' => $obavijest_html,
@@ -257,7 +277,8 @@ final class Naslovna_Kontroler extends Master_Kontroler {
             'artikli_novo' => $artikli_novo_html,
             'artikli_outlet' => $artikli_outlet_html,
             'artikli_akcija' => $artikli_akcija_html,
-            'brandovi' => $brandovi_html
+            'brandovi' => $brandovi_html,
+            'blogovi' => $blogovi_html
         ]));
 
     }

@@ -13,6 +13,7 @@
     <div class="artikli_linkovi">
         <a href="#izdvojeno">Izdvojeno iz ponude</a>
         <a href="#akcija">Na akciji</a>
+        <a href="#blogovi">Blog</a>
     </div>
 
     <div class="artikli">
@@ -28,11 +29,15 @@
             <h1>Artikli na akciji</h1>
             <div class="artikli" style="display: inherit;">{{artikli_akcija}}</div>
         </section>
+        <section id="blogovi">
+            <h1>Blog</h1>
+            <div class="artikli" style="display: inherit;">{{blogovi}}</div>
+        </section>
     </div>
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('.artikli > section > div').slick({
+            $('.artikli > section#izdvojeno > div, .artikli > section#brandovi > div, .artikli > section#akcija > div').slick({
                 dots: false,
                 infinite: true,
                 speed: 300,
@@ -60,6 +65,29 @@
                         settings: {
                             slidesToShow: 2,
                             slidesToScroll: 2
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#blogovi > div').slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            infinite: true,
+                            dots: true
                         }
                     }
                 ]
