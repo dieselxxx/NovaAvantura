@@ -161,7 +161,9 @@ final class Artikli_Kontroler extends Master_Kontroler {
                 <ul class="panel">';
 
             foreach ($podkategorije as $podkategorija) {
-                $podkategorije_meni .= '<li><a href="/artikli/'.$podkategorija['Link'].'">&gt '.$podkategorija['Kategorija'].'</a></li>';
+                $podkategorije_meni .= '<li>
+                    <a href="/artikli/'.$podkategorija['Link'].'"><span>&gt</span> '.$podkategorija['Kategorija'].'</a>
+                </li>';
             }
 
             $podkategorije_meni .= '

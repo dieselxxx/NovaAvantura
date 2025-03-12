@@ -71,6 +71,7 @@ main > .sadrzaj > .artikli > section > div.meni > section {padding-bottom: 10px;
 main > .sadrzaj > .artikli > section > div.meni > section > h4 {font-weight: 100; text-transform: uppercase;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li {margin: 0 0 10px 0;}
 main > .sadrzaj > .artikli > section > div.meni > section > ul li a {font-size: 0.8rem;}
+main > .sadrzaj > .artikli > section > div.meni > section > ul li a span {font-size: 16px; color: var(--boja-granica);}
 main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel {display: grid; grid-template-columns: auto 30px auto; justify-items: center; align-items: center; font-size: 0.8rem;}
 main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel label:first-of-type {justify-self: right;}
 main > .sadrzaj > .artikli > section > div.meni > section.cijena .panel label:last-of-type {justify-self: left;}
