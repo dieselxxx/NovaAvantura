@@ -136,10 +136,10 @@ final class Blog_Model extends Master_Model {
         $datoteka = new PrijenosDatoteka('slika');
         $datoteka->Putanja($putanja);
         $datoteka->DozvoljeneVrste(array('image/jpeg', 'image/png', 'image/webp'));
-        $datoteka->DozvoljenaVelicina(1000);
+        $datoteka->DozvoljenaVelicina(3000);
         $datoteka->NovoIme();
         $datoteka->PrijenosDatoteke();
-        $datoteka->SlikaDimenzije(50, 50);
+        $datoteka->SlikaDimenzije(800, 500);
 
         $rezultat = $this->bazaPodataka->tabela('blog')->odaberi([
             'Slika'
