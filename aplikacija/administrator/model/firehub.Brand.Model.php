@@ -54,7 +54,7 @@ final class Brand_Model extends Master_Model {
         $brand = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    brandovi.ID, brandovi.Brand, brandovi.Slika
+                    brandovi.ID, brandovi.Brand, brandovi.Opis, brandovi.Slika
                 FROM brandovi
                 WHERE brandovi.ID = $id
                 LIMIT 1
@@ -76,10 +76,16 @@ final class Brand_Model extends Master_Model {
         $naziv = $_REQUEST['naziv'];
         $naziv = Validacija::String(_('Naziv branda'), $naziv, 3, 250);
 
+        if (!empty($_REQUEST['opis'])) {
+            $opis = $_REQUEST['opis'];
+            $opis = Validacija::String(_('Opis branda'), $opis, 1, 1000);
+        }
+
         if ($id !== 0) {
 
             $this->bazaPodataka->tabela('brandovi')->azuriraj([
-                'Brand' => $naziv
+                'Brand' => $naziv,
+                'Opis' => $opis ?? ''
             ])->gdje(
                 'ID', '=', $id
             )->napravi();

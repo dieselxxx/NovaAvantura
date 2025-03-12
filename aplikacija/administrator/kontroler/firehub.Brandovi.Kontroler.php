@@ -88,6 +88,7 @@ final class Brandovi_Kontroler extends Master_Kontroler {
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('brandovi/uredi.html')->podatci([
             'id' => $brand['ID'],
             'naziv' => $brand['Brand'],
+            'opis' => $brand['Opis'] ?? '',
             'slika' => $brand['Slika'] ?? '',
         ]);
 
