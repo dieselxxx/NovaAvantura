@@ -152,4 +152,22 @@ final class Kategorije_Model extends Master_Model {
 
     }
 
+    /**
+     * ### Dohvati kategoriju za žene i muskarce
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return array Kategorija.
+     */
+    public function kategorijaZeneMuskarci ():array {
+
+        return $this->bazaPodataka->tabela('kategorijeview')
+            ->sirovi("
+                SELECT
+                    Kategorija, Link
+                FROM kategorijeview
+                WHERE ID = 1 OR ID = 2
+            ")->napravi()->niz();
+
+    }
+
 }

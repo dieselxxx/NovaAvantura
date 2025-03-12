@@ -19,6 +19,7 @@ use FireHub\Jezgra\Model\Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Favoriti_Model;
 use FireHub\Aplikacija\NovaAvantura\Model\Brandovi_Model;
+use FireHub\Aplikacija\NovaAvantura\Model\Kategorije_Model;
 
 /**
  * ### Artikli
@@ -47,6 +48,8 @@ final class Brand_Kontroler extends Master_Kontroler {
 
         $this->brandovi = $this->model(Brandovi_Model::class);
 
+        $this->kategorije = $this->model(Kategorije_Model::class);
+
         parent::__construct();
 
     }
@@ -58,7 +61,7 @@ final class Brand_Kontroler extends Master_Kontroler {
      * @return Sadrzaj Sadržaj stranice.
      */
     public function index (
-        string $kontroler = '', string $brand = 'sve',
+        string $kontroler = '', string $brand = 'sve', string $kategorija = 'sve kategorije',
         float|string $cijena_od = 'sve', float|string $cijena_do = 'sve', int|string $velicina = 'sve',
         string $poredaj = 'cijena', string $poredaj_redoslijed = 'asc', int $stranica = 1
     ):Sadrzaj {
@@ -73,7 +76,7 @@ final class Brand_Kontroler extends Master_Kontroler {
 
         // artikli model
         $artikli = $this->artikli->artikli(
-            'sve kategorije', ($stranica - 1) * $limit,
+            $kategorija, ($stranica - 1) * $limit,
             $limit, 'svi artikli',
             (int)$cijena_od, (int)$cijena_do, $velicina, $brand, $poredaj, $poredaj_redoslijed
         );
@@ -113,7 +116,7 @@ final class Brand_Kontroler extends Master_Kontroler {
 
         // navigacija
         $navigacija = $this->artikli->ukupnoRedakaHTML(
-            'sve kategorije', 'svi artikli',
+            $kategorija, 'svi artikli',
             $cijena_od, $cijena_do, $velicina, $brand, $limit,
             '/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
         );
@@ -128,21 +131,21 @@ final class Brand_Kontroler extends Master_Kontroler {
         if ($poredaj === 'starost' && $poredaj_redoslijed == 'desc') {$poredaj_izbornik_odabrano_6 = 'selected';} else {$poredaj_izbornik_odabrano_6 = '';}
 
         $poredaj_izbornik = '
-            <option value="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/cijena/asc/" '.$poredaj_izbornik_odabrano_3.'>Cijena manja prema većoj</option>
-            <option value="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/cijena/desc/" '.$poredaj_izbornik_odabrano_4.'>Cijena veća prema manjoj</option>
-            <option value="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/naziv/asc/" '.$poredaj_izbornik_odabrano_1.'>Naziv A-Z</option>
-            <option value="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/naziv/desc/" '.$poredaj_izbornik_odabrano_2.'>Naziv Z-A</option>
-            <option value="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/starost/asc/" '.$poredaj_izbornik_odabrano_5.'>Starost manja prema većoj</option>
-            <option value="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/starost/desc/" '.$poredaj_izbornik_odabrano_6.'>Starost veća prema manjoj</option>
+            <option value="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/cijena/asc/" '.$poredaj_izbornik_odabrano_3.'>Cijena manja prema većoj</option>
+            <option value="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/cijena/desc/" '.$poredaj_izbornik_odabrano_4.'>Cijena veća prema manjoj</option>
+            <option value="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/naziv/asc/" '.$poredaj_izbornik_odabrano_1.'>Naziv A-Z</option>
+            <option value="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/naziv/desc/" '.$poredaj_izbornik_odabrano_2.'>Naziv Z-A</option>
+            <option value="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/starost/asc/" '.$poredaj_izbornik_odabrano_5.'>Starost manja prema većoj</option>
+            <option value="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina.'/starost/desc/" '.$poredaj_izbornik_odabrano_6.'>Starost veća prema manjoj</option>
         ';
 
         // prikazujem
         $prikazujem = 'Prikazujem '.$this->artikli->ukupnoRedaka(
-                'sve kategorije', 'svi artikli', $cijena_od, $cijena_do, $velicina, $brand
+                $kategorija, 'svi artikli', $cijena_od, $cijena_do, $velicina, $brand
             ).' artikala';
 
         // velicine meni
-        $velicine = $this->artikli->velicine('sve kategorije', 'svi artikli', $cijena_od, $cijena_do, $brand);
+        $velicine = $this->artikli->velicine($kategorija, 'svi artikli', $cijena_od, $cijena_do, $brand);
         $velicina_meni = '';
         foreach ($velicine as $velicina1) {
             $checked = mb_strtolower($velicina1['Velicina']) === (string)$velicina
@@ -151,7 +154,7 @@ final class Brand_Kontroler extends Master_Kontroler {
                 <li>
                     <label class="kontrolni_okvir">
                         <span>'.$velicina1['Velicina'].'</span>
-                        <input type="checkbox" '.$checked.' data-url="/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
+                        <input type="checkbox" '.$checked.' data-url="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -159,12 +162,32 @@ final class Brand_Kontroler extends Master_Kontroler {
         }
         $velicine_meni = "
         <ul class='panel'>
-            <li><a href=\"/brand/$brand/$cijena_od/$cijena_do/sve/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
+            <li><a href=\"/brand/$brand/$kategorija/$cijena_od/$cijena_do/sve/$poredaj/$poredaj_redoslijed/\">Reset</a></li>
             $velicina_meni
         </ul>
         ";
 
         $cijena = empty($cijena = array_column($artikli, 'Cijena')) ? [0] : $cijena;
+
+        // podkategorije meni
+        $podkategorije = $this->kategorije->kategorijaZeneMuskarci();
+        $podkategorije_meni = '';
+        if ($podkategorije) {
+
+            $podkategorije_meni .= '
+            <section class="podkategorije">
+                <h4 class="accordion">Podkategorije</h4>
+                <ul class="panel">';
+
+            foreach ($podkategorije as $podkategorija) {
+                $podkategorije_meni .= '<li><a href="/brand/'.$brand.'/'.$podkategorija['Link'].'">&gt '.$podkategorija['Kategorija'].'</a></li>';
+            }
+
+            $podkategorije_meni .= '
+                </ul>
+            </section>';
+
+        }
 
         return sadrzaj()->datoteka('brand.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutni_brand['Brand'],
@@ -177,6 +200,7 @@ final class Brand_Kontroler extends Master_Kontroler {
             "poredaj_izbornik" => $poredaj_izbornik,
             "prikazujem" => $prikazujem,
             "velicine_meni" => $velicine_meni,
+            "podkategorije" => $podkategorije_meni,
             "cijena_min" => number_format((int)min($cijena)),
             "cijena_max" => number_format((int)max($cijena))
         ]));
