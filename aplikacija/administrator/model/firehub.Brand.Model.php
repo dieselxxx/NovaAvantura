@@ -111,7 +111,7 @@ final class Brand_Model extends Master_Model {
         $broj = $this->bazaPodataka
             ->sirovi("
                 SELECT *
-                FROM brandovi
+                FROM artikli
                 WHERE BrandID = $id
             ")
             ->napravi();
