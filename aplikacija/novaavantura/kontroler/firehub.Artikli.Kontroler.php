@@ -227,6 +227,30 @@ final class Artikli_Kontroler extends Master_Kontroler {
 
         $cijena = empty($cijena = array_column($artikli, 'Cijena')) ? [0] : $cijena;
 
+        // izdvojeni artikli
+        $artikli_izdvojeno_html = '';
+        $artikli = $this->artikli->artikli(
+            'izdvojeno', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+        );
+        foreach ($artikli as $artikal) {
+
+            $artikli_izdvojeno_html .= <<<Artikal
+            
+                <li>
+                    <a href="/artikl/{$artikal['Link']}">
+                        <img src="/slika/malaslika/{$artikal['Slika']}" alt="" loading="lazy"/>
+                        <ul>
+                            <li><span class="brand">{$artikal['Brand']}</span></li>
+                            <li><span class="naziv">{$artikal['Naziv']}</span></li>
+                            <li><span class="cijena">{$artikal['CijenaHTML']}</span></li>
+                        </ul>
+                    </a>
+                </li>
+
+            Artikal;
+
+        }
+
         return sadrzaj()->datoteka('artikli.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $trenutna_kategorija['Kategorija'],
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ '.$roditelji_html.' '.$trenutna_kategorija['Kategorija'],
@@ -240,7 +264,8 @@ final class Artikli_Kontroler extends Master_Kontroler {
             "brandovi_meni" => $brandovi_meni,
             "velicine_meni" => $velicine_meni,
             "cijena_min" => number_format((int)min($cijena)),
-            "cijena_max" => number_format((int)max($cijena))
+            "cijena_max" => number_format((int)max($cijena)),
+            'izdvojeno' => $artikli_izdvojeno_html
         ]));
 
     }
