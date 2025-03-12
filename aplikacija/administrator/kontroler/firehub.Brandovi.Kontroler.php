@@ -180,8 +180,8 @@ final class Brandovi_Kontroler extends Master_Kontroler {
         try {
 
             // model
-            $artikl = $this->model(Brand_Model::class);
-            $artikl->dodajSliku($id);
+            $brand = $this->model(Brand_Model::class);
+            $brand->dodajSliku($id);
 
             return sadrzaj()->format(Sadrzaj_Vrsta::JSON)->podatci([
                 'Validacija' => 'da',
