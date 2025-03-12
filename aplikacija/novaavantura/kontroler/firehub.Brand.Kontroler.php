@@ -170,7 +170,7 @@ final class Brand_Kontroler extends Master_Kontroler {
         $cijena = empty($cijena = array_column($artikli, 'Cijena')) ? [0] : $cijena;
 
         // podkategorije meni
-        $podkategorije = $this->kategorije->kategorijaZeneMuskarci();
+        $podkategorije = $this->kategorije->kategorijaPrva();
         $podkategorije_meni = '';
         if ($podkategorije) {
 

@@ -158,15 +158,12 @@ final class Kategorije_Model extends Master_Model {
      *
      * @return array Kategorija.
      */
-    public function kategorijaZeneMuskarci ():array {
+    public function kategorijaPrva ():array {
 
         return $this->bazaPodataka->tabela('kategorijeview')
-            ->sirovi("
-                SELECT
-                    Kategorija, Link
-                FROM kategorijeview
-                WHERE ID = 1 OR ID = 2
-            ")->napravi()->niz();
+            ->odaberi(['Kategorija', 'Link'])
+            ->gdje('Roditelj', '=', 0)
+            ->napravi()->niz();
 
     }
 
