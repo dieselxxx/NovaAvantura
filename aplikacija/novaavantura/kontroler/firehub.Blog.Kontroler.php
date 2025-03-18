@@ -40,7 +40,7 @@ final class Blog_Kontroler extends Master_Kontroler {
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ '.$blog['Naslov'],
             'naslov' => $blog['Naslov'],
             'datum' => $blog['Datum'],
-            'opis' => $blog['Opis'],
+            'opis' => $blog['Opis'] ?? '',
             'slika' => '<img src="/slika/blog/'.$blog['Slika'].'" />'
         ]));
 
