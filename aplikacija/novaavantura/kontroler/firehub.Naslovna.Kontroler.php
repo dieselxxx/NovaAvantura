@@ -97,7 +97,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
             $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_izdvojeno_html .= <<<Artikal
@@ -113,7 +112,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
                             <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
-                        {$brand_slika}
                         {$artikal['Brand']}
                      </span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
@@ -132,7 +130,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
             $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_novo_html .= <<<Artikal
@@ -148,7 +145,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
                             <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
-                        {$brand_slika}
                         {$artikal['Brand']}
                      </span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
@@ -167,7 +163,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
             $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_outlet_html .= <<<Artikal
@@ -183,7 +178,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
                             <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
-                        {$brand_slika}
                         {$artikal['Brand']}
                      </span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
@@ -202,7 +196,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $brand_slika = $artikal['BrandSlika'] ? '<img src="/slika/brand/'.$artikal['BrandSlika'].'" />' : '';
             $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
 
             $artikli_akcija_html .= <<<Artikal
@@ -218,7 +211,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
                             <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
                         </button>
-                        {$brand_slika}
                         {$artikal['Brand']}
                      </span>
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
@@ -243,7 +235,6 @@ final class Naslovna_Kontroler extends Master_Kontroler {
             
                 <div>
                     <a class="slika" href="/brand/{$brand_link}/">
-                        <h4>{$brand['Brand']}</h4>
                         <img src="/slika/brand/{$brand['Slika']}" alt="" loading="lazy"/>
                     </a>
                 </div>
