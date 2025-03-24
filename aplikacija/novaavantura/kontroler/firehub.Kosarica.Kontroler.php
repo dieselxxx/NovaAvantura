@@ -258,7 +258,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $napomena = Validacija::String("Vaša napomena", $napomena, 0, 1000);
 
         // kosarica artikli
-        $artikli_html = '';
+        /*$artikli_html = '';
         if (!empty($this->kosarica_artikli)) {
 
             foreach ($this->kosarica_artikli as $kosarica_artikal) {
@@ -336,7 +336,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
             "valuta" => Domena::valuta()
-        ));
+        ));*/
         //$email_slanje_tvrtka->Posalji();
 
     }
