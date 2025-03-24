@@ -97,6 +97,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
             var_dump('xxxxxx');
 
+            header("Location: /kosarica/ispravno");
+
             try {
 
                 //$this->naruci();
