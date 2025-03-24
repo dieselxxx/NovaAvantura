@@ -123,7 +123,9 @@ abstract class Master_Kontroler extends Kontroler {
 
         if (isset($_POST['naruci'])) {
 
-            $this->naruci();
+            session_start();
+
+            //$this->naruci();
 
             header("Location: /kosarica/ispravno");
 
