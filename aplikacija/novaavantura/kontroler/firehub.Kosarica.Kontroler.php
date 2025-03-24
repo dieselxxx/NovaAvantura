@@ -337,7 +337,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_email" => Domena::email(),
             "valuta" => Domena::valuta()
         ));
-        $email_slanje_tvrtka->Posalji();
+        //$email_slanje_tvrtka->Posalji();
 
     }
 
