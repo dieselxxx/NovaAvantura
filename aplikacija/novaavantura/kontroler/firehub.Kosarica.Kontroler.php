@@ -48,24 +48,6 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     public function __construct () {
 
-        session_start();
-
-        if (isset($_POST['naruci'])) {
-
-            try {
-
-                $this->naruci();
-
-                header("Location: /kosarica/ispravno");
-
-            } catch (Throwable $greska) {
-
-                $this->greska = $greska->getMessage();
-
-            }
-
-        }
-
         $this->kosarica = $this->model(Kosarica_Model::class);
         $this->artikli = $this->model(Artikli_Model::class)->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
 
