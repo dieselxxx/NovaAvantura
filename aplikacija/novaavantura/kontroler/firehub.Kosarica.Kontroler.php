@@ -236,7 +236,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     protected function naruci ():void {
 
-        /*$ime = $_POST['ime'];
+        $ime = $_POST['ime'];
         $email = $_POST['email'];
         $telefon = $_POST['telefon'];
         $r1 = $_POST['r1'] ?? false;
@@ -247,18 +247,18 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $oib = $_POST['oib'];
         $tvrtkaadresa = $_POST['tvrtkaadresa'];
         $placanje = $_POST['placanje'];
-        $napomena = $_POST['napomena'];*/
+        $napomena = $_POST['napomena'];
 
-        /*$ime = Validacija::String(_('Vaše ime'), $ime, 2, 100);
+        $ime = Validacija::String(_('Vaše ime'), $ime, 2, 100);
         $telefon = Validacija::String(_('Vaš broj telefona'), $telefon, 5, 20);
         if($tvrtka <> '') {$tvrtka = Validacija::String(_('Vaša tvrtka'), $tvrtka, 4, 100);}
         if($oib <> '') {$oib = Validacija::String(_('Vaš OIB \ PDV \ ID tvrtke'), $oib, 1, 20);}
         if($tvrtkaadresa <> '') {$tvrtkaadresa = Validacija::String(_('Vaša adresa tvrtka'), $tvrtkaadresa, 4, 100);}
         $placanje = Validacija::Broj(_('Plaćanje'), $placanje, 1, 1);
         $napomena = Validacija::String("Vaša napomena", $napomena, 0, 1000);
-*/
+
         // kosarica artikli
-        /*$artikli_html = '';
+        $artikli_html = '';
         if (!empty($this->kosarica_artikli)) {
 
             foreach ($this->kosarica_artikli as $kosarica_artikal) {
@@ -336,8 +336,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
             "valuta" => Domena::valuta()
-        ));*/
-        //$email_slanje_tvrtka->Posalji();
+        ));
+        $email_slanje_tvrtka->Posalji();
 
     }
 
