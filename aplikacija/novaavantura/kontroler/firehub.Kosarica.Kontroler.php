@@ -250,7 +250,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      *
      * @return void
      */
-    private function naruci ():void {
+    protected function naruci ():void {
 
         $ime = $_POST['ime'];
         $email = $_POST['email'];

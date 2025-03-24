@@ -121,6 +121,22 @@ abstract class Master_Kontroler extends Kontroler {
 
         }
 
+        if (isset($_POST['naruci'])) {
+
+            try {
+
+                $this->naruci();
+
+                header("Location: /kosarica/ispravno");
+
+            } catch (Throwable $greska) {
+
+                $this->greska = $greska->getMessage();
+
+            }
+
+        }
+
     }
 
     /**
