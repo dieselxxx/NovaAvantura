@@ -407,7 +407,7 @@ table.tabela thead tr th > div svg {height: 15px; width: 15px; opacity: 0.1;}
 table.tabela thead tr th > div svg.aktivno {opacity: 1;}
 table.tabela tbody tr:hover {background-color: var(--boja-tekst);}
 table.tabela tbody tr td {height: 40px; border-bottom: 1px solid var(--boja-tekst-malo-tamnije);}
-table.tabela tbody tr td img {height: 100px; width: 120px;}
+table.tabela tbody tr td img {height: 100px; width: 200px;}
 table.tabela tr td div.status {padding: 3px; font-size: 0.7rem; color: #ffffff; border-radius: 30%;}
 table.tabela tr td div.status[data-boja="zelena"] {background-color: darkgreen;}
 table.tabela tr td div.status[data-boja="crvena"] {background-color: darkred;}

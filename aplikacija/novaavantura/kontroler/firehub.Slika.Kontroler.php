@@ -175,7 +175,7 @@ final class Slika_Kontroler extends Master_Kontroler {
      * @return Slika_Interface Objekt slike.
      */
     #[Zaglavlja(vrsta: Vrsta::AVIF, predmemorija: [Predmemorija::JAVNO])]
-    public function brand (string $kontroler = '', string $metoda = '', string $slika = '', int $visina = 50, int $sirina = 50):Slika_Interface {
+    public function brand (string $kontroler = '', string $metoda = '', string $slika = '', int $visina = 300, int $sirina = 600):Slika_Interface {
 
         return (new Slika())->slika(FIREHUB_ROOT.'web'.RAZDJELNIK_MAPE.'novaavantura'.RAZDJELNIK_MAPE.'resursi'.RAZDJELNIK_MAPE .'grafika'.RAZDJELNIK_MAPE.'brandovi'.RAZDJELNIK_MAPE.$slika)
             ->dimenzije($visina, $sirina)
