@@ -48,6 +48,26 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     public function __construct () {
 
+        if (isset($_POST['naruci'])) {
+
+            var_dump('xxxxxx');
+
+            header("Location: /kosarica/ispravno");
+
+            try {
+
+                //$this->naruci();
+
+                header("Location: /kosarica/ispravno");
+
+            } catch (Throwable $greska) {
+
+                $this->greska = $greska->getMessage();
+
+            }
+
+        }
+
         $this->kosarica = $this->model(Kosarica_Model::class);
         $this->artikli = $this->model(Artikli_Model::class)->artikli('sve kategorije', 0, PHP_INT_MAX, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'cijena', 'asc');
 
@@ -88,26 +108,6 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                 ];
 
                 $this->total_cijena += Domena::dostavaIznos();
-
-            }
-
-        }
-
-        if (isset($_POST['naruci'])) {
-
-            var_dump('xxxxxx');
-
-            header("Location: /kosarica/ispravno");
-
-            try {
-
-                //$this->naruci();
-
-                header("Location: /kosarica/ispravno");
-
-            } catch (Throwable $greska) {
-
-                $this->greska = $greska->getMessage();
 
             }
 
