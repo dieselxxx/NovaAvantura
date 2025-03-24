@@ -97,7 +97,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
             try {
 
-                $this->naruci();
+                //$this->naruci();
 
                 header("Location: /kosarica/ispravno");
 
