@@ -95,6 +95,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
         if (isset($_POST['naruci'])) {
 
+            var_dump('xxxxxx');
+
             try {
 
                 //$this->naruci();
