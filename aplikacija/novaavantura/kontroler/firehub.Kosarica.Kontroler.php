@@ -48,15 +48,13 @@ final class Kosarica_Kontroler extends Master_Kontroler {
      */
     public function __construct () {
 
+        session_start();
+
         if (isset($_POST['naruci'])) {
-
-            var_dump('xxxxxx');
-
-            header("Location: /kosarica/ispravno");
 
             try {
 
-                //$this->naruci();
+                $this->naruci();
 
                 header("Location: /kosarica/ispravno");
 
