@@ -110,9 +110,9 @@ final class Email {
             ]
         ];
         $this->email->SMTPAuth = true;
-        $this->email->Username = 'kapriolwebservis@kapriol-point.com';
-        $this->email->Password = 'Kapriol357!!';
-        $this->email->SetFrom('kapriolwebservis@kapriol-point.com', 'Nova Avantura Web Trgovina');
+        $this->email->Username = 'web@nova-avantura.hr';
+        $this->email->Password = '&4j%8ecd@G%j%^eh!z@S';
+        $this->email->SetFrom('web@nova-avantura.hr', 'Nova Avantura Web Trgovina');
         $this->email->CharSet = 'UTF-8';
         $this->email->Encoding = 'base64';
         $this->email->IsHTML(true);

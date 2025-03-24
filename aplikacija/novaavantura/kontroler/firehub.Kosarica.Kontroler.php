@@ -327,7 +327,9 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $email_slanje_tvrtka = new Email('narudzba.html');
         $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
         $email_slanje_tvrtka->Adresa(array(
-            array("adresa" => 'danijel.galic@outlook.com', "ime" => 'Danijel Galic')
+            array("adresa" => 'danijel.galic@outlook.com', "ime" => $ime),
+            array("adresa" => $email, "ime" => 'Danijel Galic'),
+            //array("adresa" => 'danijel.galic@outlook.com', "ime" => 'Danijel Galic')
         ));
         $email_slanje_tvrtka->PredlozakKomponente(array(
             "ime" => $ime,
