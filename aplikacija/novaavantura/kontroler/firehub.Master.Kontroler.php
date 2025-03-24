@@ -127,6 +127,8 @@ abstract class Master_Kontroler extends Kontroler {
 
             header("Location: /kosarica/ispravno");
 
+            var_dump('xxx');
+
         }
 
     }
