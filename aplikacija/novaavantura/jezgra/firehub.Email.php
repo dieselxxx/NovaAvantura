@@ -99,7 +99,7 @@ final class Email {
         $this->email->SMTPDebug = $debug;
         $this->email->IsSMTP();
         $this->email->SMTPKeepAlive = true;
-        $this->email->Host = 'mail.kapriol-point.com';
+        $this->email->Host = 'mail.nova-avantura.hr';
         $this->email->Port = 465;
         $this->email->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $this->email->SMTPOptions = [
