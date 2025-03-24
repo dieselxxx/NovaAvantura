@@ -234,8 +234,8 @@ final class Naslovna_Kontroler extends Master_Kontroler {
             $brandovi_html .= <<<Brand
             
                 <div>
-                    <a class="slika" href="/brand/{$brand_link}/">
-                        <img style="height: 100px; width: 200px;" src="/slika/brand/{$brand['Slika']}" alt="" 
+                    <a class="slika" href="/brand/{$brand_link}/" style="height: 100px; width: 200px;">
+                        <img style="height: 100%; width: auto;" src="/slika/brand/{$brand['Slika']}" alt="" 
                         loading="lazy"/>
                     </a>
                 </div>
