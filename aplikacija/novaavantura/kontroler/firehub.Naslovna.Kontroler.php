@@ -235,7 +235,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
             
                 <div>
                     <a class="slika" href="/brand/{$brand_link}/" style="height: 100px; width: 200px;">
-                        <img style="height: 100%; width: auto;" src="/slika/brand/{$brand['Slika']}" alt="" 
+                        <img style="height: 80%; width: auto;" src="/slika/brand/{$brand['Slika']}" alt="" 
                         loading="lazy"/>
                     </a>
                 </div>
