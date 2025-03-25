@@ -87,6 +87,7 @@ main > .sadrzaj > .artikli > section > div.meni > section.izdvojeno span.cijena 
 main > .sadrzaj > .artikli > section > div.meni > section.izdvojeno span.cijena .prekrizi:before {content: ""; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid; border-color: var(--boja-tekst-svjetlija); transform:rotate(-5deg);}
 main > .sadrzaj > .artikli > section > div.naslov {grid-column: 2 / 3; grid-row: 1 / 2;}
 main > .sadrzaj > .artikli > section > div.naslov h2 {display: flex; align-items: center;gap: 10px; font-weight: 100;}
+main > .sadrzaj > .artikli > section > div.naslov h2 > img {height: 100px;}
 main > .sadrzaj > .artikli > section > div.naslov .opis {font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikli > section > div.opcije {grid-column: 2 / 3; grid-row: 2 / 3; display: grid; grid-template-columns: 1fr 1fr;}
 main > .sadrzaj > .artikli > section > div.opcije > div {justify-self: end; align-self: center; font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
