@@ -119,7 +119,7 @@ final class Email {
 
         $this->email->Subject = $this->naslov;
 
-        $this->email->AddEmbeddedImage(APLIKACIJA_ROOT.'../../web/novaavantura/resursi/grafika/ikone/novaavantura.svg',
+        $this->email->AddEmbeddedImage(APLIKACIJA_ROOT.'../../web/novaavantura/resursi/grafika/ikone/novaavantura.png',
             "logo");
         $this->email->msgHTML($this->predlozak);
         $this->email->AltBody = 'Za pregled ove poruke potrebno je imati HTML kompatibilni email preglednik!';

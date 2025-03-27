@@ -226,7 +226,7 @@ final class Domena {
 
         if (self::Hr()) {
 
-            return 'Adresa bb, 112233 Grad';
+            return 'Ulica fea Rajmunda Rudeža 1, 21260 Imotski';
 
         }
 

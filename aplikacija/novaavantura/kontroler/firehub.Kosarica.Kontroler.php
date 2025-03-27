@@ -21,7 +21,7 @@ use FireHub\Aplikacija\NovaAvantura\Model\Artikli_Model;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Validacija;
 use FireHub\Aplikacija\NovaAvantura\Jezgra\Email;
-use Throwable;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Server;
 
 /**
  * ### Košarica
@@ -292,11 +292,13 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                     $artikli_html .= <<<Artikal
 
                         <tr>
+                            <td></td>
                             <td align='center'></td>
                             <td align='center' style='text-align: center;'></td>
                             <td align='left'>{$artikal['Naziv']}</td>
                             <td align='center' style='text-align: center;'>{$kosarica_artikal['kolicina']} kom</td>
                             <td align='right' style='text-align: right;'>{$artikal['CijenaFinalHTML']}</td>
+                            <td></td>
                         </tr>
 
                     Artikal;
@@ -335,7 +337,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_adresa" => Domena::adresa(),
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
-            "valuta" => Domena::valuta()
+            "valuta" => Domena::valuta(),
+            "domena" => Server::Domena()
         ));
         $email_slanje_tvrtka->Posalji();
 

@@ -17,6 +17,8 @@
     <tr>
         <td style="width: 35%;">
             <table cellpadding="0" cellspacing="0" border="0" align="left">
+                <tr><td align="left">Datum narudžbe: <b>'{{datum}}'</b></td></tr>
+                <td></td>
                 <tr><td align="left">Kupac: <b>'{{ime}}'</b></td></tr>
                 <tr><td align="left">Adresa: <b>'{{adresa}}'</b></td></tr>
                 <tr><td align="left">Poštanski broj: <b>'{{zip}}'</b></td></tr>
@@ -33,17 +35,27 @@
             <table cellpadding="0" cellspacing="20" border="0" align="center">
                 <tr>
                     <td>
-                        <img src="cid:logo" height="100" width="auto" alt="webshop_logo" />
+                        <a href="'{{domena}}'">'{{domena}}'</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="cid:logo" height="80" width="auto" alt="webshop_logo" />
                     </td>
                 </tr>
             </table>
         </td>
         <td style="width: 35%;">
             <table cellpadding="0" cellspacing="0" border="0">
-                <tr align="right"><td>ONLINE NARUDŽBA NOVA AVANTURA WEB SHOP</td></tr>
-                <tr align="right"><td>Datum: <b>'{{datum}}'</b></td></tr>
+                <tr align="right"><td>NOVA AVANTURA d.o.o. za trgovinu</td></tr>
+                <tr align="right"><td>'{{tvrtka_adresa}}'</td></tr>
+                <tr align="right"><td>'{{tvrtka_email}}'</td></tr>
+                <tr align="right"><td>'{{tvrtka_telefon}}'</td></tr>
             </table>
         </td>
+    </tr>
+    <tr>
+        <td colspan="3">online narudžba web trgovina Nova Avantura</td>
     </tr>
     <tr>
         <td colspan="3" style="width: 100%;">
@@ -66,16 +78,28 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="text-align: left;">
-            <table cellpadding="0" cellspacing="10" border="0">
-                <tr><td>Istaknute cijene su maloprodajne sa uračunatim PDV !</td></tr>
-                <tr><td style="background-color: #E9E9E9; height: 90px; width: 330px; border: 1px solid black">'{{napomena}}'</td></tr>
+        <td colspan="3" style="width: 800px">
+            <table cellpadding="0" cellspacing="10" border="0" style="width: 100%;">
+                <tr>
+                    <td><b>Ukupno:</b></td>
+                    <td align="right" style="text-align: right;"><b>'{{total_cijena}}'</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="right" style="text-align: right;">Vrsta plaćanja: <b>'{{placanje}}'</b></td>
+                </tr>
             </table>
         </td>
-        <td colspan="1" style="text-align: right;">
-            <table cellpadding="0" cellspacing="10" border="0">
-                <tr><td align="right" style="font-size: 20px; text-align: right;">Ukupno: <b>'{{total_cijena}}'</b></td></tr>
-                <tr><td align="right" style="font-size: 20px; text-align: right;">Vrsta plaćanja: <b>'{{placanje}}'</b></td></tr>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 800px;">
+            <table cellpadding="0" cellspacing="10" border="0" style="width: 100%;">
+                <tr><td>Istaknute cijene su sa PDV !</td></tr>
+                <tr>
+                    <td style="height: 90px; width: 100%; border: 1px solid black; border-radius: 25px;">
+                        '{{napomena}}'
+                    </td>
+                </tr>
             </table>
         </td>
     </tr>
@@ -84,17 +108,6 @@
             <table cellpadding="0" cellspacing="10" border="0" style="width: 100%;">
                 <tr><td style="text-align: center;">Poštovani, hvala vam na kupovini na Nova Avantura web trgovini!</td></tr>
                 <tr><td style="text-align: center;">Vaša narudžba je zaprimljena.</td></tr>
-                <tr><td style="text-align: center;">Kontaktirat ćemo Vas u najkraćem roku.</td></tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" style="width: 800px;">
-            <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
-                <tr><td style="text-align: center;">Nova Avantura d.o.o.</td></tr>
-                <tr><td style="text-align: center;">'{{tvrtka_adresa}}'</td></tr>
-                <tr><td style="text-align: center;">Tel/Fax: '{{tvrtka_telefon}}'</td></tr>
-                <tr><td style="text-align: center;">'{{tvrtka_email}}'</td></tr>
             </table>
         </td>
     </tr>
