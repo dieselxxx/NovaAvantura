@@ -54,7 +54,10 @@ final class Blog_Model extends Master_Model {
 
         foreach ($blogovi as $key => $blog) {
 
-            $blogovi[$key]['Datum'] = (new DateTime($blog['Datum']))->format('l jS \o\f F Y');
+            $blogovi[$key]['Datum'] = (
+                new \IntlDateFormatter('hr_HR', \IntlDateFormatter::FULL, \IntlDateFormatter::SHORT)
+            )->format(new DateTime($blog['Datum']));
+
         }
 
         return $blogovi;
@@ -78,7 +81,9 @@ final class Blog_Model extends Master_Model {
             ->gdje('ID', '=', $id)
             ->napravi()->redak();
 
-        $blog['Datum'] = (new DateTime($blog['Datum']))->format('l jS \o\f F Y');
+        $blog['Datum'] = (
+        new \IntlDateFormatter('hr_HR', \IntlDateFormatter::FULL, \IntlDateFormatter::SHORT)
+        )->format(new DateTime($blog['Datum']));
 
         return $blog;
 
