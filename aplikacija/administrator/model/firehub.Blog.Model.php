@@ -77,6 +77,9 @@ final class Blog_Model extends Master_Model {
         $naslov = $_REQUEST['naslov'];
         $naslov = Validacija::String(_('Naslov bloga'), $naslov, 3, 250);
 
+        $datum = $_REQUEST['datum'];
+        $datum = new DateTime($datum);
+
         if (!empty($_REQUEST['opis'])) {
             $opis = $_REQUEST['opis'];
             $opis = Validacija::StringHTML(_('Opis bloga'), $opis, 0, 5000);
@@ -86,7 +89,8 @@ final class Blog_Model extends Master_Model {
 
             $this->bazaPodataka->tabela('blog')->azuriraj([
                 'Naslov' => $naslov,
-                'Opis' => $opis ?? ''
+                'Opis' => $opis ?? '',
+                'Datum' => $datum->format('Y-m-d H:i:s')
             ])->gdje(
                 'ID', '=', $id
             )->napravi();
@@ -95,7 +99,7 @@ final class Blog_Model extends Master_Model {
 
             $this->bazaPodataka->tabela('blog')->umetni([
                 'Naslov' => $naslov,
-                'Datum' => (new \DateTime())->format('Y-m-d')
+                'Datum' => (new \DateTime())->format('Y-m-d H:i:s')
             ])->napravi();
 
         }

@@ -88,6 +88,7 @@ final class Blogovi_Kontroler extends Master_Kontroler {
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('blogovi/uredi.html')->podatci([
             'id' => $blog['ID'],
             'naslov' => $blog['Naslov'],
+            'datum' => $blog['Datum'],
             'opis' => $blog['Opis'] ?? '',
             'slika' => $blog['Slika'] ?? ''
         ]);

@@ -1601,7 +1601,13 @@ $_Blog = function ($id) {
             dialog.naslov('Dogodila se greška prilikom učitavanja podataka, molimo kontaktirajte administratora');
             dialog.kontrole('<button data-boja="boja" onclick="Dialog.dialogZatvori()">Zatvori</button>');
         },
-        complete: function (odgovor) {}
+        complete: function (odgovor) {
+            jQuery.datetimepicker.setLocale('hr');
+            jQuery('.datum_vrijeme').datetimepicker({
+                timepicker:true,
+                format:'Y-m-d H:i:s'
+            });
+        }
     });
 
     return false;

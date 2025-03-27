@@ -258,7 +258,7 @@ input[type="file"] {display: none;}
 .input-onemoguceno .input-jedno {cursor: default;}
 .input-onemoguceno .input-odabir .trazi-odabir .trazi-odabir-zatvori {cursor: default;}
 
-.datumvrijeme {display:none; position: absolute; background: #ffffff; padding: 2px 8px 8px 2px; border: 1px solid var(--boja-granica); box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.506); z-index: 9999;}
+.datumvrijeme {display:none; position: absolute; background: var(--boja-pozadina_tamna); padding: 2px 8px 8px 2px; border: 1px solid var(--boja-tekst-malo-tamnije); box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.506); z-index: 9999;}
 .datumvrijeme.rtl {padding: 8px 0 8px 8px;}
 .datumvrijeme iframe {position: absolute; background: transparent; top: 0; left: 0; height: 210px; width: 75px; border: 0;}
 .datumvrijeme button {border: none !important;}
@@ -285,14 +285,14 @@ input[type="file"] {display: none;}
 .datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_prije,.datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_dalje {float: none; display: block; background-position: -40px -15px; margin-top: 7px; margin-left: 14px; height: 15px; width: 30px;}
 .datumvrijeme.rtl .datumvrijeme_vrijeme_picker .datumvrijeme_prije,.datumvrijeme.rtl .datumvrijeme_vrijeme_picker .datumvrijeme_dalje {float: none; margin-left: 0; margin-right: 14px;}
 .datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_prije {background-position: -40px 0; margin-top: 0; margin-bottom: 7px;}
-.datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box {height: 151px; border-bottom: 1px solid var(--boja-granica); overflow: hidden;}
-.datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box>div>div {background: #f5f5f5; height: 25px; line-height: 25px; text-align:center; border-top: 1px solid var(--boja-granica); border-bottom-width: 0; border-collapse: collapse; cursor: pointer;}
+.datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box {height: 151px; border-bottom: 1px solid var(--boja-tekst-malo-tamnije); overflow: hidden;}
+.datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box>div>div {background: var(--boja-pozadina_tamna); height: 25px; line-height: 25px; text-align:center; border-top: 1px solid var(--boja-tekst-malo-tamnije); border-bottom-width: 0; border-collapse: collapse; cursor: pointer;}
 .datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box>div>div:first-child {border-top-width: 0;}
 .datumvrijeme .datumvrijeme_danas:hover, .datumvrijeme .datumvrijeme_dalje:hover, .datumvrijeme .datumvrijeme_prije:hover {opacity: 1; -ms-filter: "alpha(opacity=100)";}
 .datumvrijeme .datumvrijeme_label {float: left; display: inline; position: relative; margin: 0; padding: 5px 3px; width: 182px; color: var(--boja-na); text-align: center; cursor: pointer; z-index: 9999;}
 .datumvrijeme .datumvrijeme_label:hover>span {text-decoration: underline;}
 .datumvrijeme .datumvrijeme_label:hover i {opacity: 1.0;}
-.datumvrijeme .datumvrijeme_label>.datumvrijeme_odabir {display: none; position: absolute; background: #fff; top: 30px; right: 0; max-height: 160px; border: 1px solid var(--boja-granica); overflow-y: hidden; z-index: 101;}
+.datumvrijeme .datumvrijeme_label>.datumvrijeme_odabir {display: none; position: absolute; background: var(--boja-pozadina_tamna); top: 30px; right: 0; max-height: 160px; border: 1px solid var(--boja-tekst-malo-tamnije); overflow-y: hidden; z-index: 101;}
 .datumvrijeme .datumvrijeme_label>.datumvrijeme_odabir.datumvrijeme_mjesec_odabir {right: -7px;}
 .datumvrijeme .datumvrijeme_label>.datumvrijeme_odabir.datumvrijeme_godina_odabir {right: 2px;}
 .datumvrijeme .datumvrijeme_label>.datumvrijeme_odabir>div>.datumvrijeme_opcija:hover {background: #ff8000; color: #ffffff;}
@@ -305,9 +305,9 @@ input[type="file"] {display: none;}
 .datumvrijeme .datumvrijeme_kalendar table tbody tr {height: auto;}
 .datumvrijeme .datumvrijeme_kalendar td>div {padding-right:5px;}
 .datumvrijeme .datumvrijeme_kalendar th {height: 25px;}
-.datumvrijeme .datumvrijeme_kalendar td, .datumvrijeme .datumvrijeme_kalendar th{background: #f5f5f5; width: 14.2857142%; padding: 0; height: 25px; text-align: right; vertical-align: middle; border: 1px solid var(--boja-granica); border-collapse: collapse; cursor: pointer;}
+.datumvrijeme .datumvrijeme_kalendar td, .datumvrijeme .datumvrijeme_kalendar th{background: var(--boja-pozadina_tamna); width: 14.2857142%; padding: 0; height: 25px; text-align: right; vertical-align: middle; border: 1px solid var(--boja-tekst-malo-tamnije); border-collapse: collapse; cursor: pointer;}
 .datumvrijeme.datumvrijeme_pokazi_tjedne .datumvrijeme_kalendar td,.datumvrijeme.datumvrijeme_pokazi_tjedne .datumvrijeme_kalendar th {width: 12.5%;}
-.datumvrijeme .datumvrijeme_kalendar th {background: #f1f1f1;}
+.datumvrijeme .datumvrijeme_kalendar th {background: var(--boja-pozadina_tamna);}
 .datumvrijeme .datumvrijeme_kalendar td.xdsoft_today {color: var(--boja-na);}
 .datumvrijeme .datumvrijeme_kalendar td.datumvrijeme_oznaceno_zadano {background: var(--boja-na);}
 .datumvrijeme .datumvrijeme_kalendar td.datumvrijeme_oznaceno_mint{background: var(--boja-na);}
@@ -317,9 +317,9 @@ input[type="file"] {display: none;}
 .datumvrijeme .datumvrijeme_kalendar td:hover, .datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box>div>div:hover {color:#ffffff !important; background: var(--boja-na) !important; box-shadow:none !important;}
 .datumvrijeme .datumvrijeme_kalendar td.datumvrijeme_trenutno.datumvrijeme_iskljuceno:hover, .datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box>div>div.datumvrijeme_trenutno.datumvrijeme_iskljuceno:hover {background: var(--boja-na) !important; color: #ffffff !important;}
 .datumvrijeme .datumvrijeme_kalendar td.datumvrijeme_iskljuceno:hover,.datumvrijeme .datumvrijeme_vrijeme_picker .datumvrijeme_vrijeme_box>div>div.datumvrijeme_iskljuceno:hover{background: inherit !important; color: inherit !important; box-shadow: inherit !important;}
-.datumvrijeme .datumvrijeme_kalendar th {color: var(--boja-granica); font-weight: 700; text-align: center; cursor: default;}
-.datumvrijeme_vrijeme_box {position: relative; border: 1px solid var(--boja-granica);}
-.datumvrijeme_scrollbar>.datumvrijeme_scroller {background: var(--boja-granica) !important; height: 20px; border-radius: 3px;}
+.datumvrijeme .datumvrijeme_kalendar th {color: var(--boja-tekst-malo-tamnije); font-weight: 700; text-align: center; cursor: default;}
+.datumvrijeme_vrijeme_box {position: relative; border: 1px solid var(--boja-tekst-malo-tamnije);}
+.datumvrijeme_scrollbar>.datumvrijeme_scroller {background: var(--boja-pozadina_tamna) !important; height: 20px; border-radius: 3px;}
 .datumvrijeme_scrollbar {position: absolute; right: 0; top: 0; bottom: 0; width:7px; cursor: pointer;}
 .datumvrijeme.rtl .datumvrijeme_scrollbar {left: 0; right: auto;}
 .datumvrijeme_scroller_okolo {position: relative;}

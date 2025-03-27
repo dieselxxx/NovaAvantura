@@ -3,11 +3,11 @@
         "css/root.css",
         "css/normaliziranje.css",
         "css/grid.css",
-        "css/danijel.css"
+        "css/danijel.css?v=1.0"
     ],
     "javascript": [
         "js/biblioteke.js",
         "js/dodaj.js?v=1.0",
-        "js/firehub.js?v=1.02"
+        "js/firehub.js?v=1.03"
     ]
 }
