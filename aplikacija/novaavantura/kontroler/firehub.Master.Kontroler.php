@@ -150,6 +150,7 @@ abstract class Master_Kontroler extends Kontroler {
             'kategorije_meni' => $this->kategorijeMeni(),
             'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije()),
             'kosarica_broj_artikala' => (string)$this->kosarica->brojArtikala(),
+            'favoriti_broj_artikala' => $this->favoriti->brojArtikala() > 0 ? '('.$this->favoriti->brojArtikala().')' : '',
             'dostava_iznos' => (string)Domena::dostavaIznos(),
             'dostava_limit' => (string)Domena::dostavaLimit(),
             'greska' => $this->greska
