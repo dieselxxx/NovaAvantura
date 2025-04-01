@@ -153,7 +153,7 @@ final class Brand_Kontroler extends Master_Kontroler {
                 <li>
                     <label class="kontrolni_okvir">
                         <span>'.$velicina1['Velicina'].'</span>
-                        <input type="checkbox" '.$checked.' data-url="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
+                        <input type="checkbox" '.$checked.' data-url="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$poredaj.'/'.$poredaj_redoslijed.'/" data-url2="/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/sve/'.$poredaj.'/'.$poredaj_redoslijed.'/">
                         <span class="checkmark"></span>
                     </label>
                 </li>

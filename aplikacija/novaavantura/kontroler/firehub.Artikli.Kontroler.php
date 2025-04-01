@@ -211,7 +211,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
                 <li>
                     <label class="kontrolni_okvir">
                         <span>'.$velicina1['Velicina'].'</span>
-                        <input type="checkbox" '.$checked.' data-url="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$brand.'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
+                        <input type="checkbox" '.$checked.' data-url="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/'.mb_strtolower($velicina1['Velicina']).'/'.$brand.'/'.$poredaj.'/'.$poredaj_redoslijed.'/" data-url2="/artikli/'.$kategorija.'/'.$trazi.'/'.$cijena_od.'/'.$cijena_do.'/sve/'.$brand.'/'.$poredaj.'/'.$poredaj_redoslijed.'/">
                         <span class="checkmark"></span>
                     </label>
                 </li>
