@@ -76,7 +76,7 @@ final class Favoriti_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_izbrisi">
-                            <svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            <svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti_puno"></use></svg>
                             <span>Ukloni</span>
                         </button>
                         {$artikal['Brand']}

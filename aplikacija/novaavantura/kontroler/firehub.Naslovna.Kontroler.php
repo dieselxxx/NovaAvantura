@@ -97,7 +97,9 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
+            $fav = in_array($artikal['ID'], $favoriti)
+                ? '<svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti_puno"></use></svg>'
+                : '<svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>';
 
             $artikli_izdvojeno_html .= <<<Artikal
             
@@ -110,7 +112,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            $fav
                         </button>
                         {$artikal['Brand']}
                      </span>
@@ -130,7 +132,9 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
+            $fav = in_array($artikal['ID'], $favoriti)
+                ? '<svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti_puno"></use></svg>'
+                : '<svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>';
 
             $artikli_novo_html .= <<<Artikal
             
@@ -143,7 +147,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            $fav
                         </button>
                         {$artikal['Brand']}
                      </span>
@@ -163,7 +167,9 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
+            $fav = in_array($artikal['ID'], $favoriti)
+                ? '<svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti_puno"></use></svg>'
+                : '<svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>';
 
             $artikli_outlet_html .= <<<Artikal
             
@@ -176,7 +182,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            $fav
                         </button>
                         {$artikal['Brand']}
                      </span>
@@ -196,7 +202,9 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         );
         foreach ($artikli as $artikal) {
 
-            $fav = in_array($artikal['ID'], $favoriti) ? ' fill="red"' : '';
+            $fav = in_array($artikal['ID'], $favoriti)
+                ? '<svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti_puno"></use></svg>'
+                : '<svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>';
 
             $artikli_akcija_html .= <<<Artikal
             
@@ -209,7 +217,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
                     </a>
                     <span class="brand">
                         <button type="submit" class="gumb ikona" name="favorit_dodaj">
-                            <svg$fav><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>
+                            $fav
                         </button>
                         {$artikal['Brand']}
                      </span>
