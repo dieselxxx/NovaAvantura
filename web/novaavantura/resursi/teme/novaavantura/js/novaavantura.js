@@ -188,4 +188,13 @@ $(document).ready(function () {
         $("header .meni .mobile-meni-gumb_zatvori").toggle();
     });
 
+    // narudzba tvrtka
+    $('input[name="r1"]').change(function() {
+        if (this.checked) {
+            $("section.tvrtka").show();
+        } else {
+            $("section.tvrtka").hide();
+        }
+    });
+
 });
