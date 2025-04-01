@@ -117,7 +117,7 @@ final class Brand_Kontroler extends Master_Kontroler {
         $navigacija = $this->artikli->ukupnoRedakaHTML(
             $kategorija, 'svi artikli',
             $cijena_od, $cijena_do, $velicina, $brand, $limit,
-            '/brand/'.$brand.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
+            '/brand/'.$brand.'/'.$kategorija.'/'.$cijena_od.'/'.$cijena_do.'/'.$velicina .'/'.$poredaj.'/'.$poredaj_redoslijed, $stranica
         );
         $navigacija_html = implode('', $navigacija);
 
