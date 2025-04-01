@@ -168,7 +168,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
             'artikl_opis' => $trenutni_artikl['Opis'] ? '<h5>Dodatne informacije: </h5><span>'.$trenutni_artikl['Opis'] .'</span>' : '',
             'artikl_zaliha' => $artikl_zaliha_html,
             'artikl_kosarica_velicine' => $artikl_kosarica_velicine,
-            'favorit_fill' => in_array((int)$trenutni_artikl['ID'], $favoriti) ? ' fill="red"' : ''
+            'favorit_fill' => in_array((int)$trenutni_artikl['ID'], $favoriti) ? '<svg fill="red"><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti_puno"></use></svg>' : '<svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#favoriti"></use></svg>'
         ]));
 
     }
