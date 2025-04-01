@@ -169,7 +169,7 @@ main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.cijena {grid
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.cijena span {font-size: 0.9rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica {display: flex; column-gap: 5px; grid-column: 3 / 4; grid-row: 2 / 3; justify-self: end;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.minus,
-main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.plus {width: 30px;}
+main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.plus {height: 27px; width: 30px;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal button.izbrisi,
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica button.uredi {font-size: 0.7rem; color: var(--boja-tekst-svjetlija); border: 0;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal button.izbrisi:hover,
@@ -399,6 +399,7 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .artikl > form > .slike {width: 400px;}
     main .sadrzaj .artikli section div.artikli .artikal span.cijena_30_dana,
     main .sadrzaj .naslovna .artikli section .artikli .artikal span.cijena_30_dana {font-size: 0.6rem;}
+    main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.kosarica {grid-column: 1 / 3; grid-row: 4 / 5; justify-self: start; margin-top: 10px;}
 
 }
 
@@ -410,6 +411,8 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna .artikli section .artikli .artikal {grid-template-columns: 150px; grid-template-rows: 191px;}
     main > .sadrzaj > .artikl > form > .slika {width: 320px;}
     main > .sadrzaj > .artikl > form > .slike {width: 320px;}
+    main > .sadrzaj > .kosarica > section > div.artikli > .artikal {grid-template-columns: 100px auto; grid-template-rows: 42px 42px 42px;}
+    main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.cijena {justify-self: start;}
 
 }
 
@@ -448,7 +451,7 @@ label.select select option {background-color: white; font-size: 0.8rem;}
 a.gumb, button.crni {width: max-content; padding: 12px; font-size: 0.9rem; color: var(--boja-tekst); border: 1px solid var(--boja-granica);}
 a.gumb:hover, button.crni:hover {background-color: var(--boja-pozadina);}
 a.gumb.crni, button.crni {background-color: black; text-transform: uppercase; color: white;}
-.gumb.ikona {display: flex; padding: 10px;}
+.gumb.ikona {display: flex;}
 button.crni span {color: white;}
 button.crni svg {fill: white;}
 

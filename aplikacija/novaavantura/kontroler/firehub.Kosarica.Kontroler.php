@@ -141,10 +141,11 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                                     <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#uredi"></use></svg>
                                     <span>Izmijeni</span>
                                 </button>
+                                <button class="izbrisi" type="submit" class="gumb ikona" name="kosarica_izbrisi">
+                                    <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#izbrisi"></use></svg>
+                                    <span>Ukloni</span>
+                                </button>
                             </span>
-                            <button class="izbrisi" type="submit" class="gumb ikona" name="kosarica_izbrisi">
-                                <span>Ukloni</span>
-                            </button>
                         </form>
 
                     Artikal;
