@@ -43,8 +43,6 @@ abstract class Master_Kontroler extends Kontroler {
      */
     public function __construct () {
 
-        ob_start();
-
         $this->gdpr = $this->model(Gdpr_Model::class);
         $this->kategorije = $this->model(Kategorije_Model::class);
         $this->favoriti= $this->model(Favoriti_Model::class);
@@ -60,6 +58,8 @@ abstract class Master_Kontroler extends Kontroler {
                 $this->favoriti->dodaj($id);
 
                 header("Location: ".$_SERVER['REQUEST_URI']);
+
+                exit();
 
             }
 
