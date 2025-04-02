@@ -74,6 +74,8 @@ abstract class Master_Kontroler extends Kontroler {
 
                 header("Location: ".$_SERVER['REQUEST_URI']);
 
+                exit();
+
             }
 
         }
@@ -88,6 +90,8 @@ abstract class Master_Kontroler extends Kontroler {
                 $this->kosarica->dodaj($velicina, (int)$_POST['vrijednost'] ?? 0);
 
                 header("Location: ".$_SERVER['REQUEST_URI']);
+
+                exit();
 
             } else {
 
@@ -106,6 +110,8 @@ abstract class Master_Kontroler extends Kontroler {
 
                 header("Location: ".$_SERVER['REQUEST_URI']);
 
+                exit();
+
             }
 
         }
@@ -118,6 +124,8 @@ abstract class Master_Kontroler extends Kontroler {
                 $this->kosarica->izbrisi($velicina);
 
                 header("Location: ".$_SERVER['REQUEST_URI']);
+
+                exit();
 
             }
 
