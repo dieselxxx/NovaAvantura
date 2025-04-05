@@ -440,7 +440,7 @@ label.input input:focus-visible {outline: none;}
 label.unos {position: relative; display: grid; grid-template-columns: 1fr; grid-gap: 0;}
 label.unos input {grid-column: 1 / 2; grid-row: 1 / 3; padding: 8px; height: 56px; width: 100%; border-width: 0 0 1px 0 !important; border-style: solid !important; border-color: var(--boja-granica) !important;}
 label.unos input:focus {outline: none;}
-label.unos input::placeholder {color: var(--boja-tekst);}
+label.unos input::placeholder {color: var(--boja-tekst-svjetlija);}
 label.unos svg {grid-column: 2 / 3; grid-row: 1 / 2; margin: 13px; height: 30px; width: 30px;}
 label.unos span.granica {grid-column: 2 / 3; grid-row: 1 / 2; position: absolute; display: block; bottom: 0; width: 100%}
 label.select {position: relative;}
