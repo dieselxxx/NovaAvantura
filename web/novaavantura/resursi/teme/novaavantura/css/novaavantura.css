@@ -130,7 +130,7 @@ main .sadrzaj .artikli section nav.navigacija ul li {padding: 10px; line-height:
 main .sadrzaj .artikli section nav.navigacija ul li svg {fill: var(--boja-tekst-svjetlija); height: 20px; width: 20px;}
 main .sadrzaj .artikli section nav.navigacija ul li svg:hover {fill: var(--boja-tekst);}
 main .sadrzaj .artikl form {display: grid; grid-template-columns: 550px auto; grid-gap: 20px 50px;}
-main .sadrzaj .artikl form .slika {grid-column: 1 / 2; grid-row: 1 / 2; position: relative; background-color: var(--boja-pozadina);}
+main .sadrzaj .artikl form .slika {grid-column: 1 / 2; grid-row: 1 / 2; position: relative;}
 main .sadrzaj .artikl form .slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main .sadrzaj .artikl form .slika .novo {position: absolute; top:10px; right: 10px; background-color: var(--boja-zelena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main .sadrzaj .artikl form .slika img {height: 100%; width: 100%;}
