@@ -461,9 +461,9 @@ button svg {height: 20px; width: 30px;}
 
 div.radio {padding: 3px;}
 div.radio > input {display: none; height: 0; width: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
-div.radio > input + label {display: inline-block; background-color: white; padding: 10px; font-weight: 100; text-align: center; color: var(--boja-tekst-svjetlija); border: 1px solid var(--boja-granica); cursor: pointer;}
-div.radio > input:checked + label {background-color: var(--boja-tekst);; color: var(--boja-pozadina); border-color: var(--boja-pozadina);}
-div.radio > input[disabled] + label {cursor: not-allowed;}
+div.radio > input + label {display: inline-block; background-color: white; padding: 10px; font-weight: 100; text-align: center; color: var(--boja-tekst); border: 1px solid var(--boja-granica); cursor: pointer;}
+div.radio > input:checked + label {background-color: var(--boja-tekst); color: var(--boja-pozadina); border-color: var(--boja-pozadina);}
+div.radio > input[disabled] + label {background-color: var(--boja-granica); color: var(--boja-tekst-svjetlija); cursor: not-allowed;}
 
 textarea {padding: 5px; height: 200px; width: 100%; border: 1px solid var(--boja-granica); resize: none;}
 textarea:focus-visible {outline: none !important;}

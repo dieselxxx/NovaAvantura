@@ -147,7 +147,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
 
                 $id = Validacija::Broj('ID', $_POST['ID'], 1, 10);
 
-                $this->model(Favorit_Model::class)->dodaj($id);
+                $this->model(Favoriti_Model::class)->dodaj($id);
 
             }
 
