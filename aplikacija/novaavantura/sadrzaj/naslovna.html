@@ -27,11 +27,11 @@
         </section>
          <section id="akcija">
             <h1>Artikli na akciji</h1>
-            <div class="artikli" style="display: inherit;">{{artikli_akcija}}</div>
+            <div class="artikli">{{artikli_akcija}}</div>
         </section>
         <section id="blogovi">
             <h1>Blog</h1>
-            <div class="artikli" style="display: inherit;">{{blogovi}}</div>
+            <div class="artikli">{{blogovi}}</div>
         </section>
     </div>
 
@@ -53,10 +53,7 @@
                     },
                     {
                         breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
+                        settings: "unslick"
                     }
                 ]
             });
