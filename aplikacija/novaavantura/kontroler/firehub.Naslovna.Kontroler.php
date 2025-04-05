@@ -93,7 +93,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         // izdvojeni artikli
         $artikli_izdvojeno_html = '';
         $artikli = $artikli_model->artikli(
-            'izdvojeno', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+            'izdvojeno', 0, 100, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
         );
         foreach ($artikli as $artikal) {
 
@@ -128,7 +128,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         // novi artikli
         $artikli_novo_html = '';
         $artikli = $artikli_model->artikli(
-            'novo', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+            'novo', 0, 20, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
         );
         foreach ($artikli as $artikal) {
 
@@ -163,7 +163,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         // outlet artikli
         $artikli_outlet_html = '';
         $artikli = $artikli_model->artikli(
-            'outlet', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+            'outlet', 0, 20, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
         );
         foreach ($artikli as $artikal) {
 
@@ -198,7 +198,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
         // akcija artikli
         $artikli_akcija_html = '';
         $artikli = $artikli_model->artikli(
-            'akcija', 0, 8, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
+            'akcija', 0, 100, 'svi artikli', 0, PHP_INT_MAX, 'sve', 'sve', 'starost', 'desc'
         );
         foreach ($artikli as $artikal) {
 
