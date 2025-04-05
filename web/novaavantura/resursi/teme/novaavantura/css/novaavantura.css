@@ -5,6 +5,7 @@ a:hover {color: var(--boja-tekst);}
 a:hover, nav a:visited {text-decoration: none;}
 
 header {background-color: white; height: 80px; transition: all 0.4s ease; z-index: 2;}
+header nav ul li.logo a svg {height: 40px; width: 40px;}
 header.skrolanje {position: sticky; top:0; background-color: rgba(255,255,255,0.9); transition: all 0.4s ease;}
 header.skrolanje .traka ul li.samo_desktop {display: none;}
 header.skrolanje .traka nav.osnovno ul li:first-of-type a {margin-left: 5px; padding-right: 0;}
