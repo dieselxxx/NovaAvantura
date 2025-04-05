@@ -68,6 +68,7 @@ final class Gdpr_Model extends Master_Model {
                         Ove Web stranice i njezini alati trećih strana (third-party tools) koriste<br>kolačiće (cookies) uglavnom za osnovno funkcioniranje i analitiku prometa.
                         <br><br>Za više informacija pročitajte našu <a href="/kolacic/osobnipodatci">Politiku obrade osobnih podataka</a>.
                         <br><br><br><a onclick="$_Cookie(\'da\');">Prihvaćam</a>
+                        <a onclick="history.back();">Ne prihvaćam</a>
                     </div>
                 </div>
             ';
