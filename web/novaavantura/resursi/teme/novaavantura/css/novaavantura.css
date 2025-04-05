@@ -369,8 +369,8 @@ footer > section a svg {height: 50px; width: 50px;}
     main > .sadrzaj > .naslovna > .rotator {height: 768px;}
     main > .sadrzaj > .naslovna > div.div {height: 768px;}
     main > .sadrzaj > .naslovna .artikli {overflow: scroll;}
-    main > .sadrzaj > .naslovna .artikli section .artikli, main > .sadrzaj > .naslovna .artikli section div {display: flex; flex-wrap: nowrap; gap: 20px; overflow-x: auto;}
-    main > .sadrzaj > .naslovna .artikli section .artikli > form, main > .sadrzaj > .naslovna .artikli section div > form {margin-bottom: 20px;}
+    main > .sadrzaj > .naslovna .artikli section .artikli, main > .sadrzaj > .naslovna .artikli section > div {display: flex; flex-wrap: nowrap; gap: 20px; overflow-x: auto;}
+    main > .sadrzaj > .naslovna .artikli section .artikli > form, main > .sadrzaj > .naslovna .artikli section > div > form {margin-bottom: 20px;}
 
     main > .sadrzaj > .naslovna > .artikli > section > h1 {text-align: center;}
     main > .sadrzaj > .narudzba > form {text-align: center;}
