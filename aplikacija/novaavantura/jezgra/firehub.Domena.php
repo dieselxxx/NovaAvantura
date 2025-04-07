@@ -190,7 +190,7 @@ final class Domena {
 
         if (self::Hr()) {
 
-            return '+385 12 3456 789';
+            return '+385 99 603 9376 ';
 
         }
 
