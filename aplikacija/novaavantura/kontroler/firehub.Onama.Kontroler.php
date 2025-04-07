@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * Opći uvjeti
+ * O nama
  * @since 0.1.0.pre-alpha.M1
  *
  * @author Danijel Galić
@@ -18,12 +18,12 @@ use FireHub\Jezgra\Komponente\BazaPodataka\BazaPodataka;
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
 
 /**
- * ### Opci uvjeti
+ * ### O nama
  * @since 0.1.0.pre-alpha.M1
  *
  * @package Aplikacija\Kontroler
  */
-final class OpciUvjeti_Kontroler extends Master_Kontroler {
+final class Onama_Kontroler extends Master_Kontroler {
 
     /**
      * ## index
@@ -33,9 +33,9 @@ final class OpciUvjeti_Kontroler extends Master_Kontroler {
      */
     public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
-        return sadrzaj()->datoteka('opci_uvjeti.html')->podatci(array_merge($this->zadaniPodatci(), [
-            'predlozak_naslov' => 'Opci uvjeti',
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Opći uvjeti'
+        return sadrzaj()->datoteka('o_nama.html')->podatci(array_merge($this->zadaniPodatci(), [
+            'predlozak_naslov' => 'O nama',
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ O nama'
         ]));
 
     }
