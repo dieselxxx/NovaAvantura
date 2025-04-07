@@ -2,8 +2,8 @@
     "css": [
         "css/root.css?v=1.03",
         "css/normaliziranje.css",
-        "css/grid.css?v=1.03",
-        "css/novaavantura.css?v=2.25",
+        "css/grid.css?v=1.04",
+        "css/novaavantura.css?v=2.26",
         "css/swiper-bundle.min.css?v=1.0",
         "css/slick.css",
         "css/slick-theme.css?v=1.01"
@@ -11,6 +11,6 @@
     "javascript": [
         "js/biblioteke.js?v=1.0",
         "js/slick.js",
-        "js/novaavantura.js?v=1.17"
+        "js/novaavantura.js?v=1.18"
     ]
 }
