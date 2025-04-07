@@ -299,6 +299,7 @@ final class Kosarica_Kontroler extends Master_Kontroler {
                             <td align='left'>{$artikal['Naziv']}</td>
                             <td align='center' style='text-align: center;'>{$kosarica_artikal['kolicina']} kom</td>
                             <td align='right' style='text-align: right;'>{$artikal['CijenaFinalHTML']}</td>
+                            <td align='right' style='text-align: right;'>{$artikal['CijenaFinalHTML']}</td>
                             <td></td>
                         </tr>
 
