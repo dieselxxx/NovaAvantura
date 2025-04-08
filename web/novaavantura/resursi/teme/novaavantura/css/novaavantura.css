@@ -98,17 +98,17 @@ main > .sadrzaj > .artikli > section > div.opcije {grid-column: 2 / 3; grid-row:
 main > .sadrzaj > .artikli > section > div.opcije > div {justify-self: end; align-self: center; font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
 main > .sadrzaj > .artikli > section > div.artikli {grid-column: 2 / 3; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 50px 15px; justify-items: center;}
 main > .sadrzaj > .artikli > section > div.artikli > .artikal {display: grid; grid-template-columns: 275px; grid-template-rows: 350px; justify-content: center;}
-main .sadrzaj .naslovna .artikli section .artikli .artikal {display: grid; grid-template-columns: auto; grid-template-rows: 350px; justify-content: center;}
+main .sadrzaj .naslovna .artikli section .artikli .artikal {display: grid; grid-template-columns: 275px; grid-template-rows: 350px; justify-content: center;}
 main .sadrzaj .artikli section div.artikli .artikal a,
 main .sadrzaj .naslovna .artikli section .artikli .artikal a {color: var(--boja-tekst);}
 main .sadrzaj .artikli section div.artikli .artikal a.slika,
-main .sadrzaj .naslovna .artikli section .artikli .artikal a.slika {position: relative; background-color: var(--boja-pozadina);}
+main .sadrzaj .naslovna .artikli section .artikli .artikal a.slika {display: flex; justify-content: center; position: relative;}
 main .sadrzaj .artikli section div.artikli .artikal a.slika .popust,
 main .sadrzaj .naslovna .artikli section .artikli .artikal a.slika .popust {position: absolute; top:10px; left: 10px; background-color: var(--boja-crvena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main .sadrzaj .artikli section div.artikli .artikal a.slika .novo,
 main .sadrzaj .naslovna .artikli section .artikli .artikal a.slika .novo {position: absolute; top:10px; right: 10px; background-color: var(--boja-zelena); padding: 5px; font-size: 0.8rem; color: var(--boja-pozadina);}
 main .sadrzaj .artikli section div.artikli .artikal a.slika img,
-main .sadrzaj .naslovna .artikli section .artikli .artikal a.slika img {height: 100%; width: 100%;}
+main .sadrzaj .naslovna .artikli section .artikli .artikal a.slika img {height: 100%; width: auto;}
 main .sadrzaj .artikli section div.artikli .artikal span.brand,
 main .sadrzaj .naslovna .artikli section .artikli .artikal span.brand {display: flex; align-items: center; gap: 5px; padding: 3px; font-size: 0.8rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 main .sadrzaj .artikli section div.artikli .artikal span.brand img,
