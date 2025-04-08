@@ -63,8 +63,8 @@ main div.scroller[data-animated=true] .scroller__inner {width: fit-content; flex
 
 main > .sadrzaj > #sadrzaj {padding: 15px 0;}
 main > .sadrzaj > #sadrzaj > .vi_ste_ovdje {height: 30px; font-size: 0.8em;}
-main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 700px;}
-main > .sadrzaj > .naslovna > div.div {height: 670px;}
+main > .sadrzaj > .naslovna > .rotator {position: absolute; left: 0; right: 0; height: 445px;}
+main > .sadrzaj > .naslovna > div.div {height: 445px;}
 main > .sadrzaj > .naslovna > .artikli_linkovi {display: flex; flex-wrap: wrap; justify-content: center; row-gap: 15px; margin: auto; padding: 50px 0; font-size: 1.2rem; font-weight: 100;}
 main > .sadrzaj > .naslovna > .artikli_linkovi a {padding: 0 30px;}
 main > .sadrzaj > .naslovna > .artikli {display: flex; flex-direction: column; margin-bottom: 20px;}
@@ -301,8 +301,8 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li:focus-within ~ .mobile-menu-header a {visibility: hidden;}
 
     main {margin-bottom: 25px;}
-    main > .sadrzaj > .naslovna > .rotator {height: 450px;}
-    main > .sadrzaj > .naslovna > div.div {height: 450px;}
+    main > .sadrzaj > .naslovna > .rotator {height: max-content;}
+    main > .sadrzaj > .naslovna > div.div {height: 420px;}
     main > .sadrzaj > .naslovna .artikli {margin: auto; width: 100%;}
     main > .sadrzaj > .naslovna .artikli section .artikli {grid-template-columns: repeat(2, 1fr);}
     main > .sadrzaj > .artikli > section {display: grid; grid-template-columns: auto;}
@@ -370,8 +370,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 768px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 768px;}
-    main > .sadrzaj > .naslovna > div.div {height: 768px;}
+    main > .sadrzaj > .naslovna > div.div {height: 748px;}
     main > .sadrzaj > .naslovna .artikli {overflow: scroll;}
     main > .sadrzaj > .naslovna .artikli section .artikli, main > .sadrzaj > .naslovna .artikli section > div {display: flex; flex-wrap: nowrap; gap: 20px; overflow-x: auto;}
     main > .sadrzaj > .naslovna .artikli section .artikli > form, main > .sadrzaj > .naslovna .artikli section > div > form {margin-bottom: 20px;}
@@ -388,8 +387,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 600px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 600px;}
-    main > .sadrzaj > .naslovna > div.div {height: 600px;}
+    main > .sadrzaj > .naslovna > div.div {height: 580px;}
     main > .sadrzaj > .artikli > section > div.naslov h2 > img {height: 80px;}
     main > .sadrzaj > .artikl > form > .slika {width: 480px;}
     main > .sadrzaj > .artikl > form > .slike {width: 480px;}
@@ -400,8 +398,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 480px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 480px;}
-    main > .sadrzaj > .naslovna > div.div {height: 480px;}
+    main > .sadrzaj > .naslovna > div.div {height: 460px;}
     main > .sadrzaj > .artikli > section > div.artikli > .artikal,
     main > .sadrzaj > .naslovna .artikli section .artikli .artikal {grid-template-columns: 188px; grid-template-rows: 239px;}
     main > .sadrzaj > .artikl > form > .slika {width: 400px;}
@@ -414,8 +411,7 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 400px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 400px;}
-    main > .sadrzaj > .naslovna > div.div {height: 400px;}
+    main > .sadrzaj > .naslovna > div.div {height: 380px;}
     main > .sadrzaj > .artikli > section > div.artikli > .artikal,
     main > .sadrzaj > .naslovna .artikli section .artikli .artikal {grid-template-columns: 150px; grid-template-rows: 191px;}
     main > .sadrzaj > .artikl > form > .slika {width: 320px;}
@@ -427,8 +423,6 @@ footer > section a svg {height: 50px; width: 50px;}
 
 @media only screen and (max-width: 320px) {
 
-    main > .sadrzaj > .naslovna > .rotator {height: 3200px;}
-    main > .sadrzaj > .naslovna > div.div {height: 320px;}
     main > .sadrzaj > .naslovna .artikli section .artikli {grid-template-columns: 1fr;}
     main > .sadrzaj > .artikli section div.artikli {grid-template-columns: 1fr;}
     main > .sadrzaj > .artikl > form > .slika {width: 250px;}
@@ -489,7 +483,7 @@ textarea:focus-visible {outline: none !important;}
 .swiper {width: 100%; height: 100%;}
 .swiper-slide {text-align: center;font-size: 18px;background: #fff;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}
 .swiper-slide picture {display: block; background-color: var(--boja-pozadina); width: 100%; height: 100%; object-fit: cover; box-shadow: inset 0 0 10rem 10px rgba(155,155,155,0.1);}
-.swiper-slide picture img {height: 100%;}
+.swiper-slide picture img {width: 100%;}
 
 /** animacije **/
 @keyframes dropdown {
