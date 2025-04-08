@@ -48,12 +48,12 @@ header .meni .mega-meni--multiLevel {flex-direction: column;}
 
 main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px; min-height: 500px;}
-main div.scroller {display: flex; position:relative; background-color: var(--boja-tekst); height: 30px; width: 100%; overflow: hidden;}
+main div.scroller {display: flex; position: relative; background-color: var(--boja-tekst); height: 30px; width: 100%; overflow: hidden;}
 main div.scroller .tag-list {margin: 0; padding-inline: 0; list-style: none;}
 main div.scroller .tag-list li {background-color: transparent; padding: 5px 20px; width: max-content; font-size: 0.9rem; text-align: center; color: white;}
 main div.scroller {max-width: 2000px;}
 main div.scroller .scroller__inner {display: flex; flex-wrap: wrap; gap: 1rem;}
-main div.scroller[data-animated=true] {overflow: hidden;}
+main div.scroller[data-animated=true] {position: absolute; overflow: hidden;}
 main div.scroller[data-animated=true] .scroller__inner {width: fit-content; flex-wrap: nowrap; animation: scroll 40s linear infinite;}
 @keyframes scroll {
     to {
