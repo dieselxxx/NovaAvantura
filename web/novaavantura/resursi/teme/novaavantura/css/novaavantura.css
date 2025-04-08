@@ -46,7 +46,7 @@ header .meni .mega-meni {z-index: 10;}
 header .meni .mega-meni--multiLevel {flex-direction: column;}
 
 
-main {position: relative; background-color: white; margin-bottom: 310px; z-index: 1;}
+main {position: relative; background-color: white; margin-bottom: 350px; z-index: 1;}
 main section.sadrzaj {padding: 0 5px 0 5px; min-height: 500px;}
 main div.scroller {display: flex; position: relative; background-color: var(--boja-tekst); height: 30px; width: 100%; overflow: hidden;}
 main div.scroller .tag-list {margin: 0; padding-inline: 0; list-style: none;}
@@ -300,7 +300,7 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul li:focus-within > [aria-haspopup="true"] ~ ul {max-height: 500px; transform: scaleY(1);}
     header .meni .menu-bar > li:focus-within ~ .mobile-menu-header a {visibility: hidden;}
 
-    main {margin-bottom: 0;}
+    main {margin-bottom: 25px;}
     main > .sadrzaj > .naslovna > .rotator {height: 450px;}
     main > .sadrzaj > .naslovna > div.div {height: 450px;}
     main > .sadrzaj > .naslovna .artikli {margin: auto; width: 100%;}
