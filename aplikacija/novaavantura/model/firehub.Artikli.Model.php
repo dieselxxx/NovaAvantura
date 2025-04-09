@@ -116,6 +116,7 @@ final class Artikli_Model extends Master_Model {
         }
 
         $poredaj = match ($poredaj) {
+            'id' => 'ID',
             'naziv' => 'Naziv',
             'starost' => 'DostupnoOd',
             default => 'CijenaIliAkcija'
