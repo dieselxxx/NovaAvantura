@@ -315,12 +315,71 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $email_slanje_tvrtka = new Email('narudzba.html');
         $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
         $email_slanje_tvrtka->Adresa(array(
-            array("adresa" => 'danijel.galic@outlook.com', "ime" => 'Danijel Galic'),
             array("adresa" => 'imotski@nova-avantura.hr', "ime" => 'Nova Avantura Imotski'),
             array("adresa" => 'josip@nova-avantura.hr', "ime" => 'Nova Avantura Josip'),
-            array("adresa" => 'gordana@nova-avantura.hr', "ime" => 'Nova Avantura Gordana'),
-            array("adresa" => $email, "ime" => $ime),
-            //array("adresa" => 'danijel.galic@outlook.com', "ime" => 'Danijel Galic')
+            array("adresa" => 'gordana@nova-avantura.hr', "ime" => 'Nova Avantura Gordana')
+        ));
+        $email_slanje_tvrtka->PredlozakKomponente(array(
+            "ime" => $ime,
+            "email" => $email,
+            "telefon" => $telefon,
+            "r1" => $r1 ? 'Potreban R1 račun: <b>da</b>' : '',
+            "grad" => $grad,
+            "adresa" => $adresa,
+            "zip" => $zip,
+            "tvrtka" => $tvrtka ? 'Tvrtka: <b>'.$tvrtka.'</b>': '',
+            "oib" => $oib ? Domena::OIBPDV().': <b>'.$oib.'</b>' : '',
+            "tvrtkaadresa" => $tvrtkaadresa ? 'Adresa tvrtke: <b>'.$tvrtkaadresa.'</b>' : '',
+            "placanje" => $placanje == 1 ? 'Plaćanje pouzećem - gotovina' : 'Virman',
+            "napomena" => $napomena,
+            "datum" =>  date("d.m.Y"),
+            "artikli" => $artikli_html,
+            "total_kolicina" => $this->total_kolicina . ' kom',
+            "total_cijena" => number_format($this->total_cijena, 2, ',', '.').' '.Domena::valuta(),
+            "tvrtka_adresa" => Domena::adresa(),
+            "tvrtka_telefon" => Domena::telefon(),
+            "tvrtka_email" => Domena::email(),
+            "valuta" => Domena::valuta(),
+            "domena" => Server::Domena()
+        ));
+        $email_slanje_tvrtka->Posalji();
+
+        // pošalji email
+        $email_slanje_tvrtka = new Email('narudzba.html');
+        $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
+        $email_slanje_tvrtka->Adresa(array(
+            array("adresa" => 'danijel.galic@outlook.com', "ime" => 'Danijel Galic')
+        ));
+        $email_slanje_tvrtka->PredlozakKomponente(array(
+            "ime" => $ime,
+            "email" => $email,
+            "telefon" => $telefon,
+            "r1" => $r1 ? 'Potreban R1 račun: <b>da</b>' : '',
+            "grad" => $grad,
+            "adresa" => $adresa,
+            "zip" => $zip,
+            "tvrtka" => $tvrtka ? 'Tvrtka: <b>'.$tvrtka.'</b>': '',
+            "oib" => $oib ? Domena::OIBPDV().': <b>'.$oib.'</b>' : '',
+            "tvrtkaadresa" => $tvrtkaadresa ? 'Adresa tvrtke: <b>'.$tvrtkaadresa.'</b>' : '',
+            "placanje" => $placanje == 1 ? 'Plaćanje pouzećem - gotovina' : 'Virman',
+            "napomena" => $napomena,
+            "datum" =>  date("d.m.Y"),
+            "artikli" => $artikli_html,
+            "total_kolicina" => $this->total_kolicina . ' kom',
+            "total_cijena" => number_format($this->total_cijena, 2, ',', '.').' '.Domena::valuta(),
+            "tvrtka_adresa" => Domena::adresa(),
+            "tvrtka_telefon" => Domena::telefon(),
+            "tvrtka_email" => Domena::email(),
+            "valuta" => Domena::valuta(),
+            "domena" => Server::Domena()
+        ));
+        $email_slanje_tvrtka->Posalji();
+
+        // pošalji email
+        $email_slanje_tvrtka = new Email('narudzba.html');
+        $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
+        $email_slanje_tvrtka->Adresa(array(
+            array("adresa" => $email, "ime" => $ime)
         ));
         $email_slanje_tvrtka->PredlozakKomponente(array(
             "ime" => $ime,
