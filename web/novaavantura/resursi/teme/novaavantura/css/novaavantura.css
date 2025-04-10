@@ -356,8 +356,6 @@ footer > section a svg {height: 50px; width: 50px;}
     .active:after {content: "\2212";}
     .panel {max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out;}
 
-    .swiper-slide picture img {height: 100% !important; width: 100%;}
-
 }
 
 @media all and (max-width: 1200px) and (hover: none) {
@@ -368,6 +366,12 @@ footer > section a svg {height: 50px; width: 50px;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"]:hover ~ ul {max-height: 500px; animation: dropdown 0.3s forwards;}
     header .meni .menu-bar > li > [aria-haspopup="true"] ~ ul [aria-haspopup="true"] ~ ul:hover {max-height: 500px; transform: scaleY(1);}
     header .meni .menu-bar > li:hover ~ .mobile-menu-header a {visibility: hidden;}
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+    main > .sadrzaj > .naslovna > div.div {height: 370px;}
 
 }
 
@@ -485,8 +489,8 @@ textarea:focus-visible {outline: none !important;}
 
 .swiper {height: 100%; width: 100%;}
 .swiper-slide {text-align: center;font-size: 18px;background: #fff;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}
-.swiper-slide picture {display: block; width: 100%; height: 100%; object-fit: cover;}
-.swiper-slide picture img {height: auto; width: 100%;}
+.swiper-slide picture {display: block; width: 100%; height: 100%;}
+.swiper-slide picture img {height: 100%; width: 100%; object-fit: cover;}
 
 /** animacije **/
 @keyframes dropdown {
