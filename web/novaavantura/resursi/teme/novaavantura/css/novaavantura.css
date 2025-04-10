@@ -167,6 +167,7 @@ main .sadrzaj .kosarica section {grid-template-columns: 1fr;}
 main .sadrzaj .kosarica section div.artikli {display: grid; grid-template-columns: 1fr; grid-template-rows: auto; grid-gap: 0; grid-column: 1 / 2; justify-items: left;}
 main .sadrzaj .kosarica section div.artikli .artikal {grid-template-columns: 100px auto 200px; grid-template-rows: 42px 42px 42px; grid-column-gap: 15px; justify-content: initial; align-items: center; padding: 20px; width: 100%; border-bottom: 1px dashed var(--boja-granica);}
 main .sadrzaj .kosarica section div.artikli .artikal a.slika {grid-row: 1 / 4;}
+main .sadrzaj .kosarica section div.artikli .artikal a.slika img {height: 100px;}
 main .sadrzaj .artikli section div.artikli .artikal a.slika svg {height: 100%; width: 100%;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal a.naziv {grid-column: 2 / 3; grid-row: 2 / 3; padding: 0;}
 main > .sadrzaj > .kosarica > section > div.artikli > .artikal span.velicina {font-size: 0.8rem; color: var(--boja-tekst-svjetlija);}
