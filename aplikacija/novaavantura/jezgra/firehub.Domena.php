@@ -226,7 +226,7 @@ final class Domena {
 
         if (self::Hr()) {
 
-            return 'Ulica fea Rajmunda Rudeža 1, 21260 Imotski';
+            return 'Ulica fra Rajmunda Rudeža 1, 21260 Imotski';
 
         }
 
