@@ -42,7 +42,11 @@ final class Domena {
      */
     public static function Hr ():bool {
 
-        if (Server::Domena() === 'nova-avantura.hr' || Server::Domena() === 'test.nova-avantura.hr' || Server::Domena() === 'localhost:210') {
+        if (
+            Server::Domena() === 'nova-avantura.hr'
+            || Server::Domena() === 'www.nova-avantura.hr'
+            || Server::Domena() === 'test.nova-avantura.hr' ||
+            Server::Domena() === 'localhost:210') {
 
 
             return true;
