@@ -154,6 +154,7 @@ abstract class Master_Kontroler extends Kontroler {
         return [
             'gdpr' => $this->gdpr->html(),
             'predlozak_opis' => Domena::opis(),
+            'predlozak_ga' => Domena::ga(),
             'adresa' => Domena::adresa(),
             'telefon' => Domena::telefon(),
             'email' => Domena::email(),

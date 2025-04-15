@@ -401,6 +401,24 @@ final class Domena {
      *
      * @return bool
      */
+    public static function ga ():string {
+
+        if (self::Hr()) {
+
+            return 'GTM-P5VX2JN4';
+
+        }
+
+        return '';
+
+    }
+
+    /**
+     * ## Black Friday
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return bool
+     */
     public static function blackFriday ():bool {
 
         return false;
