@@ -78,7 +78,7 @@ final class Blog_Model extends Master_Model {
         $naslov = Validacija::String(_('Naslov bloga'), $naslov, 3, 250);
 
         $datum = $_REQUEST['datum'];
-        $datum = new DateTime($datum);
+        $datum = new DateTime($datum ?? 'now');
 
         if (!empty($_REQUEST['opis'])) {
             $opis = $_REQUEST['opis'];
