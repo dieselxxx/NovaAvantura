@@ -31,9 +31,9 @@ final class Blog_Kontroler extends Master_Kontroler {
      *
      * @return Sadrzaj Sadržaj stranice.
      */
-    public function index (string $kontroler = '', int $id = 1):Sadrzaj {
+    public function index (string $kontroler = '', string $link = ''):Sadrzaj {
 
-        $blog = $this->model(Blog_Model::class)->blog($id);
+        $blog = $this->model(Blog_Model::class)->blog($link);
 
         return sadrzaj()->datoteka('blog.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => $blog['Naslov'],

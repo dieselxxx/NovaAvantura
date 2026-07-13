@@ -260,7 +260,7 @@ final class Naslovna_Kontroler extends Master_Kontroler {
 
             $blogovi_html .= <<<Blogovi
             
-                <a class="a" href="/blog/{$blog['ID']}/">
+                <a class="a" href="/blog/{$blog['Link']}/">
                     <img src="/slika/blog/{$blog['Slika']}" alt="" loading="lazy"/>
                     <h4>{$blog['Naslov']}</h4>
                     <span>{$blog['Datum']}</span>

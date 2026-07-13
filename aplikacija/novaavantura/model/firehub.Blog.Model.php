@@ -46,8 +46,8 @@ final class Blog_Model extends Master_Model {
      */
     public function blogovi ():array {
 
-        $blogovi = $this->bazaPodataka->tabela('blog')
-            ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika'])
+        $blogovi = $this->bazaPodataka->tabela('blogview')
+            ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika', 'Link'])
             ->poredaj('Datum', 'desc')
             ->napravi()
             ->niz() ?: [];
@@ -68,18 +68,30 @@ final class Blog_Model extends Master_Model {
      * ### Dohvati blog
      * @since 0.1.0.pre-alpha.M1
      *
-     * @param int $id <p>
-     * ID bloga.
+     * @param string $link <p>
+     * Link bloga.
      * </p>
      *
      * @return array Blog.
      */
-    public function blog (int $id):array|false {
+    public function blog (string $link = ''):array|false {
 
-        $blog = $this->bazaPodataka->tabela('blog')
-            ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika'])
-            ->gdje('ID', '=', $id)
-            ->napravi()->redak();
+        if ($link == '') {
+
+            $blog = $this->bazaPodataka->tabela('blogview')
+                ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika', 'Link'])
+                ->poredaj('Datum', 'desc')
+                ->limit(0, 1)
+                ->napravi()->redak();
+
+        } else {
+
+            $blog = $this->bazaPodataka->tabela('blogview')
+                ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika', 'Link'])
+                ->gdje('Link', '=', $link)
+                ->napravi()->redak();
+
+        }
 
         $blog['Datum'] = (
         new \IntlDateFormatter('hr_HR', \IntlDateFormatter::FULL, \IntlDateFormatter::SHORT)
