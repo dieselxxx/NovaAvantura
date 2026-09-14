@@ -194,11 +194,11 @@ final class Domena {
 
         if (self::Hr()) {
 
-            return '+385 99 603 9376 ';
+            return '+385 99 603 9376';
 
         }
 
-        return '+387 12 345 678';
+        return '+385 99 603 9376';
 
     }
 
@@ -234,7 +234,7 @@ final class Domena {
 
         }
 
-        return 'Adresa bb, 112233 Grad';
+        return 'Ulica fra Rajmunda Rudeža 1, 21260 Imotski';
 
     }
 
