@@ -47,7 +47,8 @@ final class Blog_Model extends Master_Model {
     public function blogovi ():array {
 
         $blogovi = $this->bazaPodataka->tabela('blogview')
-            ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika', 'Link'])
+            ->odaberi(['ID', 'Naslov', 'Opis', 'Datum', 'Slika', 'Link', 'Hr'])
+            ->gdje(Domena::sqlTablica(), '=', 1)
             ->poredaj('Datum', 'desc')
             ->napravi()
             ->niz() ?: [];
