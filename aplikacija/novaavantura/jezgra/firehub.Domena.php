@@ -373,7 +373,7 @@ final class Domena {
 
         }
 
-        return 'https://www.facebook.com/novaavantura.hr';
+        return 'https://www.facebook.com/novaavantura.ba';
 
     }
 
@@ -391,7 +391,7 @@ final class Domena {
 
         }
 
-        return 'https://www.instagram.com/novaavantura.hr/';
+        return 'https://www.instagram.com/novaavantura.ba/';
 
     }
 
