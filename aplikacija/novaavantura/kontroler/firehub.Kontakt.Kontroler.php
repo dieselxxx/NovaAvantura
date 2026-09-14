@@ -15,6 +15,7 @@
 namespace FireHub\Aplikacija\NovaAvantura\Kontroler;
 
 use FireHub\Jezgra\Sadrzaj\Sadrzaj;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 
 /**
  * ### Kontakt
@@ -32,7 +33,7 @@ final class Kontakt_Kontroler extends Master_Kontroler {
      */
     public function index ():Sadrzaj {
 
-        return sadrzaj()->datoteka('kontakt.html')->podatci(array_merge($this->zadaniPodatci(), [
+        return sadrzaj()->datoteka(Domena::kontakt())->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Kontakt',
             'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Kontakt'
         ]));

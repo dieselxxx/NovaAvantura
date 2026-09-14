@@ -198,7 +198,7 @@ final class Domena {
 
         }
 
-        return '+385 99 603 9376';
+        return '+387 036 349 223';
 
     }
 
@@ -244,15 +244,15 @@ final class Domena {
      *
      * @return string
      */
-    public static function poslovnice ():string {
+    public static function kontakt ():string {
 
         if (self::Hr()) {
 
-            return 'poslovnice_hr.html';
+            return 'kontakt.html';
 
         }
 
-        return 'poslovnice.html';
+        return 'kontakt_ba.html';
 
     }
 
@@ -373,7 +373,7 @@ final class Domena {
 
         }
 
-        return 'https://www.facebook.com/novaavantura.ba';
+        return 'https://www.facebook.com/novaavantura.hr';
 
     }
 
@@ -391,7 +391,7 @@ final class Domena {
 
         }
 
-        return 'https://www.instagram.com/novaavantura.sa/';
+        return 'https://www.instagram.com/novaavantura.hr/';
 
     }
 
