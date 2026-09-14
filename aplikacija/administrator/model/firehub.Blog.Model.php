@@ -55,14 +55,19 @@ final class Blog_Model extends Master_Model {
         $blog = $this->bazaPodataka
             ->sirovi("
                 SELECT
-                    blog.ID, blog.Naslov, blog.Opis, blog.Datum, blog.Slika
+                    blog.ID, blog.Naslov, blog.Opis, blog.Datum, blog.Slika, blog.Ba, blog.Hr
                 FROM blog
                 WHERE blog.ID = $id
                 LIMIT 1
             ")
             ->napravi();
 
-        return $blog->redak();
+        $blog = $blog->redak();
+
+        if ($blog['Ba']) {$blog['Ba'] = true;} else {$blog['Ba'] = false;}
+        if ($blog['Hr']) {$blog['Hr'] = true;} else {$blog['Hr'] = false;}
+
+        return $blog;
 
     }
 
@@ -85,12 +90,22 @@ final class Blog_Model extends Master_Model {
             $opis = Validacija::StringHTML(_('Opis bloga'), $opis, 0, 30000);
         }
 
+        $ba = $_REQUEST["ba"] ?? null;
+        $ba = Validacija::Potvrda(_('BA'), $ba);
+        if ($ba == "on") {$ba = 1;} else {$ba = 0;}
+
+        $hr = $_REQUEST["hr"] ?? null;
+        $hr = Validacija::Potvrda(_('HR'), $hr);
+        if ($hr == "on") {$hr = 1;} else {$hr = 0;}
+
         if ($id !== 0) {
 
             $this->bazaPodataka->tabela('blog')->azuriraj([
                 'Naslov' => $naslov,
                 'Opis' => $opis ?? '',
-                'Datum' => $datum->format('Y-m-d H:i:s')
+                'Datum' => $datum->format('Y-m-d H:i:s'),
+                'Ba' => $ba,
+                'Hr' => $hr,
             ])->gdje(
                 'ID', '=', $id
             )->napravi();

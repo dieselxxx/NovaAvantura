@@ -84,11 +84,15 @@ final class Blogovi_Kontroler extends Master_Kontroler {
 
         $blog_model = $this->model(Blog_Model::class);
         $blog = $blog_model->blog($id);
+        if ($blog['Ba'] === true) {$blog['Ba'] = 'checked';} else {$blog['Ba'] = '';}
+        if ($blog['Hr'] === true) {$blog['Hr'] = 'checked';} else {$blog['Hr'] = '';}
 
         return sadrzaj()->format(Sadrzaj_Vrsta::HTMLP)->datoteka('blogovi/uredi.html')->podatci([
             'id' => $blog['ID'],
             'naslov' => $blog['Naslov'],
             'datum' => $blog['Datum'],
+            'ba' => $blog['Ba'],
+            'hr' => $blog['Hr'],
             'opis' => $blog['Opis'] ?? '',
             'slika' => $blog['Slika'] ?? ''
         ]);
