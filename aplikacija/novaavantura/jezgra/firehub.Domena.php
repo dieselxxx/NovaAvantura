@@ -257,6 +257,24 @@ final class Domena {
     }
 
     /**
+     * ## Radno vrijeme Norb
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return string
+     */
+    public static function radnoVrijemeNobr ():string {
+
+        if (self::Hr()) {
+
+            return 'Pon-Sub: 9:00h - 19:00h, Ned: ne radimo';
+
+        }
+
+        return 'Pon-Pet: 9:00h - 21:00h, Sub: 9:00h - 16:00h, Ned: ne radimo';
+
+    }
+
+    /**
      * ## Stranica poslovnice
      * @since 0.1.0.pre-alpha.M1
      *
