@@ -156,6 +156,7 @@ abstract class Master_Kontroler extends Kontroler {
             'adresa' => Domena::adresa(),
             'telefon' => Domena::telefon(),
             'email' => Domena::email(),
+            'radno_vrijeme' => Domena::radnoVrijeme(),
             'facebook' => Domena::facebook(),
             'instagram' => Domena::instagram(),
             'kategorije_meni' => $this->kategorijeMeni(),
