@@ -161,6 +161,7 @@ abstract class Master_Kontroler extends Kontroler {
             'facebook' => Domena::facebook(),
             'instagram' => Domena::instagram(),
             'valuta' => Domena::valuta(),
+            'poruka' => Domena::poruka(),
             'kategorije_meni' => $this->kategorijeMeni(),
             'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije()),
             'kosarica_broj_artikala' => (string)$this->kosarica->brojArtikala(),

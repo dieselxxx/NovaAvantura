@@ -275,6 +275,34 @@ final class Domena {
     }
 
     /**
+     * ## Poruka
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return string
+     */
+    public static function poruka ():string {
+
+        if (self::Hr()) {
+
+            return '';
+
+        }
+
+        return '
+            <li>
+                <a class="whatsup" href="https://wa.me/38763328662 " title="whatsup">
+                    <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#whatsup"></use></svg>
+                </a>
+        
+                <a class="viber" href="viber://contact?number=%2B38763328662" title="viber">
+                    <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#viber"></use></svg>
+                </a>
+            </li>
+        ';
+
+    }
+
+    /**
      * ## Stranica poslovnice
      * @since 0.1.0.pre-alpha.M1
      *
