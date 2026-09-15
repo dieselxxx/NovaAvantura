@@ -15,6 +15,7 @@
 namespace FireHub\Aplikacija\NovaAvantura\Model;
 
 use FireHub\Jezgra\Komponente\Kolacic\Kolacic;
+use FireHub\Aplikacija\NovaAvantura\Jezgra\Domena;
 
 /**
  * ### GDPR model
@@ -62,11 +63,13 @@ final class Gdpr_Model extends Master_Model {
 
         if (!$gdpr->procitaj('gdpr')) {
 
+            $link = Domena::Hr() ? '<br><br>Za više informacija pročitajte našu <a href="/kolacic/osobnipodatci">Politiku obrade osobnih podataka</a>.' : '';
+
             return '
                 <div id="gdpr">
                     <div>
                         Ove Web stranice i njezini alati trećih strana (third-party tools) koriste<br>kolačiće (cookies) uglavnom za osnovno funkcioniranje i analitiku prometa.
-                        <br><br>Za više informacija pročitajte našu <a href="/kolacic/osobnipodatci">Politiku obrade osobnih podataka</a>.
+                        '.$link.'
                         <br><br><br><a style="border-bottom: 1px solid;" onclick="$_Cookie(\'da\');">Prihvaćam</a>
                         <a style="margin-left: 20px; border-bottom: 1px solid;" onclick="history.back();">Ne prihvaćam</a>
                     </div>
