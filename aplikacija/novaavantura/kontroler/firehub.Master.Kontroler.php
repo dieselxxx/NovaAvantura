@@ -137,8 +137,6 @@ abstract class Master_Kontroler extends Kontroler {
 
             header("Location: /kosarica/ispravno");
 
-            var_dump('xxx');
-
         }
 
     }
@@ -166,7 +164,22 @@ abstract class Master_Kontroler extends Kontroler {
             'favoriti_broj_artikala' => $this->favoriti->brojArtikala() > 0 ? '('.$this->favoriti->brojArtikala().')' : '',
             'dostava_iznos' => (string)Domena::dostavaIznos(),
             'dostava_limit' => (string)Domena::dostavaLimit(),
-            'greska' => $this->greska
+            'greska' => $this->greska,
+            'opci_uvjeti' => Domena::hr() ? '<li>
+                    <a href="/opciuvjeti">
+                        <span>Opći uvjeti</span>
+                    </a>
+                </li>': '',
+            'obrazac_raskid_ugovora' => Domena::hr() ? '<li>
+                    <a href="/novaavantura/resursi/datoteke/obrazac za jednostrani raskid ugovora.pdf" target="_blank">
+                        <span>Obrazac za jednostrani raskid ugovora</span>
+                    </a>
+                </li>' : '',
+            'cookie_politika' => Domena::hr() ? '<li>
+                    <a href="/kolacic/osobnipodatci">
+                        <span>Cookie politika</span>
+                    </a>
+                </li>' : ''
         ];
 
     }
