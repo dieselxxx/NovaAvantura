@@ -290,12 +290,46 @@ final class Domena {
 
         return '
             <li>
+                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#whatsup"></use></svg>
+                <a class="whatsup" href="https://wa.me/38763328662 " title="whatsup">
+                    <span>WhatsApp</span>
+                </a>
+            </li>
+            <li>
+                <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#viber"></use></svg>
+                <a class="viber" href="viber://contact?number=%2B38763328662" title="viber">
+                    <span>Viber</span>
+                </a>
+            </li>
+        ';
+
+    }
+
+    /**
+     * ## Poruka2
+     * @since 0.1.0.pre-alpha.M1
+     *
+     * @return string
+     */
+    public static function poruka2 ():string {
+
+        if (self::Hr()) {
+
+            return '';
+
+        }
+
+        return '
+            <li>
                 <a class="whatsup" href="https://wa.me/38763328662 " title="whatsup">
                     <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#whatsup"></use></svg>
+                    <span>WhatsApp</span>
                 </a>
-        
+            </li>
+            <li>
                 <a class="viber" href="viber://contact?number=%2B38763328662" title="viber">
                     <svg><use xlink:href="/novaavantura/resursi/grafika/simboli/simbol.ikone.svg#viber"></use></svg>
+                    <span>Viber</span>
                 </a>
             </li>
         ';
