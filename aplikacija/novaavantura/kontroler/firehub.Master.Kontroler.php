@@ -160,6 +160,7 @@ abstract class Master_Kontroler extends Kontroler {
             'radno_vrijeme_nobr' => Domena::radnoVrijemeNobr(),
             'facebook' => Domena::facebook(),
             'instagram' => Domena::instagram(),
+            'valuta' => Domena::valuta(),
             'kategorije_meni' => $this->kategorijeMeni(),
             'kategorije_podnozje_meni' => $this->kategorijePodnozjeTreeHTML($this->kategorije->kategorije()),
             'kosarica_broj_artikala' => (string)$this->kosarica->brojArtikala(),
