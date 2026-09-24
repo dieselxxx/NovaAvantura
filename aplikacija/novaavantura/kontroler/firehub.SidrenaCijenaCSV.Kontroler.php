@@ -53,7 +53,21 @@ final class SidrenaCijenaCSV_Kontroler extends Master_Kontroler {
                 throw new \RuntimeException(sprintf('Directory "%s" was not created', $putanja));
             }
 
-            $file = fopen($putanja.date('Y-m-d') . '.csv', 'wb');
+            // Izbriši CSV datoteke starije od 30 dana
+            $granica = time() - (30 * 24 * 60 * 60);
+
+            foreach (glob($putanja.'*.csv') ?: [] as $datoteka) {
+
+                if (is_file($datoteka) && filemtime($datoteka) < $granica) {
+                    unlink($datoteka);
+                }
+
+            }
+
+            // Kreiraj današnji CSV
+            $datoteka = $putanja.date('Y-m-d').'.csv';
+
+            $file = fopen($datoteka, 'wb');
 
             // UTF-8 BOM za Excel
             fwrite($file, "\xEF\xBB\xBF");
