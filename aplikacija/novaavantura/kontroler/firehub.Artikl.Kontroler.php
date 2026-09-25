@@ -165,6 +165,7 @@ final class Artikl_Kontroler extends Master_Kontroler {
             'artikl_brand' => $trenutni_artikl['Brand'] ? '<span>Brand: </span>'.$trenutni_artikl['Brand'] : '',
             'artikl_cijena' => $trenutni_artikl['CijenaHTML'],
             'artikl_cijena_30_dana' => $trenutni_artikl['Cijena30DanaHTML'],
+            'artikl_sidrena_cijena' => $trenutni_artikl['SidrenaCijenaHTML'],
             'artikl_opis' => $trenutni_artikl['Opis'] ? '<h5>Dodatne informacije: </h5><span>'.$trenutni_artikl['Opis'] .'</span>' : '',
             'artikl_zaliha' => $artikl_zaliha_html,
             'artikl_kosarica_velicine' => $artikl_kosarica_velicine,

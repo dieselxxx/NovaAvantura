@@ -113,6 +113,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
                     <a class="naziv" href="/artikl/{$artikal['Link']}">{$artikal['Naziv']}</a>
                     <span class="cijena">{$artikal['CijenaHTML']}</span>
                     <span class="cijena_30_dana">{$artikal['Cijena30DanaHTML']}</span>
+                    <span class="cijena_30_dana">{$artikal['SidrenaCijenaHTML']}</span>
                 </form>
 
             Artikal;

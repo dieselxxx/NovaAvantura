@@ -52,7 +52,8 @@ final class Artikl_Model extends Master_Model {
                     kategorijeview.Kategorija, kategorijeview.Link as KategorijaLink, slikeartikal.Slika, artikliview.Link,
                     brandovi.Brand,
                     ".(Domena::Hr() ? 'artikliview.GratisHr' : 'artikliview.GratisBa')." AS GratisID, gratis.Naziv AS GratisNaziv, gratisslika.Slika AS GratisSlika, gratis.Link AS GratisLink,
-                    artikliview.Cijena30Dana".Domena::sqlTablica()." AS Cijena30Dana
+                    artikliview.Cijena30Dana".Domena::sqlTablica()." AS Cijena30Dana,
+                    artikliview.SidrenaCijena".Domena::sqlTablica()." AS SidrenaCijena
                 FROM artikliview
                 LEFT JOIN kategorijeview ON kategorijeview.ID = artikliview.KategorijaID
                 LEFT JOIN slikeartikal ON slikeartikal.ClanakID = artikliview.ID
@@ -78,6 +79,11 @@ final class Artikl_Model extends Master_Model {
         // najniža cijena 30 dana
         $artikl['Cijena30DanaHTML'] = Domena::Hr()
             ? 'najniža cijena u posljednih 30 dana: '.$artikl['Cijena30Dana'] .' '.Domena::valuta()
+            : '';
+
+        // sidrena cijena
+        $artikl['SidrenaCijenaHTML'] = Domena::Hr()
+            ? '10.9.2026. : '.$artikl['SidrenaCijena'] .' '.Domena::valuta()
             : '';
 
         // cijena

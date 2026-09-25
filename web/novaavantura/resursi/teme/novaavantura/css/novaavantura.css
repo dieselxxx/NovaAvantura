@@ -122,7 +122,7 @@ main .sadrzaj .naslovna .artikli section .artikli .artikal span.cijena .prekrizi
 main .sadrzaj .artikli section div.artikli .artikal span.cijena .prekrizi:before,
 main .sadrzaj .naslovna .artikli section .artikli .artikal span.cijena .prekrizi:before {content: ""; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid; border-color: var(--boja-tekst-svjetlija); transform:rotate(-5deg);}
 main .sadrzaj .artikli section div.artikli .artikal span.cijena_30_dana,
-main .sadrzaj .naslovna .artikli section .artikli .artikal span.cijena_30_dana {font-size: 0.7rem; font-weight: 100;}
+main .sadrzaj .naslovna .artikli section .artikli .artikal span.cijena_30_dana {font-size: 0.7rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 main .sadrzaj .naslovna .artikli section#brandovi div a {display: block; justify-content: center; align-content: center; height: 120px; width: 200px;}
 main .sadrzaj .naslovna .artikli section#blogovi a {display: grid; grid-template-columns: 150px auto; justify-content: center; grid-column-gap: 20px; align-content: center; height: 200px; width: 600px; color: var(--boja-tekst);}
 main .sadrzaj .naslovna .artikli section#blogovi div a img {grid-column: 1 / 2; grid-row: 1 / 5; height: 200px; width: 150px;}
@@ -151,7 +151,7 @@ main .sadrzaj .artikl form .podatci .cijene {display: flex; flex-direction: colu
 main .sadrzaj .artikl form .podatci .cijena {padding: 3px; font-size: 1.5rem; font-weight: 300;}
 main .sadrzaj .artikl form .podatci .cijena .prekrizi {position: relative; margin-right: 10px; font-size: 1rem; color: var(--boja-tekst-svjetlija);}
 main .sadrzaj .artikl form .podatci .cijena .prekrizi:before {content: ""; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid; border-color: var(--boja-tekst-svjetlija); transform:rotate(-5deg);}
-main .sadrzaj .artikl form .podatci .cijena_30_dana {font-size: 0.7rem; font-weight: 100;}
+main .sadrzaj .artikl form .podatci .cijena_30_dana {font-size: 0.7rem; font-weight: 100; color: var(--boja-tekst-svjetlija);}
 main .sadrzaj .artikl form .podatci .zaliha {border-top: 1px dashed var(--boja-granica);}
 main .sadrzaj .artikl form .podatci .zaliha ul li {float: left;}
 main .sadrzaj .artikl form .podatci .kosarica {display: grid; grid-template-columns: 100px 30px 30px; grid-gap: 10px;}
