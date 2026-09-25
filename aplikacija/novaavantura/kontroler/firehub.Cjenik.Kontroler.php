@@ -33,9 +33,38 @@ final class Cjenik_Kontroler extends Master_Kontroler {
      */
     public function index (BazaPodataka $bazaPodataka = null):Sadrzaj {
 
+        $putanja = FIREHUB_ROOT.konfiguracija('sustav.putanje.web')
+            .'novaavantura'.RAZDJELNIK_MAPE
+            .'resursi'.RAZDJELNIK_MAPE
+            .'cjenik'.RAZDJELNIK_MAPE;
+
+        $datoteke = '<table>';
+
+        foreach (glob($putanja.'*.csv') as $file) {
+
+            $naziv = basename($file);
+
+            $href = 'novaavantura/resursi/cjenik/'
+                .$naziv;
+
+            $datoteke .= '
+                <tr>
+                    <td>
+                        <a href="'.htmlspecialchars($href).'" target="_blank" rel="noopener noreferrer">
+                            '.htmlspecialchars($naziv).'
+                        </a>
+                    </td>
+                </tr>
+            ';
+
+        }
+
+        $datoteke .= '</table>';
+
         return sadrzaj()->datoteka('cjenik.html')->podatci(array_merge($this->zadaniPodatci(), [
             'predlozak_naslov' => 'Cjenik',
-            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Cjenik'
+            'vi_ste_ovdje' => '<a href="/">Nova Avantura</a> \\ Cjenik',
+            'datoteke' => $datoteke
         ]));
 
     }
