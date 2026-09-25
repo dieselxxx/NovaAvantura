@@ -26,3 +26,4 @@ Rute::sve('kolacic/osobnipodatci', [\FireHub\Aplikacija\NovaAvantura\Kontroler\K
 Rute::sve('kosarica/narudzba', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kosarica_Kontroler::class, 'narudzba']);
 Rute::sve('kosarica/ispravno', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Kosarica_Kontroler::class, 'ispravno']);
 Rute::sve('sidrenacijenacsv/index', [\FireHub\Aplikacija\NovaAvantura\Kontroler\SidrenaCijenaCSV_Kontroler::class, 'index']);
+Rute::sve('cjenik/index', [\FireHub\Aplikacija\NovaAvantura\Kontroler\Cjenik_Kontroler::class, 'index']);
