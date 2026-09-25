@@ -38,9 +38,13 @@ final class Cjenik_Kontroler extends Master_Kontroler {
             .'resursi'.RAZDJELNIK_MAPE
             .'cjenik'.RAZDJELNIK_MAPE;
 
+        $files = glob($putanja.'*.csv');
+
+        rsort($files, SORT_NATURAL);
+
         $datoteke = '<table>';
 
-        foreach (glob($putanja.'*.csv') as $file) {
+        foreach ($files as $file) {
 
             $naziv = basename($file);
 

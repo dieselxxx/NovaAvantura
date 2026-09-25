@@ -184,7 +184,12 @@ abstract class Master_Kontroler extends Kontroler {
                     <a href="/kolacic/osobnipodatci">
                         <span>Cookie politika</span>
                     </a>
-                </li>' : ''
+                </li>' : '',
+            'digitalni_cjenik' => Domena::hr() ? '<li>
+                    <a href="/cjenik">
+                        <span>Digitalni cjenik</span>
+                    </a>
+                </li>' : '',
         ];
 
     }
