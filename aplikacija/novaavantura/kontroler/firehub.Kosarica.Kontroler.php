@@ -317,7 +317,9 @@ final class Kosarica_Kontroler extends Master_Kontroler {
         $email_slanje_tvrtka->Adresa(array(
             array("adresa" => 'imotski@nova-avantura.hr', "ime" => 'Nova Avantura Imotski'),
             array("adresa" => 'josip@nova-avantura.hr', "ime" => 'Nova Avantura Josip'),
-            array("adresa" => 'gordana@nova-avantura.hr', "ime" => 'Nova Avantura Gordana')
+            array("adresa" => 'gordana@nova-avantura.hr', "ime" => 'Nova Avantura Gordana'),
+            array("adresa" => 'nina@kapriol-point.com', "ime" => 'Nova Avantura Nina'),
+            array("adresa" => 'lana@kapriol-point.com', "ime" => 'Nova Avantura Lana')
         ));
         $email_slanje_tvrtka->PredlozakKomponente(array(
             "ime" => $ime,

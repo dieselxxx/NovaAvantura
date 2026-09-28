@@ -135,7 +135,12 @@ abstract class Master_Kontroler extends Kontroler {
 
             $this->naruci();
 
-            header("Location: /kosarica/ispravno");
+            if (headers_sent($file, $line)) {
+                die("Headers already sent in $file:$line");
+            }
+
+            header('Location: /kosarica/ispravno');
+            exit();
 
         }
 

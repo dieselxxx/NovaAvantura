@@ -111,7 +111,7 @@ final class Email {
         ];
         $this->email->SMTPAuth = true;
         $this->email->Username = 'web@nova-avantura.hr';
-        $this->email->Password = '&4j%8ecd@G%j%^eh!z@S';
+        $this->email->Password = '{nC1jEMBbgq&=(u&';
         $this->email->SetFrom('web@nova-avantura.hr', 'Nova Avantura Web Trgovina');
         $this->email->CharSet = 'UTF-8';
         $this->email->Encoding = 'base64';
