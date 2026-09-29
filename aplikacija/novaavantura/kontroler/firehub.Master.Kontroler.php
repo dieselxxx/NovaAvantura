@@ -190,11 +190,12 @@ abstract class Master_Kontroler extends Kontroler {
                         <span>Cookie politika</span>
                     </a>
                 </li>' : '',
-            'digitalni_cjenik' => Domena::hr() ? '<li>
+            /*'digitalni_cjenik' => Domena::hr() ? '<li>
                     <a href="/cjenik">
                         <span>Digitalni cjenik</span>
                     </a>
-                </li>' : '',
+                </li>' : '',*/
+            'digitalni_cjenik' => '' // sid cijena
         ];
 
     }

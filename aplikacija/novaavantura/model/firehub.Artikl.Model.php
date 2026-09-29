@@ -85,6 +85,7 @@ final class Artikl_Model extends Master_Model {
         $artikl['SidrenaCijenaHTML'] = Domena::Hr()
             ? '10.9.2026. : '.$artikl['SidrenaCijena'] .' '.Domena::valuta()
             : '';
+        $artikl['SidrenaCijenaHTML'] = ''; // sid cijena
 
         // cijena
         if ($artikl['CijenaAkcija'] > 0) {
