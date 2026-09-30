@@ -311,16 +311,22 @@ final class Kosarica_Kontroler extends Master_Kontroler {
 
         }
 
+        // tvrtka podatci desno
+        $tvrtka_podatci = Domena::Hr() ? '
+        <td style="width: 35%;">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr align="right"><td>NOVA AVANTURA d.o.o. za trgovinu</td></tr>
+                <tr align="right"><td>'.Domena::adresa().'</td></tr>
+                <tr align="right"><td>'.Domena::email().'</td></tr>
+                <tr align="right"><td>'.Domena::telefon().'</td></tr>
+            </table>
+        </td>
+        ' : '';
+
         // pošalji email
         $email_slanje_tvrtka = new Email('narudzba.html');
         $email_slanje_tvrtka->Naslov('Vaša narudžba je zaprimljena');
-        $email_slanje_tvrtka->Adresa(array(
-            array("adresa" => 'imotski@nova-avantura.hr', "ime" => 'Nova Avantura Imotski'),
-            array("adresa" => 'josip@nova-avantura.hr', "ime" => 'Nova Avantura Josip'),
-            array("adresa" => 'gordana@nova-avantura.hr', "ime" => 'Nova Avantura Gordana'),
-            array("adresa" => 'nina@kapriol-point.com', "ime" => 'Nova Avantura Nina'),
-            array("adresa" => 'lana@kapriol-point.com', "ime" => 'Nova Avantura Lana')
-        ));
+        $email_slanje_tvrtka->Adresa(Domena::emailNarudzbe());
         $email_slanje_tvrtka->PredlozakKomponente(array(
             "ime" => $ime,
             "email" => $email,
@@ -342,7 +348,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
             "valuta" => Domena::valuta(),
-            "domena" => Server::Domena()
+            "domena" => Server::Domena(),
+            "tvrtka_podatci" => $tvrtka_podatci
         ));
         $email_slanje_tvrtka->Posalji();
 
@@ -373,7 +380,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
             "valuta" => Domena::valuta(),
-            "domena" => Server::Domena()
+            "domena" => Server::Domena(),
+            "tvrtka_podatci" => $tvrtka_podatci
         ));
         $email_slanje_tvrtka->Posalji();
 
@@ -404,7 +412,8 @@ final class Kosarica_Kontroler extends Master_Kontroler {
             "tvrtka_telefon" => Domena::telefon(),
             "tvrtka_email" => Domena::email(),
             "valuta" => Domena::valuta(),
-            "domena" => Server::Domena()
+            "domena" => Server::Domena(),
+            "tvrtka_podatci" => $tvrtka_podatci
         ));
         $email_slanje_tvrtka->Posalji();
 
