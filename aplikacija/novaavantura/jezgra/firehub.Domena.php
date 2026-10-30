@@ -244,7 +244,8 @@ final class Domena {
             array("adresa" => 'josip@nova-avantura.ba', "ime" => 'Nova Avantura Josip'),
             array("adresa" => 'gordana@nova-avantura.hr', "ime" => 'Nova Avantura Gordana'),
             array("adresa" => 'nina@kapriol-point.com', "ime" => 'Nova Avantura Nina'),
-            array("adresa" => 'lana@kapriol-point.com', "ime" => 'Nova Avantura Lana')
+            array("adresa" => 'lana@kapriol-point.com', "ime" => 'Nova Avantura Lana'),
+            array("adresa" => 'mostar@kapriol-point.com', "ime" => 'Nova Avantura Mostar')
         );
 
     }
