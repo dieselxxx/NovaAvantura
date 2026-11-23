@@ -54,7 +54,7 @@ final class Artikl_Model extends Master_Model {
             ->sirovi("
                 SELECT
                     artikli.ID, artikli.Naziv, artikli.Opis,
-                    artikli.Cijena, artikli.CijenaAkcija, artikli.CijenaKn, artikli.CijenaAkcijaKn,
+                    artikli.Cijena, artikli.CijenaAkcija, artikli.CijenaKn, artikli.CijenaAkcijaKn, artikli.SidrenaCijenaHr,
                     artikli.Ba, artikli.Hr, artikli.Outlet, artikli.OutletHr, artikli.Novo,
                     artikli.Aktivan, artikli.Izdvojeno,
                     artikli.KategorijaID, kategorije.Kategorija,
@@ -78,6 +78,7 @@ final class Artikl_Model extends Master_Model {
         $artikl['CijenaAkcija'] = number_format((float)$artikl['CijenaAkcija'], 2, ',', '.');
         $artikl['CijenaKn'] = number_format((float)$artikl['CijenaKn'], 2, ',', '.');
         $artikl['CijenaAkcijaKn'] = number_format((float)$artikl['CijenaAkcijaKn'], 2, ',', '.');
+        $artikl['SidrenaCijenaHr'] = number_format((float)$artikl['SidrenaCijenaHr'], 2, ',', '.');
         if ($artikl['Izdvojeno']) {$artikl['Izdvojeno'] = true;} else {$artikl['Izdvojeno'] = false;}
         if ($artikl['Aktivan']) {$artikl['Aktivan'] = true;} else {$artikl['Aktivan'] = false;}
         if ($artikl['Ba']) {$artikl['Ba'] = true;} else {$artikl['Ba'] = false;}
@@ -209,6 +210,12 @@ final class Artikl_Model extends Master_Model {
         $cijena_akcija_hr = round((float)$cijena_akcija_hr, 2);
         $cijena_akcija_hr = Validacija::DecimalniBroj(_('Cijena artikla'), $cijena_akcija_hr);
 
+        $sidrena_cijena_hr = $_REQUEST['sidrena_cijena_hr'];
+        $sidrena_cijena_hr = str_replace('.', '', $sidrena_cijena_hr);
+        $sidrena_cijena_hr = str_replace(',', '.', $sidrena_cijena_hr);
+        $sidrena_cijena_hr = round((float)$sidrena_cijena_hr, 2);
+        $sidrena_cijena_hr = Validacija::DecimalniBroj(_('Cijena artikla'), $sidrena_cijena_hr);
+
         $outlet = $_REQUEST["outlet"] ?? null;
         $outlet = Validacija::Potvrda(_('Outlet'), $outlet);
         if ($outlet == "on") {$outlet = 1;} else {$outlet = 0;}
@@ -260,6 +267,7 @@ final class Artikl_Model extends Master_Model {
                 'CijenaAkcija' => $cijena_akcija,
                 'CijenaKn' => $cijena_hr,
                 'CijenaAkcijaKn' => $cijena_akcija_hr,
+                'SidrenaCijenaHr' => $sidrena_cijena_hr,
                 'Ba' => $ba,
                 'Hr' => $hr,
                 'Outlet' => $outlet,
@@ -297,6 +305,7 @@ final class Artikl_Model extends Master_Model {
                 'CijenaAkcija' => $cijena_akcija,
                 'CijenaKn' => $cijena_hr,
                 'CijenaAkcijaKn' => $cijena_akcija_hr,
+                'SidrenaCijenaHr' => $sidrena_cijena_hr,
                 'Ba' => $ba,
                 'Hr' => $hr,
                 'Outlet' => $outlet,

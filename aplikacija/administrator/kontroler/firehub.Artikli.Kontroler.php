@@ -181,6 +181,7 @@ final class Artikli_Kontroler extends Master_Kontroler {
             'cijena_akcija' => $artikl['CijenaAkcija'],
             'cijena_hr' => $artikl['CijenaKn'],
             'cijena_akcija_hr' => $artikl['CijenaAkcijaKn'],
+            'sidrena_cijena_hr' => $artikl['SidrenaCijenaHr'],
             'aktivno' => $artikl['Aktivan'],
             'izdvojeno' => $artikl['Izdvojeno'],
             'ba' => $artikl['Ba'],
