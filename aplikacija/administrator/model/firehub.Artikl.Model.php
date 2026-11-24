@@ -301,6 +301,7 @@ final class Artikl_Model extends Master_Model {
             $this->bazaPodataka->tabela('artikli')->umetni([
                 'Naziv' => $naziv,
                 'Opis' => $opis,
+                'DostupnoOd' => (new \DateTime())->format('Y-m-d'),
                 'Cijena' => $cijena,
                 'CijenaAkcija' => $cijena_akcija,
                 'CijenaKn' => $cijena_hr,
